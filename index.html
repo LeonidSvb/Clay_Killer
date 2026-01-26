@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Hustle - B2B Sales Systems</title>
+    <title>System Hustle - For Recruitment Agencies</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -119,7 +119,7 @@
 
         .hero {
             text-align: center;
-            padding: 120px 0 100px;
+            padding: 80px 0 60px;
         }
 
         .badge {
@@ -135,11 +135,11 @@
         }
 
         h1 {
-            font-size: 72px;
+            font-size: 64px;
             font-weight: 600;
-            line-height: 1.05;
+            line-height: 1.1;
             margin-bottom: 32px;
-            max-width: 1000px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             letter-spacing: -0.02em;
@@ -148,53 +148,40 @@
         .subtitle {
             font-size: 18px;
             font-weight: 400;
-            line-height: 1.6;
-            max-width: 60ch;
-            margin: 0 auto 48px;
-            opacity: 0.7;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            opacity: 0.75;
         }
 
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 48px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
+        /* Calendar Section */
+        .calendar-section {
+            padding: 60px 0 80px;
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 32px;
+        .calendar-section .cal-label {
+            font-size: 28px;
             font-weight: 600;
-            color: #10b981;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 16px 40px;
-            border: 2px solid rgba(16, 185, 129, 0.6);
-            border-radius: 30px;
-            color: #ffffff;
-            text-decoration: none;
+        .calendar-section .cal-subtitle {
             font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            background: rgba(16, 185, 129, 0.08);
+            opacity: 0.7;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-button:hover {
-            background: rgba(16, 185, 129, 0.15);
-            border-color: rgba(16, 185, 129, 0.8);
-            transform: translateY(-1px);
+        .cal-embed {
+            max-width: 900px;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         .section-title {
@@ -207,7 +194,7 @@
         }
 
         .process-section {
-            padding: 120px 0;
+            padding: 100px 0;
         }
 
         .process-grid {
@@ -246,77 +233,12 @@
         }
 
         .process-card h3 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             margin-bottom: 16px;
         }
 
         .process-card p {
-            font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.7;
-        }
-
-        .problem-section {
-            padding: 80px 0;
-        }
-
-        .problem-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 80px;
-            font-size: 18px;
-            line-height: 1.6;
-            opacity: 0.8;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 40px 30px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(16, 185, 129, 0.3);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(16, 185, 129, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .feature-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: #10b981;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
             font-size: 15px;
             line-height: 1.6;
             opacity: 0.7;
@@ -330,7 +252,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 80px auto 0;
         }
 
@@ -342,7 +264,7 @@
         }
 
         .comparison-card h3 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 600;
             margin-bottom: 24px;
         }
@@ -420,9 +342,9 @@
         }
 
         .case-study h3 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             line-height: 1.3;
         }
 
@@ -433,7 +355,7 @@
         }
 
         .case-study p {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.6;
             opacity: 0.7;
         }
@@ -448,8 +370,15 @@
             font-size: 48px;
             font-weight: 600;
             line-height: 1.1;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             letter-spacing: -0.02em;
+        }
+
+        .faq-intro {
+            font-size: 17px;
+            opacity: 0.7;
+            margin-bottom: 60px;
+            line-height: 1.6;
         }
 
         .faq-item {
@@ -502,68 +431,9 @@
 
         .faq-answer p {
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             opacity: 0.7;
             margin: 0;
-        }
-
-        .cta-section {
-            padding: 120px 0;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 48px;
-            font-weight: 600;
-            margin-bottom: 32px;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            opacity: 0.7;
-            margin-bottom: 40px;
-        }
-
-        .cta-checklist {
-            max-width: 600px;
-            margin: 40px auto;
-            text-align: left;
-        }
-
-        .cta-checklist h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 24px;
-        }
-
-        .cta-checklist ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .cta-checklist li {
-            display: flex;
-            gap: 12px;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .cta-checklist li::before {
-            content: '•';
-            color: #10b981;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .cal-embed {
-            max-width: 900px;
-            margin: 60px auto;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            overflow: hidden;
         }
 
         footer {
@@ -586,10 +456,6 @@
 
 
         @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .process-grid {
                 grid-template-columns: 1fr;
             }
@@ -605,7 +471,7 @@
             }
 
             h1 {
-                font-size: 42px;
+                font-size: 36px;
             }
 
             .section-title {
@@ -621,19 +487,14 @@
                 gap: 30px;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-row {
-                flex-direction: column;
-                gap: 30px;
-            }
-
             .footer-content {
                 flex-direction: column;
                 gap: 30px;
                 text-align: center;
+            }
+
+            .cal-label {
+                font-size: 22px;
             }
         }
     </style>
@@ -646,116 +507,54 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="#process">How It Works</a></li>
-                <li><a href="#cases">Case Studies</a></li>
+                <li><a href="#cases">Results</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <a href="#booking" class="nav-cta">Book a Call</a>
         </nav>
 
         <section class="hero">
-            <div class="badge">Tired of the client acquisition hustle?</div>
+            <div class="badge">For Recruitment Agencies</div>
 
             <h1>
-                Stop Chasing Leads.<br/>
-                Start Attracting Them.
+                Get Access to Hiring Companies Before Roles Go Public
             </h1>
 
             <p class="subtitle">
-                We build B2B sales systems that identify prospects with urgent problems you solve, reach decision-makers with personalized messaging, and book qualified meetings while you focus on closing deals.
+                I identify companies showing hiring signals and connect you with decision-makers before they post jobs. No job boards. No cold spray. Just warm intros when there's a real reason to talk.
             </p>
+        </section>
 
-            <div class="stats-row">
-                <div class="stat-item">
-                    <div class="stat-number">Qualified</div>
-                    <div class="stat-label">Meetings Every Month</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Cost-Effective</div>
-                    <div class="stat-label">vs Hiring SDRs</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">Fast</div>
-                    <div class="stat-label">Implementation</div>
-                </div>
+        <!-- Calendar Section -->
+        <section class="calendar-section" id="booking">
+            <h2 class="cal-label">Book a Call</h2>
+            <p class="cal-subtitle">Let's discuss how I can help you build a predictable client pipeline.</p>
+
+            <div class="cal-embed">
+                <iframe src="https://cal.com/leonidshvorob/fit-check-call" width="100%" height="700" frameborder="0"></iframe>
             </div>
         </section>
 
         <section class="process-section" id="process">
-            <h2 class="section-title">Our Proven B2B Sales System</h2>
+            <h2 class="section-title">How It Works</h2>
 
             <div class="process-grid">
                 <div class="process-card">
                     <div class="process-number">1</div>
-                    <h3>Identify Pain Points</h3>
-                    <p>Research specific business challenges your prospects face</p>
+                    <h3>Identify Hiring Signals</h3>
+                    <p>I track companies showing signs they're about to hire - funding rounds, leadership changes, growth announcements, job posting patterns.</p>
                 </div>
 
                 <div class="process-card">
                     <div class="process-number">2</div>
-                    <h3>Target & Connect</h3>
-                    <p>Reach decision-makers with personalized messaging</p>
+                    <h3>Reach Decision-Makers</h3>
+                    <p>I connect with hiring managers and HR leaders using personalized outreach that references their specific situation and hiring needs.</p>
                 </div>
 
                 <div class="process-card">
                     <div class="process-number">3</div>
-                    <h3>Book & Qualify</h3>
-                    <p>Schedule qualified meetings with pre-vetted prospects</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="problem-section">
-            <h2 class="section-title">The Problem With Most Lead Generation</h2>
-
-            <p class="problem-intro">
-                Most agencies blast generic messages to job titles hoping something sticks. We flip this on its head: first we identify companies actively struggling with problems you solve, then we reach the people who have both the budget and authority to fix them.
-            </p>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <h3>Problem-Based Targeting</h3>
-                    <p>We research companies showing signals they need your solution - hiring sprees, funding rounds, leadership changes, or public complaints about the exact problems you solve.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                    </div>
-                    <h3>Decision-Maker Outreach</h3>
-                    <p>Skip the gatekeepers. We reach C-level executives and budget holders with messages that reference their specific challenges, not generic pain points.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="16" y1="2" x2="16" y2="6"/>
-                            <line x1="8" y1="2" x2="8" y2="6"/>
-                            <line x1="3" y1="10" x2="21" y2="10"/>
-                        </svg>
-                    </div>
-                    <h3>Qualified Meeting Booking</h3>
-                    <p>Only pre-vetted prospects who have confirmed budget, authority, need, and timeline get on your calendar. No more tire-kickers or time-wasters.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                            <polyline points="17 6 23 6 23 12"/>
-                        </svg>
-                    </div>
-                    <h3>Performance Optimization</h3>
-                    <p>Continuous testing and refinement of messaging, targeting, and timing to maximize response rates and meeting quality month over month.</p>
+                    <h3>Book Warm Conversations</h3>
+                    <p>You get introduced to companies actively building teams - not cold leads who might hire "someday."</p>
                 </div>
             </div>
         </section>
@@ -765,37 +564,45 @@
 
             <div class="comparison-grid">
                 <div class="comparison-card">
-                    <h3>Current Approach</h3>
+                    <h3>The Old Way</h3>
                     <div class="comparison-list">
                         <div class="comparison-item">
-                            <div class="comparison-icon negative">✕</div>
-                            <p>Generic "spray and pray" messaging</p>
+                            <div class="comparison-icon negative">x</div>
+                            <p>Waiting for jobs to be posted on boards</p>
                         </div>
                         <div class="comparison-item">
-                            <div class="comparison-icon negative">✕</div>
-                            <p>Targeting job titles instead of problems</p>
+                            <div class="comparison-icon negative">x</div>
+                            <p>Competing with dozens of other agencies</p>
                         </div>
                         <div class="comparison-item">
-                            <div class="comparison-icon negative">✕</div>
-                            <p>Wasting budget on unqualified leads</p>
+                            <div class="comparison-icon negative">x</div>
+                            <p>Cold outreach to companies you know nothing about</p>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon negative">x</div>
+                            <p>Generic pitches that get ignored</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="comparison-card">
-                    <h3>What It Looks Like When It Works</h3>
+                    <h3>What Changes</h3>
                     <div class="comparison-list">
                         <div class="comparison-item">
-                            <div class="comparison-icon positive">✓</div>
-                            <p>Better qualified conversations with execs who know the problem</p>
+                            <div class="comparison-icon positive">+</div>
+                            <p>Access to companies before roles go public</p>
                         </div>
                         <div class="comparison-item">
-                            <div class="comparison-icon positive">✓</div>
-                            <p>Fewer wasted leads and ad spend</p>
+                            <div class="comparison-icon positive">+</div>
+                            <p>First-mover advantage with hiring companies</p>
                         </div>
                         <div class="comparison-item">
-                            <div class="comparison-icon positive">✓</div>
-                            <p>Higher reply and meeting rates from targeted outreach</p>
+                            <div class="comparison-icon positive">+</div>
+                            <p>Warm intros based on real hiring signals</p>
+                        </div>
+                        <div class="comparison-item">
+                            <div class="comparison-icon positive">+</div>
+                            <p>Conversations with context, not cold calls</p>
                         </div>
                     </div>
                 </div>
@@ -803,120 +610,93 @@
         </section>
 
         <section class="case-studies-section" id="cases">
-            <h2 class="section-title">Case Studies</h2>
+            <h2 class="section-title">Results</h2>
 
             <div class="case-studies-grid">
                 <div class="case-study">
-                    <div class="case-study-header">+$85K in 1 Quarter</div>
-                    <h3>Strategic outreach that drives growth</h3>
-                    <div class="case-study-company">Vention - Industrial Automation</div>
-                    <p>Generated +$85K revenue and streamlined sales by connecting with the right decision-makers.</p>
+                    <div class="case-study-header">22 Placements in 55 Days</div>
+                    <h3>From manual outreach to signal-based pipeline</h3>
+                    <div class="case-study-company">Elate Staffing Solutions - Industrial & Technical Recruiting</div>
+                    <p>Replaced slow manual research with systematic signal tracking. 50% increase in lead conversion, response time reduced from days to hours.</p>
                 </div>
 
                 <div class="case-study">
-                    <div class="case-study-header">+$105K in AI Talent Placements</div>
-                    <h3>Scaling AI recruitment with precision</h3>
-                    <div class="case-study-company">Connect Group - Recruitment</div>
-                    <p>Generated +$105K revenue in a quarter while improving lead quality and sales team efficiency.</p>
+                    <div class="case-study-header">$100K+ Revenue in 90 Days</div>
+                    <h3>Escaped the ad spend trap</h3>
+                    <div class="case-study-company">Crawford Thomas Recruiting - Manufacturing Focus</div>
+                    <p>39 placements in one quarter. Eliminated PPC dependency, reduced sales team burnout. Predictable pipeline without scaling ad spend.</p>
                 </div>
 
                 <div class="case-study">
-                    <div class="case-study-header">+$100K Revenue</div>
-                    <h3>Transforming doubt into proven results</h3>
-                    <div class="case-study-company">Crawford Thomas Recruiting</div>
-                    <p>Achieved +39 successful placements in a single quarter, eliminated team burnout, and built stronger partnerships with clients.</p>
+                    <div class="case-study-header">$105K in 90 Days</div>
+                    <h3>Scaling specialized talent placements</h3>
+                    <div class="case-study-company">Connect Group - Tech Talent Recruitment</div>
+                    <p>Ended feast-or-famine months. Consistent pipeline, shorter sales cycles, higher conversion rates from better targeting.</p>
                 </div>
             </div>
         </section>
 
         <section class="faq-section" id="faq">
             <h2>Frequently Asked Questions</h2>
+            <p class="faq-intro">Quick answers to common questions about how this works.</p>
 
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>What if prospects don't respond to our messaging?</h3>
+                        <h3>How do you identify companies that are about to hire?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Generic messages get ignored. That's why we research each prospect's specific challenges first. When a CFO sees an email about the exact cash flow problem they complained about on LinkedIn last week, they respond. Our messaging gets significantly higher response rates than generic outreach.</p>
+                        <p>I track multiple signals: funding rounds, leadership changes, LinkedIn activity patterns, job posting history, growth announcements. When a company shows several signals together, they're likely expanding their team soon - often before they've even posted a role publicly.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How is this different from other agencies?</h3>
+                        <h3>What kind of conversations should I expect?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>Most agencies blast thousands of generic messages hoping for minimal response. We send fewer, highly researched messages and get significantly better results. Quality over quantity. We target business problems, not job titles.</p>
+                        <p>These are warm intros, not cold leads. Expect 3-6 qualified intros per month depending on your niche. From every 5 intros, clients typically close 1-2+ placements. Results vary by recruiting specialty and market.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>What if we can't handle too many meetings?</h3>
+                        <h3>How is this different from other lead gen agencies?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>That's actually a good problem to have. We can throttle the system to match your capacity - fewer meetings for smaller teams, or ramp up for larger sales organizations. The system scales with your needs.</p>
+                        <p>Most agencies scrape job boards or blast generic messages to HR titles. I identify hiring intent BEFORE jobs are posted, so you're not competing with 50 other agencies for the same role. You get to the conversation first, with context.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>What's your pricing and guarantee?</h3>
+                        <h3>How fast can we start?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>We structure our pricing around actual results, not vague commitments. Your initial setup fee includes your first five scheduled meetings, serving as our performance guarantee. Beyond that, payment is tied directly to the meetings we successfully book on your calendar—no wasted investment, only tangible results.</p>
+                        <p>48 hours from kickoff call. I map your ideal client profile, set up signal tracking for your niche, and start outreach within 2 business days. You'll see initial results within the first few weeks.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How cost-effective is this, really?</h3>
+                        <h3>What if it doesn't work for my niche?</h3>
                         <div class="faq-icon">+</div>
                     </div>
                     <div class="faq-answer">
-                        <p>We charge approximately 30% of what it costs to hire in-house and roughly 70% of standard agency rates, all without the typical complications. You'll work directly with two experienced operations leaders who've successfully scaled multiple eight-figure businesses—all protected by our complete satisfaction guarantee.</p>
+                        <p>I work month-to-month after the initial period. If I'm not generating qualified conversations that make sense for your business, you can walk. No long-term contracts.</p>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How does payment work?</h3>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We structure our pricing around actual results, not vague commitments. Your initial setup fee includes your first five scheduled meetings, serving as our performance guarantee. Beyond that, payment is tied directly to the meetings we successfully book on your calendar—no wasted investment, only tangible results.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section" id="booking">
-            <h2>Ready to Fill Your Calendar With Qualified Prospects?</h2>
-            <p>Book a 30-minute strategy call to discover how we can build a predictable sales system for your business and discuss your growth challenges.</p>
-
-            <div class="cta-checklist">
-                <h3>This Call Is For You If:</h3>
-                <ul>
-                    <li>You sell B2B solutions/services to other businesses</li>
-                    <li>Your current lead gen is costing more than it's making</li>
-                    <li>You have capacity to handle more qualified meetings</li>
-                </ul>
-            </div>
-
-            <div class="cal-embed">
-                <iframe src="https://cal.com/leonidshvorob/fit-check-call" width="100%" height="800" frameborder="0"></iframe>
             </div>
         </section>
 
         <footer>
             <div class="footer-content">
                 <div class="footer-copy">
-                    © 2025 System Hustle. All rights reserved.
+                    2025 System Hustle. All rights reserved.
                 </div>
             </div>
         </footer>
