@@ -154,25 +154,89 @@
             opacity: 0.75;
         }
 
-        /* Calendar Section */
-        .calendar-section {
-            padding: 60px 0 80px;
+        /* VSL Section */
+        .vsl-section {
+            padding: 60px 0 40px;
             text-align: center;
         }
 
-        .calendar-section .cal-label {
+        .vsl-step {
+            font-size: 14px;
+            font-weight: 600;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .vsl-title {
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 12px;
         }
 
-        .calendar-section .cal-subtitle {
+        .vsl-subtitle {
             font-size: 16px;
             opacity: 0.7;
             margin-bottom: 40px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .vsl-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vsl-placeholder {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .vsl-placeholder-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vsl-placeholder-icon:hover {
+            background: rgba(16, 185, 129, 0.2);
+            transform: scale(1.05);
+        }
+
+        .vsl-placeholder-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: #10b981;
+            margin-left: 4px;
+        }
+
+        .vsl-placeholder-text {
+            font-size: 16px;
+            opacity: 0.6;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            padding: 60px 0 80px;
+            text-align: center;
         }
 
         .cal-embed {
@@ -493,7 +557,7 @@
                 text-align: center;
             }
 
-            .cal-label {
+            .vsl-title {
                 font-size: 22px;
             }
         }
@@ -525,10 +589,25 @@
             </p>
         </section>
 
+        <!-- VSL Section -->
+        <section class="vsl-section">
+            <div class="vsl-step">Step 1</div>
+            <h2 class="vsl-title">Watch How It Works</h2>
+            <p class="vsl-subtitle">See how I help recruitment agencies get in front of hiring managers before roles hit the market.</p>
+
+            <div class="vsl-container">
+                <script src="https://fast.wistia.com/player.js" async></script>
+                <script src="https://fast.wistia.com/embed/fv76ley2r5.js" async type="module"></script>
+                <style>wistia-player[media-id='fv76ley2r5']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/fv76ley2r5/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+                <wistia-player media-id="fv76ley2r5" aspect="1.7777777777777777"></wistia-player>
+            </div>
+        </section>
+
         <!-- Calendar Section -->
         <section class="calendar-section" id="booking">
-            <h2 class="cal-label">Book a Call</h2>
-            <p class="cal-subtitle">Let's discuss how I can help you build a predictable client pipeline.</p>
+            <div class="vsl-step">Step 2</div>
+            <h2 class="vsl-title">Book a Call</h2>
+            <p class="vsl-subtitle">Let's discuss how I can help you build a predictable client pipeline.</p>
 
             <div class="cal-embed">
                 <iframe src="https://cal.com/leonidshvorob/fit-check-call" width="100%" height="700" frameborder="0"></iframe>
