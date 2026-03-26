@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before Our Call — Leonid / System Hustle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #fafaf8;
+    --bg2:     #f2f1ed;
+    --bg3:     #e8e7e2;
+    --border:  rgba(0,0,0,0.08);
+    --border-s:rgba(0,0,0,0.14);
+    --text:    #1a1a18;
+    --muted:   #6b6b66;
+    --subtle:  #a8a8a2;
+    --accent:  #2a6b3c;
+    --danger:  #c0392b;
+    --amber:   #a05a00;
+    --serif:   'DM Serif Display', Georgia, serif;
+    --sans:    'DM Sans', system-ui, sans-serif;
+    --max:     820px;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow: hidden;
+  }
+
+  .deck {
+    width: 100%; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progress {
+    width: 100%; height: 2px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--text);
+    transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .slides {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 100%;
+    max-width: var(--max);
+    padding: 56px 52px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    opacity: 0;
+    transform: translateX(48px);
+    transition: opacity 0.38s ease, transform 0.38s ease;
+    pointer-events: none;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+  .slide.out {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+
+  .slide-tag {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--subtle);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .slide-tag::before {
+    content: ''; display: block;
+    width: 18px; height: 1px;
+    background: var(--subtle);
+  }
+
+  .slide-title {
+    font-family: var(--serif);
+    font-size: 38px; line-height: 1.18;
+    color: var(--text);
+    max-width: 680px;
+  }
+  .slide-title em { font-style: italic; color: var(--muted); }
+  .slide-title .red { color: var(--danger); font-style: normal; }
+  .slide-title .green { color: var(--accent); font-style: normal; }
+
+  .lead {
+    font-size: 17px; line-height: 1.65;
+    color: var(--muted);
+    max-width: 600px;
+  }
+  .lead strong { color: var(--text); font-weight: 500; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card-h {
+    font-size: 14px; font-weight: 500;
+    color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-b {
+    font-size: 13px; line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .badge {
+    font-size: 10px; font-weight: 500;
+    padding: 2px 7px; border-radius: 4px;
+    letter-spacing: .03em;
+  }
+  .b-warn { background: #fef3e2; color: var(--amber); }
+  .b-danger { background: #fbeae8; color: var(--danger); }
+  .b-ok { background: #e8f4ed; color: var(--accent); }
+
+  .timeline {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .tl-block {
+    flex: 1;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tl-block + .tl-block { border-left: 1px solid var(--border); }
+  .tl-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--subtle);
+  }
+  .tl-title {
+    font-size: 13px; font-weight: 500;
+    color: var(--text); line-height: 1.3;
+  }
+  .tl-sub {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.4;
+  }
+  .tl-block.hot { background: #fff8f7; }
+  .tl-block.hot .tl-label { color: var(--danger); }
+
+  .big-stat {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 52px;
+    line-height: 1;
+    color: var(--danger);
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 160px;
+    line-height: 1.4;
+  }
+
+  .signal-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .signal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .signal-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .signal-text {
+    font-size: 13px; line-height: 1.5;
+    color: var(--muted);
+  }
+  .signal-text strong { color: var(--text); font-weight: 500; }
+
+  .agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .agenda-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+  .agenda-item + .agenda-item { border-top: 1px solid var(--border); }
+  .agenda-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--bg3);
+    flex-shrink: 0;
+    width: 28px;
+  }
+  .agenda-text {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .agenda-text strong { color: var(--text); font-weight: 500; }
+
+  /* nav */
+  .nav {
+    width: 100%; max-width: var(--max);
+    padding: 14px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .nav-btn {
+    font-size: 12px; color: var(--subtle);
+    background: none; border: none; cursor: pointer;
+    font-family: var(--sans);
+    padding: 6px 0;
+    transition: color .15s;
+    user-select: none;
+  }
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn:disabled { opacity: 0; pointer-events: none; }
+  .nav-count {
+    font-size: 11px; color: var(--subtle);
+    letter-spacing: .05em;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+  }
+  [data-reveal].shown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+  <div class="progress"><div class="progress-fill" id="pbar" style="width:16.6%"></div></div>
+
+  <div class="slides" id="slides">
+
+    <!-- 0: Who I am -->
+    <div class="slide active" id="s0">
+      <div class="slide-tag">Before our call</div>
+      <h1 class="slide-title">I'm Leonid.<br>I help recruiting agencies<br>build a <span class="green">predictable pipeline</span> —<br>without ad spend.</h1>
+      <p class="lead" data-reveal>I run <strong>System Hustle</strong> — a signal-based BD service for recruiting and staffing agencies. Instead of cold outreach and job board monitoring, I identify companies with active hiring pain before they go public — and introduce your firm at exactly the right moment.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" data-reveal>
+        <div class="card">
+          <div style="font-family:var(--serif);font-size:36px;color:var(--accent);line-height:1">22</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.4">placements in 55 days<br><span style="color:var(--subtle)">Elate Staffing Solutions</span></div>
+        </div>
+        <div class="card">
+          <div style="font-family:var(--serif);font-size:36px;color:var(--accent);line-height:1">39</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.4">placements in 90 days + $100K revenue<br><span style="color:var(--subtle)">Crawford Thomas Recruiting</span></div>
+        </div>
+        <div class="card">
+          <div style="font-family:var(--serif);font-size:36px;color:var(--accent);line-height:1">$105K</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.4">additional revenue in one quarter<br><span style="color:var(--subtle)">Connect Group — AI & Tech</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1: The Problem -->
+    <div class="slide" id="s1-prob">
+      <div class="slide-tag">Before our call</div>
+      <h1 class="slide-title">Your best clients came from referrals.<br>Your <em>growth</em> depends on something <span class="red">you can't control.</span></h1>
+      <p class="lead" data-reveal>Most recruiting agencies I talk to have the same setup: a solid reputation, good relationships — and a pipeline that's completely unpredictable. Some months are great. Others, the phone doesn't ring.</p>
+      <div class="two-col" data-reveal>
+        <div class="card">
+          <div class="card-h">Referrals <span class="badge b-warn">uncontrollable</span></div>
+          <div class="card-b">You can't predict when they come in, you can't scale them, and you can't build a growth plan around them.</div>
+        </div>
+        <div class="card">
+          <div class="card-h">DIY outreach <span class="badge b-warn">arriving late</span></div>
+          <div class="card-b">Cold calls and job board monitoring feel productive — until you find out three other agencies already called the same company this week.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2: The Real Problem -->
+    <div class="slide" id="s1">
+      <div class="slide-tag">The real problem</div>
+      <h1 class="slide-title">It's not effort.<br>It's <em>timing.</em> You're arriving <span class="red">too late.</span></h1>
+      <p class="lead" data-reveal>By the time a company posts a job or submits a request — they've already talked to your competitors. You're not losing because you're worse. <strong>You're losing because you're fifth.</strong></p>
+      <div class="timeline" data-reveal>
+        <div class="tl-block">
+          <div class="tl-label">Week 1–2</div>
+          <div class="tl-title">Pain starts</div>
+          <div class="tl-sub">Company realizes they have a hiring gap. No one knows yet.</div>
+        </div>
+        <div class="tl-block hot">
+          <div class="tl-label">Week 2–4 — the window</div>
+          <div class="tl-title">Signal is visible</div>
+          <div class="tl-sub">The right data shows it. Most agencies don't look here.</div>
+        </div>
+        <div class="tl-block">
+          <div class="tl-label">Week 4+</div>
+          <div class="tl-title">Job goes live</div>
+          <div class="tl-sub">Everyone calls at once. You're one of five. Margin compresses.</div>
+        </div>
+        <div class="tl-block">
+          <div class="tl-label">Week 5–6</div>
+          <div class="tl-title">Deal closes</div>
+          <div class="tl-sub">Usually with whoever called first — and built trust first.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3: The Cost -->
+    <div class="slide" id="s2">
+      <div class="slide-tag">What this costs</div>
+      <h1 class="slide-title">Every week there are companies in your market <span class="red">in pain right now.</span><br>You don't know who they are.</h1>
+      <p class="lead" data-reveal>They haven't posted a job. They haven't called an agency. They're in the window — <strong>2 to 4 weeks before they go public.</strong> That's when the deal is won. Not after the job post goes live.</p>
+      <div class="big-stat" data-reveal>
+        <div class="stat">
+          <div class="stat-num">4–6</div>
+          <div class="stat-label">agencies already contacted before a company posts publicly</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color:var(--amber)">2–4</div>
+          <div class="stat-label">week window where first-mover wins the relationship</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color:var(--accent)">1st</div>
+          <div class="stat-label">caller sets the frame — everyone after is compared to them</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4: The Signal Layer -->
+    <div class="slide" id="s3">
+      <div class="slide-tag">What I do</div>
+      <h1 class="slide-title">I monitor the layer <em>before</em> the job post.<br>Then I bring you in <span class="green">first.</span></h1>
+      <p class="lead" data-reveal>Not job boards. Not LinkedIn. The signals that show a company is about to need a hire — weeks before they call anyone.</p>
+      <div class="signal-item" data-reveal>
+        <div class="signal-dot"></div>
+        <div class="signal-text"><strong>Leadership changes</strong> — new executives, department head departure, management restructure. Hiring needs follow within weeks.</div>
+      </div>
+      <div class="signal-item" data-reveal>
+        <div class="signal-dot"></div>
+        <div class="signal-text"><strong>Regulatory and licensing signals</strong> — filings, expansions, compliance changes that precede staffing needs by 3–6 weeks.</div>
+      </div>
+      <div class="signal-item" data-reveal>
+        <div class="signal-dot"></div>
+        <div class="signal-text"><strong>Growth and contract signals</strong> — funding rounds, new contracts, M&A activity. All visible before anyone posts a job.</div>
+      </div>
+      <p class="lead" style="font-size:14px" data-reveal>I score these, stack them by urgency, and introduce you at the right moment — <strong>as a referral, not a cold call.</strong></p>
+    </div>
+
+    <!-- 5: What's coming -->
+    <div class="slide" id="s4">
+      <div class="slide-tag">Our call</div>
+      <h1 class="slide-title">Here's what<br>we'll cover<br>on our call.</h1>
+      <div class="agenda">
+        <div class="agenda-item" data-reveal>
+          <div class="agenda-num">01</div>
+          <div class="agenda-text"><strong>Your current BD setup</strong> — how you're finding new clients today and where the gaps are</div>
+        </div>
+        <div class="agenda-item" data-reveal>
+          <div class="agenda-num">02</div>
+          <div class="agenda-text"><strong>What signals look like in your market</strong> — what I'm monitoring, how I score it, what the window actually looks like</div>
+        </div>
+        <div class="agenda-item" data-reveal>
+          <div class="agenda-num">03</div>
+          <div class="agenda-text"><strong>What this looks like in practice</strong> — how I introduce you, what the company already knows before your call</div>
+        </div>
+        <div class="agenda-item" data-reveal>
+          <div class="agenda-num">04</div>
+          <div class="agenda-text"><strong>Whether it's a fit</strong> — no pressure, we'll know in 40 minutes if this makes sense for you</div>
+        </div>
+      </div>
+      <p class="lead" style="font-size:14px; margin-top:4px" data-reveal>See you on the call. <strong style="color:var(--text)">— Leonid</strong></p>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled>← Back</button>
+    <span class="nav-count" id="nav-count">1 / 6</span>
+    <button class="nav-btn" id="btn-next" onclick="go(1)">click or → to continue</button>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const pbar = document.getElementById('pbar');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const navCount = document.getElementById('nav-count');
+  let cur = 0;
+
+  function reveal(slideEl) {
+    const hidden = slideEl.querySelectorAll('[data-reveal]:not(.shown)');
+    if (hidden.length > 0) {
+      hidden[0].classList.add('shown');
+      return true; // revealed something, stay on slide
+    }
+    return false; // nothing left to reveal
+  }
+
+  function hideReveals(slideEl) {
+    slideEl.querySelectorAll('[data-reveal].shown').forEach(el => el.classList.remove('shown'));
+  }
+
+  function updateNav() {
+    btnPrev.disabled = cur === 0;
+    btnNext.disabled = cur === slides.length - 1 &&
+      slides[cur].querySelectorAll('[data-reveal]:not(.shown)').length === 0;
+    navCount.textContent = (cur + 1) + ' / ' + slides.length;
+    pbar.style.width = ((cur + 1) / slides.length * 100) + '%';
+  }
+
+  function go(dir) {
+    if (dir === 1) {
+      if (reveal(slides[cur])) { updateNav(); return; }
+      const next = cur + 1;
+      if (next >= slides.length) return;
+      slides[cur].classList.remove('active');
+      slides[cur].classList.add('out');
+      setTimeout(() => slides[cur].classList.remove('out'), 400);
+      cur = next;
+      slides[cur].classList.add('active');
+    } else {
+      if (cur === 0) return;
+      hideReveals(slides[cur]);
+      slides[cur].classList.remove('active');
+      slides[cur].classList.add('out');
+      setTimeout(() => slides[cur].classList.remove('out'), 400);
+      cur -= 1;
+      slides[cur].classList.add('active');
+    }
+    updateNav();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+
+  // click anywhere on slide to reveal next block
+  document.getElementById('slides').addEventListener('click', e => {
+    if (e.target.closest('.nav')) return;
+    go(1);
+  });
+
+  updateNav();
+</script>
+</body>
+</html>
