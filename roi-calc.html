@@ -433,6 +433,60 @@
   .cta-btn:hover { background: #333; }
   .cta-small { font-size: 12px; color: var(--subtle); }
 
+  /* niche presets */
+  .presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 16px;
+  }
+  .preset-btn {
+    font-size: 12px;
+    font-family: var(--sans);
+    padding: 5px 13px;
+    border-radius: 100px;
+    border: 1px solid var(--border-s);
+    background: white;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .preset-btn:hover { background: var(--bg2); color: var(--text); }
+  .preset-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  /* LTV callout */
+  .ltv-box {
+    background: var(--info-bg);
+    border: 1px solid rgba(26,90,138,.18);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ltv-box.visible { display: flex; }
+  .ltv-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--info);
+  }
+  .ltv-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .ltv-desc { font-size: 13px; color: var(--muted); line-height: 1.5; flex: 1; }
+  .ltv-val {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--info);
+    white-space: nowrap;
+  }
+  .ltv-note { font-size: 11px; color: var(--subtle); line-height: 1.5; }
+
   @media (max-width: 560px) {
     .sc-nums { grid-template-columns: 1fr; }
     .sc-num { border-right: none; border-bottom: 1px solid var(--border); }
@@ -502,6 +556,12 @@
   <!-- Inputs -->
   <div>
     <div class="sec-label">Your numbers</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="applyPreset('exec', this)">Exec Search</button>
+      <button class="preset-btn" onclick="applyPreset('direct', this)">Direct Hire</button>
+      <button class="preset-btn" onclick="applyPreset('staffing', this)">Staffing</button>
+      <button class="preset-btn" onclick="applyPreset('va', this)">VA / Fractional</button>
+    </div>
     <div class="inp-table">
       <div class="inp-row">
         <div class="inp-label">
@@ -540,6 +600,16 @@
         <div class="inp-ctrl slider-ctrl">
           <input type="range" id="inpMargin" min="20" max="100" value="60" step="5" oninput="calc()">
           <span class="slider-val" id="inpMarginVal">60%</span>
+        </div>
+      </div>
+      <div class="inp-row" id="rowRepeat" style="display:none">
+        <div class="inp-label">
+          Repeat bookings / year
+          <span class="inp-hint">How many times a year does a typical client come back?</span>
+        </div>
+        <div class="inp-ctrl">
+          <input type="number" id="inpRepeat" placeholder="—" min="1" max="52" style="width:70px" oninput="calc()">
+          <span class="inp-suffix">× / yr</span>
         </div>
       </div>
       <div class="inp-row">
@@ -624,6 +694,16 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- LTV callout — shown only for staffing/VA presets -->
+  <div class="ltv-box" id="ltvBox">
+    <div class="ltv-label">Client lifetime value</div>
+    <div class="ltv-row">
+      <div class="ltv-desc">Annual value from <strong>1 retained client</strong> — based on your repeat bookings per year at expected net per placement.</div>
+      <div class="ltv-val" id="ltvVal">—</div>
+    </div>
+    <div class="ltv-note" id="ltvNote">One client who stays means recurring revenue without additional BD cost.</div>
   </div>
 
   <!-- Per-intro math -->
@@ -749,6 +829,40 @@
       showBiweekly: false,
     }
   };
+
+  const PRESETS = {
+    exec:     { fee: 35000, rate: 30, margin: 70, repeat: null, label: 'Exec Search' },
+    direct:   { fee: 20000, rate: 35, margin: 65, repeat: null, label: 'Direct Hire' },
+    staffing: { fee: 8000,  rate: 40, margin: 50, repeat: 4,    label: 'Staffing' },
+    va:       { fee: 3000,  rate: 45, margin: 60, repeat: 6,    label: 'VA / Fractional' },
+  };
+
+  let activePreset = null;
+
+  function applyPreset(key, btn) {
+    const p = PRESETS[key];
+    if (!p) return;
+    activePreset = key;
+
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.getElementById('inpFee').value     = p.fee;
+    document.getElementById('inpRate').value    = p.rate;
+    document.getElementById('inpMargin').value  = p.margin;
+
+    const rowRepeat = document.getElementById('rowRepeat');
+    const inpRepeat = document.getElementById('inpRepeat');
+    if (p.repeat !== null) {
+      rowRepeat.style.display = 'flex';
+      inpRepeat.value = p.repeat;
+    } else {
+      rowRepeat.style.display = 'none';
+      inpRepeat.value = '';
+    }
+
+    calc();
+  }
 
   function setMode(m) {
     mode = m;
@@ -895,6 +1009,20 @@
     } else {
       document.getElementById('rrCaption').textContent =
         'Known cost. Variable upside. Every placement beyond breakeven is pure margin.';
+    }
+
+    // LTV callout — only visible when repeat bookings field is shown and filled
+    const repeat = parseFloat(document.getElementById('inpRepeat').value) || 0;
+    const ltvBox  = document.getElementById('ltvBox');
+    if (repeat > 0 && fee > 0) {
+      const netPerPlac = fee * margin;
+      const annualLtv  = netPerPlac * repeat;
+      document.getElementById('ltvVal').textContent = fmt(annualLtv);
+      document.getElementById('ltvNote').textContent =
+        fmt(netPerPlac) + ' net per placement × ' + repeat + ' bookings/yr = ' + fmt(annualLtv) + ' annual value from a single retained client — at zero acquisition cost.';
+      ltvBox.classList.add('visible');
+    } else {
+      ltvBox.classList.remove('visible');
     }
   }
 
