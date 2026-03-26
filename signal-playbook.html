@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal-Based BD — Implementation Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #fafaf8; --bg2: #f2f1ed; --bg3: #e8e7e2;
+  --border: rgba(0,0,0,0.08); --border-s: rgba(0,0,0,0.14);
+  --text: #1a1a18; --muted: #6b6b66; --subtle: #a8a8a2;
+  --accent: #2a6b3c; --accent-bg: #e8f4ed;
+  --danger: #c0392b; --danger-bg: #fbeae8;
+  --amber: #a05a00; --amber-bg: #fef3e2;
+  --info: #1a5a8a; --info-bg: #e6f0fa;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --max: 860px;
+}
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--sans); line-height: 1.6;
+}
+body { padding: 0 24px 80px; }
+
+.page { max-width: var(--max); margin: 0 auto; }
+
+/* ── header ── */
+.header {
+  background: #111827; border-radius: 12px;
+  padding: 48px 40px 44px; border-bottom: none; margin-bottom: 40px;
+}
+.header-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .13em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.header-tag::before { content:''; display:inline-block; width:18px; height:1px; background:currentColor; }
+.header h1 {
+  font-family: var(--serif); font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.15; color: #fff; margin-bottom: 12px;
+}
+.header h1 em { font-style: italic; color: #10b981; }
+.header-sub { font-size: 15px; color: rgba(255,255,255,0.48); max-width: 600px; line-height: 1.7; }
+
+/* ── toc ── */
+.toc-section {
+  margin-bottom: 48px; background: white;
+  border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px;
+}
+.toc-title { font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--subtle); margin-bottom: 16px; }
+.toc-list { display: flex; flex-direction: column; gap: 9px; }
+.toc-item { display: flex; align-items: baseline; gap: 10px; font-size: 13px; }
+.toc-num { font-size: 10px; font-weight: 500; color: var(--subtle); min-width: 18px; flex-shrink: 0; }
+.toc-label { color: var(--text); font-weight: 500; white-space: nowrap; }
+.toc-line { flex: 1; border-bottom: 1px dashed var(--border-s); margin: 0 6px; position: relative; top: -3px; }
+.toc-desc { color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+/* ── approach static ── */
+.approach-section { margin-bottom: 40px; }
+.approach-label { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.approach-stack { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.approach-row {
+  display: flex; align-items: center; gap: 20px;
+  border: 1px solid var(--border-s); border-radius: 10px;
+  padding: 16px 20px; background: white;
+}
+.approach-row-primary { border-color: rgba(42,107,60,.35); background: var(--accent-bg); }
+.ar-badge {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; white-space: nowrap; min-width: 90px;
+}
+.ar-badge-green { color: var(--accent); }
+.ar-badge-amber { color: var(--amber); }
+.ar-content { flex: 1; }
+.ar-h { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.ar-b { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.ar-stat { text-align: right; white-space: nowrap; min-width: 60px; }
+.ar-stat-num { font-size: 16px; font-weight: 500; line-height: 1.1; }
+.ar-stat-lbl { font-size: 10px; color: var(--subtle); }
+.ar-stat-green .ar-stat-num { color: var(--accent); }
+.ar-stat-amber .ar-stat-num { color: var(--amber); }
+.approach-note {
+  border-left: 2px solid var(--border-s); padding: 11px 15px;
+  background: var(--bg2); border-radius: 0 8px 8px 0;
+  font-size: 13px; color: var(--muted); line-height: 1.6;
+}
+
+/* ── tools table ── */
+.tools-section { margin-top: 48px; }
+.tools-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.tools-table thead { background: var(--bg2); }
+.tools-table th { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--subtle); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border-s); }
+.tools-table td { font-size: 13px; color: var(--muted); padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.45; }
+.tools-table tr:last-child td { border-bottom: none; }
+.tools-table tr:hover td { background: var(--bg); }
+.td-tool { color: var(--text); font-weight: 500; white-space: nowrap; }
+.td-phase { font-size: 11px; }
+.td-cost { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.td-free { color: var(--accent); font-weight: 500; }
+
+/* ── first steps ── */
+.firststeps-section { margin-top: 40px; }
+.firststeps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+.fs-card {
+  background: white; border: 1px solid var(--border-s);
+  border-radius: 10px; padding: 18px 18px 16px;
+}
+.fs-num { font-size: 28px; font-family: var(--serif); color: var(--bg3); line-height: 1; margin-bottom: 10px; }
+.fs-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.fs-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ── copy examples ── */
+.examples-section { margin-top: 48px; }
+.examples-intro { font-size: 14px; color: var(--muted); margin-bottom: 24px; line-height: 1.65; max-width: 580px; }
+.example-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px 20px 16px; margin-bottom: 16px;
+}
+.example-signal {
+  font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.example-signal::before { content: ''; width: 14px; height: 1px; background: currentColor; display: inline-block; }
+.example-variants { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.variant-label {
+  font-size: 10px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--subtle); margin-bottom: 6px; padding-left: 1px;
+}
+.variant-label.connector { color: var(--accent); }
+.email-preview {
+  background: white; border: 1px solid var(--border-s); border-radius: 7px; overflow: hidden;
+}
+.email-meta {
+  background: #f4f3ef; border-bottom: 1px solid var(--border);
+  padding: 9px 14px; display: flex; flex-direction: column; gap: 3px;
+}
+.em-row { display: flex; gap: 8px; align-items: baseline; }
+.em-lbl { font-size: 10px; color: var(--subtle); min-width: 46px; flex-shrink: 0; }
+.em-val { font-size: 12px; color: var(--muted); line-height: 1.4; }
+.em-val.em-subj { font-weight: 500; color: var(--text); }
+.email-body {
+  padding: 13px 15px 11px;
+  font-size: 12.5px; color: var(--muted); line-height: 1.75;
+}
+.email-sig {
+  margin-top: 10px; padding-top: 8px;
+  border-top: 1px solid var(--border); font-size: 11.5px; color: var(--muted); line-height: 1.5;
+}
+.email-sig strong { color: var(--text); font-weight: 500; }
+.example-why {
+  font-size: 11px; color: var(--subtle); font-style: italic;
+  padding-top: 10px; border-top: 1px solid var(--border-s);
+}
+
+/* ── footer contact ── */
+.footer-contact { margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-contact a { font-size: 13px; color: #10b981; text-decoration: none; font-weight: 500; }
+.footer-contact a:hover { text-decoration: underline; }
+
+/* ── section divider ── */
+.section-title {
+  font-size: 11px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--subtle);
+  margin-bottom: 20px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── flow diagram ── */
+.flow-diagram { position: relative; }
+
+.block {
+  display: flex; gap: 0; margin-bottom: 0;
+  position: relative;
+}
+
+.block-connector {
+  width: 40px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center;
+}
+.block-number {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid var(--border-s); background: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; color: var(--muted);
+  flex-shrink: 0; position: relative; z-index: 1;
+}
+.block-line {
+  width: 1px; flex: 1; min-height: 20px;
+  background: var(--border); margin: 4px 0;
+}
+.block-line.last { display: none; }
+
+.block-body { flex: 1; padding-bottom: 24px; }
+.block-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; padding-top: 3px;
+}
+.block-tag {
+  font-size: 10px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 4px;
+}
+.bt-monitor  { background: var(--info-bg);   color: var(--info);   border: 1px solid rgba(26,90,138,.15); }
+.bt-enrich   { background: var(--amber-bg);  color: var(--amber);  border: 1px solid rgba(160,90,0,.15); }
+.bt-infra    { background: var(--danger-bg); color: var(--danger); border: 1px solid rgba(192,57,43,.15); }
+.bt-outreach { background: var(--accent-bg); color: var(--accent); border: 1px solid rgba(42,107,60,.15); }
+.bt-ops      { background: var(--bg2);       color: var(--muted);  border: 1px solid var(--border-s); }
+
+.block-title { font-size: 15px; font-weight: 500; color: var(--text); }
+.block-subtitle { font-size: 12px; color: var(--subtle); font-style: italic; margin-bottom: 12px; }
+
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 14px; border-radius: 7px;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.step:last-child { border-bottom: none; }
+.step:hover { background: var(--bg2); }
+.step-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--subtle); flex-shrink: 0; margin-top: 6px;
+}
+.step-text { font-size: 13px; color: var(--muted); line-height: 1.55; flex: 1; }
+.step-text strong { color: var(--text); font-weight: 500; }
+.step-tool {
+  font-size: 11px; color: var(--info); background: var(--info-bg);
+  border: 1px solid rgba(26,90,138,.15); border-radius: 4px;
+  padding: 1px 7px; white-space: nowrap; flex-shrink: 0; align-self: center;
+}
+
+.block-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+}
+
+/* ── signal vs volume visual ── */
+.compare-wrap { margin: 8px 0 4px; }
+.compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 6px; }
+.cmp {
+  background: white; border: 1px solid var(--border);
+  border-radius: 8px; padding: 14px 16px;
+}
+.cmp-h { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+.cmp-bar-wrap { height: 5px; background: var(--bg3); border-radius: 3px; margin-bottom: 6px; overflow: hidden; }
+.cmp-bar { height: 100%; border-radius: 3px; }
+.cmp-metric { font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+
+/* ── timeline (daily ops) ── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-row {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+}
+.tl-row:last-child { border-bottom: none; }
+.tl-time { font-size: 11px; font-weight: 500; color: var(--subtle); min-width: 52px; padding-top: 1px; }
+.tl-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.tl-text strong { color: var(--text); font-weight: 500; }
+
+/* ── footer CTA ── */
+.footer-cta {
+  margin-top: 48px; padding: 32px 36px;
+  background: #111827; border: none; border-radius: 12px;
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.footer-left h3 { font-family: var(--serif); font-size: 22px; color: #fff; margin-bottom: 6px; }
+.footer-left h3 em { font-style: italic; color: #10b981; }
+.footer-left p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 460px; }
+.footer-badge {
+  background: rgba(16,185,129,0.12); color: #10b981;
+  border: 1px solid rgba(16,185,129,0.25); border-radius: 8px;
+  padding: 10px 20px; font-size: 13px; font-weight: 500;
+  white-space: nowrap; text-align: center;
+}
+
+/* ── mermaid wrap ── */
+.mermaid-section { margin-bottom: 40px; }
+.mermaid-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--border-s);
+  border-radius: 12px;
+  padding: 28px 20px;
+  overflow-x: auto;
+  text-align: center;
+}
+.mermaid-wrap svg { max-width: 100%; height: auto; }
+
+/* ── pipeline overview ── */
+.pipeline-section { margin-bottom: 40px; }
+.pipe-row { display: flex; align-items: stretch; gap: 0; margin-bottom: 6px; }
+.pipe-step {
+  flex: 1; border-radius: 8px; padding: 12px 13px;
+  border: 1px solid; min-width: 0;
+}
+.ps-n {
+  font-size: 9px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; opacity: .55; margin-bottom: 5px;
+}
+.ps-l { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+.ps-t { font-size: 10px; line-height: 1.45; }
+.pipe-arr {
+  width: 20px; flex-shrink: 0; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 12px; color: var(--subtle);
+}
+.pipe-turn {
+  width: 28px; flex-shrink: 0; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 18px; color: var(--subtle);
+}
+.pipe-turn.invisible { visibility: hidden; }
+.ps-info, .ps-amber, .ps-danger, .ps-accent, .ps-ops {
+  background: white; border-color: var(--border-s); color: var(--muted);
+}
+
+/* ── print ── */
+@media print {
+  body { padding: 0; background: white; }
+  .approach-card { break-inside: avoid; }
+  .block { break-inside: avoid; }
+  .footer-cta { break-inside: avoid; }
+  .pipe-row { break-inside: avoid; }
+  .pipeline-section { break-inside: avoid; }
+}
+@media (max-width: 640px) {
+  .compare-row, .example-variants, .firststeps-grid { grid-template-columns: 1fr; }
+  .footer-cta, .approach-row { flex-direction: column; }
+  .header { padding: 36px 24px 32px; }
+  .tools-table .td-phase { display: none; }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'base',
+  themeVariables: {
+    fontFamily: "'DM Sans', system-ui, sans-serif",
+    fontSize: '12px',
+    primaryColor: '#e8f4ed',
+    primaryTextColor: '#1a1a18',
+    primaryBorderColor: '#2a6b3c',
+    lineColor: '#6b6b66',
+    secondaryColor: '#e6f0fa',
+    tertiaryColor: '#fef3e2',
+    clusterBkg: '#fafaf8',
+    edgeLabelBackground: '#fafaf8',
+    clusterBorder: '#d0d0c8'
+  }
+});
+</script>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-tag">Implementation guide</div>
+    <h1>How signal-based recruiting BD <em>actually works</em></h1>
+    <p class="header-sub">Every step, every tool, every decision — from monitoring the market to a reply landing in your inbox. Use this to implement it yourself, or as a reference for what runs in the background when you delegate it.</p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc-section">
+    <div class="toc-title">What's in this guide</div>
+    <div class="toc-list">
+      <div class="toc-item">
+        <span class="toc-num">01</span>
+        <span class="toc-label">Two approaches</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">signal-only vs. signal + broad volume</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-num">02</span>
+        <span class="toc-label">Full system architecture</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">interactive diagram — all 8 phases</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-num">03</span>
+        <span class="toc-label">Step-by-step implementation</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">signal monitoring, enrichment, infrastructure, outreach, ops</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-num">04</span>
+        <span class="toc-label">Full tool stack</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">every tool, what it does, what it costs</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-num">05</span>
+        <span class="toc-label">Where to start this week</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">3 first steps in the right order</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-num">06</span>
+        <span class="toc-label">Copy templates</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">Direct + Connector — 3 signal types</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-num">07</span>
+        <span class="toc-label">Done for you</span>
+        <span class="toc-line"></span>
+        <span class="toc-desc">if you'd rather not run this yourself</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <div class="approach-section">
+    <div class="approach-label">Two approaches — pick based on your stage</div>
+    <div class="approach-stack">
+      <div class="approach-row approach-row-primary">
+        <div class="ar-badge ar-badge-green">Recommended</div>
+        <div class="ar-content">
+          <div class="ar-h">Signal-based only</div>
+          <div class="ar-b">Reach out exclusively when a company shows buying intent. Lower volume, significantly higher reply rates. Best for high-ticket placements.</div>
+        </div>
+        <div class="ar-stat ar-stat-green">
+          <div class="ar-stat-num">12–18%</div>
+          <div class="ar-stat-lbl">reply rate</div>
+        </div>
+      </div>
+      <div class="approach-row">
+        <div class="ar-badge ar-badge-amber">For volume</div>
+        <div class="ar-content">
+          <div class="ar-h">Signal-based + broad campaign</div>
+          <div class="ar-b">Run a niche-wide campaign in parallel to build pipeline. Use signals to prioritise. Works when entering a new market or niche.</div>
+        </div>
+        <div class="ar-stat ar-stat-amber">
+          <div class="ar-stat-num">2–4%</div>
+          <div class="ar-stat-lbl">reply rate</div>
+        </div>
+      </div>
+    </div>
+    <div class="approach-note">
+      Start with signal-based. Add broad volume only if your niche is large enough to justify the infrastructure overhead.
+    </div>
+  </div>
+
+  <!-- PIPELINE OVERVIEW -->
+  <div class="pipeline-section">
+    <!-- MERMAID SYSTEM MAP -->
+  <div class="mermaid-section">
+    <div class="section-title">Full system architecture</div>
+    <div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    subgraph SIG ["  Signal Detection  "]
+        direction LR
+        S1["Job Postings\nLinkedIn Jobs · Indeed · Wellfound"]
+        S2["Funding Rounds\nCrunchbase"]
+        S3["News & M&A\nGoogle Alerts · Trade Press"]
+        S4["Executive Moves\nSales Navigator"]
+        S5["Niche Feeds\nCustom RSS"]
+    end
+
+    SIG --> SCORE
+
+    SCORE{{"Signal Scoring Engine\n───────────────\n1 signal → Watch List\n2+ signals → Activate"}}
+
+    SCORE -->|"single signal"| WATCH[/"Watch List\nmonitor weekly"/]
+    SCORE -->|"2 or more signals"| DM
+
+    WATCH -.->|"new signal added"| SCORE
+
+    subgraph ENRICH ["  Contact Enrichment  "]
+        direction TB
+        DM["Identify Decision Maker\nFounder · COO · Head of Talent"]
+        FIND["Pull Contact Data\nApollo.io · LinkedIn Search"]
+        VER["Verify Email\nMillionverifier · zero-bounce filter"]
+        DM --> FIND --> VER
+    end
+
+    subgraph INFRA ["  Infrastructure — one-time setup  "]
+        direction LR
+        I1["Buy Sending Domains\nnever use main domain"]
+        I2["Configure DNS\nSPF · DKIM · DMARC"]
+        I3["Account Warmup\nPlusVibe — 3 to 4 weeks min"]
+        IREP{"Reputation\ncheck"}
+        I1 --> I2 --> I3 --> IREP
+        IREP -->|"poor — extend"| I3
+    end
+
+    VER --> COPY["Signal-Specific Copy\nwarm referral framing · max 3 steps"]
+    COPY --> ABTEST["A/B Testing\nsubject lines · opening lines"]
+
+    IREP -->|"ready"| STACK
+    ABTEST --> STACK["Sending Stack\nPlusVibe · Instantly · Smartlead"]
+
+    STACK --> PROV{{"Email\nProvider?"}}
+    PROV -->|"Microsoft"| MS["4–5 emails/day\n25–100 accounts/domain"]
+    PROV -->|"Google Workspace"| GG["20–25 emails/day\n3 accounts/domain"]
+    MS --> LAUNCH["Launch\nrotate across all domains · monitor daily"]
+    GG --> LAUNCH
+
+    LAUNCH --> REPLY{{"Reply\nreceived?"}}
+
+    REPLY -->|"Interested"| CALL["Book Discovery Call"]
+    REPLY -->|"Not now"| FLAG["Follow-up Queue\n30–60 day pause"]
+    REPLY -->|"No reply — Day 7"| BREAK["Breakup Email\nclose the loop"]
+
+    CALL --> CRM["Push to CRM\nlog signal · contact · intent"]
+    CRM --> CALLSEQ["Pre-call Sequence\n1–2 touches before the call\nshare guide · case study"]
+
+    subgraph OPS ["  Daily Operations  "]
+        direction LR
+        OD["Daily AM\ncheck signals · process replies"]
+        OW["Weekly\ndeliverability · copy results"]
+        OM["Monthly\naudit sources · refresh stack"]
+    end
+
+    LAUNCH --> OPS
+    CALLSEQ --> OPS
+    OPS -.->|"continuous feedback loop"| SCORE
+
+    classDef sigNode fill:#e6f0fa,stroke:#1a5a8a,color:#1a5a8a,stroke-width:1px
+    classDef enrichNode fill:#fef3e2,stroke:#a05a00,color:#a05a00,stroke-width:1px
+    classDef infraNode fill:#fbeae8,stroke:#c0392b,color:#c0392b,stroke-width:1px
+    classDef sendNode fill:#e8f4ed,stroke:#2a6b3c,color:#2a6b3c,stroke-width:1px
+    classDef opsNode fill:#f2f1ed,stroke:#6b6b66,color:#6b6b66,stroke-width:1px
+    classDef decisionNode fill:#fafaf8,stroke:#555,color:#1a1a18,stroke-width:2px
+    classDef watchNode fill:#fef3e2,stroke:#a05a00,color:#a05a00,stroke-width:1px,stroke-dasharray:5 3
+
+    class S1,S2,S3,S4,S5 sigNode
+    class DM,FIND,VER,CALL,FLAG,BREAK,CRM,CALLSEQ enrichNode
+    class I1,I2,I3 infraNode
+    class COPY,ABTEST,LAUNCH,STACK,MS,GG sendNode
+    class OD,OW,OM opsNode
+    class SCORE,REPLY,IREP,PROV decisionNode
+    class WATCH watchNode
+
+    style SIG fill:#e6f0fa33,stroke:#1a5a8a,color:#1a5a8a
+    style ENRICH fill:#fef3e233,stroke:#a05a00,color:#a05a00
+    style INFRA fill:#fbeae833,stroke:#c0392b,color:#c0392b
+    style OPS fill:#f2f1ed,stroke:#6b6b66,color:#6b6b66
+</pre>
+    </div>
+  </div>
+
+  <div class="section-title">System overview — 8 phases from signal to reply</div>
+    <div class="pipe-row">
+      <div class="pipe-step ps-info">
+        <div class="ps-n">Phase 01</div>
+        <div class="ps-l">Signal Detection</div>
+        <div class="ps-t">LinkedIn Jobs · Crunchbase · Google Alerts · RSS feeds</div>
+      </div>
+      <div class="pipe-arr">→</div>
+      <div class="pipe-step ps-amber">
+        <div class="ps-n">Phase 02</div>
+        <div class="ps-l">Lead Identification</div>
+        <div class="ps-t">Apollo · Sales Navigator · LinkedIn</div>
+      </div>
+      <div class="pipe-arr">→</div>
+      <div class="pipe-step ps-amber">
+        <div class="ps-n">Phase 03</div>
+        <div class="ps-l">Email Verification</div>
+        <div class="ps-t">Millionverifier · zero-bounce check before upload</div>
+      </div>
+      <div class="pipe-arr">→</div>
+      <div class="pipe-step ps-danger">
+        <div class="ps-n">Phase 04</div>
+        <div class="ps-l">Infrastructure Setup</div>
+        <div class="ps-t">Buy domains · SPF / DKIM / DMARC · warmup 3–4 wks</div>
+      </div>
+      <div class="pipe-turn">↓</div>
+    </div>
+    <div class="pipe-row">
+      <div class="pipe-step ps-accent">
+        <div class="ps-n">Phase 08</div>
+        <div class="ps-l">Iterate & Optimize</div>
+        <div class="ps-t">A/B results · signal source audits · copy refresh</div>
+      </div>
+      <div class="pipe-arr">←</div>
+      <div class="pipe-step ps-ops">
+        <div class="ps-n">Phase 07</div>
+        <div class="ps-l">Monitor & Respond</div>
+        <div class="ps-t">Daily signal check · reply categorisation · handoff</div>
+      </div>
+      <div class="pipe-arr">←</div>
+      <div class="pipe-step ps-accent">
+        <div class="ps-n">Phase 06</div>
+        <div class="ps-l">Launch Outreach</div>
+        <div class="ps-t">Instantly · 30–50 emails/day per account</div>
+      </div>
+      <div class="pipe-arr">←</div>
+      <div class="pipe-step ps-accent">
+        <div class="ps-n">Phase 05</div>
+        <div class="ps-l">Copy & Sequences</div>
+        <div class="ps-t">Signal-specific · 3-step max · A/B subject lines</div>
+      </div>
+      <div class="pipe-turn invisible">↓</div>
+    </div>
+  </div>
+
+  <div class="section-title">The full implementation flow</div>
+
+  <!-- FLOW DIAGRAM -->
+  <div class="flow-diagram">
+
+    <!-- BLOCK 1 -->
+    <div class="block">
+      <div class="block-connector">
+        <div class="block-number">1</div>
+        <div class="block-line"></div>
+      </div>
+      <div class="block-body">
+        <div class="block-header">
+          <span class="block-tag bt-monitor">Signal monitoring</span>
+        </div>
+        <div class="block-title">Where buying intent comes from</div>
+        <div class="block-subtitle">Daily monitoring across obvious and non-obvious sources</div>
+        <div class="block-card">
+          <div class="steps">
+            <div class="step"><div class="step-dot"></div><div class="step-text">Monitor job boards daily — <strong>LinkedIn Jobs, Indeed, Wellfound</strong> plus any niche-specific boards in your vertical</div><span class="step-tool">LinkedIn</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Track <strong>new funding rounds</strong> in your niche — companies that just raised are actively building teams</div><span class="step-tool">Crunchbase</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Set up <strong>Google Alerts</strong> for M&A activity, leadership changes, and coverage in niche trade publications</div><span class="step-tool">Google Alerts</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Monitor LinkedIn for <strong>executive departures and new appointments</strong> — these trigger rapid hiring needs</div><span class="step-tool">Sales Navigator</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Build <strong>custom RSS feeds</strong> from niche publications — the non-obvious signals your competitors aren't watching</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text"><strong>Score and stack signals</strong> — single signal = watch list, 2+ signals combined = act immediately</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2 -->
+    <div class="block">
+      <div class="block-connector">
+        <div class="block-number">2</div>
+        <div class="block-line"></div>
+      </div>
+      <div class="block-body">
+        <div class="block-header">
+          <span class="block-tag bt-enrich">Lead enrichment</span>
+        </div>
+        <div class="block-title">Turning a signal into a contact</div>
+        <div class="block-subtitle">Find the right person, verify they're reachable</div>
+        <div class="block-card">
+          <div class="steps">
+            <div class="step"><div class="step-dot"></div><div class="step-text">Identify the <strong>right decision maker</strong> — founder or COO at small companies, Head of HR or Talent at mid-size, VP People at larger</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Find contact data — email and LinkedIn profile</div><span class="step-tool">Apollo.io</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text"><strong>Verify email addresses</strong> before sending — bounces hurt your sender reputation and are permanent</div><span class="step-tool">Millionverifier</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Enrich with <strong>company context</strong> — size, recent news, hiring history, any relevant detail for personalisation</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text"><strong>Tag and score leads</strong> by signal strength before adding to any sequence — not all signals are equal</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 3 -->
+    <div class="block">
+      <div class="block-connector">
+        <div class="block-number">3</div>
+        <div class="block-line"></div>
+      </div>
+      <div class="block-body">
+        <div class="block-header">
+          <span class="block-tag bt-infra">Technical infrastructure</span>
+        </div>
+        <div class="block-title">Making sure your emails actually land</div>
+        <div class="block-subtitle">Skip this and nothing else matters — deliverability is the foundation</div>
+        <div class="block-card">
+          <div class="steps">
+            <div class="step"><div class="step-dot"></div><div class="step-text">Purchase <strong>dedicated sending domains</strong> — never use your main domain for cold outreach, ever</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Set up <strong>SPF, DKIM, and DMARC</strong> records correctly on every sending domain before anything else</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text"><strong>Warm up new accounts</strong> — minimum 3–4 weeks before sending any real outreach. PlusVibe handles both warmup and sending in one tool</div><span class="step-tool">PlusVibe</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Keep <strong>sending volume within safe limits</strong> — Microsoft: 4–5 emails/day, 25–100 accounts per domain · Google Workspace: 20–25 emails/day, 3 accounts per domain</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Monitor <strong>sender reputation and deliverability</strong> weekly — catch problems before they become permanent damage</div><span class="step-tool">Google Postmaster</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Rotate across <strong>multiple sending accounts</strong> to maintain volume without risking any single domain</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 4 -->
+    <div class="block">
+      <div class="block-connector">
+        <div class="block-number">4</div>
+        <div class="block-line"></div>
+      </div>
+      <div class="block-body">
+        <div class="block-header">
+          <span class="block-tag bt-outreach">Outreach system</span>
+        </div>
+        <div class="block-title">The message that gets replies</div>
+        <div class="block-subtitle">Signal-specific copy that positions your recruiter as a warm referral</div>
+        <div class="block-card">
+          <div class="steps">
+            <div class="step"><div class="step-dot"></div><div class="step-text">Write <strong>signal-specific copy</strong> — every message references the exact trigger you saw. Generic copy doesn't work.</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Frame the recruiter as a <strong>warm referral</strong>, not a cold vendor — "I have a specialist who does exactly this" not "we offer recruiting services"</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Keep sequences <strong>short — 3 steps max</strong>: email day 1, follow-up day 3, breakup email day 7</div><span class="step-tool">Instantly</span></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text"><strong>A/B test</strong> subject lines and opening lines continuously — small copy changes produce large reply rate differences</div></div>
+            <div class="step"><div class="step-dot"></div><div class="step-text">Personalise the <strong>first line per company</strong> using your pre-call research — reference something specific to them</div></div>
+          </div>
+        </div>
+
+        <!-- Signal vs Volume comparison -->
+        <div class="compare-wrap" style="margin-top:12px;">
+          <div class="compare-row">
+            <div class="cmp">
+              <div class="cmp-h"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span>Signal-based</div>
+              <div class="cmp-bar-wrap"><div class="cmp-bar" style="width:78%;background:var(--accent)"></div></div>
+              <div class="cmp-metric"><span>Reply rate</span><span style="color:var(--accent);font-weight:500">12–18%</span></div>
+              <div style="margin-top:6px;font-size:11px;color:var(--muted)">Lower volume, highly targeted, timed to pain</div>
+            </div>
+            <div class="cmp">
+              <div class="cmp-h"><span style="width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block"></span>Broad campaign</div>
+              <div class="cmp-bar-wrap"><div class="cmp-bar" style="width:22%;background:var(--amber)"></div></div>
+              <div class="cmp-metric"><span>Reply rate</span><span style="color:var(--amber);font-weight:500">2–4%</span></div>
+              <div style="margin-top:6px;font-size:11px;color:var(--muted)">Higher volume, niche-wide, builds pipeline over time</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--subtle);padding:0 2px">Both can run in parallel — signals get priority, broad fills the gaps.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 5 -->
+    <div class="block">
+      <div class="block-connector">
+        <div class="block-number">5</div>
+        <div class="block-line last"></div>
+      </div>
+      <div class="block-body">
+        <div class="block-header">
+          <span class="block-tag bt-ops">Daily operations</span>
+        </div>
+        <div class="block-title">What running this looks like every day</div>
+        <div class="block-subtitle">The recurring work that keeps the system producing</div>
+        <div class="block-card">
+          <div class="timeline">
+            <div class="tl-row">
+              <div class="tl-time">Daily AM</div>
+              <div class="tl-text">Check overnight signals — <strong>new job posts, news alerts, Crunchbase updates</strong>. Flag companies showing 2+ signals for immediate action.</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">Daily</div>
+              <div class="tl-text">Add <strong>verified new contacts</strong> to active sequences. Review replies — categorise as interested / not now / not relevant.</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">Weekly</div>
+              <div class="tl-text">Review <strong>deliverability metrics</strong> — open rates, bounce rates, spam flags. Catch issues before they compound.</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">Weekly</div>
+              <div class="tl-text"><strong>Update copy</strong> based on A/B results. What subject line is winning? What opening line gets more replies? Iterate.</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">Monthly</div>
+              <div class="tl-text"><strong>Audit signal sources</strong> — add new ones, remove dead ones. The market changes; your monitoring needs to change with it.</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-time">Monthly</div>
+              <div class="tl-text">Review <strong>niche-specific signals</strong> — are there new trade publications, new communities, new funding sources worth tracking?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOOLS TABLE -->
+  <div class="tools-section">
+    <div class="section-title">The full tool stack</div>
+    <table class="tools-table">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Phase</th>
+          <th>What it does</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-tool">LinkedIn Sales Navigator</td>
+          <td class="td-phase">Signal detection · Enrichment</td>
+          <td>Track executive moves, monitor hiring activity, find decision makers</td>
+          <td class="td-cost">~$100/mo</td>
+        </tr>
+        <tr>
+          <td class="td-tool">Crunchbase</td>
+          <td class="td-phase">Signal detection</td>
+          <td>Funding rounds — the highest-intent signal for recruiting BD</td>
+          <td class="td-cost">Free / $29+/mo</td>
+        </tr>
+        <tr>
+          <td class="td-tool">Google Alerts</td>
+          <td class="td-phase">Signal detection</td>
+          <td>M&A activity, leadership changes, trade press coverage — set and forget</td>
+          <td class="td-cost td-free">Free</td>
+        </tr>
+        <tr>
+          <td class="td-tool">Apollo.io</td>
+          <td class="td-phase">Lead enrichment</td>
+          <td>Pull verified emails and LinkedIn profiles for decision makers at scale</td>
+          <td class="td-cost">$50–150/mo</td>
+        </tr>
+        <tr>
+          <td class="td-tool">Millionverifier</td>
+          <td class="td-phase">Email verification</td>
+          <td>Verify emails before upload — keeps bounce rate under 3% and protects sender rep</td>
+          <td class="td-cost">~$20–40/mo</td>
+        </tr>
+        <tr>
+          <td class="td-tool">PlusVibe</td>
+          <td class="td-phase">Warmup · Sending</td>
+          <td>Handles both account warmup and outreach sending — one tool for the full send layer</td>
+          <td class="td-cost">$30–80/mo</td>
+        </tr>
+        <tr>
+          <td class="td-tool">Instantly / Smartlead</td>
+          <td class="td-phase">Sending (alternative)</td>
+          <td>Sequencing and sending at scale — use alongside or instead of PlusVibe depending on volume</td>
+          <td class="td-cost">$37–100/mo</td>
+        </tr>
+        <tr>
+          <td class="td-tool">Google Postmaster</td>
+          <td class="td-phase">Deliverability monitoring</td>
+          <td>Track domain reputation for Google Workspace sends — catch issues before permanent damage</td>
+          <td class="td-cost td-free">Free</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FIRST STEPS -->
+  <div class="firststeps-section">
+    <div class="section-title">Where to start this week</div>
+    <div class="firststeps-grid">
+      <div class="fs-card">
+        <div class="fs-num">01</div>
+        <div class="fs-title">Buy your sending domain today</div>
+        <div class="fs-body">Not next week — today. Warmup takes 3–4 weeks minimum. Every day you wait is a day you can't send. Pick a domain close to your main one and start warmup immediately.</div>
+      </div>
+      <div class="fs-card">
+        <div class="fs-num">02</div>
+        <div class="fs-title">Set up one signal source</div>
+        <div class="fs-body">Pick the highest-signal source for your niche — usually Crunchbase for funding or LinkedIn Jobs for active hiring. Get alerts running before you do anything else. Signals without infrastructure are still useful for timing.</div>
+      </div>
+      <div class="fs-card">
+        <div class="fs-num">03</div>
+        <div class="fs-title">Write copy for one signal type</div>
+        <div class="fs-body">Don't write generic sequences. Pick one trigger — funding round, leadership change, or 5+ open roles — and write a 3-step sequence specifically for that signal. Test it before scaling.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPY EXAMPLES -->
+  <div class="examples-section">
+    <div class="section-title">What the outreach actually looks like</div>
+    <p class="examples-intro">Two angles for each signal. <strong style="color:var(--text)">Direct</strong> — you're the recruiter. <strong style="color:var(--accent)">Connector</strong> — you know someone who can help, and you're making an intro. Same trigger, completely different friction level.</p>
+
+    <!-- EXAMPLE 1: FUNDING ROUND -->
+    <div class="example-card">
+      <div class="example-signal">Signal — funding round</div>
+      <div class="example-variants">
+        <div class="variant-wrap">
+          <div class="variant-label">Direct</div>
+          <div class="email-preview">
+            <div class="email-meta">
+              <div class="em-row"><span class="em-lbl">From</span><span class="em-val">[Recruiter name] · [agency.com]</span></div>
+              <div class="em-row"><span class="em-lbl">To</span><span class="em-val">[Name], [Title] at [Company]</span></div>
+              <div class="em-row"><span class="em-lbl">Subject</span><span class="em-val em-subj">[Company] just raised — scaling the team?</span></div>
+            </div>
+            <div class="email-body">
+              Hi [Name],<br><br>
+              Saw [Company] closed [round] — congrats. Companies at this stage usually move fast on [role type], and the market for those profiles is tight right now.<br><br>
+              I work exclusively with [niche] companies and have [X] candidates in this space actively looking.<br><br>
+              Worth a 15-min call this week?
+              <div class="email-sig"><strong>[Recruiter name]</strong><br>[agency.com] · [recruiter@agency.com]</div>
+            </div>
+          </div>
+        </div>
+        <div class="variant-wrap">
+          <div class="variant-label connector">Connector</div>
+          <div class="email-preview">
+            <div class="email-meta">
+              <div class="em-row"><span class="em-lbl">From</span><span class="em-val">Leo · systemhustle.com</span></div>
+              <div class="em-row"><span class="em-lbl">To</span><span class="em-val">[Name], [Title] at [Company]</span></div>
+              <div class="em-row"><span class="em-lbl">Subject</span><span class="em-val em-subj">intro — [Company]'s raise + right timing?</span></div>
+            </div>
+            <div class="email-body">
+              Hi [Name],<br><br>
+              Congrats on the [round] — saw the announcement this morning.<br><br>
+              I know a recruiter who specialises exclusively in [niche] hiring. Given your stage, I thought the timing might be right for an intro — he's placed [X] people in exactly this type of role.<br><br>
+              Can I connect you? No commitment.
+              <div class="email-sig"><strong>Leo</strong><br>systemhustle.com · leo@systemhustle.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="example-why">Why it works: connector version removes you from "vendor" positioning entirely. You're doing them a favour. The ask is an intro, not a sales call — almost impossible to say no to.</div>
+    </div>
+
+    <!-- EXAMPLE 2: MULTIPLE OPEN ROLES -->
+    <div class="example-card">
+      <div class="example-signal">Signal — multiple open roles (5+)</div>
+      <div class="example-variants">
+        <div class="variant-wrap">
+          <div class="variant-label">Direct</div>
+          <div class="email-preview">
+            <div class="email-meta">
+              <div class="em-row"><span class="em-lbl">From</span><span class="em-val">[Recruiter name] · [agency.com]</span></div>
+              <div class="em-row"><span class="em-lbl">To</span><span class="em-val">[Name], [Title] at [Company]</span></div>
+              <div class="em-row"><span class="em-lbl">Subject</span><span class="em-val em-subj">noticed [Company] is scaling fast</span></div>
+            </div>
+            <div class="email-body">
+              Hi [Name],<br><br>
+              Saw you have [X] open [role] positions. That's a lot to fill — especially for [niche-specific reason].<br><br>
+              I specialise in [niche] placements and placed [X] people in similar roles in the last [Y] months.<br><br>
+              Happy to share 2–3 profiles this week if useful.
+              <div class="email-sig"><strong>[Recruiter name]</strong><br>[agency.com] · [recruiter@agency.com]</div>
+            </div>
+          </div>
+        </div>
+        <div class="variant-wrap">
+          <div class="variant-label connector">Connector</div>
+          <div class="email-preview">
+            <div class="email-meta">
+              <div class="em-row"><span class="em-lbl">From</span><span class="em-val">Leo · systemhustle.com</span></div>
+              <div class="em-row"><span class="em-lbl">To</span><span class="em-val">[Name], [Title] at [Company]</span></div>
+              <div class="em-row"><span class="em-lbl">Subject</span><span class="em-val em-subj">intro to someone who fills these fast?</span></div>
+            </div>
+            <div class="email-body">
+              Hi [Name],<br><br>
+              Saw [Company] has [X] open [role] positions right now. Mentioned it to a recruiter I work with — he specialises in exactly this and has live candidates in your space.<br><br>
+              Want me to make an intro? Takes 2 minutes on your end.
+              <div class="email-sig"><strong>Leo</strong><br>systemhustle.com · leo@systemhustle.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="example-why">Why it works: offering profiles (direct) or an intro (connector) both shift from pitch to value. You're not asking for anything — you're delivering something.</div>
+    </div>
+
+    <!-- EXAMPLE 3: LEADERSHIP CHANGE -->
+    <div class="example-card">
+      <div class="example-signal">Signal — leadership change (new CTO / VP / Head of)</div>
+      <div class="example-variants">
+        <div class="variant-wrap">
+          <div class="variant-label">Direct</div>
+          <div class="email-preview">
+            <div class="email-meta">
+              <div class="em-row"><span class="em-lbl">From</span><span class="em-val">[Recruiter name] · [agency.com]</span></div>
+              <div class="em-row"><span class="em-lbl">To</span><span class="em-val">[Name], [Title] at [Company]</span></div>
+              <div class="em-row"><span class="em-lbl">Subject</span><span class="em-val em-subj">congrats on the new [Title] at [Company]</span></div>
+            </div>
+            <div class="email-body">
+              Hi [Name],<br><br>
+              Saw [Company] just brought on [First Name] as [Title]. New leadership usually means reshaping the team quickly — especially in [function].<br><br>
+              I place [role type] exclusively for [niche] companies. Happy to share what the talent market looks like right now if it's useful context.
+              <div class="email-sig"><strong>[Recruiter name]</strong><br>[agency.com] · [recruiter@agency.com]</div>
+            </div>
+          </div>
+        </div>
+        <div class="variant-wrap">
+          <div class="variant-label connector">Connector</div>
+          <div class="email-preview">
+            <div class="email-meta">
+              <div class="em-row"><span class="em-lbl">From</span><span class="em-val">Leo · systemhustle.com</span></div>
+              <div class="em-row"><span class="em-lbl">To</span><span class="em-val">[Name], [Title] at [Company]</span></div>
+              <div class="em-row"><span class="em-lbl">Subject</span><span class="em-val em-subj">thought of someone — [First Name] joining [Company]</span></div>
+            </div>
+            <div class="email-body">
+              Hi [Name],<br><br>
+              Congrats on [First Name] joining as [Title]. Moves like that usually come with a wave of new hiring.<br><br>
+              I know a recruiter who places [role type] for [niche] companies — placed [X] people in similar roles this year. Might be worth a quick intro given the timing.<br><br>
+              Want me to connect you?
+              <div class="email-sig"><strong>Leo</strong><br>systemhustle.com · leo@systemhustle.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="example-why">Why it works: the connector version reframes the entire dynamic. You're not cold outreach — you're a well-connected person making a thoughtful intro at the right moment.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta">
+    <div class="footer-left">
+      <h3>Or just have it <em>done for you</em></h3>
+      <p>Every step above runs weekly — some of it daily. It's a full system, not a one-time setup. If you'd rather focus on placements and have this running in the background, that's exactly what I do.</p>
+      <div class="footer-contact">
+        <a href="mailto:leo@systemhustle.com">leo@systemhustle.com</a>
+        <a href="https://systemhustle.com" target="_blank">systemhustle.com</a>
+        <a href="https://wa.me/628175755953?text=Hi%20Leo%2C%20I%20read%20your%20signal%20BD%20playbook%20and%20have%20a%20question" target="_blank" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#10b981"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="footer-badge">Worst case: you keep this guide.<br>Best case: you never need it.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

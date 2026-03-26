@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Hustle — Getting Started</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #fafaf8;
+    --bg2:     #f2f1ed;
+    --border:  rgba(0,0,0,0.08);
+    --border-s:rgba(0,0,0,0.14);
+    --text:    #1a1a18;
+    --muted:   #6b6b66;
+    --subtle:  #a8a8a2;
+    --accent:  #2a6b3c;
+    --serif:   'DM Serif Display', Georgia, serif;
+    --sans:    'DM Sans', system-ui, sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 64px 24px 80px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* header */
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .brand {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--subtle);
+  }
+  .client-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* divider */
+  .div { height: 1px; background: var(--border); }
+
+  /* scope block */
+  .section-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 14px;
+  }
+
+  .scope-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+  }
+  .scope-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .scope-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .scope-list li strong { color: var(--text); font-weight: 500; }
+
+  /* meta row */
+  .meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .meta-cell {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--subtle);
+  }
+  .meta-value {
+    font-size: 20px;
+    font-family: var(--serif);
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .meta-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* pay button */
+  .pay-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .pay-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--sans);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+  .pay-btn:hover { opacity: .88; }
+  .pay-note {
+    font-size: 12px;
+    color: var(--subtle);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* footer */
+  .footer {
+    font-size: 12px;
+    color: var(--subtle);
+    line-height: 1.6;
+  }
+  .footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="brand">System Hustle</div>
+    <h1 class="client-name" id="el-greeting"></h1>
+    <div class="sub">As discussed, here's a quick summary to get started.</div>
+  </div>
+
+  <div class="div"></div>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 20px">
+    <div class="section-label" style="margin-bottom:6px">Goal</div>
+    <div id="el-goal" style="font-size:14px;color:var(--muted);line-height:1.5"></div>
+  </div>
+
+  <div>
+    <div class="section-label">What's included</div>
+    <ul class="scope-list" id="el-scope"></ul>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-cell">
+      <div class="meta-label">Investment</div>
+      <div class="meta-value" id="el-price"></div>
+      <div class="meta-sub">per month</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-label">Start date</div>
+      <div class="meta-value" id="el-start">This week</div>
+      <div class="meta-sub">first leads within 5 days</div>
+    </div>
+  </div>
+
+  <div class="pay-block">
+    <a class="pay-btn" id="el-paybtn" href="#" target="_blank"></a>
+    <div class="pay-note">Secure payment via Stripe. Once confirmed, I'll reach out within 24h to kick things off.</div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="footer">
+    Questions? Reply to my email or reach me at <a href="mailto:leo@systemhustle.com">leo@systemhustle.com</a><br>
+    — Leonid, System Hustle
+  </div>
+
+</div>
+
+<script>
+  const PAYPAL = 'https://paypal.me/LeonidShvorob';
+
+  const TIERS = {
+    pilot: {
+      label: 'Starter Pilot',
+      price: '800',
+      priceLabel: 'one-time payment',
+      start: 'Within 48 hours',
+      startSub: 'kickoff call to finalize targeting',
+      goal: 'Validate signal-based outreach and generate first qualified conversations within 30 days.',
+      scope: [
+        ['Signal-based targeting setup', 'ICP refinement for your niche in days 1–5'],
+        ['2–3 qualified introductions', 'companies actively dealing with unpredictable hiring pipeline, pre-qualified before your time'],
+        ['Live tracking', 'shared tracker with signals, outreach, and intro status throughout'],
+        ['Pilot debrief', 'review results together by day 30 — what worked, what to adjust'],
+      ],
+      note: 'One-time offer for new clients only. If you move to the full package, $800 is credited toward month one.',
+      btn: 'Secure your pilot — $800',
+      guarantee: 'Minimum 2 qualified intros guaranteed. If not delivered by Day 30, we continue at no cost until it\'s met.',
+    },
+    full: {
+      label: '3-Month Package',
+      price: '3,000',
+      priceLabel: 'per month — $9,000 total',
+      start: 'This week',
+      startSub: 'first intros within 8–21 days',
+      goal: 'Build a predictable, signal-based pipeline of qualified client conversations over 90 days — without ad spend or cold calling.',
+      scope: [
+        ['Signal-based targeting', 'ongoing monitoring of hiring triggers in your niche'],
+        ['8–10 qualified introductions', 'over 90 days — companies with active hiring pain, decision-maker engaged'],
+        ['Warm introductions', 'I reach out first and set the frame before you call'],
+        ['Bi-weekly updates', 'progress reports every 2 weeks, live shared tracker throughout'],
+        ['Monthly check-in', 'review what converted, adjust targeting as needed'],
+      ],
+      note: 'Payment in 3 monthly installments of $3,000. Either party may terminate with 30 days notice, no penalty.',
+      btn: 'Get started this week — $3,000',
+      guarantee: 'Minimum 8 qualified intros over 90 days. If not delivered by Day 90, we continue at no cost until it\'s met.',
+    }
+  };
+
+  const p = new URLSearchParams(window.location.search);
+  const name   = p.get('name')   || 'there';
+  const intros = p.get('intros') || null;
+  const tierKey = p.get('tier') === 'full' ? 'full' : 'pilot';
+  const tier = TIERS[tierKey];
+
+  if (intros) {
+    tier.scope = tier.scope.map(([title, desc]) =>
+      /qualified introductions/i.test(title)
+        ? [title.replace(/[\d–-]+/, intros), desc.replace(/[\d–-]+ qualified/, intros + ' qualified')]
+        : [title, desc]
+    );
+    tier.guarantee = tier.guarantee.replace(/Minimum [\d–-]+ qualified/, 'Minimum ' + intros + ' qualified');
+  }
+
+  document.getElementById('el-greeting').innerHTML = 'Hey ' + name + ',';
+  document.getElementById('el-goal').textContent = tier.goal;
+  document.getElementById('el-price').textContent = '$' + tier.price;
+  document.getElementById('el-start').textContent = tier.start;
+  document.getElementById('el-start').nextElementSibling.textContent = tier.startSub;
+  document.getElementById('el-paybtn').textContent = tier.btn;
+  document.getElementById('el-paybtn').href = PAYPAL;
+
+  // inject tier label
+  const brand = document.querySelector('.brand');
+  brand.textContent = 'System Hustle — ' + tier.label;
+
+  // price sub
+  document.querySelector('.meta-cell .meta-sub').textContent = tier.priceLabel;
+
+  // scope
+  const scopeEl = document.getElementById('el-scope');
+  tier.scope.forEach(([title, desc]) => {
+    const li = document.createElement('li');
+    li.innerHTML = '<strong>' + title + '</strong> — ' + desc;
+    scopeEl.appendChild(li);
+  });
+
+  // guarantee + note
+  const footer = document.querySelector('.footer');
+  footer.innerHTML =
+    '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px">' +
+    tier.guarantee + '</div>' +
+    '<div style="font-size:12px;color:var(--subtle);margin-bottom:12px;line-height:1.5">' + tier.note + '</div>' +
+    'Questions? <a href="mailto:leo@systemhustle.com" style="color:var(--muted)">leo@systemhustle.com</a> — Leonid, System Hustle';
+</script>
+</body>
+</html>
