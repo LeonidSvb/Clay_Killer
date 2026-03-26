@@ -1,278 +1,158 @@
 # Sales Call Prep — Rob Berton / Locum Tenens USA
-**Call: Thursday March 26, 10:20pm (CIT) | 40 min**
+**Fit-check call: 15–20 min | Scheduled via cal.com**
+**Контекст: Rob ответил — работает только с теми кто ищет Telemedicine**
 
 ---
 
-## ПЕРЕД ЗВОНКОМ
+## КЛЮЧЕВОЙ СДВИГ ПЕРЕД ЭТИМ ЗВОНКОМ
 
-- Открой дек, выбери нишу **Healthcare Staffing**
-- Перейди на слайд 2, убедись что калькулятор пустой (дефолтные цифры)
-- Держи дек закрытым — открываешь только в минуту 8
-- Вспомни ключевой факт: Rob управляет двумя бизнесами одновременно (LTUSA + Encore), $25–50k/мес, BD держится на входящем трафике
+Первый диалог по email выяснил главное: Rob не хочет интро к общим клиентам.
+Его ниша сейчас — **telemedicine placements only**.
 
----
-
-## ФАЗА 1 — ОТКРЫТИЕ (0–8 мин, слайды закрыты)
-
-### Первые 30 секунд
-
-> "Rob, appreciate you making the time — I know you've got a lot going on with both Locum Tenens USA and Encore running in parallel. Before I show you anything, I'd love to understand how things are going on the BD side right now. Cool?"
-
-**Почему так:** называешь обе компании — он сразу понимает что ты сделал домашнюю работу. Вопрос в конце передаёт ему слово.
+Это хорошо для тебя: у телемедицины свои уникальные сигналы которые 90% агентств не мониторят вообще.
 
 ---
 
-### Discovery вопросы — задавай по одному, не спеши
+## Recruiter snapshot
 
-**Вопрос 1 — про источник клиентов:**
-> "How are new facilities typically finding you right now — is it mostly referrals and inbound, or do you have some outbound running?"
-
-*Чего ждать:* скорее всего скажет "referrals and repeat clients". Это твоё подтверждение что BD не системный.
-
----
-
-**Вопрос 2 — про время:**
-> "And roughly how much of your week goes into business development — finding new facilities, outreach, follow-ups?"
-
-*Не подсказывай цифру.* Жди пока он назовёт сам. Запомни число — вобьёшь в калькулятор на слайде 2.
+Locum Tenens USA — небольшое агентство, Rob Berton владелец + президент.
+Также управляет Encore (второй бизнес параллельно).
+Специализация: telemedicine locum tenens — удалённые physician-роли по всей стране.
+Geography: nationwide (telemedicine по определению не привязана к штату).
 
 ---
 
-**Вопрос 3 — про боль:**
-> "What's the biggest frustration on the client acquisition side right now — is it finding the right facilities, or more about the consistency of new business coming in?"
+## Estimated placement fee
 
-*Чего ждать:* либо "consistency" (feast or famine), либо "competition from bigger agencies". Оба ответа ведут прямо в твой слайд 1.
+**$18,000–25,000 за контракт** (оценка)
 
----
-
-**Вопрос 4 — про Encore (опционально, если разговор идёт хорошо):**
-> "With Encore — are you actively bringing in new B2B clients there, or is that more of a passive network at this stage?"
-
-*Зачем:* показывает что ты понимаешь двойную структуру бизнеса. Большинство людей на его месте не ожидают этого вопроса.
+Reasoning: telemedicine locum — типично почасовой контракт $100–144/hr (ZipRecruiter, март 2026).
+90-дневный контракт на 20 ч/нед = ~250 часов × $120 = $30k billing.
+Агентство берёт ~25–30% margin = $7.5–9k / контракт.
+Для permanent telehealth placement (в штат): стандарт 20–25% от годовой зарплаты = $18–28k fee.
+Спроси Rob на звонке — у него может быть комбо hourly + perm.
 
 ---
 
-### Что слушать и запоминать во время discovery
+## 3 live signals в нише прямо сейчас
 
-- Сколько часов в неделю на BD → слайд 2, поле Hours/week
-- Средний fee за placement → слайд 2, поле Fee/placement
-- Как описывает свою боль своими словами → используй его формулировки на слайде 1
-- Упоминает ли конкурентов → можно использовать в urgency слайде
+**Сигнал 1 — Policy: Telehealth flexibilities продлены до конца 2026**
+- Тип: регуляторный сдвиг → платформы ускоряют найм
+- Что это значит: CMS продлил расширенные правила телемедицины до дек 2026 включая audio-only визиты. Платформы которые раньше выжидали теперь масштабируются — им нужны physician capacity прямо сейчас.
+- Источник: APTA / CMS, ноябрь 2025
+- Для Rob: "Платформы которые ждали определённости по регуляторике — сейчас нанимают. Это короткое окно."
 
----
+**Сигнал 2 — Рынок: 94.6% больниц используют телемедицину для закрытия staffing gaps**
+- Тип: рыночный тренд → системный дефицит telemedicine providers
+- Что это значит: больницы массово переходят на telemedicine coverage вместо in-person locum (дешевле, быстрее). Спрос вырос, предложение не успевает.
+- Active listings: ZipRecruiter показывает множество открытых telemedicine locum позиций $101–144/hr, значительная часть — confidential employer (платформы не раскрывают название намеренно)
+- Для Rob: "Открытые позиции висят 60+ дней — не потому что нет врачей, а потому что никто не видит сигнал в нужный момент."
 
-## ФАЗА 2 — ПЕРЕХОД К ДЕКУ (минута 8)
-
-> "Okay — this is really helpful. Let me show you something I put together before the call. I looked at your niche specifically."
-
-*Открываешь дек на слайде 1. Пауза 3 секунды пока он смотрит.*
-
-**Не говори "this is my presentation" или "let me walk you through my deck".** Просто показывай.
-
----
-
-## ФАЗА 3 — СЛАЙДЫ
-
-### Слайд 1 — The Problem (2 мин)
-
-Не читай слайд. Скажи одну фразу и замолчи:
-
-> "This is the pattern I see with almost every recruiter I talk to in healthcare staffing. Does this look familiar?"
-
-*Жди его реакции.* Если кивает или говорит "yeah absolutely" — двигайся дальше. Если начинает говорить — слушай, не перебивай.
+**Сигнал 3 — 2026 Match: 899 family medicine позиций незакрыты**
+- Тип: pipeline shortage → тelehealth coverage gap
+- Что это значит: lowest fill rate в 2026 Match — 83.6% для family medicine. Facilities которые не получили резидентов идут в locum/telehealth. Family medicine + internal medicine = core telemedicine specialties.
+- Источник: Medicus HCS, 2026 Match data
+- Для Rob: "Facilities которые рассчитывали на Match — сейчас в режиме паники. Часть пойдёт именно в telemedicine coverage."
 
 ---
 
-### Слайд 2 — The Bleed (4 мин) ← КЛЮЧЕВОЙ МОМЕНТ
+## Их BD подход (мой guess)
 
-Вводишь три вопроса по одному, вводишь цифры которые он называл в discovery:
-
-> "You mentioned about [X] hours a week on BD — let me put that in."
-*(вводишь его число)*
-
-> "And what's your rough effective rate — what does an hour of your time cost the business?"
-*(вводишь)*
-
-> "And typical placement fee for a physician placement — ballpark?"
-*(вводишь)*
-
-**Потом замолчи на 5–7 секунд.** Дай ему прочитать цифры самому.
-
-Если он присвистнул или сказал "huh" — это твой момент:
-> "And that's just the time cost. That's before we factor in the signals you're not seeing."
+Скорее всего инбаунд + реферальная сеть — небольшое агентство, нет большой outbound-команды.
+Rob сам делает BD параллельно с операционкой двух бизнесов.
+Вероятно не мониторит специфические сигналы телемедицины — полагается на входящий трафик от врачей и facilities.
+Конкуренты в telemedicine: MDStaffers, MPLT Healthcare, AMN Healthcare, CompHealth, Weatherby — все крупные агентства с командами. Rob конкурирует через нишевую экспертизу и личный touch.
 
 ---
 
-### Слайд 3 — Why DIY (2 мин)
+## Opening hook для fit-check (первые 30 сек)
 
-> "The problem isn't effort — you're clearly not lazy about this. The problem is timing. By the time a facility shows up on a job board, four other agencies have already called them."
+> "Rob, appreciate the clarity on the email — telemedicine makes sense as a focus point. The reason I wanted a quick call: the signal sources for telemedicine are completely different from traditional locum, and right now there are platforms scaling up fast because of the 2026 telehealth policy extension. I wanted to see if the type of intros I can make actually fit what you need."
 
-Открой timeline reveal:
-> "Here's what the window actually looks like."
-
-Пауза. Не объясняй диаграмму — она говорит сама за себя.
+**Почему так:** показываешь что ты понял его требование, сразу даёшь signal (2026 extension), позиционируешь себя как человека который понимает telemedicine отдельно от общего locum.
 
 ---
 
-### Слайд 4 — Mechanism (4 мин) ← ВАУ-МОМЕНТ
+## Ключевые вопросы на fit-check
 
-Сначала покажи pills:
-> "These are the signals I monitor — not just job postings. The combination is what matters."
+**Q1 — уточни нишу внутри telemedicine:**
+> "When you say telemedicine — are we talking primary care platforms, specialty tele, mental/behavioral health, urgent care virtual, or all of the above? Just so I know where to look."
 
-Потом открой таблицу:
-> "I actually looked at what's sitting in your market right now before this call."
+*Зачем:* mental health tele = совсем другие сигналы чем urgent care virtual.
 
-**Пауза. Молчи 5–7 секунд.**
+**Q2 — формат placement:**
+> "And the placements you're making — is it typically hourly locum contracts, or more permanent hires into telehealth platforms?"
 
-Он увидит Oregon, Pain Management, Emergency Medicine. Дай ему это переварить.
+*Зачем:* hourly = другая fee структура, другие сигналы (platform capacity crunches). Perm = standard fee %.
 
-Если спросит "where did you find this?" →
-> "That's the non-obvious layer — trade sources, job aggregators, staffing signals. The kind of thing that takes hours to monitor manually every week."
+**Q3 — geography:**
+> "Since it's telemedicine — does geography matter at all, or literally nationwide? Some platforms need multi-state licensing, others operate in specific states."
 
----
+*Зачем:* если nationwide — IMLC compact states = твой сигнал.
 
-### Слайд 5 — Framing (2 мин)
+**Q4 — текущий pipeline:**
+> "How are you finding telemedicine facilities to work with right now — they come to you, or you're actively looking?"
 
-> "The difference isn't just finding the facility. It's how you arrive. Right now you're one of five agencies calling cold. Through me, you arrive as a recommendation — they're already expecting your call."
-
-Прочитай цитату на слайде вслух — медленно:
-> *"I have a specialist who's placed 10+ people in this exact role. They have capacity right now and I thought of you immediately."*
-
-> "That's not a pitch. That's a referral."
+*Классический вопрос про BD.* Если "they come to me" — feast-or-famine, твой hook.
 
 ---
 
-### Слайд 6 — Urgency (2 мин)
+## Что изменилось VS прошлый бриф
 
-> "Here's the thing about timing."
-
-Открой S-curve:
-> "Most recruiters in your niche are still doing BD the old way. A small number already run signal-based systems — and they look like they just know the right people. That window is still open. It won't be for long."
-
-Открой danger block:
-> "Every month this doesn't run, a competitor with better signals closes a facility that should have called you."
-
----
-
-### Слайд 7 — Offer (3 мин)
-
-> "So here's what this looks like practically."
-
-Открой week split bar:
-> "Right now a significant chunk of your week goes to BD that doesn't convert consistently. I take that off your plate — and replace it with better-timed, higher-quality conversations. Your job is to close them."
-
-Прочитай tagline:
-> *"We handle the hustle. You close the placements."*
-
-Пауза.
-
-> "That's literally what System Hustle does."
+| | Прошлый бриф | Новый фокус |
+|---|---|---|
+| Ниша | Oregon, Pain Mgmt + EM | Nationwide telemedicine |
+| Сигналы | Job boards, rural hospital gaps | Platform scaling, policy changes, Match shortage |
+| Deck таблица | Oregon facilities | Telehealth platforms + signals |
+| Fee estimate | $28k | $18–25k (уточни на звонке) |
+| Слайд 4 pills | Pain Mgmt, EM, Rural distress | Platform funding, IMLC, policy, Match gaps |
 
 ---
 
-## ФАЗА 4 — NEXT STEPS (13 мин)
-
-### Не закрывай агрессивно. Задай один вопрос:
-
-> "Based on what you've seen — does this solve a real problem for you, or is the BD side not actually the bottleneck right now?"
-
-*Это честный вопрос.* Если скажет "it is a problem" — у тебя есть сделка. Если скажет "not really" — узнаешь почему и не потеряешь время.
-
----
-
-### Если интерес есть — следующий шаг:
-
-> "Here's what I'd suggest — I can do a niche research run for your specific market this week, show you exactly what signals are live in locum tenens right now, and we can talk about what a pilot looks like. Does that make sense as a next step?"
-
-Конкретно: дата, время, что ты принесёшь на следующий звонок.
-
----
-
-## ВОЗРАЖЕНИЯ
-
-### "I already have a system / we do outbound"
-> "Good — then you'll appreciate the signal layer. The question isn't whether you're doing outreach, it's whether you're reaching facilities at the right moment. What's your current trigger for reaching out to a new facility?"
-
-### "How is this different from other lead gen services?"
-> "Most lead gen gives you a list. I give you timing. A list of facilities is useless if they're not in pain right now. The signal tells you which ones to call this week."
-
-### "What does this cost?"
-> "Let's make sure it makes sense first — I don't want to talk pricing before we know it's the right fit. Can we figure out what a pilot would look like and then talk numbers?"
-
-*(Ценообразование — на второй звонок)*
-
-### "I need to think about it"
-> "Of course. What's the one thing you'd want to see answered before it makes sense to move forward?"
-
-*(Всегда выясняй что конкретно они думают — иначе "think about it" = медленное нет)*
-
-### "We're too small / not ready"
-> "That's actually when this works best — when you're at the stage where one or two new facility relationships a month changes your trajectory. Larger agencies don't need BD help, they have teams for that."
-
----
-
-## ФРАЗЫ КОТОРЫЕ РАБОТАЮТ
-
-- *"Does this look familiar?"* — после слайда 1
-- *"Let me put your numbers in"* — на слайде 2
-- *"I looked at your market before the call"* — перед таблицей
-- *"That's not a pitch. That's a referral."* — после цитаты
-- *"Your job is to close them."* — финальный слайд
-
----
-
-## ФРАЗЫ КОТОРЫЕ НЕ ГОВОРИТЬ
-
-- ~~"Let me walk you through my presentation"~~ → слишком формально
-- ~~"As you can see on this slide"~~ → читаешь за него
-- ~~"Does that make sense?"~~ после каждого слайда → раздражает
-- ~~"Basically what we do is..."~~ → "basically" снижает уверенность
-- ~~"I think this could work for you"~~ → "I think" = неуверенность
-
----
-
-## ТИШИНА — ТВОЙ ИНСТРУМЕНТ
-
-Три момента где нужно молчать намеренно:
-
-1. После того как вбил цифры в калькулятор → 5–7 сек
-2. После того как открыл scoring table → 5–7 сек
-3. После финального вопроса "does this solve a real problem" → сколько угодно
-
-Тот кто говорит первым после паузы — проигрывает переговорную позицию.
-
----
-
-## ЕСЛИ ЗВОНОК ИДЁТ НЕ ПО ПЛАНУ
-
-**Он говорит слишком много на discovery** → не торопись к деку, это хорошо. Слушай, запоминай детали, используй его слова на слайдах.
-
-**Он скептичен с первой минуты** → не защищайся. Скажи: *"Fair — let me show you something specific and you tell me if it's relevant."* Открывай scoring table сразу, пропускай первые слайды.
-
-**Он отвлёкся или потерял нить** → *"Let me cut to the thing that's most relevant to you specifically."* Перепрыгни на слайд 4.
-
-**Звонок явно идёт к закрытию раньше** → не дожидайся слайда 7. Остановись на слайде 4–5 и переходи к next steps.
-
----
-
-## DECK INJECTION — вставь в Custom panel перед звонком
+## DECK INJECTION — обновлённый для telemedicine
 
 ```json
 {
-  "prospectName": "Rob Berton / Locum Tenens USA",
-  "defaultFee": 28000,
-  "nonObvious": "DEA registration applications, FSMB physician license portability filings, and rural hospital financial distress reports — visible weeks before any locum agency gets a call.",
-  "cols": ["Facility", "Specialty", "Signal", "Priority"],
-  "pills": ["Pain Mgmt 60d+ unfilled", "EM coverage gap", "Rural hospital distress", "2026 Match fill rate drop"],
-  "hotLabel": "HOT — Pain Mgmt + EM both active in OR",
+  "prospectName": "Rob Berton / LTUSA — Telemedicine",
+  "defaultFee": 20000,
+  "nonObvious": "Interstate Medical Licensure Compact (IMLC) applications, CMS telehealth waiver utilization filings, and funded telehealth platform hiring announcements — visible weeks before a telemedicine agency gets an inbound call.",
+  "cols": ["Platform / Facility", "Specialty", "Signal", "Priority"],
+  "pills": ["Platform funding + scale", "IMLC license surge", "Match shortage FM/IM", "CMS policy tailwind"],
+  "hotLabel": "HOT — Telehealth policy extended 2026",
   "companies": [
-    ["Undisclosed OR Pain Clinic", "Pain Management", "Active on LocumTenens.com 60+ days, new listings daily", "HIGH"],
-    ["Rural NE Oregon Hospital", "Emergency Medicine", "Coverage gap confirmed, Barton Associates competing same slot", "HIGH"],
-    ["Undisclosed OR Family Practice", "Family Medicine", "2026 Match lowest fill rate nationally: 83.6%, 899 positions unfilled", "MED"]
+    ["Undisclosed Telehealth Platform", "Primary Care / FM", "Active telemedicine locum listings 60+ days, confidential employer, $101-144/hr range, ZipRecruiter March 2026", "HIGH"],
+    ["Hospital System (Nationwide)", "Multiple Specialties", "94.6% of US hospitals now using telemedicine for staffing gaps — systems launching virtual care programs need physician capacity fast", "HIGH"],
+    ["Family Medicine Facilities", "Family Medicine", "899 FM positions unfilled after 2026 Match (83.6% fill rate) — facilities turning to telemedicine coverage immediately", "MED"]
   ],
   "curveLabel": "Early Adopters"
 }
 ```
 
-**Источники:** LocumTenens.com (Pain Mgmt Oregon, live), BartonAssociates.com (OR EM), Medicus HCS / 2026 Match data (Family Medicine fill rate)
-**Примечание:** Названия Oregon-клиник скрыты на job boards — сигналы реальные, объекты confidential. Это нормально — говори *"I'm seeing active pain management openings in your market sitting unfilled 60+ days"*, не называй конкретных имён.
+**Примечание:** Telemedicine employer names скрыты на job boards намеренно (платформы не хотят прямого рекрутинга). Говори: *"I'm seeing active telemedicine locum listings sitting unfilled across primary care and specialty platforms right now — and the window after the 2026 policy extension is moving fast."*
+
+---
+
+## ВОЗРАЖЕНИЯ специфичные для telemedicine
+
+### "Telemedicine platforms hire direct, not through agencies"
+> "Some do — but the mid-size and growing platforms can't build a physician pipeline fast enough. The funded ones especially — they raised money to grow, not to spend 3 months recruiting. That's exactly the window I'm watching for."
+
+### "I already have relationships with a few platforms"
+> "Perfect — then the question is what's sitting in your pipeline that you're not seeing yet. The platforms expanding in 2026 because of the telehealth policy extension — are those on your radar already?"
+
+### "Telemedicine fee is lower than in-person locum"
+> "Hourly contracts — yes, margin is tighter. But the volume and velocity is different. And permanent placements into telehealth platforms are standard fee %. Which model do you mostly work with?"
+
+---
+
+## Цель звонка (fit-check, не продажа)
+
+Это НЕ питч-звонок. Это квалификация:
+
+1. Подтвердить что сигналы телемедицины вообще нужны (vs он сам уже всё видит)
+2. Понять конкретную sub-нишу (primary care tele? mental health? urgent virtual?)
+3. Проверить модель — hourly locum или perm placement
+4. Если fit очевиден — предложить пилот с 1–2 telehealth intros
+
+**Закрытие fit-check:**
+> "Based on what you described — I think I can find you 1–2 qualified telehealth facilities in the next 30 days that are actively looking and haven't started calling agencies yet. Want me to put together a quick example of what that signal looks like and we can talk pilot?"
