@@ -94,13 +94,50 @@ if _in_streamlit():
     import streamlit as st
 
     st.set_page_config(page_title="YouTube Transcript", layout="centered")
-    st.title("YouTube Transcript")
+
+    if "dark_mode" not in st.session_state:
+        st.session_state.dark_mode = False
+
+    col_title, col_toggle = st.columns([6, 1])
+    with col_title:
+        st.title("YouTube Transcript")
+    with col_toggle:
+        st.write("")
+        if st.button("🌙" if not st.session_state.dark_mode else "☀️", use_container_width=True):
+            st.session_state.dark_mode = not st.session_state.dark_mode
+            st.rerun()
+
+    if st.session_state.dark_mode:
+        st.markdown("""
+        <style>
+        html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+            background-color: #0e1117 !important; color: #fafafa !important;
+        }
+        [data-testid="stSidebar"] { background-color: #161b22 !important; }
+        .stTextInput input, .stSelectbox div[data-baseweb="select"] {
+            background-color: #161b22 !important; color: #fafafa !important;
+        }
+        pre, code { background-color: #161b22 !important; color: #fafafa !important; }
+        </style>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <style>
+        html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+            background-color: #ffffff !important; color: #0e1117 !important;
+        }
+        pre, code { background-color: #f0f2f6 !important; color: #0e1117 !important; }
+        </style>
+        """, unsafe_allow_html=True)
 
     history = load_history()
 
     # --- История ---
     if history:
-        options = {f"{h['date']}  —  {h['title']}": h for h in history}
+        options = {
+            f"{h['date']}  —  {h.get('channel', '')}  —  {h['title']}" if h.get('channel') else f"{h['date']}  —  {h['title']}": h
+            for h in history
+        }
         selected_label = st.selectbox("История", ["— выбрать —"] + list(options.keys()))
 
         if selected_label != "— выбрать —":
