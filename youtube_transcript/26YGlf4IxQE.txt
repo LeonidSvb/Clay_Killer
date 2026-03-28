@@ -1,0 +1,815 @@
+This is probably the most excited I've
+ever been to be a cold email marketer.
+See, about a year ago, I made a video
+about a concept that I called the
+perceived value magnet. It was this idea
+that instead of sending people a generic
+PDF for some free course, you make your
+lead think that you're personally
+building something custom for them, even
+though AI and automation are actually
+doing the heavy lifting behind the
+scenes. And that video changed a lot of
+people's approach to cold email. But
+here's the thing. I've completely moved
+past what I showed you in that video.
+What we're doing now is we're building
+our clients custom micro SASS
+applications as their cold email lead
+magnets and we're doing it with cloud
+code and the results are insane. We're
+averaging about 4% reply rates across
+the board when we implement the strategy
+even in niches that were previously
+considered impossible like AI automation
+agencies or cyber security firms. Now,
+the best part is this is so easy to do.
+My entire team is able to do this for
+clients, not just me, not just the
+technical guys. Literally down to our
+customer success managers are able to
+spin up these new reverse lead magnets
+in minutes. And in this video, I'm going
+to show you how to do the exact same
+thing. I'm going to give you the prompts
+that you'll put into AI and use [music]
+as reverse lead magnets and the prompts
+to generate the reverse lead magnets.
+All right, so let me bring you up to
+speed. If you watched that video last
+year, you know the core concept. But if
+you didn't, here's the quick version.
+Traditional lead magnets, they're dead.
+And by traditional, I mean, you know,
+reply PDF and I'll send you my guide or
+here's a free miniourse or download my
+47page ebook on cold email best
+practices. Those don't work anymore.
+They used to, but not really anymore.
+And there's three main reasons why.
+Number one, they're generic. You built
+that PDF once and everyone knows you're
+sending the exact same thing to every
+person. A CEO of a dental practice and a
+CEO of an e-commerce brand all get the
+same PDF. That's not personalized.
+That's a spam blast. Number two, the
+perceived effort is zero. Your lead
+knows that you built this thing once and
+that you're distributing it to thousands
+of people. There's no feeling of, "Wow,
+this person actually did something for
+me. They took the time to put this
+together just for me." It's just another
+automated thing in their inbox. And
+number three, and this is the big one,
+nobody implements them. Be honest. How
+many free PDFs have you downloaded in
+the last year that you actually read?
+How many YouTube videos or free courses
+did you actually watch? Now, your leads
+are the same way. [music] So, in my last
+video, I showed you how I solved this
+with the perceived value magnet. Instead
+of saying reply PDF and I'll send you
+this thing, you say, "Would it be okay
+if I spent some time and I wrote you a
+custom cold email sequence?" The
+psychology is the powerful thing. You're
+making them think that you're going to
+personally invest time into helping
+them. Even though behind the scenes, AI
+does all of the heavy lifting. Using
+this strategy, this was a year ago with
+using make.com, we were able to get our
+impossible cold email campaign, trying
+to sell cold email services from like
+a.5% now up to almost a 3% reply rate
+using this exact method. And this is
+selling cold email services via cold
+email. [music] Arguably the hardest
+niche in the world. But here's what
+happened. As more people started doing
+this, they were sending AI generated
+copy, AI personalization, AI written
+sequences, the market eventually caught
+up and again people started recognizing
+it. Oh, Chatbt wrote this email. Cool.
+Delete. So, we've had to evolve. And
+what we've evolved into is something
+that I genuinely believe is going to be
+the dominant cold email strategy for the
+next 2 to 3 years. Because unlike a PDF
+or an AI written email sequence, what
+we're building now is something your
+lead actually wants and can use
+immediately. And ideally, they can't get
+it anywhere else. I call this the
+reverse lead magnet. And here's why.
+See, a traditional lead magnet is
+something that you give to a lead to get
+their attention. A PDF, a webinar, a
+free trial. The value flows from you to
+them. But there's a catch. They have to
+do something with it. They read the PDF,
+watch the webinar, implement the free
+trial. Whereas a reverse lead magnet
+flips this completely. Instead of giving
+them something they have to implement,
+you give them something that's already
+implemented, something that's working,
+something that solves an actual problem
+that they have right now with zero
+effort or time on their end. And that is
+exactly what we're doing with these
+micro SASS lead magnets. This is the
+evolution of the reverse lead magnet.
+These are tiny purpose-built web apps
+that solve an actual problem for the
+lead specific business. And right now we
+are building them with cloud code. And
+we're using cloud code because it's the
+most powerful and capable AI application
+building platform on the planet right
+now. Now, before you fight back and you
+say, "Jay, I can't build software."
+Well, that's exactly the point. You
+couldn't before. But with Cloud Code,
+it's completely changed the game. And if
+you're resistant to Cloud Code and
+you've seen it and it looks too scary,
+you don't like the terminal. Don't
+worry. I'm going to be giving you a
+cheat code to do this without cloud
+code. Anybody can do this with the cheat
+code. But just know that you don't need
+to be a developer to do this with cloud
+code. I don't have any technical
+knowledge. All you need to do is you
+need to understand your lead, the
+problem that that lead has, and some
+ways that you can solve it using some
+sort of AI generated service or
+solution. And don't worry, I'll give you
+the prompts for that, too. But here's
+the part that makes it scalable. It
+takes about 1 hour per client per
+vertical for us to implement this for
+our high ticket clients. Not per lead,
+per client vertical. You build it once
+as an SEO agency and now you have a tool
+for all SEO agencies to use. So you
+could potentially sell this to other
+agencies as an offer as well. So if
+you're an SEO agency and you want to
+build a micro SAS because you want to do
+cold email for your SEO offer, granted
+SEO's taken a big turn too, but you only
+have to build it once. And that same app
+is going to work no matter who you're
+reaching out to. Dentist offices,
+medical offices, chiropractor's offices,
+doesn't matter. The same app will work
+across all of your leads industries.
+Now, let me give you some realworld
+examples. I actually took this to the
+extreme and I built an app, Consulty AI.
+This is going to be the SAS that I'm
+running. But many of the tools on here
+are free. They follow the exact same
+strategy that I'm talking about here.
+So, as you can see in Consulty AI, all
+of these are free tools that you can
+use. Inbox placement tests that are
+completely free. Cold email copywriters
+that are completely free and better than
+most paid services. So, if I'm doing
+cold outreach for consulty or for lead
+genen J, I can say, "Hey, I'd love to
+write your cold email copy, generate AB
+variations, generate spin tax, add it to
+your instantly." Hey, that's a that's a
+service that a lot of people would pay a
+lot of money for. I'd love to do a
+deliverability audit for you. And you
+can just do that all on the back end of
+this app. Now, these are just some
+simple ones that I'm using for myself to
+increase the performance of my
+campaigns. Now, here's some examples for
+clients. We've got a lot of clients who
+run SEO agencies. Their leads are
+business owners that want to rank higher
+on Google and not on AI. And this is the
+new thing. They want to rank on AI
+search results like chatpt, perplexity,
+claude. So, what do we do? We built a
+micro SAS that actually goes out and
+builds a backlink profile for that lead,
+scans their current site, identifies
+backlink opportunities for AI search
+results, and it starts the outreach
+process. All the lead had to do was
+enter a URL. And in fact, we can pass
+the URL directly to them via a link. And
+what this does is that it unlocks the
+ability for you to say in your cold
+email, hey, I spent some time analyzing
+your backlink profile and I actually
+built you an entire backlink profile
+that's going to increase your AI search
+results. Would it be okay if I sent you
+your backlinks? Who says no to that?
+Nobody. We have clients who sell AI
+automation services and their leads use
+all kinds of software. Go High Level,
+Shopify, HubSpot. Well, we built a micro
+SAS for them that scans the lead's
+website to detect what technologies
+they're using and then builds [music]
+custom NAND automations specifically for
+those technologies and also suggests AI
+workflows that they can do to replace
+their current technologies or integrate
+them better. The cold email that we use
+for them is now they can say, "Hey,
+would it be okay if I spent some time
+and built you a couple of automations
+for your GoHigh level and Shopify
+account?" You can import them in one
+click. Now, just think about that from a
+lead's perspective. Someone just offered
+to build them something custom,
+something they can actually use,
+something that would normally cost
+hundreds or thousands of dollars, and
+all they have to do is reply yes. Now,
+once they say yes, and they will, you
+send them a URL to the Microsass app
+with their website prefilled or the
+results pre-filled. They click it, and
+the app does all of the back-end work.
+They then land on your custom branded
+app. And now you have three things
+working for you simultaneously. One, the
+law of reciprocity. You did something
+meaningful for them. They feel compelled
+to reciprocate. Booking a call feels
+natural instead of forced. Two, you have
+proof of competence. They just saw what
+you can do. Your lead magnet is your
+portfolio. You didn't tell them, "Hey,
+I'm good at automation." You showed
+them. And three, and this is the sneaky
+one, that micro app is your website. It
+has a call to action. It has your Google
+Ads pixel, your metapixel. Even if they
+don't book a call today, you can
+retarget them on every platform. Now,
+your lead magnet just became your
+retargeting landing page. And if you
+want to take it to the next level, you
+can also add once they're done consuming
+their information or running the scan on
+their site, a simple form that asks them
+for their email to access that
+information. Now, they've opted in and
+you can add them to your list. Now, I
+know what some of you are thinking. Jay,
+building a custom software for myself or
+every client of mine sounds insane. It's
+not scalable. Well, a year ago, you'd be
+right. When I made my original perceived
+value magnet video, I was using make.com
+to generate AI written copy and there
+was a limit and it wasn't easy for me to
+just copy and paste or for other people
+to even copy and paste because it was so
+many nodes and so complex and there was
+no AI assisted coding. That was the
+limit. But building actual applications
+that would have taken a dev team weeks
+and cost thousands of dollars. But cloud
+code and the easier platforms that I'll
+show you if you want to take the easy
+way out have completely changed the
+math. All you have to do is describe the
+app you want, build me a micro SAS that
+scans a website's tech stack and
+generates custom NAD automations for
+their specific tools. And Cloud Code
+builds it. The entire front end, the
+backend logic, the database, the
+deployment, all in about an hour. But
+here's the key. You don't need complex
+backend automations anymore. See, with
+make.com or nadm, every new lead magnet
+requires building a new automated
+workflow, new triggers, new API calls,
+new logic. But with cloud code, all of
+the magic happens inside of the app. The
+app is the automation. There's no
+separate backend to maintain unless you
+want there to be. No nad workflows to
+debug or figure out how to make.
+Granted, you can do that. I still use it
+for a lot of things, so I can see and
+visualize more stuff. But for those of
+you that aren't as technical, you don't
+need nad anymore. You can do it simply
+by talking it to the AI. And that's why
+we're able to do this with every client.
+My team doesn't need to know how to work
+n. All they have to do is talk to the AI
+and it builds the apps. 1 hour of work,
+one app per vertical and unlimited leads
+through that app. Now, at this point,
+you're probably thinking, "Yeah, that
+sounds great, Jay, but what would I even
+build for my niche?" And that's a fair
+question, and that's probably the
+hardest part about doing this. And I'm
+going to guide you through every step.
+I'm gonna make it stupid easy for you
+because I've got a prompt that's going
+to generate reverse lead magnet ideas
+for literally every niche. Now, let me
+show you it working in real time. All
+right, here is the prompt and I'm going
+to have a full micro SAS cheat sheet for
+you that you can download for free
+linked down below that's going to have
+these prompts and some things that I've
+learned over the years that will help
+you do a better job with this. Now,
+obviously, this one's not customized for
+me. So, let's actually go to chat GPT
+who knows me pretty well. I'm going to
+say customize this prompt for lead
+genenj. We're going to go to lead genenj
+project customize this prompt for my
+cold email offer. And this is all you
+have to do as well. Especially if you
+have an AI that's already trained on
+you, your business, your offers, you can
+just have it customize [music] it for
+your specific use case. Uh I actually
+still have my chat GPT subscription
+because it has so much information and
+pre-trained stuff on me. Uh and still
+works pretty well, but not that well cuz
+it still left some placeholders in
+there. Your ideal client. Uh so I had to
+give a little nudge. Let's see if it
+listens to me. By the way, I trained my
+AI to give everything to me in a code
+box so I can really easily copy and
+paste it. Cool. It looks like it's now
+doing a better job. I'm going to go
+ahead and use this tight version. And
+then we're going to paste this into
+Claude. Now, if you already have Claude,
+you don't have to use Claude to
+brainstorm. However, I like to use the
+Claude code version. Obviously, when I'm
+usually using Claude Code, it's in my
+terminal, but you can go ahead and start
+a new session here and just go ahead and
+run that. Now, again, you don't need to
+do this prompt inside of Claude Code. I
+just like it better. [music] I'm now
+inside of my web app, so it has a lot of
+my preferences and information, but you
+can just do it right here in chat GPT
+and have it get the ideas for you.
+Remember, this is just the brainstorming
+process. So, let's go over the prompt
+and see what we're actually trying to
+accomplish. I run a X type of agency
+targeting X clients. Generate five micro
+SAS app ideas that I can build as a cold
+email lead magnet. For each idea, give
+me app name and one sentence
+description. What the lead inputs should
+just be a URL or a company name. What
+the app outputs why a decision maker
+would say yes. The wow factor, so what's
+going to get their attention. The app
+must deliver value in under 60 seconds.
+I I really kind of tightened this so it
+gives you the best possible result.
+Again, all the prompts are going to be
+available to you in the cheat sheet.
+This is still generating some ideas.
+Let's let this brew. All right. Voila.
+We've got some answers. So, I like how
+Claude Code just like crushes
+everything. So, five Microsass lead
+magnet ideas. Cold email tearown engine,
+ICP [music] opportunity map. So without
+going too detailed into each of these,
+these are probably going to be some
+pretty good ideas. You can also run this
+prompt across several different AI
+models. You want to see how Gemini
+responds. You want to see how Claude
+responds. This idea phase very
+important. Uh so you really want to make
+sure that you pick the best possible
+idea. See what all of them say. That way
+you can really tackle the one that you
+want to tackle. So let's go through a
+couple of these and see what it
+outputed. And I'll I'll try and pick my
+best one, too. Cold email tearown
+engine. Analyze a company's website and
+public signals to tear down their
+current outbound strategy and show them
+why they're not booking calls. Not bad.
+Uh, idea two. Let's go to three. Lead
+sample generator. Pulls 10 real verified
+prospects from a company's ideal buyer
+profile, complete with LinkedIn URLs and
+a personalization hook for each. Yep,
+super easy to automate. What else do we
+have? Number four, domain deliverability
+report. Also pretty good. runs a full
+deliverability audit on any sending
+domain and returns a scored report
+showing exactly why emails land in spam
+and what to fix before sending another
+campaign. Competitor, customer,
+prospector identifies companies using a
+competitor's product or service and
+generates a targeted list of their
+customers who are most likely to switch
+with messaging angles for each. Also a
+very good idea. You could use any of
+these and it would probably crush. So
+very good. Look at this 1 hour claude
+code MVP build plan. So, it actually
+gives you the full plan for cloud code
+to to start building this thing.
+Absolutely incredible. The the power of
+AI now is just insane. Reply rate
+estimation. It actually like gave us
+some specifics on how how it thinks it's
+going to do. I don't know how true any
+of this is, but it's definitely
+interesting to look at. All right, so
+now that you have your idea, here's
+where the magic happens. Let me show you
+how to go from idea to a working app in
+a single prompt. You're going to paste
+this prompt into cloud code and you can
+[music] watch it and work with it until
+it builds that Micros app from scratch.
+Now, here is the prompt and I'm put it
+on the screen. First, you want to define
+your app's purpose, which you're going
+to grab from step one. You're going to
+define the app's requirements, which is
+going to be a single page web app. It's
+going to be clean, professional UI with
+your brand colors. You're going to
+define the inputs, the processing, the
+output. You're going to say include a
+clear CTA button. You're going to add
+your pixels, your codes, and if you
+don't know how, it'll just help you with
+it. But you're just going to copy and
+paste this long prompt into your Claude
+code with the chosen idea from number
+one, and you're going to enter a
+brainstorming session. What you're going
+to do if you're using Claude code is
+you're going to take this prompt, and
+I'm still in this Cloud Code session,
+and normally I would do this in my
+terminal, but you can paste that prompt
+that we just talked about, and you can
+say, let's use idea one, and brainstorm
+this app. Any questions? And then what
+you want to do is enter a brainstorming
+phase with the AI before you tell it to
+just start building. So as you can see
+right now it's an autoac accepts edit. I
+want it to be in plan mode. So make sure
+that you click plan mode. And then
+you're going to enter a brainstorming
+phase. And I recommend actually using
+Opus 4.6 for this since it's the best
+reasoning model is going to help you
+with the brainstorming session a lot
+more. [music] Uh it's going to ask you
+questions. You're going to answer its
+questions, define some blind spots that
+you might have on how it's actually
+going to build it. And then if you spend
+a lot of time with that brainstorming
+session, once you tell it to go start
+building, it's going to be able to build
+it in one shot. And if you follow this
+process, I guarantee you'll be able to
+have a working app in under an hour,
+even without using terminal. You can do
+this right here in your browser in
+[music] Cloud Code, and it'll generate
+the entire thing for you. Now, to bring
+it to life, if you're using Cloud Code,
+you will probably need some way to host
+the site or some and some backend to
+keep all of the data. For that, of
+course, we use Verscell and Superbase.
+And if you're interested in learning
+more about how to build amazing apps
+like this uh and do it the right way, go
+to leadenj.com/aiia.
+That's AI automation. And you'll be able
+to join our community where I teach you
+everything about building apps. And you
+can even copy the apps that I've built.
+I've built some really unbelievable apps
+um such as like a thumbnail generator, a
+sales director, uh you can copy all of
+my skills in my repository. So
+definitely consider joining this. You'll
+learn how to use OpenClaw like I do. Uh,
+and that way [music] you can just copy
+all of my stuff instead of having to
+figure it all out the the first time.
+Now, I know I said there was an easy way
+and some of you are watching this and
+thinking, Jay, cloud code sounds
+amazing, but I'm not ready for terminal
+or code editor or versel superbase, and
+that's completely fine. And I want you
+to be able to use this strategy
+regardless of your technical level. And
+that's why there are tools like bolt and
+lovable that let you build the same kind
+of apps, especially simple ones,
+entirely in your browser. You don't need
+any of the fancy backend stuff or the
+front end stuff. No terminal, no code
+editor, no local setup. You just
+describe what you want and they build it
+for you visually. You can see the app
+taking shape in real time and right in
+your browser tab. So let's go ahead and
+actually watch that in action. So in my
+cloud code session, I'm actually going
+to now say, let's use idea one. Please
+customize [music]
+this prompt using idea one and your
+knowledge of my company offer only
+output the complete prompt. And what I'm
+going to do once this is done is
+actually just take the prompt and we're
+going to be using bolt new for this uh
+which is going to literally just
+generate the whole thing for me in the
+browser and it's going to give me a URL
+that I can just share with clients. So
+the two popular ones, bolts.new,
+lovable are very popular sites where you
+can just come in and vibe code websites
+or simple apps. Now because of this
+simplicity, you sacrifice a lot of
+power. So if you want to build something
+complex like consulty with lots of
+different tools that have more complex
+backends, uh we've got all kinds of
+databases in here, then you're not going
+to be able to do something like this
+inside of Lovable or Bolt. You're
+definitely going to want to learn cloud
+code. So, if you want to go all in on
+this, just learn Claude code. Join the
+AI automation insiders where I teach you
+everything you need to know. You should
+also check Vault at leadgenj.com. I've
+got all kinds of crazy deals on tools
+like Bolt and Lovable. I actually got
+Bolt for free for a year back when it
+was in my vault. So, let's look at my
+subscription. I've actually got an
+annual plan on Bolt that's completely
+free that I don't use all because I got
+it on vault.j.com. So, let's see if Bolt
+or Lovable is still there. Bolt. No.
+Lovable. Lovable. There you go. 15% off
+annual in business. And there's probably
+a lot of similar ones to lovable. Uh so
+even if like that's not a great deal,
+but there might be some that are similar
+to lovable if you come down and see what
+other AI assisted coding platforms are
+there. Looks like this one AI P
+programmer 50% off. So there's all kinds
+of uh crazy deals on here. And now I
+probably screwed up using uh Opus 4.5 in
+this existing project to do this because
+now it's reading through my entire
+codebase. It's like what the heck? What
+the heck are you doing? This is not what
+you normally use this project for. So if
+you did this in like a brand new session
+in a new project, you probably uh this
+would this would happen [music] a lot
+faster. So let's go ahead back into chat
+GPT and say customize this prompt
+[music] and then I want to give it idea
+one. Idea one. Let's see if chatpt is
+able to do this and do it fast. Yeah,
+this thing is still going. Let's go
+ahead and pause uh cloud code and save
+it to pain. I confused the heck out of
+it. You definitely don't want to confuse
+your AI. All right, here we go. Build me
+a microsass. Here is a prompt that we
+can use. Thank you chat GPT for going
+quickly and knowing a lot about my
+company. So here we go. It's outputting
+a full prompt with everything the app
+needs to do, how it's going to be set
+up. Now be sure to read this and go
+through it. Uh right now it's giving it
+a unique domain name. It's uh telling it
+how it how to build it and deploying out
+on Versell. We don't need to do that. Uh
+so go ahead and customize this if you're
+going to use the like a lovable or a
+bolt solution. So let's go ahead and
+copy that response and put it here. I'm
+going to paste all of that. We're going
+to use Sonnet 4.6, I guess, to save on
+some credits. Build this at let's plan.
+So, now you're going to enter a
+brainstorming phase with Bolt or with
+Lovable. Then, it's actually going to be
+able to build you the preview that
+you're going to see here. So, let it go
+through and digest that plan and then
+hopefully it looks good and we can start
+building. But definitely go through a
+planning phase. I want you to get used
+to that. Uh, while it does this, let's
+go ahead and continue with uh what to do
+next. Now, while you can basically do
+the same thing with Bolt or Lovable,
+it's the same strategy. It's the same
+prompts. They're [music] just different
+tools. But I'm going to be straight with
+you about the tradeoffs. The browser
+tools in Bolt. Lovable, they're faster
+to get started. You can do it as a
+beginner. There's zero setup. And it
+will actually just give you a URL that
+you can share. You don't need to worry
+about deploying it. A lot of times you
+don't have to worry about a backend. So,
+they're [music] faster. There's no setup
+and you can go from idea to app in 30
+minutes, usually on your first try. So,
+they might be perfect for you as a
+beginner to get your first reverse lead
+magnet out the door, but they have
+limits. There's less control over the
+details. They're less capable. So, if
+you have any like complex logic or
+backend API integrations, you're going
+to hit a wall much faster, and you're
+going to be frustrated. You're like, why
+isn't Lovable doing what I want it to
+do? Well, it's because it's much it's
+not as smart. It's less capable, and
+you're going to be on a monthly
+subscription, 20 to 50 bucks a month
+just to host the thing and do the back
+end. So, there's hidden costs in there,
+too. Uh, so even if you think, oh, less
+software, cheaper, not necessarily.
+Cloud code will give you much more
+control and more power, you're also
+going to be hopefully saving money
+because Superbase is free. Versell is
+free. All you have to do is connect them
+together and claude Code will help you
+with it. So, if you want my honest
+recommendation, if you've never built an
+app before, start with Bolt.new or
+lovable, get your first reverse lead
+magnet live this week, and then when
+you're ready to go deeper, cloud code is
+where you graduate to. But the important
+thing is that you start using this. All
+right. All right, now let me walk you
+through the actual cold email sequence
+once you have the reverse lead magnet
+actually built because remember the app
+is only half the equation. How you
+present it is everything. Now email one
+subject line should be something like,
+"Hey Jay, should I build this for you?"
+And then the body, hey Jay, I noticed
+you're running go high level for lead
+genen J. I actually built a tool that
+creates custom automations specifically
+for your tech stack. Would it be okay if
+I spent some time and put together a few
+automations that you could just import
+in [music] one click? Just say yes and
+I'll get started. Look at what's
+happening. You're not saying download my
+PDF. You're saying, "Would it be okay if
+I spent some time and built something
+for you?" That's the perceived value
+magnet psychology dialed up to 11.
+Because now you're not faking it. You
+actually are building them something
+custom. It just takes Cloud Code 3
+minutes instead of your team 3 weeks.
+When they say yes, and our average reply
+rate is about 4%, you send email 2.
+Email 2 goes something like this. Here
+you go. And then you send a link to the
+app with their URL prefilled. Say, I put
+together specific deliverable called
+email sequence and an automation. You
+can import them in one click. Let me
+know what you think. Happy to hop on a
+quick call. And the conversion from
+click the app to booked to call is
+genuinely unlike anything I've ever seen
+in cold email if you do it the right way
+because you've already demonstrated your
+value before the sales conversion even
+starts. Now, let me be specific about
+who this works best for. strategy works
+best when you're targeting decision
+makers at small to medium-sized
+businesses, 10 to 200 employees, and
+they have a real tangible problem that
+you can solve. Or equally effective,
+they have shiny object syndrome. They
+love new tools, new tech, and now the
+niches that were previously impossible
+for cold email agencies selling to other
+agencies, AI companies selling AI
+services, those are now some of our best
+performing verticals. All because the
+reverse lead magnet proves that you're
+not just another agency sending another
+cold email. So here's the bottom line.
+This is the new playbook for 2026. And
+it's completely replaced everything that
+we were doing before with AI
+personalization or AI research
+beforehand. The old playbook, scrape
+leads, write AI personalized first
+lines, send a generic lead magnet, and
+then hope for a 1% to 2% reply rate.
+Done. the new playbook, which is
+identify the client vertical, build a
+micro SASS app, a reverse lead magnet
+with cloud code in about an hour, and
+then send cold emails offering to build
+something custom, deliver the custom
+service on the app, and then
+automatically book them onto a call.
+Now, if you want to learn how to build
+these reverse lead magnets yourself,
+that's exactly what we teach inside of
+the AI automation insiders. We have a
+full claude code module that goes
+[music] through everything that you need
+to know to not just do this on the
+surface level, but actually go deep and
+build something amazing because the
+better that your lead magnet is, the
+more leads that you're going to generate
+long term. It will take you from
+absolute zero to deploying custom apps
+in days. We also have amazing done for
+you templates for the most common
+verticals. And in fact, we have
+thousands of members, over 3,000 now,
+building and deploying these right now.
+And you can just copy my templates. But
+whether you join or not, I want you to
+actually think about this. What kind of
+reverse lead magnets could you build for
+your industry? What tool could you offer
+your leads to make them say, "Wait, you
+actually built this for me or you'll
+actually do this for free." Drop it in
+the comments so everybody can see and
+crowdsource some amazing ideas. And if
+you haven't already seen my original
+perceived value magnet from last year,
+watch it next. It's going to be linked.
+And now you can watch Bolt actually
+build the app in real time in a nice
+time lapse. I'll see you in the next
+video. Goodbye.
