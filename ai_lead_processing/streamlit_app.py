@@ -66,18 +66,33 @@ SPF_GOOGLE = ["_spf.google.com", "googlemail.com"]
 
 
 def mx_classify(mx_list: list, txt: str) -> tuple:
+    """Returns (mx_real, mx_provider)"""
     if not mx_list:
-        return "No MX", ""
+        return "No MX", "No MX"
+
     combined = " ".join(mx_list).lower()
+
+    # Direct match — provider is clear
     for name, patterns in MX_DIRECT:
         if any(p in combined for p in patterns):
-            return name, ""
+            return name, name
+
+    # Gateway — identify via SPF
     parts = mx_list[0].rstrip(".").split(".")
     root = ".".join(parts[-2:]) if len(parts) >= 2 else mx_list[0]
     gname = MX_GATEWAYS.get(root, root)
-    hint = ("Microsoft" if any(p in txt for p in SPF_MS)
-            else "Google" if any(p in txt for p in SPF_GOOGLE) else "")
-    return "Other", f"{gname} ({hint})" if hint else gname
+
+    spf_hint = ("Microsoft" if any(p in txt for p in SPF_MS)
+                else "Google" if any(p in txt for p in SPF_GOOGLE) else "")
+
+    if spf_hint:
+        mx_real = f"{spf_hint} (gateway)"
+    elif gname in ("Mimecast", "Proofpoint", "Barracuda", "Proofpoint Essentials"):
+        mx_real = gname
+    else:
+        mx_real = "Unknown"
+
+    return mx_real, gname
 
 
 def mx_get_domain(email: str) -> str:
@@ -857,15 +872,15 @@ with tab_mx:
 
         # Map results to rows
         result_df = mx_df.copy()
-        result_df["mx_provider"] = result_df[email_col].apply(
-            lambda e: domain_results.get(mx_get_domain(str(e)), ("No email", ""))[0]
+        result_df["mx_real"] = result_df[email_col].apply(
+            lambda e: domain_results.get(mx_get_domain(str(e)), ("No email", "No email"))[0]
         )
-        result_df["mx_gateway"] = result_df[email_col].apply(
-            lambda e: domain_results.get(mx_get_domain(str(e)), ("No email", ""))[1]
+        result_df["mx_provider"] = result_df[email_col].apply(
+            lambda e: domain_results.get(mx_get_domain(str(e)), ("No email", "No email"))[1]
         )
 
         # Stats
-        provider_counts = result_df["mx_provider"].value_counts()
+        provider_counts = result_df["mx_real"].value_counts()
         total_rows = len(result_df)
 
         st.divider()
@@ -879,9 +894,9 @@ with tab_mx:
         # Filter
         filter_col, _, dl_col, new_col = st.columns([2, 2, 1, 1])
         providers_list = ["All"] + list(provider_counts.index)
-        selected = filter_col.selectbox("Фильтр по провайдеру", providers_list, key="mx_filter")
+        selected = filter_col.selectbox("Фильтр по mx_real", providers_list, key="mx_filter")
 
-        display_df = result_df if selected == "All" else result_df[result_df["mx_provider"] == selected]
+        display_df = result_df if selected == "All" else result_df[result_df["mx_real"] == selected]
         st.dataframe(display_df, use_container_width=True, hide_index=True, height=420)
 
         with dl_col:

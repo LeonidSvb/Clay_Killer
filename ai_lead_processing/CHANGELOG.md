@@ -4,15 +4,34 @@
 
 ---
 
-## [Unreleased]
+## [0.4.0] - 2026-03-30 - MX Provider Check
 
-### Next Session Plan
-**Goal:** Google Sheets direct integration via gspread OAuth
+### Added
+- **MX Provider Check tab** in `streamlit_app.py`
+  - CSV upload with auto-detect email column
+  - Async DNS lookup via Google DoH API (configurable concurrency 10-100)
+  - Real-time progress: domains/sec + ETA
+  - Provider breakdown metrics after run
+  - Filter table by `mx_real` value
+  - Download CSV with two new columns
+- **`scripts/discovery/2026-03-30-mx-provider-final.py`** — standalone CLI version of MX check
+- **`n8n/workflows/mx-provider-check.json`** — n8n workflow (CSV → MX check → CSV)
+- **`n8n/workflows/mx-provider-check-sheets.json`** — n8n workflow (Google Sheets → MX check → Google Sheets)
+- **`README.md`** — инструкции по запуску Streamlit
 
-**Priority Tasks:**
-1. Add gspread OAuth mode to `streamlit_app.py` — one-time browser auth, works for all sheets forever
-2. Add n8n workflow JSON for read/write webhooks (alternative path)
-3. Test full end-to-end: Google Sheets → Streamlit → OpenRouter → Google Sheets
+### Changed
+- MX classification logic finalized: 2 output columns instead of previous `mx_provider`+`mx_gateway`
+  - `mx_real`: `Google` / `Microsoft` / `Microsoft (gateway)` / `Google (gateway)` / `Mimecast` / `Proofpoint` / `Barracuda` / `Unknown` / `No MX`
+  - `mx_provider`: direct MX hostname normalized to readable name
+- Gateway detection via SPF/TXT fallback — covers ~60% of "Other" domains (mostly Microsoft behind Hornetsecurity/Proofpoint Essentials)
+- n8n reference updated with MX workflow section
+
+### Notes - Lessons Learned
+- 8959 leads tested (Canada logistics + US recruit): 68% Microsoft direct, 25% Google, 2% Microsoft gateway, 2% Unknown
+- Google behind gateway: ~0% (4 rows out of 8959) — Google Workspace companies almost never use security gateways
+- Top gateways in North American B2B: Hornetsecurity (most common in Canada), Proofpoint Essentials, Trend Micro, Sophos
+- SPF fallback resolves ~60% of gateway cases; remaining 40% stay Unknown — not worth deeper investigation
+- DoH concurrency 40-60: ~1186 domains in ~90s; native dnspython UDP faster but DoH sufficient and zero dependencies beyond httpx
 
 ---
 

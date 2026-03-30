@@ -1,7 +1,9 @@
 """
 MX Provider Checker
 Usage: set INPUT and OUTPUT at the top, run with: py this_file.py
-Output adds two columns: mx_provider, mx_gateway
+Output adds two columns: mx_real, mx_provider
+  mx_real     — Google / Microsoft / Microsoft (gateway) / Google (gateway) / Mimecast / Unknown / No MX
+  mx_provider — direct MX name: Google / Microsoft / Hornetsecurity / Sophos / etc.
 """
 
 import asyncio
@@ -62,16 +64,26 @@ SPF_MS     = ["spf.protection.outlook.com", "sharepointonline.com", "onmicrosoft
 SPF_GOOGLE = ["_spf.google.com", "googlemail.com"]
 
 
-def classify(mx_records):
+def classify(mx_records, txt):
+    """Returns (mx_real, mx_provider)"""
     if not mx_records:
-        return "No MX", ""
+        return "No MX", "No MX"
     combined = " ".join(mx_records).lower()
     for provider, patterns in DIRECT_PATTERNS:
         if any(p in combined for p in patterns):
-            return provider, ""
+            return provider, provider
     first = mx_records[0].rstrip(".").split(".")
     root = ".".join(first[-2:]) if len(first) >= 2 else mx_records[0]
-    return "Other", root
+    gname = GATEWAY_NAMES.get(root, root)
+    spf_hint = ("Microsoft" if any(p in txt for p in SPF_MS)
+                else "Google" if any(p in txt for p in SPF_GOOGLE) else "")
+    if spf_hint:
+        mx_real = f"{spf_hint} (gateway)"
+    elif gname in ("Mimecast", "Proofpoint", "Barracuda", "Proofpoint Essentials"):
+        mx_real = gname
+    else:
+        mx_real = "Unknown"
+    return mx_real, gname
 
 
 def domain_from_email(email):
@@ -122,22 +134,15 @@ async def main():
         done = 0
         for d, task in tasks.items():
             _, mx, txt = await task
-            provider, root = classify(mx)
-            gateway = ""
-            if provider == "Other" and root:
-                name = GATEWAY_NAMES.get(root, root)
-                hint = "Microsoft" if any(p in txt for p in SPF_MS) else \
-                       "Google"    if any(p in txt for p in SPF_GOOGLE) else ""
-                gateway = f"{name} ({hint})" if hint else name
-            results[d] = (provider, gateway)
+            results[d] = classify(mx, txt)
             done += 1
             if done % 200 == 0:
                 print(f"  {done}/{len(domains)}", flush=True)
 
-    new_fields = fieldnames + ["mx_provider", "mx_gateway"]
+    new_fields = fieldnames + ["mx_real", "mx_provider"]
     for row in rows:
         d = domain_from_email(row.get("Email", ""))
-        row["mx_provider"], row["mx_gateway"] = results.get(d, ("No email", ""))
+        row["mx_real"], row["mx_provider"] = results.get(d, ("No email", "No email"))
 
     with open(OUTPUT, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=new_fields)
@@ -146,15 +151,15 @@ async def main():
 
     print(f"\nSaved: {OUTPUT}")
 
+    real_stats     = Counter(r["mx_real"] for r in rows)
     provider_stats = Counter(r["mx_provider"] for r in rows)
-    gateway_stats  = Counter(r["mx_gateway"] for r in rows if r["mx_gateway"])
+
+    print("\nmx_real:")
+    for k, v in real_stats.most_common():
+        print(f"  {k}: {v}")
 
     print("\nmx_provider:")
     for k, v in provider_stats.most_common():
-        print(f"  {k}: {v}")
-
-    print("\nmx_gateway (top 15):")
-    for k, v in gateway_stats.most_common(15):
         print(f"  {k}: {v}")
 
 
