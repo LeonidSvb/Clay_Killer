@@ -27,7 +27,6 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 PROMPTS_DIR = Path(__file__).parent.parent / "prompts"
 
 DEFAULT_MODEL = "openai/gpt-oss-120b"
-DEFAULT_MAX_TOKENS = 1500
 DEFAULT_TEMPERATURE = 0.1
 CONFIDENCE_THRESHOLD = 6
 
@@ -109,7 +108,6 @@ async def extract(
     text: str,
     prompt_name: str = "company_full",
     model: str = DEFAULT_MODEL,
-    max_tokens: int = DEFAULT_MAX_TOKENS,
     temperature: float = DEFAULT_TEMPERATURE,
 ) -> LLMResult:
     t0 = time.monotonic()
@@ -127,7 +125,6 @@ async def extract(
         "model": model,
         "messages": messages,
         "temperature": temperature,
-        "max_tokens": max_tokens,
         "provider": {"sort": "throughput"},  # КРИТИЧНО — иначе 7x медленнее
     }
 
