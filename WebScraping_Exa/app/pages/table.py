@@ -5,6 +5,30 @@ from app.components.file_browser import render_file_browser
 OPERATORS = ["=", "!=", ">=", "<=", "contains", "not contains", "is empty", "is not empty"]
 
 
+def _col_stats(series: pd.Series) -> str:
+    """Краткая статистика по колонке для tooltip."""
+    total = len(series)
+    empty = series.isna().sum() + (series.astype(str).str.strip() == "").sum()
+    empty = min(empty, total)
+    filled = total - empty
+
+    numeric = pd.to_numeric(series, errors="coerce").dropna()
+    if len(numeric) > 0 and len(numeric) >= filled * 0.5:
+        return (
+            f"Filled: {filled} ({filled/total*100:.0f}%)  "
+            f"Empty: {empty} ({empty/total*100:.0f}%)\n"
+            f"Min: {numeric.min():.1f}  Max: {numeric.max():.1f}  Avg: {numeric.mean():.1f}"
+        )
+
+    unique = series.dropna().astype(str)
+    unique = unique[unique.str.strip() != ""].nunique()
+    return (
+        f"Filled: {filled} ({filled/total*100:.0f}%)  "
+        f"Empty: {empty} ({empty/total*100:.0f}%)\n"
+        f"Unique values: {unique}"
+    )
+
+
 def render_table() -> None:
     render_file_browser()
 
@@ -17,13 +41,36 @@ def render_table() -> None:
 
     filtered_df = _apply_filters(df)
     visible_cols = _get_visible_cols(filtered_df)
-    _render_dataframe(filtered_df, visible_cols)
 
-    if len(filtered_df) != len(df):
-        st.caption(f"Showing {len(filtered_df):,} of {len(df):,} rows (filtered)")
+    # Строка со статистикой по колонкам
+    _render_col_stats_bar(filtered_df, visible_cols, total_rows=len(df))
+
+    _render_dataframe(filtered_df, visible_cols)
 
     st.divider()
     _render_run_button()
+
+
+def _render_col_stats_bar(df: pd.DataFrame, visible_cols: list[str], total_rows: int) -> None:
+    """Компактная строка: кол-во строк + кнопки-чипы по каждой колонке."""
+    filtered = len(df)
+    if filtered != total_rows:
+        st.caption(f"{filtered:,} of {total_rows:,} rows shown (filtered)")
+    else:
+        st.caption(f"{filtered:,} rows")
+
+    # Чипы колонок с popover статистикой
+    cols = st.columns(min(len(visible_cols), 8))
+    for i, col_name in enumerate(visible_cols[:8]):
+        with cols[i]:
+            with st.popover(col_name[:14] + ("…" if len(col_name) > 14 else ""), use_container_width=True):
+                stats = _col_stats(df[col_name])
+                st.caption(stats)
+                total = len(df)
+                empty = df[col_name].isna().sum() + (df[col_name].astype(str).str.strip() == "").sum()
+                filled = total - min(int(empty), total)
+                if total > 0:
+                    st.progress(filled / total)
 
 
 def _render_toolbar(df: pd.DataFrame) -> None:

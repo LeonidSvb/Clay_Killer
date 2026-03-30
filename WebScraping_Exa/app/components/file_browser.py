@@ -1,65 +1,101 @@
 import streamlit as st
 import pandas as pd
+import csv
 from pathlib import Path
 from datetime import datetime
+
+
+def _count_rows(path: Path) -> int:
+    """Точный подсчёт строк через csv.reader — корректно обрабатывает многострочные ячейки."""
+    try:
+        with open(path, encoding="utf-8-sig", newline="") as fh:
+            return sum(1 for _ in csv.reader(fh)) - 1  # -1 заголовок
+    except Exception:
+        try:
+            with open(path, encoding="utf-8", newline="") as fh:
+                return sum(1 for _ in csv.reader(fh)) - 1
+        except Exception:
+            return -1
 
 
 def render_file_browser() -> None:
     folder = st.session_state.get("working_folder", "")
 
-    col_refresh = st.columns([6, 1])[1]
-    with col_refresh:
-        if st.button("Refresh", use_container_width=True):
+    # ── Хедер: открытый файл + кнопки управления ──────────────────────────────
+    source = st.session_state.get("source_file")
+    opened_name = ""
+    if source:
+        opened_name = str(source).replace("\\", "/").split("/")[-1]
+
+    c_info, c_refresh, c_upload_btn = st.columns([5, 1, 1])
+    with c_info:
+        if opened_name:
+            n_rows = len(st.session_state.df) if st.session_state.df is not None else "?"
+            st.markdown(f"**{opened_name}** — {n_rows:,} rows")
+        else:
+            st.caption("No file open")
+    with c_refresh:
+        if st.button("↺ Refresh", use_container_width=True):
             st.rerun()
+    with c_upload_btn:
+        show_upload = st.toggle("Upload", value=False, label_visibility="collapsed")
 
-    if not folder or not Path(folder).exists():
-        st.info("Set working folder in Settings to browse CSV files.")
+    # ── Dropdown выбора файла ──────────────────────────────────────────────────
+    if folder and Path(folder).exists():
+        csv_files = sorted(
+            Path(folder).glob("*.csv"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+
+        if csv_files:
+            options = [str(f) for f in csv_files]
+            labels = [f.name for f in csv_files]
+
+            # Определяем текущий выбранный индекс
+            current_source = st.session_state.get("source_file", "")
+            try:
+                current_idx = options.index(current_source)
+            except ValueError:
+                current_idx = 0
+
+            c_select, c_open = st.columns([5, 1])
+            with c_select:
+                selected_idx = st.selectbox(
+                    "file_select",
+                    range(len(options)),
+                    index=current_idx,
+                    format_func=lambda i: _label_with_rows(csv_files[i]),
+                    label_visibility="collapsed",
+                )
+            with c_open:
+                selected_path = options[selected_idx]
+                already_open = selected_path == current_source
+                if st.button(
+                    "Opened" if already_open else "Open",
+                    disabled=already_open,
+                    use_container_width=True,
+                ):
+                    _open_file(selected_path)
+        else:
+            st.caption(f"No CSV files in {folder}")
+    else:
+        if folder:
+            st.warning(f"Folder not found: {folder}. Set correct path in Settings.")
+        else:
+            st.info("Set working folder in Settings.")
+
+    # ── Upload ─────────────────────────────────────────────────────────────────
+    if show_upload:
         _render_upload(folder)
-        return
 
-    csv_files = sorted(
-        Path(folder).glob("*.csv"),
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    )
 
-    if not csv_files:
-        st.caption(f"No CSV files in {folder}")
-        _render_upload(folder)
-        return
-
-    for f in csv_files:
-        mtime = datetime.fromtimestamp(f.stat().st_mtime).strftime("%Y-%m-%d")
-        is_open = st.session_state.get("source_file") == str(f)
-
-        c1, c2, c3, c4 = st.columns([4, 1, 1, 1])
-        with c1:
-            if is_open:
-                st.markdown(f"**{f.name}**")
-            else:
-                st.markdown(f.name)
-        with c2:
-            st.caption(mtime)
-        with c3:
-            if is_open and st.session_state.df is not None:
-                rows = len(st.session_state.df)
-                st.caption(f"{rows:,} rows")
-            else:
-                try:
-                    with open(f, encoding="utf-8-sig") as fh:
-                        n = sum(1 for _ in fh) - 1
-                    st.caption(f"{n:,} rows")
-                except Exception:
-                    st.caption("?")
-        with c4:
-            if is_open:
-                st.caption("Opened")
-            else:
-                if st.button("Open", key=f"open_{f.name}", use_container_width=True):
-                    _open_file(str(f))
-
-    st.divider()
-    _render_upload(folder)
+def _label_with_rows(f: Path) -> str:
+    """Метка для selectbox: имя + кол-во строк."""
+    n = _count_rows(f)
+    rows_str = f"{n:,} rows" if n >= 0 else "?"
+    mtime = datetime.fromtimestamp(f.stat().st_mtime).strftime("%m-%d")
+    return f"{f.name}  ({rows_str}, {mtime})"
 
 
 def _open_file(path: str) -> None:
@@ -71,7 +107,7 @@ def _open_file(path: str) -> None:
     st.session_state.source_file = path
     st.session_state.new_cols = []
     st.session_state.run_results = None
-    st.session_state.visible_cols = list(df.columns)  # сброс при открытии нового файла
+    st.session_state.visible_cols = list(df.columns)
     st.session_state.filters = []
     st.rerun()
 
