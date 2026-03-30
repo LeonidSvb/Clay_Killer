@@ -1,162 +1,197 @@
 ---
 id: "TASK-006"
-title: "app/ — Streamlit UI, 3 таба, с нуля"
+title: "app/ — Streamlit UI, Clay-style enrichment workspace"
 status: "planned"
 priority: "P1"
 labels: ["ui", "streamlit", "architecture"]
 dependencies: ["TASK-004", "TASK-005"]
 created: "2026-03-30"
-updated: "2026-03-30"
+updated: "2026-03-31"
 ---
 
-# 1) High-Level Objective
+# 1) Концепция
 
-Написать Streamlit-приложение внутри `WebScraping_Exa/app/`.
-Три таба: LLM Enrichment / Web Scraping / Utilities.
-Один общий DataFrame живёт в `st.session_state` на всё время сессии.
-CSV загружается один раз — дальше таблица обновляется действиями.
+Clay-style workspace: одна таблица, библиотека enrichments, каждый enrichment = input columns + config + output columns.
+Без отдельных feature-табов. Всё в одном месте.
+
+Запуск: `streamlit run app/main.py`
 
 # 2) Структура файлов
 
 ```
 WebScraping_Exa/
   app/
-    main.py             ← точка входа, навигация, shared state
+    main.py                     ← точка входа, st.tabs, shared state
     pages/
-      llm.py            ← Tab 1
-      scraping.py       ← Tab 2
-      utilities.py      ← Tab 3
+      table.py                  ← Tab 1: таблица + file browser + фильтры
+      settings.py               ← Tab 2: API keys + рабочая папка + prompt manager
+    components/
+      enrichment_panel.py       ← боковая панель (универсальная для всех типов)
+      prompt_editor.py          ← dropdown + edit + preview + column chips
+      column_selector.py        ← выбор колонок из df (input + output)
+      file_browser.py           ← список CSV из рабочей папки
   prompts/
-    enrichment/         ← промпты для LLM таба (берут текст из колонки)
-      icp_filter.txt
-      pain_point.txt
-      industry.txt
-      current_method.txt
-      icebreaker.txt    ← выносим из ai_lead_processing (был захардкожен)
-    extraction/         ← промпты для Scraping таба (что достать с сайта)
-      company_full.txt
-      company_deep.txt
-      company_profile.txt
-      icp_score.txt
+    enrichment/                 ← промпты для LLM enrichment
+    extraction/                 ← промпты для web scraping
 ```
 
-Запуск: `streamlit run app/main.py`
+# 3) Два таба
 
-# 3) Shared State (main.py)
+```
+[ Table ]   [ Settings ]
+```
+
+Всё остальное — в боковой панели (enrichment runner).
+
+# 4) Tab 1 — Table
+
+## File browser (верх страницы)
+
+Список CSV файлов из рабочей папки (задаётся в Settings):
+```
+leads_canada_1700.csv       2026-03-31  1702 rows  [Open]
+us_enriched_500.csv         2026-03-31   500 rows  [Open]
+canada_logistic_deep.csv    2026-03-31   100 rows  [Open]
+[+ Upload CSV]   [Refresh]
+```
+- Сканирует папку через `Path(folder).glob("*.csv")`
+- Новые файлы появляются после Refresh (или авто через `st.rerun`)
+- После enrichment → сохраняет в ту же папку автоматически
+- Download: кнопка рядом с текущим открытым файлом
+
+## Таблица
+
+```
+leads_canada.csv | 1702 rows | 19 cols        [Download]  [Columns ▼]  [Filter ▼]
+
+Company Name    │ Website      │ icp_fit  │ confidence  │ summary      │ ...
+Sotech Nitram   │ sotech...    │ 8        │ 9           │ Canadian...  │
+Service JR      │ service...   │ 7        │ 8           │ Quebec...    │
+```
+
+- `[Columns ▼]` — multiselect какие колонки показывать
+- `[Filter ▼]` — фильтры: confidence >= N, icp_fit >= N, любая колонка
+- Новые колонки после enrichment подсвечиваются желтым до Save/Discard
+- `st.dataframe` с `hide_index=True`
+
+## Run Enrichment
+
+```
+[ + Run Enrichment ]   ← кнопка внизу или сбоку, открывает панель
+```
+
+# 5) Enrichment Panel (боковая панель)
+
+Универсальная структура для всех типов:
+
+```
+┌─ Enrichment ──────────────────────────────────────────────┐
+│                                                            │
+│  Type:  [ LLM Extraction  ▼ ]                             │
+│         [ Website Scraping ]                              │
+│         [ MX Check         ]                              │
+│                                                            │
+│  ── [1] INPUT ─────────────────────────────────────────── │
+│  Columns going into context:                               │
+│  (кликни на заголовок колонки в таблице чтобы добавить)    │
+│  Selected: [Website Summary ×] [Company Name ×]           │
+│                                                            │
+│  ── [2] CONFIG (зависит от type) ──────────────────────── │
+│  LLM:      prompt selector + model + concurrency          │
+│  Scraping: mode + subpages + deep toggle                  │
+│  MX:       concurrency                                     │
+│                                                            │
+│  ── [3] RUN ───────────────────────────────────────────── │
+│  Rows: (●) Preview 10  ( ) All  ( ) Filtered  [    ]      │
+│  [ Run ]  [ Stop ]                                        │
+│  progress bar + status line                               │
+│                                                            │
+│  ── [4] OUTPUT (после завершения) ─────────────────────── │
+│  Preview: 10 строк результатов                             │
+│  Choose columns to save:                                  │
+│  [x] summary    → rename: [summary              ]        │
+│  [x] icp_fit    → rename: [icp_fit              ]        │
+│  [ ] services   (skip)                                    │
+│  [ Save to table ]  [ Discard ]                           │
+└────────────────────────────────────────────────────────────┘
+```
+
+# 6) Prompt Editor (компонент внутри CONFIG для LLM)
+
+```
+Prompt: [ company_full  ▼ ]  [✏ Edit]  [+ New]  [🗑 Delete]
+
+┌─ Prompt text ─────────────────────────────────────────────┐
+│ Analyse the company below and extract profile.             │
+│                                                            │
+│ Company: {{Company Name}}                                  │
+│ Website summary: {{Website Summary}}                       │
+│                                                            │
+│ Return JSON: { "summary": ..., "icp_fit": ... }           │
+└────────────────────────────────────────────────────────────┘
+
+Available columns (click to insert at cursor):
+[Company Name] [Website] [Website Summary] [Industry] [...]
+
+Preview (row 1):
+┌───────────────────────────────────────────────────────────┐
+│ Analyse the company below and extract profile.             │
+│ Company: Sotech Nitram Inc.                               │
+│ Website summary: Canadian logistics provider since 1981..  │
+└───────────────────────────────────────────────────────────┘
+
+[Save prompt]  (сохраняет в prompts/enrichment/company_full.txt)
+```
+
+- `{{column_name}}` подстановка при запуске: `prompt.format(**row.to_dict())`
+- Column chips под textarea — кликнул, `{{Column Name}}` вставился
+- Preview: берёт первую строку df, показывает финальный текст промпта
+- Save: перезаписывает .txt файл на диске
+- Delete: confirm dialog → удаляет файл
+
+# 7) Tab 2 — Settings
+
+```
+Working Folder
+  Path: [C:/Users/79818/Desktop/leads/    ] [Browse]
+  (все CSV из этой папки видны в Table tab)
+
+API Keys
+  OpenRouter: [sk-or-...     ] [Show/Hide]
+  Exa AI:     [exa-...       ] [Show/Hide]
+  [Save to .env]
+
+Defaults
+  Concurrency: [50]
+  Max tokens:  [1500]
+  Confidence threshold: [6]
+```
+
+# 8) Shared State (main.py)
 
 ```python
-# session_state инициализируется один раз при старте
-st.session_state.df          # pd.DataFrame | None — рабочая таблица
-st.session_state.source_file # str — имя загруженного файла
+st.session_state.df            # pd.DataFrame | None
+st.session_state.source_file   # str — путь к открытому файлу
+st.session_state.working_folder # str — рабочая папка
+st.session_state.new_cols      # list[str] — колонки после enrichment (подсветка)
 ```
 
-Загрузка CSV в `main.py` (не внутри табов):
-- file_uploader вверху страницы, всегда виден
-- После загрузки: `st.session_state.df = pd.read_csv(uploaded)`
-- Имя файла показывается рядом: "leads_us.csv | 1347 rows | 17 cols"
-- Кнопка "Clear" — сбрасывает df
-
-# 4) Tab 1 — LLM Enrichment
-
-**Источник**: берёт текст из выбранной колонки df → прогоняет через LLM → добавляет колонки.
-
-**Конфиги (sidebar или expander):**
-- OpenRouter API Key (password, из .env дефолт)
-- Model (text input, дефолт gpt-oss-120b)
-- Prompt: dropdown из `prompts/enrichment/*.txt`
-- Input column: selectbox из колонок df
-- Concurrency: slider 10-100
-- Limit: number_input (0 = all)
-
-**JSON Column Selector (ключевая фича):**
-- Если промпт возвращает JSON (все наши enrichment промпты) — показать чекбоксы
-- Список полей определяется из первых 3-5 результатов (не до запуска)
-- По умолчанию все поля выбраны
-- Пользователь снимает галочки с ненужных
-- Только отмеченные поля добавляются как колонки в df
-- Если поле уже есть в df — предупреждение, предлагает `_v2` или overwrite
-
-**Plain text режим:**
-- Если промпт возвращает не JSON — создаётся одна колонка с именем из поля "Output column"
-
-**Progress (паттерн из ai_lead_processing):**
-- threading.Thread + queue.Queue
-- get_nowait() inner loop + time.sleep(0.4) + st.rerun() только в конце
-- progress bar + статус: "N/total | X.X/sec | ETA Xs | ok=N | errors=N"
-- Live таблица последних 10 результатов
-
-**После завершения:**
-- df обновлён (новые колонки добавлены)
-- 4 метрики: Processed / OK% / Time / ~Cost
-- Download кнопка (текущий df целиком)
-- "Run more" — не сбрасывает df, можно выбрать другой промпт
-
-# 5) Tab 2 — Web Scraping
-
-**Источник**: берёт URL из выбранной колонки df → Exa fetch → LLM extraction → добавляет колонки.
-
-**Конфиги:**
-- EXA_API_KEY (password, из .env дефолт)
-- OpenRouter API Key (из shared state)
-- Mode: radio [exa-only | hybrid (existing text + Exa для пустых)]
-- Prompt: dropdown из `prompts/extraction/*.txt`
-- URL column: selectbox
-- Text column (для hybrid): selectbox, optional
-- Subpages: slider 0-5 (0 = Pass 3 disabled)
-- Deep mode: toggle (subpages=5, max_chars=15000, company_deep prompt)
-- Limit: number_input
-
-**Progress — три фазы раздельно:**
-```
-[Pass 1] Exa fetch:   ████░░ 23/50 | 7.2/sec | ETA 4s
-[Pass 2] LLM:         ██████ 50/50 | 9.1/sec | done
-[Pass 3] Retry (8):   ███░░░ 4/8   | 0.4/sec | ETA 10s
-```
-
-**JSON Column Selector** — та же логика что в Tab 1.
-
-**После завершения:**
-- df обновлён
-- Метрики: OK / low_conf / retried / time / exa_cost / llm_cost
-- Download
-
-# 6) Tab 3 — Utilities
-
-**MX Provider Check** (логика из ai_lead_processing, скопирована, не импортирована):
-- Email column selectbox
-- Concurrency slider
-- Run → добавляет колонки `mx_real`, `mx_provider` в df
-- Progress: get_nowait() паттерн
-
-**Placeholder для будущих утилит:**
-- "Email cleanup" (в планах)
-- "Domain extractor" (в планах)
-
-# 7) Что НЕ делать
-
-- Не импортировать из `ai_lead_processing/` — только скопировать MX логику
-- Не делать Google Sheets write-back
-- Не делать scraper-only режим (TASK-002 не готов)
-- Не делать /configs YAML пока — промпты в .txt достаточно
-- Не делать /components пока — потом, когда появится реальное дублирование
-
-# 8) Зависимости
+# 9) Progress (паттерн из ai_lead_processing)
 
 ```python
-# app/main.py imports:
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent))  # WebScraping_Exa/ в path
-from core.exa import fetch_batch
-from core.llm import extract_batch, list_prompts, CONFIDENCE_THRESHOLD
-from core.prescreener import screen_batch
-from pipeline import run as pipeline_run
+# threading.Thread + queue.Queue
+# get_nowait() inner loop + time.sleep(0.4) + st.rerun() только в конце
+# статус: "N/total | X.X/sec | ETA Xs | ok=N | errors=N"
 ```
 
-# 9) Acceptance Criteria
+Для scraping: два прогресса раздельно (Pass 1 Exa + Pass 2 LLM).
 
-- `streamlit run app/main.py` запускается без ошибок
-- Загрузил CSV → переключил таб → df виден в обоих табах
-- Tab 1: run 20 строк → видно прогресс → новые колонки появились в df → download работает
-- Tab 2: run 10 URLs в exa-only → три фазы прогресса → колонки добавлены
-- Tab 3: MX check 20 emails → колонки mx_real, mx_provider добавлены
-- Stop прерывает процесс, частичные результаты сохраняются в df
+# 10) Acceptance Criteria
+
+- `streamlit run app/main.py` запускается
+- Working folder задаётся в Settings → CSV файлы появляются в Table tab
+- Загрузил CSV → запустил LLM enrichment → выбрал колонки → сохранил → скачал
+- Prompt editor: написал `{{Company Name}}` → preview показывает реальное значение
+- Column chips: кликнул → вставилось в textarea
+- Scraping enrichment: Pass 1 + Pass 2 прогрессы раздельно
+- Stop прерывает процесс, частичные результаты можно сохранить
