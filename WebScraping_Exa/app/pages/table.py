@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from app.components.file_browser import render_file_browser
+from app.components.enrichment_panel import render_enrichment_panel
 
 OPERATORS = ["=", "!=", ">=", "<=", "contains", "not contains", "is empty", "is not empty"]
 
@@ -20,21 +21,35 @@ def render_table() -> None:
     if df is None:
         return
 
-    st.divider()
-    _render_toolbar(df)
+    panel_open = st.session_state.get("panel_open", False)
 
-    filtered_df = _apply_filters(df)
-    visible_cols = _get_visible_cols(filtered_df)
+    if panel_open:
+        col_left, col_right = st.columns([3, 2], gap="medium")
+        with col_left:
+            st.divider()
+            _render_toolbar(df)
+            filtered_df = _apply_filters(df)
+            _render_row_count(df, filtered_df)
+            visible_cols = _get_visible_cols(filtered_df)
+            _render_dataframe(filtered_df, visible_cols)
+        with col_right:
+            render_enrichment_panel(filtered_df)
+    else:
+        st.divider()
+        _render_toolbar(df)
+        filtered_df = _apply_filters(df)
+        _render_row_count(df, filtered_df)
+        visible_cols = _get_visible_cols(filtered_df)
+        _render_dataframe(filtered_df, visible_cols)
+        st.divider()
+        _render_run_button()
 
-    # Row count caption
+
+def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
     if len(filtered_df) != len(df):
         st.caption(f"{len(filtered_df):,} of {len(df):,} rows (filtered)")
     else:
         st.caption(f"{len(df):,} rows")
-
-    _render_dataframe(filtered_df, visible_cols)
-    st.divider()
-    _render_run_button()
 
 
 def _render_toolbar(df: pd.DataFrame) -> None:

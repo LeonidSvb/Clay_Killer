@@ -1,0 +1,331 @@
+"""
+app/components/enrichment_panel.py — Enrichment side panel (LLM Extraction).
+
+Layout:
+  [X Close]
+  Type: [ LLM Extraction ]
+  -- INPUT --
+  Input columns: multiselect
+  -- CONFIG --
+  Prompt editor
+  Concurrency
+  -- RUN --
+  Rows selector + [Run] button
+  Progress bar
+  -- OUTPUT --
+  Preview table + column save UI
+  Run summary stats
+"""
+
+import os
+import queue
+import threading
+import time
+from collections import Counter
+
+import pandas as pd
+import streamlit as st
+
+from app.components.prompt_editor import render_prompt_editor
+from app.enrichments.llm import run_llm_enrichment, list_enrichment_prompts
+
+
+# ── Run summary ────────────────────────────────────────────────────────────────
+
+def _render_run_summary(results: list[dict], elapsed: float) -> None:
+    ok = sum(1 for r in results if r["ok"])
+    errors = len(results) - ok
+    st.caption(
+        f"Completed in {elapsed:.1f}s | "
+        f"{len(results)} processed | ok: {ok} | errors: {errors}"
+    )
+
+    all_keys: set[str] = set()
+    for r in results:
+        if r["ok"] and r.get("data"):
+            all_keys.update(r["data"].keys())
+    all_keys.discard("raw")
+    all_keys.discard("confidence")
+
+    if not all_keys:
+        return
+
+    for key in sorted(all_keys):
+        values = [r["data"][key] for r in results if r["ok"] and key in r.get("data", {})]
+        if not values:
+            continue
+
+        str_values = [str(v) for v in values]
+        unique = set(str_values)
+
+        if len(unique) <= 8:
+            counts = Counter(str_values)
+            total = len(str_values)
+            lines = [f"**{key}**"]
+            for val, cnt in counts.most_common():
+                pct = cnt / total * 100
+                lines.append(f"- {val}: {cnt} ({pct:.0f}%)")
+            st.markdown("\n".join(lines))
+
+        elif all(isinstance(v, (int, float)) for v in values):
+            nums = [float(v) for v in values]
+            st.markdown(
+                f"**{key}**: avg {sum(nums)/len(nums):.1f} / "
+                f"min {min(nums)} / max {max(nums)}"
+            )
+
+        else:
+            st.markdown(f"**{key}**: {len(unique)} unique values")
+
+
+# ── Output section (after run) ─────────────────────────────────────────────────
+
+def _render_output_section(df: pd.DataFrame) -> None:
+    results: list[dict] = st.session_state.get("run_results", [])
+    elapsed: float = st.session_state.get("run_elapsed", 0.0)
+
+    if not results:
+        return
+
+    st.markdown("**Output**")
+
+    # Preview table (first 10 ok rows)
+    ok_results = [r for r in results if r["ok"] and r.get("data")]
+    if ok_results:
+        preview_rows = []
+        for r in ok_results[:10]:
+            row_data = {"row": r["idx"]}
+            row_data.update({k: v for k, v in r["data"].items() if k != "raw"})
+            preview_rows.append(row_data)
+        preview_df = pd.DataFrame(preview_rows)
+        st.dataframe(preview_df, hide_index=True, use_container_width=True)
+
+    # Run summary stats
+    _render_run_summary(results, elapsed)
+
+    st.markdown("---")
+
+    # Collect all output keys from successful results
+    all_keys: set[str] = set()
+    for r in results:
+        if r["ok"] and r.get("data"):
+            all_keys.update(r["data"].keys())
+    all_keys.discard("raw")
+
+    if not all_keys:
+        st.warning("No data keys found in results.")
+        return
+
+    st.markdown("**Choose columns to add:**")
+
+    # Column include + rename UI
+    col_selections: dict[str, str | None] = {}
+    for key in sorted(all_keys):
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            include = st.checkbox(key, value=True, key=f"col_include_{key}")
+        with c2:
+            if include:
+                new_name = st.text_input(
+                    "name", value=key,
+                    key=f"col_rename_{key}",
+                    label_visibility="collapsed",
+                )
+                col_selections[key] = new_name
+            else:
+                col_selections[key] = None
+
+    # Save / Discard
+    s1, s2 = st.columns(2)
+    with s1:
+        if st.button("Save to table", type="primary", use_container_width=True):
+            rename_map = {k: v for k, v in col_selections.items() if v is not None}
+            new_col_names = list(rename_map.values())
+
+            for result in results:
+                if not result["ok"] or not result.get("data"):
+                    continue
+                idx = result["idx"]
+                for src_key, dst_name in rename_map.items():
+                    if src_key in result["data"]:
+                        st.session_state.df.at[idx, dst_name] = result["data"][src_key]
+
+            existing_new = st.session_state.get("new_cols", [])
+            st.session_state.new_cols = list(set(existing_new + new_col_names))
+            st.session_state.run_results = None
+            st.session_state.run_elapsed = 0.0
+            st.session_state.panel_open = False
+            st.rerun()
+
+    with s2:
+        if st.button("Discard", use_container_width=True):
+            st.session_state.run_results = None
+            st.session_state.run_elapsed = 0.0
+            st.rerun()
+
+
+# ── Run section ────────────────────────────────────────────────────────────────
+
+def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_name: str) -> None:
+    st.markdown("**Run**")
+
+    # Row selector
+    row_mode = st.radio(
+        "Rows",
+        ["Preview 10", "All", "Filtered", "Custom"],
+        horizontal=True,
+        key="row_mode",
+        label_visibility="collapsed",
+    )
+
+    if row_mode == "Preview 10":
+        row_indices = list(range(min(10, len(df))))
+        row_count = len(row_indices)
+    elif row_mode == "All":
+        row_indices = list(range(len(df)))
+        row_count = len(row_indices)
+    elif row_mode == "Filtered":
+        row_indices = list(filtered_df.index)
+        row_count = len(row_indices)
+    else:
+        custom_n = st.number_input("Rows to run", min_value=1, max_value=len(df),
+                                   value=min(50, len(df)), key="custom_row_count")
+        row_indices = list(range(int(custom_n)))
+        row_count = int(custom_n)
+
+    st.caption(f"{row_count:,} rows selected")
+
+    if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
+        _do_run(df, row_indices, prompt_name)
+
+
+def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_name: str) -> None:
+    input_cols = st.session_state.get("panel_input_cols", [])
+    concurrency = st.session_state.get("panel_concurrency", 50)
+    api_key = st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
+
+    if not input_cols:
+        st.error("Select at least one input column.")
+        return
+    if not api_key:
+        st.error("OpenRouter API key not set. Go to Settings tab.")
+        return
+
+    progress_queue: queue.Queue = queue.Queue()
+    stop_event = threading.Event()
+    results_holder: list[dict] = []
+
+    def worker() -> None:
+        res = run_llm_enrichment(
+            df=df,
+            input_columns=input_cols,
+            prompt_name=prompt_name,
+            row_indices=row_indices,
+            concurrency=concurrency,
+            progress_queue=progress_queue,
+            stop_event=stop_event,
+            api_key=api_key,
+        )
+        results_holder.extend(res)
+
+    thread = threading.Thread(target=worker, daemon=True)
+
+    progress_bar = st.progress(0)
+    status = st.empty()
+    t0 = time.time()
+
+    thread.start()
+
+    while thread.is_alive() or not progress_queue.empty():
+        try:
+            upd = progress_queue.get(timeout=0.4)
+            total = upd["total"] or 1
+            pct = upd["done"] / total
+            progress_bar.progress(pct)
+            status.text(
+                f"{upd['done']}/{upd['total']} | "
+                f"{upd['speed']:.1f}/sec | ETA {upd['eta']}s | "
+                f"ok={upd['ok']} | errors={upd['errors']}"
+            )
+        except queue.Empty:
+            pass
+
+    thread.join()
+    elapsed = time.time() - t0
+
+    progress_bar.progress(1.0)
+    status.text(
+        f"{len(results_holder)}/{len(row_indices)} done | "
+        f"ok={sum(1 for r in results_holder if r['ok'])} | "
+        f"errors={sum(1 for r in results_holder if not r['ok'])}"
+    )
+
+    st.session_state.run_results = results_holder
+    st.session_state.run_elapsed = elapsed
+    st.rerun()
+
+
+# ── Main panel ─────────────────────────────────────────────────────────────────
+
+def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
+    df: pd.DataFrame | None = st.session_state.get("df")
+    if df is None:
+        return
+
+    if filtered_df is None:
+        filtered_df = df
+
+    # Close button
+    if st.button("X Close", use_container_width=True, key="btn_close_panel"):
+        st.session_state.panel_open = False
+        st.session_state.run_results = None
+        st.session_state.run_elapsed = 0.0
+        st.rerun()
+
+    st.markdown("### Enrichment")
+
+    # Type selector (only LLM for now)
+    enrichment_type = st.selectbox(
+        "Type",
+        ["LLM Extraction"],
+        key="panel_enrichment_type",
+        label_visibility="collapsed",
+    )
+
+    # -- INPUT --
+    st.markdown("**Input columns**")
+    all_cols = list(df.columns)
+    current_input = st.session_state.get("panel_input_cols", [])
+    valid_input = [c for c in current_input if c in all_cols]
+
+    selected_input = st.multiselect(
+        "input_cols",
+        options=all_cols,
+        default=valid_input,
+        key="panel_input_cols_widget",
+        label_visibility="collapsed",
+    )
+    st.session_state.panel_input_cols = selected_input
+
+    # -- CONFIG --
+    st.markdown("**Prompt**")
+    prompt_name = render_prompt_editor(df)
+
+    concurrency = st.number_input(
+        "Concurrency",
+        min_value=1,
+        max_value=200,
+        value=st.session_state.get("panel_concurrency",
+                                   st.session_state.get("default_concurrency", 50)),
+        key="panel_concurrency_input",
+    )
+    st.session_state.panel_concurrency = concurrency
+
+    st.markdown("---")
+
+    # -- OUTPUT (if results exist) --
+    if st.session_state.get("run_results") is not None:
+        _render_output_section(df)
+    else:
+        # -- RUN --
+        _render_run_section(df, filtered_df, prompt_name)
