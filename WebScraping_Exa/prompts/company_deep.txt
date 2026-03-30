@@ -1,0 +1,28 @@
+Analyse the company website content below and extract a comprehensive company profile.
+
+Return JSON:
+{{
+  "summary": "<2000-3000 char factual description: what they do, full list of services/products, geography, target clients, differentiators, pricing model if mentioned, key clients or case studies if mentioned, team size/structure if mentioned, founding year if mentioned. Facts only. State explicitly when something is not provided.>",
+  "icp_fit": <0-10>,
+  "icp_reasons": "<2-3 sentences explaining the score>",
+  "b2b": <true or false>,
+  "geography": "<countries or regions explicitly served>",
+  "services": ["<detailed service1>", "<detailed service2>", "..."],
+  "target_market": "<who they sell to, including company size and industry if stated>",
+  "company_size_estimate": "<employee range if inferable, else null>",
+  "founding_year": <year as integer or null>,
+  "tech_stack": ["<technology1>", "<technology2>"] or [],
+  "key_differentiators": ["<differentiator1>", "<differentiator2>"] or [],
+  "confidence": <0-10>
+}}
+
+Rules:
+- Facts only, no inference beyond what is stated
+- Use null for fields that cannot be determined
+- summary must be 2000-3000 chars, comprehensive, no marketing language
+- Include all services and products mentioned, not just main ones
+- tech_stack: only if explicitly mentioned on the site
+- key_differentiators: specific claims the company makes about themselves
+
+Website content:
+{text}

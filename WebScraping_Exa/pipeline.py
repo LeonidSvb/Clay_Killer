@@ -7,12 +7,15 @@ Modes:
   hybrid      — existing text if available, Exa for the rest
 
 Pass 3: low-confidence URLs re-fetched with subpages, LLM re-run.
+--deep: crawl homepage + 5 subpages, 15000 chars/page, use company_deep prompt
 
 CLI:
     py pipeline.py --input leads.csv --limit 50
     py pipeline.py --input leads.csv --mode text-only --text-col "ai_summary"
     py pipeline.py --input leads.csv --mode hybrid --text-col "ai_summary" --subpages 5
     py pipeline.py --input leads.csv --output out.csv --cols summary,icp_fit,geography
+    py pipeline.py --input leads.csv --deep
+    py pipeline.py --input leads.csv --prompt pain_point --cols value
 """
 
 import asyncio
@@ -59,9 +62,17 @@ def build_output_path(input_path: str) -> str:
 async def run(args) -> None:
     t_total = time.time()
 
+    # --deep shorthand: subpages=5, max_chars=15000, prompt=company_deep
+    if args.deep:
+        if args.subpages == 0:
+            args.subpages = 5
+        if args.max_chars == 5000:
+            args.max_chars = 15000
+        if args.prompt == "company_full":
+            args.prompt = "company_deep"
+
     # ── Load CSV ───────────────────────────────────────────────────────────────
     df = pd.read_csv(args.input)
-    total_rows = len(df)
 
     if args.limit:
         df = df.head(args.limit)
@@ -76,6 +87,7 @@ async def run(args) -> None:
     prompt = args.prompt
     threshold = args.confidence_threshold
     subpages = args.subpages
+    max_chars = args.max_chars
     output_cols = [c.strip() for c in args.cols.split(",")] if args.cols else None
 
     print(f"Pipeline start | mode={args.mode} | prompt={prompt} | rows={n}")
@@ -122,9 +134,16 @@ async def run(args) -> None:
                 exa_urls.append(url)
 
     # ── Pass 1: Exa fetch ──────────────────────────────────────────────────────
+    # in deep mode: Pass 1 fetches subpages upfront, Pass 3 is skipped (same data)
+    # in normal mode: Pass 1 fetches homepage only, Pass 3 adds subpages for low-conf
+    pass1_subpages = subpages if args.deep else 0
+    pass3_subpages = 0 if args.deep else subpages
+
     if exa_urls:
-        print_section(f"Pass 1 — Exa fetch: {len(exa_urls)} URLs")
-        exa_results = await fetch_batch(exa_urls, concurrency=50, progress=True)
+        subpage_info = f" | subpages={pass1_subpages}" if pass1_subpages else ""
+        print_section(f"Pass 1 — Exa fetch: {len(exa_urls)} URLs | max_chars={max_chars}{subpage_info}")
+        exa_results = await fetch_batch(exa_urls, concurrency=50, subpages=pass1_subpages,
+                                        text_max_chars=max_chars, progress=True)
 
         ok_exa = [r for r in exa_results if r.ok]
         err_exa = [r for r in exa_results if not r.ok]
@@ -156,12 +175,13 @@ async def run(args) -> None:
 
     # ── Pass 3: subpages retry ────────────────────────────────────────────────
     retry_map: dict[str, LLMResult] = {}
-    if low_conf and subpages > 0:
+    if low_conf and pass3_subpages > 0:
         retry_urls = [r.url for r in low_conf if not r.url.startswith("row_")]
         if retry_urls:
-            print_section(f"Pass 3 — Subpages retry: {len(retry_urls)} URLs | subpages={subpages}")
+            print_section(f"Pass 3 — Subpages retry: {len(retry_urls)} URLs | subpages={pass3_subpages}")
             retry_exa = await fetch_batch(retry_urls, concurrency=50,
-                                          subpages=subpages, progress=True)
+                                          subpages=pass3_subpages, text_max_chars=max_chars,
+                                          progress=True)
             retry_items = [
                 {"url": r.url, "text": r.total_text}
                 for r in retry_exa if r.ok
@@ -237,12 +257,15 @@ async def run(args) -> None:
     pass3_improved = sum(1 for r in retry_map.values() if r.ok and r.confidence >= threshold)
 
     exa_pages_fetched = len(exa_urls)
-    subpages_fetched = pass3_count * subpages if pass3_count else 0
+    subpages_fetched = pass3_count * pass3_subpages if pass3_count else 0
+    if args.deep:
+        subpages_fetched += exa_pages_fetched * pass1_subpages
     exa_cost = (exa_pages_fetched + subpages_fetched) * 0.001
     llm_cost_est = processed * 0.00015  # rough estimate
 
     print("\n" + "=" * 60)
-    print(f"Mode:       {args.mode}")
+    deep_str = " +deep" if args.deep else ""
+    print(f"Mode:       {args.mode}{deep_str}")
     print(f"Prompt:     {prompt}")
     print(f"Total rows: {n}")
     print(f"Processed:  {processed}")
@@ -277,6 +300,10 @@ def main():
                         help=f"Below this confidence → Pass 3 retry (default: {CONFIDENCE_THRESHOLD})")
     parser.add_argument("--subpages", type=int, default=0,
                         help="Subpages to fetch in Pass 3 (0 = skip Pass 3)")
+    parser.add_argument("--max-chars", type=int, default=5000,
+                        help="Max characters per page from Exa (default: 5000, deep mode: 15000)")
+    parser.add_argument("--deep", action="store_true",
+                        help="Deep mode: fetch 5 subpages + 15000 chars/page + company_deep prompt")
     args = parser.parse_args()
 
     if not args.limit:

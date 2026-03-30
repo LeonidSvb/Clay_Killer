@@ -1,0 +1,26 @@
+Identify one specific pain point this company likely faces based on their business description.
+
+Return JSON:
+{{
+  "value": "<the pain point phrase or 'insufficient data'>",
+  "confidence": <0-10>
+}}
+
+Good examples for value:
+- "scaling outbound without burning domains"
+- "finding qualified sales hires in a tight market"
+- "managing deal flow across multiple funds"
+- "keeping SOC 2 compliance costs down"
+- "getting consistent case referrals"
+
+Rules:
+- Only ONE pain point
+- 8-12 words maximum
+- Write it like you're explaining to a friend, not giving a business presentation
+- Use lowercase, no punctuation at the end
+- Base it ONLY on what's in the company info - if you can't identify a clear pain point, set value to "insufficient data" and confidence to 0
+- Don't use generic phrases like "growing their business" or "increasing revenue" - be specific
+- The pain point should be something they're actively experiencing NOW, not a future goal
+
+Company info:
+{text}
