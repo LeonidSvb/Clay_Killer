@@ -154,7 +154,14 @@ def save_messages(video_id: str, messages: list[dict]) -> None:
         json.dump(history, f, ensure_ascii=False, indent=2)
 
 
-def chat_with_llm(transcript: str, messages: list[dict], user_context: str = "") -> str:
+def chat_with_llm(
+    transcript: str,
+    messages: list[dict],
+    user_context: str = "",
+    model: str = OPENROUTER_MODEL,
+    reasoning: str = "low",
+    temperature: float = 0.7,
+) -> str:
     if not OPENROUTER_API_KEY:
         return "Ошибка: OPENROUTER_API_KEY не задан в .env"
 
@@ -162,13 +169,15 @@ def chat_with_llm(transcript: str, messages: list[dict], user_context: str = "")
     system_with_transcript = system_prompt + f"\n\nТРАНСКРИПТ ВИДЕО:\n{transcript}"
 
     payload = {
-        "model": OPENROUTER_MODEL,
+        "model": model,
         "messages": [
             {"role": "system", "content": system_with_transcript},
             *messages,
         ],
-        "reasoning": {"effort": "low"},
+        "temperature": temperature,
     }
+    if reasoning != "none":
+        payload["reasoning"] = {"effort": reasoning}
 
     resp = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
@@ -216,62 +225,63 @@ if _in_streamlit():
 
     st.set_page_config(page_title="YouTube Transcript", layout="wide")
 
-    if "dark_mode" not in st.session_state:
-        st.session_state.dark_mode = False
     if "chat_input_key" not in st.session_state:
         st.session_state.chat_input_key = 0
 
-    col_title, col_toggle = st.columns([6, 1])
-    with col_title:
-        st.title("YouTube Transcript")
-    with col_toggle:
-        st.write("")
-        if st.button("🌙" if not st.session_state.dark_mode else "☀️", use_container_width=True):
-            st.session_state.dark_mode = not st.session_state.dark_mode
-            st.rerun()
-
-    if st.session_state.dark_mode:
-        st.markdown("""
-        <style>
-        html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
-            background-color: #0e1117 !important; color: #fafafa !important;
-        }
-        [data-testid="stSidebar"] { background-color: #161b22 !important; }
-        .stTextInput input, .stSelectbox div[data-baseweb="select"] {
-            background-color: #161b22 !important; color: #fafafa !important;
-        }
-        pre, code { background-color: #161b22 !important; color: #fafafa !important; }
-        </style>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown("""
-        <style>
-        html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
-            background-color: #ffffff !important; color: #0e1117 !important;
-        }
-        pre, code { background-color: #f0f2f6 !important; color: #0e1117 !important; }
-        </style>
-        """, unsafe_allow_html=True)
+    st.title("YouTube Transcript")
 
     settings = load_settings()
     history = load_history()
 
     # --- Настройки ---
     with st.expander("Настройки"):
-        st.markdown("**Контекст о тебе** — добавляется в каждый запрос к LLM")
-        user_context_input = st.text_area(
-            "Кто ты, чем занимаешься, цели, предпочтения",
-            value=settings.get("user_context", ""),
-            height=150,
-            placeholder="Например: я фаундер B2B агентства, делаю outreach для SaaS компаний, моя цель — находить применимые стратегии продаж и роста...",
-            label_visibility="collapsed",
-        )
+        cfg_col, ctx_col = st.columns([1, 2])
+
+        with cfg_col:
+            st.markdown("**LLM**")
+            model_input = st.text_input(
+                "Модель",
+                value=settings.get("model", OPENROUTER_MODEL),
+                key="cfg_model",
+            )
+            reasoning_input = st.selectbox(
+                "Reasoning",
+                options=["low", "medium", "high", "none"],
+                index=["low", "medium", "high", "none"].index(settings.get("reasoning", "low")),
+                key="cfg_reasoning",
+                help="none — отключает reasoning (быстрее/дешевле для простых вопросов)",
+            )
+            temperature_input = st.slider(
+                "Temperature",
+                min_value=0.0,
+                max_value=1.5,
+                value=float(settings.get("temperature", 0.7)),
+                step=0.1,
+                key="cfg_temperature",
+            )
+
+        with ctx_col:
+            st.markdown("**Контекст о тебе**")
+            user_context_input = st.text_area(
+                "user_context",
+                value=settings.get("user_context", ""),
+                height=130,
+                placeholder="Кто ты, бизнес, цели, предпочтения — подмешивается в каждый запрос",
+                label_visibility="collapsed",
+            )
+
         if st.button("Сохранить", key="save_settings"):
             settings["user_context"] = user_context_input
+            settings["model"] = model_input
+            settings["reasoning"] = reasoning_input
+            settings["temperature"] = temperature_input
             save_settings(settings)
             st.success("Сохранено")
 
     user_context = settings.get("user_context", "")
+    llm_model = settings.get("model", OPENROUTER_MODEL)
+    llm_reasoning = settings.get("reasoning", "low")
+    llm_temperature = float(settings.get("temperature", 0.7))
 
     # --- Новый транскрипт ---
     url = st.text_input("Ссылка на видео", placeholder="https://www.youtube.com/watch?v=...")
@@ -363,7 +373,7 @@ if _in_streamlit():
                     messages.append({"role": "user", "content": user_input})
                     with st.spinner("Думаю..."):
                         try:
-                            reply = chat_with_llm(transcript_text, messages, user_context)
+                            reply = chat_with_llm(transcript_text, messages, user_context, llm_model, llm_reasoning, llm_temperature)
                             messages.append({"role": "assistant", "content": reply})
                             save_messages(video_id, messages)
                         except Exception as e:
