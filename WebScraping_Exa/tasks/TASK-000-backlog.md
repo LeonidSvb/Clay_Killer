@@ -8,6 +8,128 @@ created: "2026-03-31"
 updated: "2026-03-31"
 ---
 
+# Сессия 2026-03-31 — что сделано
+
+## Архитектурные решения (ADR)
+- Убран `max_tokens` из payload OpenRouter — модели дешёвые, качество важнее (ADR-007)
+- Убран `max_llm_chars` из pipeline.py — GPT-OSS-120b контекст 128k, cap был хаком (ADR-002)
+- Каждый Streamlit app получает фиксированный порт через `.streamlit/config.toml` (ADR-008)
+
+## Файлы добавлены / изменены
+- `core/llm.py` — убран DEFAULT_MAX_TOKENS, убран max_tokens из payload
+- `pipeline.py` — убран --max-llm-chars аргумент и вся логика truncation
+- `docs/decisions.md` — ADR-002, ADR-007 обновлены; ADR-008 добавлен (порты)
+- `.streamlit/config.toml` — port=8501, headless=true, runOnSave=true
+- `run.bat` — один клик запуск с kill занятого порта
+- `kill_ports.ps1` — убивает порты 8502-8510
+- `tasks/TASK-006-streamlit.md` — переделан в индекс с таблицей типов enrichments
+- `tasks/TASK-006a-skeleton.md` — полная спецификация скелета
+- `tasks/TASK-006b-panel.md` — спецификация панели + LLM адаптера
+- `tasks/TASK-006c-scraping-mx.md` — спецификация scraping + MX адаптеров
+
+## TASK-006a (скелет) — DONE ✓
+- `app/main.py` — session_state из .env, две вкладки Table + Settings
+- `app/components/file_browser.py` — compact dropdown, csv.reader для подсчёта строк, upload toggle
+- `app/pages/table.py` — fill% в заголовках колонок, фильтры (8 операторов), Download
+- `app/pages/settings.py` — авто-загрузка .env, show/hide API keys, save через python-dotenv
+
+## TASK-006b (панель + LLM адаптер) — DONE ✓
+- `app/enrichments/llm.py` — threading+queue адаптер, два режима промптов:
+  - `prompts/enrichment/*.txt` → `{{column_name}}` замена через replace()
+  - `prompts/*.txt` → `{text}` замена через format() (legacy CLI промпты)
+  - per-request прогресс через asyncio.as_completed + queue.Queue
+- `app/components/prompt_editor.py` — selector с Edit/New/Delete, chip кнопки вставляют `{{col}}`, preview row 1
+- `app/components/enrichment_panel.py` — полная панель: input cols, prompt editor, concurrency,
+  radio (Preview 10/All/Filtered/Custom), progress bar в реальном времени,
+  run summary stats (boolean%/categorical/numeric), save-to-table с rename, discard
+- `app/pages/table.py` — layout 3|2 через st.columns когда panel_open=True
+- `tests/test_006b.py` — 13 тестов, все прошли
+
+---
+
+# СЛЕДУЮЩАЯ СЕССИЯ — ручное тестирование TASK-006a + 006b
+
+## Порядок тестирования (от и до)
+
+### 1. Запуск
+```
+Запусти run.bat из WebScraping_Exa/ или через tests/run.bat → выбери [1]
+Открывается http://localhost:8501
+```
+
+### 2. File Browser
+- [ ] В поле "Working folder" вписать путь к папке с CSV (или через Settings)
+- [ ] Dropdown показывает список файлов в формате `filename.csv  (512 rows, 03-31)`
+- [ ] Клик [Open] загружает файл → таблица появляется
+- [ ] Toggle "Upload new file" → загрузить CSV → он появляется в dropdown
+- [ ] Кол-во строк в dropdown совпадает с реальным (особенно на CSV с многострочными полями)
+
+### 3. Таблица
+- [ ] Колонки в заголовках показывают fill%: `Company Name (87%)`
+- [ ] Download — скачивается файл
+- [ ] Columns popover — скрыть/показать колонки, "Show all" возвращает все
+- [ ] Фильтр "=" — отфильтровать по точному значению
+- [ ] Фильтр "contains" — частичное совпадение
+- [ ] Фильтр "is empty" — только пустые строки
+- [ ] Фильтр "is not empty" — только заполненные строки
+- [ ] Фильтр ">=" — числовое сравнение
+- [ ] Caption показывает "N of M rows (filtered)" при активном фильтре
+- [ ] "Clear all filters" сбрасывает
+
+### 4. Settings
+- [ ] Вкладка Settings — поля OpenRouter Key, Exa Key, Working Folder, Concurrency
+- [ ] Значения загружаются из .env автоматически
+- [ ] Show/Hide ключи работает
+- [ ] Save сохраняет в .env и в os.environ
+- [ ] После Save вернуться на Table — working folder применился без перезапуска
+
+### 5. Enrichment Panel — открытие
+- [ ] Кнопка [+ Run Enrichment] открывает панель справа
+- [ ] Таблица смещается влево (layout 3:2)
+- [ ] [X Close] закрывает панель, layout возвращается
+
+### 6. Prompt Editor
+- [ ] Dropdown показывает все промпты из prompts/ и prompts/enrichment/
+- [ ] Выбрать `company_full` → textarea показывает содержимое (read-only)
+- [ ] [Edit] → textarea становится редактируемой
+- [ ] Чипы с именами колонок появляются под textarea
+- [ ] Клик на чип [Company Name] → `{{Company Name}}` добавляется в конец текста
+- [ ] Expander "Preview (row 1)" показывает промпт с реальными данными из первой строки
+- [ ] [Save prompt] сохраняет в prompts/enrichment/company_full.txt
+- [ ] [Cancel edit] отменяет изменения
+- [ ] [+ New] → ввести имя → создаётся новый файл с шаблоном
+- [ ] [Delete] → ввести 'delete' → файл удаляется
+
+### 7. LLM Enrichment — запуск
+- [ ] Input columns: выбрать колонку с текстом (Website Summary или похожее)
+- [ ] Prompt: выбрать company_full
+- [ ] Concurrency: оставить 50
+- [ ] Rows: Preview 10
+- [ ] [Run] → прогресс-бар обновляется в реальном времени
+- [ ] После завершения: "X/10 | ok=Y | errors=Z"
+- [ ] Preview таблица показывает первые 10 результатов
+- [ ] Run summary: icp_fit → % true/false, confidence → avg/min/max, summary → N unique values
+
+### 8. Save / Discard
+- [ ] Снять галочку с ненужной колонки (например "raw")
+- [ ] Переименовать колонку: "icp_fit" → "icp_score"
+- [ ] [Save to table] → новые колонки появляются в таблице с жёлтым фоном
+- [ ] Панель закрывается автоматически
+- [ ] Новые колонки видны в Columns popover
+- [ ] Повторное открытие файла сбрасывает жёлтый фон (new_cols очищается)
+- [ ] [Discard] → результаты не сохраняются, таблица не изменилась
+
+---
+
+# Что дальше (TASK-006c)
+
+- Scraping adapter — Exa scraping прямо из панели (тип "Website Scraping")
+- MX Check adapter — тип "MX Check" без LLM
+- Stop handling — реальная остановка по клику
+- Два progress bar'а (scraping + LLM) для Waterfall
+
+
+
 # Мелкие недоделки (делать по ходу или перед релизом)
 
 ## pipeline.py
