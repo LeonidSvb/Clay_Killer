@@ -37,6 +37,10 @@ updated: "2026-03-31"
 
 ## core/llm.py
 
+- [ ] **cost_usd в LLMResult** — добавить поле `cost_usd` из `usage.cost` в OpenRouter ответе.
+      Нужно для Run Summary stats (показывать стоимость прогона в $).
+      OpenRouter возвращает это поле когда `usage` есть в ответе.
+
 - [ ] **Retry на HTTP 429** — если OpenRouter возвращает 429 (rate limit) → подождать 2s и retry
       один раз. Сейчас это просто error
 

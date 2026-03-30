@@ -272,6 +272,78 @@ st.rerun()
 
 ---
 
+# Run Summary (stats после завершения)
+
+Показывается сразу после OUTPUT preview, до Save/Discard.
+
+```
+Run completed in 12.4s  |  1000 processed  |  ok: 967  |  errors: 33
+
+Column: icp_fit
+  True:  312  (32%)  ██████░░░░
+  False: 655  (68%)  █████████░
+
+Column: industry
+  logistics:       34%  ██████░░░░
+  manufacturing:   28%  █████░░░░░
+  retail:          18%  ████░░░░░░
+  construction:    12%  ██░░░░░░░░
+  other:            8%  ██░░░░░░░░
+
+Column: confidence
+  avg: 7.2  /  min: 3  /  max: 10
+
+Column: summary
+  847 unique values  (не показываем breakdown)
+```
+
+## Логика отображения
+
+```python
+def render_run_summary(results: list[dict], elapsed: float):
+    st.caption(f"Completed in {elapsed:.1f}s | "
+               f"ok={sum(r['ok'] for r in results)} | "
+               f"errors={sum(not r['ok'] for r in results)}")
+
+    # Собираем все output колонки
+    all_keys = set()
+    for r in results:
+        if r["ok"]:
+            all_keys.update(r["data"].keys())
+    all_keys.discard("raw")
+
+    for key in sorted(all_keys):
+        values = [r["data"].get(key) for r in results if r["ok"] and key in r["data"]]
+        if not values:
+            continue
+
+        unique = set(str(v) for v in values)
+
+        if len(unique) <= 8:
+            # Breakdown с процентами
+            from collections import Counter
+            counts = Counter(str(v) for v in values)
+            total = len(values)
+            st.write(f"**{key}**")
+            for val, cnt in counts.most_common():
+                pct = cnt / total * 100
+                st.write(f"  {val}: {cnt} ({pct:.0f}%)")
+
+        elif all(isinstance(v, (int, float)) for v in values):
+            # Числовая колонка → avg/min/max
+            nums = [float(v) for v in values]
+            st.write(f"**{key}**: avg {sum(nums)/len(nums):.1f} / "
+                     f"min {min(nums)} / max {max(nums)}")
+
+        else:
+            # Много уникальных → только count
+            st.write(f"**{key}**: {len(unique)} unique values")
+```
+
+Cost tracking (USD) — не сейчас. Добавить когда LLMResult.cost_usd будет готов (TASK-000 backlog).
+
+---
+
 # Тесты
 
 ## Автоматические
@@ -329,6 +401,7 @@ def test_llm_enrichment_interface():
 - [ ] Prompt editor: chip → `{{column}}` вставляется, preview обновляется
 - [ ] LLM enrichment запускается, прогресс-бар обновляется
 - [ ] Stop прерывает выполнение, частичные результаты доступны
+- [ ] Run summary: boolean колонки → % true/false, categorical (<=8) → breakdown, numeric → avg/min/max, unique → count
 - [ ] Save → новые колонки с желтым фоном в таблице
 - [ ] Discard → изменений нет
 - [ ] Новый промпт создаётся и сохраняется в prompts/enrichment/
