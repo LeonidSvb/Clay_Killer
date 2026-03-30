@@ -18,10 +18,11 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Инициализация из .env при первом запуске
 _DEFAULTS: dict = {
     "df": None,
     "source_file": None,
-    "working_folder": "",
+    "working_folder": os.getenv("WORKING_FOLDER", ""),
     "new_cols": [],
     "selected_input_cols": [],
     "panel_open": False,
@@ -29,10 +30,9 @@ _DEFAULTS: dict = {
     "run_results": None,
     "visible_cols": [],
     "filters": [],
-    "default_concurrency": 50,
-    "confidence_threshold": 6,
-    "openrouter_key": "",
-    "exa_key": "",
+    "default_concurrency": int(os.getenv("DEFAULT_CONCURRENCY", "50")),
+    "openrouter_key": os.getenv("OPENROUTER_API_KEY", ""),
+    "exa_key": os.getenv("EXA_API_KEY", ""),
 }
 
 for _k, _v in _DEFAULTS.items():
