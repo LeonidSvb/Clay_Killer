@@ -9,15 +9,15 @@ ENV_PATH = Path(__file__).parent.parent.parent / ".env"
 
 def _load_env() -> None:
     load_dotenv(ENV_PATH, override=True)
-    if "openrouter_key" not in st.session_state:
-        st.session_state.openrouter_key = os.getenv("OPENROUTER_API_KEY", "")
-    if "exa_key" not in st.session_state:
-        st.session_state.exa_key = os.getenv("EXA_API_KEY", "")
-    if "working_folder" not in st.session_state or not st.session_state.working_folder:
+    # Всегда подтягиваем из .env при каждом рендере Settings
+    # чтобы изменения в файле подхватывались без перезапуска
+    st.session_state.openrouter_key = os.getenv("OPENROUTER_API_KEY", "")
+    st.session_state.exa_key = os.getenv("EXA_API_KEY", "")
+    if not st.session_state.get("working_folder"):
         st.session_state.working_folder = os.getenv("WORKING_FOLDER", "")
-    if "default_concurrency" not in st.session_state:
+    if not st.session_state.get("default_concurrency"):
         st.session_state.default_concurrency = int(os.getenv("DEFAULT_CONCURRENCY", "50"))
-    if "confidence_threshold" not in st.session_state:
+    if not st.session_state.get("confidence_threshold"):
         st.session_state.confidence_threshold = int(os.getenv("CONFIDENCE_THRESHOLD", "6"))
 
 

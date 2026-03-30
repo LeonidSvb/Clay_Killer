@@ -1,7 +1,11 @@
 import sys
+import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 
 import streamlit as st
 from app.pages.table import render_table
