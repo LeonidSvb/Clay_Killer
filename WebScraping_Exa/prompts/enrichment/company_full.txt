@@ -1,0 +1,22 @@
+Analyse the company website content below and extract a full company profile.
+
+Return JSON:
+{{
+  "summary": "<800-1200 char factual description: what they do, core services, geography, target clients, differentiators. Facts only. State explicitly when something is not provided.>",
+  "icp_fit": <0-10>,
+  "icp_reasons": "<1-2 sentences>",
+  "b2b": <true or false>,
+  "geography": "<countries or regions explicitly served>",
+  "services": ["<service1>", "<service2>"],
+  "target_market": "<who they sell to, if stated>",
+  "company_size_estimate": "<employee range if inferable, else null>",
+  "confidence": <0-10>
+}}
+
+Rules:
+- Facts only, no inference beyond what is stated
+- Use null for fields that cannot be determined
+- summary must be 800-1200 chars, factual, no marketing language
+
+Website content:
+{text}

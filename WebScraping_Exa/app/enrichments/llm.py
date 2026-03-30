@@ -2,9 +2,14 @@
 app/enrichments/llm.py — LLM enrichment adapter for Streamlit.
 
 Wraps core/llm.py async logic in threading.Thread + queue.Queue.
-Supports two prompt modes:
-  - prompts/enrichment/*.txt  → {{column_name}} substitution per row
-  - prompts/*.txt             → concatenate input_columns as {text} substitution
+
+Prompt locations:
+  - prompts/enrichment/  → Streamlit enrichment prompts (shown in panel)
+  - prompts/             → CLI-only prompts (not shown in panel)
+
+Prompt style detection (by content, not path):
+  - has {{col}} and no {text}  → column style: replace {{col}} per row
+  - has {text}                 → legacy style: concatenate input_columns → format(text=)
 """
 
 import asyncio
@@ -27,31 +32,27 @@ DEFAULT_MODEL = "openai/gpt-oss-120b"
 # ── Prompt helpers ─────────────────────────────────────────────────────────────
 
 def list_enrichment_prompts() -> list[str]:
-    names: set[str] = set()
-    if ENRICHMENT_PROMPTS_DIR.exists():
-        for p in ENRICHMENT_PROMPTS_DIR.glob("*.txt"):
-            names.add(p.stem)
-    for p in PROMPTS_DIR.glob("*.txt"):
-        if p.stem != "system_context":
-            names.add(p.stem)
-    return sorted(names)
+    """Only returns prompts from prompts/enrichment/ — panel-specific."""
+    if not ENRICHMENT_PROMPTS_DIR.exists():
+        return []
+    return sorted(p.stem for p in ENRICHMENT_PROMPTS_DIR.glob("*.txt"))
 
 
 def load_enrichment_prompt(name: str) -> tuple[str, bool]:
     """
     Returns (template_text, is_column_style).
-    is_column_style=True → use {{col}} substitution.
-    is_column_style=False → use {text} substitution (legacy CLI prompts).
+    Detection is content-based:
+      - has {text}            → legacy style: concatenate input_columns → format(text=)
+      - no {text}, has {{..}} → column style: replace {{col}} per row
+      - neither               → legacy style (concatenate as fallback)
     """
-    enrichment_path = ENRICHMENT_PROMPTS_DIR / f"{name}.txt"
-    if enrichment_path.exists():
-        return enrichment_path.read_text(encoding="utf-8"), True
-
-    root_path = PROMPTS_DIR / f"{name}.txt"
-    if root_path.exists():
-        return root_path.read_text(encoding="utf-8"), False
-
-    raise FileNotFoundError(f"Prompt not found: {name}")
+    path = ENRICHMENT_PROMPTS_DIR / f"{name}.txt"
+    if not path.exists():
+        raise FileNotFoundError(f"Prompt not found in prompts/enrichment/: {name}")
+    template = path.read_text(encoding="utf-8")
+    # If template uses {text} placeholder → legacy concatenation mode
+    is_column_style = "{text}" not in template
+    return template, is_column_style
 
 
 def save_enrichment_prompt(name: str, content: str) -> None:

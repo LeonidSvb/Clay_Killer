@@ -166,13 +166,28 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
 # ── Run section ────────────────────────────────────────────────────────────────
 
+def _is_empty(val) -> bool:
+    import pandas as _pd
+    if _pd.isna(val):
+        return True
+    return str(val).strip() in ("", "nan", "None")
+
+
 def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_name: str) -> None:
     st.markdown("**Run**")
 
-    # Row selector
+    # Default row mode — set when opened via "Fill remaining" button on a column
+    prefill_col = st.session_state.pop("panel_prefill_fill_col", None)
+    default_mode_idx = 0
+    row_modes = ["Preview 10", "All", "Filtered", "Custom", "Fill missing"]
+    if prefill_col:
+        default_mode_idx = row_modes.index("Fill missing")
+        st.session_state["fill_missing_col"] = prefill_col
+
     row_mode = st.radio(
         "Rows",
-        ["Preview 10", "All", "Filtered", "Custom"],
+        row_modes,
+        index=default_mode_idx,
         horizontal=True,
         key="row_mode",
         label_visibility="collapsed",
@@ -181,17 +196,35 @@ def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_name
     if row_mode == "Preview 10":
         row_indices = list(range(min(10, len(df))))
         row_count = len(row_indices)
+
     elif row_mode == "All":
         row_indices = list(range(len(df)))
         row_count = len(row_indices)
+
     elif row_mode == "Filtered":
         row_indices = list(filtered_df.index)
         row_count = len(row_indices)
-    else:
+
+    elif row_mode == "Custom":
         custom_n = st.number_input("Rows to run", min_value=1, max_value=len(df),
                                    value=min(50, len(df)), key="custom_row_count")
         row_indices = list(range(int(custom_n)))
         row_count = int(custom_n)
+
+    else:  # Fill missing
+        all_cols = list(df.columns)
+        saved_col = st.session_state.get("fill_missing_col", all_cols[0] if all_cols else None)
+        default_col_idx = all_cols.index(saved_col) if saved_col in all_cols else 0
+        target_col = st.selectbox(
+            "Fill empty rows in column:",
+            options=all_cols,
+            index=default_col_idx,
+            key="fill_missing_col_select",
+        )
+        st.session_state["fill_missing_col"] = target_col
+        empty_mask = df[target_col].apply(_is_empty)
+        row_indices = list(df[empty_mask].index)
+        row_count = len(row_indices)
 
     st.caption(f"{row_count:,} rows selected")
 

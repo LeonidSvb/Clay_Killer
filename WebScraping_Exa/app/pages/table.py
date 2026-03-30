@@ -30,6 +30,7 @@ def render_table() -> None:
             _render_toolbar(df)
             filtered_df = _apply_filters(df)
             _render_row_count(df, filtered_df)
+            _render_fill_remaining_bar(df)
             visible_cols = _get_visible_cols(filtered_df)
             _render_dataframe(filtered_df, visible_cols)
         with col_right:
@@ -39,6 +40,7 @@ def render_table() -> None:
         _render_toolbar(df)
         filtered_df = _apply_filters(df)
         _render_row_count(df, filtered_df)
+        _render_fill_remaining_bar(df)
         visible_cols = _get_visible_cols(filtered_df)
         _render_dataframe(filtered_df, visible_cols)
         st.divider()
@@ -50,6 +52,36 @@ def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
         st.caption(f"{len(filtered_df):,} of {len(df):,} rows (filtered)")
     else:
         st.caption(f"{len(df):,} rows")
+
+
+def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
+    """For each generated column with empty rows — show a button to fill them."""
+    new_cols = [c for c in st.session_state.get("new_cols", []) if c in df.columns]
+    if not new_cols:
+        return
+
+    cols_with_empty: list[tuple[str, int]] = []
+    for col in new_cols:
+        empty = df[col].apply(
+            lambda v: pd.isna(v) or str(v).strip() in ("", "nan", "None")
+        ).sum()
+        if empty > 0:
+            cols_with_empty.append((col, int(empty)))
+
+    if not cols_with_empty:
+        return
+
+    btn_cols = st.columns(min(len(cols_with_empty), 4))
+    for i, (col, n_empty) in enumerate(cols_with_empty):
+        with btn_cols[i % 4]:
+            if st.button(
+                f"{col} — fill {n_empty:,} empty",
+                key=f"fill_remaining_{col}",
+                use_container_width=True,
+            ):
+                st.session_state.panel_open = True
+                st.session_state.panel_prefill_fill_col = col
+                st.rerun()
 
 
 def _render_toolbar(df: pd.DataFrame) -> None:
