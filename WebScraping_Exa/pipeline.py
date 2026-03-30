@@ -102,6 +102,8 @@ async def run(args) -> None:
     url_to_idx: dict[str, int] = {}
     exa_urls: list[str] = []
     items_for_llm: list[dict] = []
+    # exa status tracking: url → {"status": str, "chars": int}
+    exa_status_map: dict[str, dict] = {}
 
     for i, (idx, row) in enumerate(df.iterrows()):
         raw_url = str(row.get(url_col, "")).strip() if url_col else ""
@@ -156,6 +158,11 @@ async def run(args) -> None:
             for k, v in err_types.items():
                 print(f"    {k}: {v}")
 
+        for r in exa_results:
+            exa_status_map[r.url] = {
+                "status": "ok" if r.ok else (r.error or "unknown").split(":")[0],
+                "chars": r.total_chars,
+            }
         for r in ok_exa:
             items_for_llm.append({"url": r.url, "text": r.total_text})
 
@@ -233,7 +240,22 @@ async def run(args) -> None:
         if out_col not in df.columns:
             df[out_col] = None
 
-    # Write results
+    # Initialize exa status columns
+    if exa_status_map:
+        if "exa_status" not in df.columns:
+            df["exa_status"] = None
+        if "exa_chars" not in df.columns:
+            df["exa_chars"] = None
+
+    # Write exa status for all URLs that went through Exa
+    for url, exa_info in exa_status_map.items():
+        if url not in url_to_idx:
+            continue
+        idx = url_to_idx[url]
+        df.at[idx, "exa_status"] = exa_info["status"]
+        df.at[idx, "exa_chars"] = exa_info["chars"] if exa_info["chars"] > 0 else None
+
+    # Write LLM results
     for url, result in final_results.items():
         if url not in url_to_idx:
             continue
