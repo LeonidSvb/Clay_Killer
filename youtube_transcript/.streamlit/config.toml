@@ -1,0 +1,7 @@
+[server]
+port = 8503
+headless = true
+runOnSave = true
+
+[browser]
+gatherUsageStats = false
