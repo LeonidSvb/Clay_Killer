@@ -5,28 +5,12 @@ from app.components.file_browser import render_file_browser
 OPERATORS = ["=", "!=", ">=", "<=", "contains", "not contains", "is empty", "is not empty"]
 
 
-def _col_stats(series: pd.Series) -> str:
-    """Краткая статистика по колонке для tooltip."""
+def _fill_pct(series: pd.Series) -> int:
     total = len(series)
-    empty = series.isna().sum() + (series.astype(str).str.strip() == "").sum()
-    empty = min(empty, total)
-    filled = total - empty
-
-    numeric = pd.to_numeric(series, errors="coerce").dropna()
-    if len(numeric) > 0 and len(numeric) >= filled * 0.5:
-        return (
-            f"Filled: {filled} ({filled/total*100:.0f}%)  "
-            f"Empty: {empty} ({empty/total*100:.0f}%)\n"
-            f"Min: {numeric.min():.1f}  Max: {numeric.max():.1f}  Avg: {numeric.mean():.1f}"
-        )
-
-    unique = series.dropna().astype(str)
-    unique = unique[unique.str.strip() != ""].nunique()
-    return (
-        f"Filled: {filled} ({filled/total*100:.0f}%)  "
-        f"Empty: {empty} ({empty/total*100:.0f}%)\n"
-        f"Unique values: {unique}"
-    )
+    if total == 0:
+        return 0
+    empty = series.isna().sum() + (series.astype(str).str.strip().isin(["", "nan", "None"])).sum()
+    return round((total - min(int(empty), total)) / total * 100)
 
 
 def render_table() -> None:
@@ -42,35 +26,15 @@ def render_table() -> None:
     filtered_df = _apply_filters(df)
     visible_cols = _get_visible_cols(filtered_df)
 
-    # Строка со статистикой по колонкам
-    _render_col_stats_bar(filtered_df, visible_cols, total_rows=len(df))
+    # Row count caption
+    if len(filtered_df) != len(df):
+        st.caption(f"{len(filtered_df):,} of {len(df):,} rows (filtered)")
+    else:
+        st.caption(f"{len(df):,} rows")
 
     _render_dataframe(filtered_df, visible_cols)
-
     st.divider()
     _render_run_button()
-
-
-def _render_col_stats_bar(df: pd.DataFrame, visible_cols: list[str], total_rows: int) -> None:
-    """Компактная строка: кол-во строк + кнопки-чипы по каждой колонке."""
-    filtered = len(df)
-    if filtered != total_rows:
-        st.caption(f"{filtered:,} of {total_rows:,} rows shown (filtered)")
-    else:
-        st.caption(f"{filtered:,} rows")
-
-    # Чипы колонок с popover статистикой
-    cols = st.columns(min(len(visible_cols), 8))
-    for i, col_name in enumerate(visible_cols[:8]):
-        with cols[i]:
-            with st.popover(col_name[:14] + ("…" if len(col_name) > 14 else ""), use_container_width=True):
-                stats = _col_stats(df[col_name])
-                st.caption(stats)
-                total = len(df)
-                empty = df[col_name].isna().sum() + (df[col_name].astype(str).str.strip() == "").sum()
-                filled = total - min(int(empty), total)
-                if total > 0:
-                    st.progress(filled / total)
 
 
 def _render_toolbar(df: pd.DataFrame) -> None:
@@ -98,9 +62,7 @@ def _render_toolbar(df: pd.DataFrame) -> None:
 
 def _render_columns_toggle(df: pd.DataFrame) -> None:
     all_cols = list(df.columns)
-    current = st.session_state.get("visible_cols", all_cols)
-    if not current:
-        current = all_cols
+    current = st.session_state.get("visible_cols", all_cols) or all_cols
 
     with st.popover("Columns", use_container_width=True):
         selected = st.multiselect(
@@ -188,21 +150,21 @@ def _apply_filters(df: pd.DataFrame) -> pd.DataFrame:
 
         try:
             if op == "is empty":
-                result = result[series.isna() | (series.astype(str).str.strip() == "") | (series.astype(str) == "nan")]
+                mask = series.isna() | series.astype(str).str.strip().isin(["", "nan", "None"])
+                result = result[mask]
             elif op == "is not empty":
-                result = result[~(series.isna() | (series.astype(str).str.strip() == "") | (series.astype(str) == "nan"))]
+                mask = ~(series.isna() | series.astype(str).str.strip().isin(["", "nan", "None"]))
+                result = result[mask]
             elif val == "":
                 continue
             elif op == "=":
-                numeric = pd.to_numeric(series, errors="coerce")
                 try:
-                    result = result[numeric == float(val)]
+                    result = result[pd.to_numeric(series, errors="coerce") == float(val)]
                 except ValueError:
                     result = result[series.astype(str).str.lower() == val.lower()]
             elif op == "!=":
-                numeric = pd.to_numeric(series, errors="coerce")
                 try:
-                    result = result[numeric != float(val)]
+                    result = result[pd.to_numeric(series, errors="coerce") != float(val)]
                 except ValueError:
                     result = result[series.astype(str).str.lower() != val.lower()]
             elif op == ">=":
@@ -228,15 +190,21 @@ def _get_visible_cols(df: pd.DataFrame) -> list[str]:
 
 def _render_dataframe(df: pd.DataFrame, visible_cols: list[str]) -> None:
     new_cols = st.session_state.get("new_cols", [])
-    display_df = df[visible_cols]
+
+    # Переименовываем колонки для отображения: "Company Name" → "Company Name (87%)"
+    rename_map = {col: f"{col} ({_fill_pct(df[col])}%)" for col in visible_cols}
+    display_df = df[visible_cols].rename(columns=rename_map)
 
     if new_cols and any(c in visible_cols for c in new_cols):
+        renamed_new = [rename_map.get(c, c) for c in new_cols if c in visible_cols]
+
         def highlight_new(data: pd.DataFrame) -> pd.DataFrame:
             styles = pd.DataFrame("", index=data.index, columns=data.columns)
-            for col in new_cols:
+            for col in renamed_new:
                 if col in data.columns:
                     styles[col] = "background-color: #fff9c4"
             return styles
+
         st.dataframe(
             display_df.style.apply(highlight_new, axis=None),
             hide_index=True,
