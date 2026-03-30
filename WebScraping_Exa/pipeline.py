@@ -15,6 +15,7 @@ CLI:
     py pipeline.py --input leads.csv --mode hybrid --text-col "ai_summary" --subpages 5
     py pipeline.py --input leads.csv --output out.csv --cols summary,icp_fit,geography
     py pipeline.py --input leads.csv --deep
+    py pipeline.py --input leads.csv --deep --max-llm-chars 8000
     py pipeline.py --input leads.csv --prompt pain_point --cols value
 """
 
@@ -71,6 +72,11 @@ async def run(args) -> None:
         if args.prompt == "company_full":
             args.prompt = "company_deep"
 
+    # max_llm_chars: cap text sent to LLM (separate from Exa fetch size)
+    # default: same as max_chars (no cap). In deep mode default to 8000 to avoid overload
+    if args.max_llm_chars == 0:
+        args.max_llm_chars = 8000 if args.deep else args.max_chars
+
     # ── Load CSV ───────────────────────────────────────────────────────────────
     df = pd.read_csv(args.input)
 
@@ -119,19 +125,17 @@ async def run(args) -> None:
 
         if args.mode == "text-only":
             if existing_text:
-                items_for_llm.append({"url": url, "text": existing_text})
-            else:
-                # no text — skip
-                pass
+                text = existing_text[:args.max_llm_chars] if args.max_llm_chars else existing_text
+                items_for_llm.append({"url": url, "text": text})
 
         elif args.mode == "exa-only":
             if raw_url and raw_url not in ("nan", "None"):
                 exa_urls.append(url)
-            # no url — skip
 
         elif args.mode == "hybrid":
             if existing_text:
-                items_for_llm.append({"url": url, "text": existing_text})
+                text = existing_text[:args.max_llm_chars] if args.max_llm_chars else existing_text
+                items_for_llm.append({"url": url, "text": text})
             elif raw_url and raw_url not in ("nan", "None"):
                 exa_urls.append(url)
 
@@ -164,7 +168,8 @@ async def run(args) -> None:
                 "chars": r.total_chars,
             }
         for r in ok_exa:
-            items_for_llm.append({"url": r.url, "text": r.total_text})
+            text = r.total_text[:args.max_llm_chars] if args.max_llm_chars else r.total_text
+            items_for_llm.append({"url": r.url, "text": text})
 
     # ── Pass 2: LLM ───────────────────────────────────────────────────────────
     if not items_for_llm:
@@ -324,8 +329,10 @@ def main():
                         help="Subpages to fetch in Pass 3 (0 = skip Pass 3)")
     parser.add_argument("--max-chars", type=int, default=5000,
                         help="Max characters per page from Exa (default: 5000, deep mode: 15000)")
+    parser.add_argument("--max-llm-chars", type=int, default=0,
+                        help="Cap text sent to LLM (0=auto: same as max-chars, deep mode: 8000)")
     parser.add_argument("--deep", action="store_true",
-                        help="Deep mode: fetch 5 subpages + 15000 chars/page + company_deep prompt")
+                        help="Deep mode: fetch 5 subpages + 15000 chars/page + company_deep prompt + 8000 char LLM cap")
     args = parser.parse_args()
 
     if not args.limit:
