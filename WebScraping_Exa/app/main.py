@@ -28,6 +28,7 @@ _DEFAULTS: dict = {
     "panel_open": False,
     "enrichment_type": "LLM Extraction",
     "run_results": None,
+    "last_save_map": {},
     "visible_cols": [],
     "filters": [],
     "default_concurrency": int(os.getenv("DEFAULT_CONCURRENCY", "50")),

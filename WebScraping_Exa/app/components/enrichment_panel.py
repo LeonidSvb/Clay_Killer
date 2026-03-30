@@ -118,16 +118,36 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
     st.markdown("**Choose columns to add:**")
 
+    # Determine defaults for checkboxes + rename fields:
+    # Priority 1: last_save_map from previous Save in this session
+    # Priority 2: fill_missing_col — if opened via "fill N empty" button,
+    #             auto-check only the key matching that column name
+    last_save_map: dict[str, str] = st.session_state.get("last_save_map", {})
+    fill_target: str | None = st.session_state.get("fill_missing_col") \
+        if st.session_state.get("row_mode") == "Fill missing" else None
+
+    def _default_include(key: str) -> bool:
+        if last_save_map:
+            return key in last_save_map
+        if fill_target is not None:
+            return key == fill_target
+        return True
+
+    def _default_rename(key: str) -> str:
+        if last_save_map and key in last_save_map:
+            return last_save_map[key]
+        return key
+
     # Column include + rename UI
     col_selections: dict[str, str | None] = {}
     for key in sorted(all_keys):
         c1, c2 = st.columns([1, 2])
         with c1:
-            include = st.checkbox(key, value=True, key=f"col_include_{key}")
+            include = st.checkbox(key, value=_default_include(key), key=f"col_include_{key}")
         with c2:
             if include:
                 new_name = st.text_input(
-                    "name", value=key,
+                    "name", value=_default_rename(key),
                     key=f"col_rename_{key}",
                     label_visibility="collapsed",
                 )
@@ -152,6 +172,7 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
             existing_new = st.session_state.get("new_cols", [])
             st.session_state.new_cols = list(set(existing_new + new_col_names))
+            st.session_state.last_save_map = rename_map  # remember for next run
             st.session_state.run_results = None
             st.session_state.run_elapsed = 0.0
             st.session_state.panel_open = False
