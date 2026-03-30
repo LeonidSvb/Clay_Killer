@@ -1,0 +1,254 @@
+{
+  "name": "Lead Icebreakers — Parallel OpenRouter",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-220, 0],
+      "id": "515060f5-ef7c-4051-81e2-b9569e825b7c",
+      "name": "When clicking 'Execute workflow'"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1GDYmXYkGf6FTwFrm35bIyJGr1tcl4G_qv5KhTQoe5Qg",
+          "mode": "list",
+          "cachedResultName": " US+ recruit 10-100 ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GDYmXYkGf6FTwFrm35bIyJGr1tcl4G_qv5KhTQoe5Qg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1639678784,
+          "mode": "list",
+          "cachedResultName": "Sheet20",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GDYmXYkGf6FTwFrm35bIyJGr1tcl4G_qv5KhTQoe5Qg/edit#gid=1639678784"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Personalisation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [0, 0],
+      "id": "13d25ae8-dba7-4695-8a68-369211d1afb1",
+      "name": "get raws with no icebreakers",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "isvTmT5STgsOYA7P",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e9026458-daa4-462b-a675-b7656d947ab3",
+              "leftValue": "={{ $json['Website Summary'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "606add2b-4270-4fa5-9439-6d564a737db5",
+              "leftValue": "={{ $json['Company Short Description'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [220, 0],
+      "id": "fea4fb85-1c31-4adf-ac63-90839d98ca10",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cfg-01",
+              "name": "api_key",
+              "value": "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",
+              "type": "string"
+            },
+            {
+              "id": "cfg-02",
+              "name": "model",
+              "value": "openai/gpt-oss-120b",
+              "type": "string"
+            },
+            {
+              "id": "cfg-03",
+              "name": "concurrency",
+              "value": 100,
+              "type": "number"
+            },
+            {
+              "id": "cfg-04",
+              "name": "limit",
+              "value": 50,
+              "type": "number"
+            },
+            {
+              "id": "cfg-05",
+              "name": "output_column",
+              "value": "Personalisation",
+              "type": "string"
+            },
+            {
+              "id": "cfg-06",
+              "name": "prompt_instructions",
+              "value": "You are writing a cold outreach opener for a recruitment company.\n \nBased on the company summary below, write exactly the line:\n \n\nFigured I'd reach out - I'm around [dreamICP] daily and they keep saying they [painTheySolve].\n \nRules:\n- [dreamICP] must be a plural ICP group in casual operator language (e.g. \"founders running SaaS teams\", \"ops directors at logistics firms\", \"CTOs at mid-market manufacturers\") — NO corporate terms like \"decision-makers\" or \"stakeholders\"\n- [painTheySolve] must be a hiring-related complaint in founder casual tone (e.g. \"been searching for months and keep seeing the same 10 CVs\", \"keep losing good candidates halfway through the process\", \"can't close a senior role without it dragging on forever\") — infer from the company's ICP and industry even if not stated explicitly\n- Tone must sound like a founder texting another founder — casual, insider, not corporate\n- Use shorthand like: \"burning weeks on\", \"pipeline's dry\", \"nobody shows up qualified\", \"keeps falling through\"\n- NOT like: \"struggle to find qualified talent\", \"face challenges in recruitment\", \"experience difficulty\"\n- Output ONLY the 1 line, nothing else\n \nCompany info:",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [440, 0],
+      "id": "d1e2f3a4-b5c6-7890-d1e2-f3a4b5c67890",
+      "name": "Prompt Config"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ============================================================\n// CONFIG — edit everything in the \"Prompt Config\" Set node\n// api_key | model | concurrency | limit (0=all) | output_column\n// ============================================================\nconst cfg         = items[0].json;\nconst API_KEY     = cfg.api_key;\nconst MODEL       = cfg.model;\nconst CONCURRENCY = Number(cfg.concurrency) || 100;\nconst PROMPT_BASE = cfg.prompt_instructions;\nconst OUT_COL     = cfg.output_column || 'Personalisation';\nconst LIMIT       = Number(cfg.limit) || 0;\n\nconst toProcess = LIMIT > 0 ? items.slice(0, LIMIT) : items;\n\n// ============================================================\n// Run fn over array with max concLimit parallel promises\n// ============================================================\nasync function withConcurrency(arr, concLimit, fn) {\n  const out = new Array(arr.length);\n  let i = 0;\n  async function worker() {\n    while (i < arr.length) {\n      const idx = i++;\n      out[idx] = await fn(arr[idx], idx);\n    }\n  }\n  const workers = Array.from({ length: Math.min(concLimit, arr.length) }, worker);\n  await Promise.all(workers);\n  return out;\n}\n\n// ============================================================\n// Single OpenRouter call\n// ============================================================\nasync function callOpenRouter(item) {\n  const summary = (item.json['Website Summary'] || '').trim();\n  const desc    = (item.json['Company Short Description'] || '').trim();\n  const prompt  = PROMPT_BASE + '\\n\\n' + summary + '\\n\\n' + desc;\n\n  const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {\n    method: 'POST',\n    headers: {\n      'Authorization': 'Bearer ' + API_KEY,\n      'Content-Type': 'application/json',\n    },\n    body: JSON.stringify({\n      model: MODEL,\n      messages: [{ role: 'user', content: prompt }],\n      temperature: 0.8,\n      max_tokens: 150,\n    }),\n  });\n\n  if (!resp.ok) {\n    throw new Error('OpenRouter ' + resp.status + ': ' + await resp.text());\n  }\n\n  const data = await resp.json();\n  return data.choices[0].message.content.trim();\n}\n\n// ============================================================\n// Main\n// ============================================================\nconst results = await withConcurrency(toProcess, CONCURRENCY, async (item) => {\n  try {\n    const icebreaker = await callOpenRouter(item);\n    return {\n      json: {\n        row_number: item.json.row_number,\n        [OUT_COL]:  icebreaker,\n      }\n    };\n  } catch (e) {\n    return {\n      json: {\n        row_number: item.json.row_number,\n        [OUT_COL]:  '',\n        _error:     e.message,\n      }\n    };\n  }\n});\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 0],
+      "id": "e2f3a4b5-c6d7-8901-e2f3-a4b5c6d78901",
+      "name": "Generate Icebreakers"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1GDYmXYkGf6FTwFrm35bIyJGr1tcl4G_qv5KhTQoe5Qg",
+          "mode": "list",
+          "cachedResultName": " US+ recruit 10-100 ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GDYmXYkGf6FTwFrm35bIyJGr1tcl4G_qv5KhTQoe5Qg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1639678784,
+          "mode": "list",
+          "cachedResultName": "Sheet20",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GDYmXYkGf6FTwFrm35bIyJGr1tcl4G_qv5KhTQoe5Qg/edit#gid=1639678784"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $json.row_number }}",
+            "Personalisation": "={{ $json.Personalisation }}"
+          },
+          "matchingColumns": ["row_number"],
+          "schema": [
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Personalisation",
+              "displayName": "Personalisation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [880, 0],
+      "id": "f3a4b5c6-d7e8-9012-f3a4-b5c6d7e89012",
+      "name": "Write Personalisations",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "isvTmT5STgsOYA7P",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking 'Execute workflow'": {
+      "main": [
+        [{"node": "get raws with no icebreakers", "type": "main", "index": 0}]
+      ]
+    },
+    "get raws with no icebreakers": {
+      "main": [
+        [{"node": "Filter1", "type": "main", "index": 0}]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [{"node": "Prompt Config", "type": "main", "index": 0}]
+      ]
+    },
+    "Prompt Config": {
+      "main": [
+        [{"node": "Generate Icebreakers", "type": "main", "index": 0}]
+      ]
+    },
+    "Generate Icebreakers": {
+      "main": [
+        [{"node": "Write Personalisations", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "00000000-0000-0000-0000-000000000001",
+  "meta": {
+    "instanceId": "c681b09fc778d1e2d764b70c1bc66f9ef9ef249bd04461a0753fd9d5bcb8d873"
+  },
+  "id": "",
+  "tags": []
+}
