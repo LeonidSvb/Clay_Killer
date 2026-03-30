@@ -1,0 +1,3781 @@
+{
+  "title": "Fit Check Call ",
+  "meeting_title": "Fit Check Call (40 min) between Leonid Shvorob and Mike Grass",
+  "url": "https://fathom.video/calls/540878599",
+  "created_at": "2026-01-22T17:01:04Z",
+  "scheduled_start_time": "2026-01-22T16:20:00Z",
+  "scheduled_end_time": "2026-01-22T17:00:00Z",
+  "recording_id": 116373831,
+  "recording_start_time": "2026-01-22T16:26:34Z",
+  "recording_end_time": "2026-01-22T17:00:39Z",
+  "calendar_invitees_domains_type": "one_or_more_external",
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Every night, you looks like having a busy day as well.",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yes, very busy day.",
+      "timestamp": "00:00:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So I think you sent the invite for 40 minutes.",
+      "timestamp": "00:00:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "I hope it's not going to take that long.",
+      "timestamp": "00:00:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:00:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If it's a feat, it maybe takes 30 minutes.",
+      "timestamp": "00:00:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's not a feat just.",
+      "timestamp": "00:00:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:00:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:00:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Take a look.",
+      "timestamp": "00:00:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:00:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, tell me, please, like, why you decide jumping on this call?",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like, what's changing in your processes that you're needing new plans in this quarter?",
+      "timestamp": "00:00:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, we're looking to grow and get more business and stuff like that, of course.",
+      "timestamp": "00:00:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We, okay, that's fine.",
+      "timestamp": "00:00:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We started out in 2020, January of 2020, right before the pandemic kind of hit the U.S.",
+      "timestamp": "00:00:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "and everything.",
+      "timestamp": "00:00:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So that was fun.",
+      "timestamp": "00:00:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Ended up closing our offices and working remotely from home for a couple of years.",
+      "timestamp": "00:00:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And we've got new offices we've been in for about a year and a half and looking to grow our team.",
+      "timestamp": "00:00:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But you've got to have the work to start.",
+      "timestamp": "00:00:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Support that growth.",
+      "timestamp": "00:00:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And so definitely looking for more business and more opportunities to do what we do.",
+      "timestamp": "00:01:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And if you're not familiar with our company, what we do is mostly direct placement for management level professionals in construction and engineering, some architectural stuff.",
+      "timestamp": "00:01:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But, you know, we find candidates that our clients can consider for hire.",
+      "timestamp": "00:01:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And if they make a successful hire, they pay us a fee.",
+      "timestamp": "00:01:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we incur a lot of the upfront costs of, you know, recruiting and finding the people and that kind of stuff.",
+      "timestamp": "00:01:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But less headaches as far as, you know, once they hire those people, they're off and working for them directly and we just send them a bill.",
+      "timestamp": "00:01:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "yeah, looking for more, you know, people, companies that are looking to hire the type of roles that we recruit for and, you know.",
+      "timestamp": "00:01:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, gotcha.",
+      "timestamp": "00:01:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, you mentioned on website, LinkedIn, that you're more like a staffing or you're not focused on this anymore.",
+      "timestamp": "00:01:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Um, not like...",
+      "timestamp": "00:01:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Temp Staffing, mean, we have offered Temp or Temp to Perm, but we typically sell away from it, especially in a market where it's hard to find candidates.",
+      "timestamp": "00:02:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "If you're pitching somebody on, you know, go work Temp to Perm for a year or nine months or three months or whatever the case might be, you know, a lot of people already have other companies interested in hiring them directly, you know, so it's hard to be competitive to hire somebody.",
+      "timestamp": "00:02:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And people will typically keep their resume out there.",
+      "timestamp": "00:02:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "If they're hired on a Temp to Perm, there's no commitment that it's going to work out, so they'll keep their resume out there, keep their options open and that kind of thing.",
+      "timestamp": "00:02:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we can do that, but it's not our preference and we kind of try to sell away from it at this time, you know, so sometimes it makes sense.",
+      "timestamp": "00:02:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So sometimes people are looking for think it's like more operational, like headache and so, so what's like exact roles give you now like most profit, more profit and like more easy to feel consistently?",
+      "timestamp": "00:02:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like you say, it's like management in like construction firms or what kind of thing?",
+      "timestamp": "00:02:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So like.",
+      "timestamp": "00:02:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "On-site management, like superintendents, foremen, project engineers, the office staff is project managers, senior project managers, project executives, VPs of operation, estimators, you know, those kind of roles.",
+      "timestamp": "00:03:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We've recruited for, like, front desk associates and, you know, just administrative people and stuff like that, too.",
+      "timestamp": "00:03:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, we can recruit for anything.",
+      "timestamp": "00:03:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "can recruit for IT professionals, but, you know, we try to have a kind of a niche in our market.",
+      "timestamp": "00:03:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, yeah.",
+      "timestamp": "00:03:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "You know, usually I'm not working with clients who are just doing everything for everyone.",
+      "timestamp": "00:03:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's more difficult to fulfill, you know?",
+      "timestamp": "00:03:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yes, yes.",
+      "timestamp": "00:03:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, makes sense.",
+      "timestamp": "00:03:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, like, what kind of, like, ideal companies?",
+      "timestamp": "00:03:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's, like, small businesses or, like, SMBs or what size of, like, headcounts?",
+      "timestamp": "00:03:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Good question.",
+      "timestamp": "00:03:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, typically, like, midsize, and I guess you could define that a few ways, but what we found is that...",
+      "timestamp": "00:03:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "The smaller kind of mom-and-pop shops or the startups, the, you know, companies that aren't well-established, maybe 20 employees or less, they don't, you know, they might need to hire, but they don't have the budget to pay the kind of fees we charge to hire people.",
+      "timestamp": "00:04:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And so even when we work with them, it's often, here's a great candidate, you should hire them.",
+      "timestamp": "00:04:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Like, there's hesitancy because if they make a hire, then they're going to have to pay the fee and stuff like that.",
+      "timestamp": "00:04:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So it's kind of like really frustrating trying to, or they're very picky because it's such a big deal to pay the fee, you know, for placement.",
+      "timestamp": "00:04:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "The biggest, the big, companies out there, we work with some really big companies that I'm proud to say we've signed up, but, you know, they often have, you know, a team of recruiters, 10, 15, 20 recruiters that work for their company already.",
+      "timestamp": "00:04:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So how much can me and my small team help them, you know, like it's, and sometimes it's a lot of who to deal with and kind of, you know, a lot of systems that are, you know, less than optimum for them to make a decision because you're dealing with, thing thing can do How So how",
+      "timestamp": "00:04:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "who's maybe has to then get something approved and then, you know, it's a whole.",
+      "timestamp": "00:05:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, it's like bureaucracy.",
+      "timestamp": "00:05:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So as I say, like from 50 to 100 is like sweet spot for you.",
+      "timestamp": "00:05:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think so.",
+      "timestamp": "00:05:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Companies that maybe don't have more than one person or any people that are directly, you know, in charge of recruiting, don't have their system set up for full-time recruiting.",
+      "timestamp": "00:05:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Some companies that they don't, they're not constantly hiring, you know, some companies are so big that they're always hiring for some sort of role.",
+      "timestamp": "00:05:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Some companies are just, you know, once in a while they lose somebody or they need to hire for a role and that kind of thing.",
+      "timestamp": "00:05:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And they don't have, you know, their own system set up and their own full-time recruiting.",
+      "timestamp": "00:05:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And so they, you have, you know, the HR lady or the owner of the company, you know, kind of recruit and place ads and stuff.",
+      "timestamp": "00:05:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Just let us do that.",
+      "timestamp": "00:05:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We can specialize in this.",
+      "timestamp": "00:05:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You don't really have, you know, you don't really want to hire somebody permanently year round to recruit because you only hire a couple few people per year, you know, so that's not a bad client, but certainly there's.",
+      "timestamp": "00:05:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Some companies that, you know, we've, one of our biggest clients, I think we've placed over 30 people with, that need to work in level, probably 100K salary range, you know, for most of them, some of them lower, some of them higher, so, yeah.",
+      "timestamp": "00:06:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so you mentioned, yeah, so like small businesses, they don't have so much money to fees, so it's like you work in more retained or contingency as well?",
+      "timestamp": "00:06:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Um, we're, it's all contingent on them making a hire, so yeah, we don't charge them anything until they make a hire, so we do incur the costs of, you know, various job platforms that we advertise on, recruiting that we, you know, source resumes from, that kind of stuff, paying recruiters to, to find candidates, invent them out, and stuff like that, so, you know, like, yeah, like, Okay, new client, and they have, you know, five different jobs they're looking to fill, that's great, but I start incurring a lot of costs, and it could be months before I get any money out of.",
+      "timestamp": "00:06:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So yeah, so like, if it's like contingency, is it like typical that you competing with other recruiters and sometimes we'll negotiate that I had a prospective client reach out and I know she's, she owns a business in Richmond, Virginia, and she's been using other recruiters for months now and not finding the right person.",
+      "timestamp": "00:07:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And so she asked me to, you know, work with her and said, Okay, here's my fees.",
+      "timestamp": "00:07:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And she said, Well, I'm, I want to negotiate, I want to pay about half that much.",
+      "timestamp": "00:07:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And I want this and I want want that.",
+      "timestamp": "00:07:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "I was like, you're inviting me to come fish in a pond that people are already been fishing in for months.",
+      "timestamp": "00:07:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And what do you want me to do?",
+      "timestamp": "00:07:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So they think it makes my job harder, not easier.",
+      "timestamp": "00:07:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So why am I giving you, you know, lower rates, you know, so, but you know, that's okay.",
+      "timestamp": "00:07:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we turn them down.",
+      "timestamp": "00:07:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, got you.",
+      "timestamp": "00:07:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we them down business very much, but so like, got to make sense.",
+      "timestamp": "00:07:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's in mid business, like more senior roles.",
+      "timestamp": "00:07:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So how are you now attracting like customers is like for your referrals?",
+      "timestamp": "00:07:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you have",
+      "timestamp": "00:07:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Some outbound system, you say you're doing advertisements, so what source is best working for you now?",
+      "timestamp": "00:08:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Right, okay, so as I mentioned, know, we started out in kind of 2020, but we had the pandemic and stuff, but we, by we, me, and my first hire, which is my head of business development, that he and I, he worked for me in the past at a previous company and stuff, and both of us have a lot of connections in construction and engineering, and especially in the Washington, D.C.",
+      "timestamp": "00:08:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "metro area.",
+      "timestamp": "00:08:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So when we started out, it was a lot of, like, we know these people, we got to reach out to them, tell them what we're doing now, and talk to them about, you know, how we can help them and that kind of thing.",
+      "timestamp": "00:08:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we've kind of gone through all of our Rolodex, if you will, you know, all the contacts, people and stuff, and we've signed a lot of companies and worked with a lot of companies, but, you know, and, and we have gone out and found other companies that we've never heard of before and that we don't have relationships with and got them, you know, to become clients as well.",
+      "timestamp": "00:08:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, but more of that now, because we've kind of exhausted a lot of the, you know, contacts that we already have, you know what I mean?",
+      "timestamp": "00:08:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think getting new customers, new clients is more tricky, yeah?",
+      "timestamp": "00:09:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right, yeah.",
+      "timestamp": "00:09:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, we kind of exhausted the network, the referral, the people we know, which are often easier to get in front of and stuff over the last five years.",
+      "timestamp": "00:09:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we need to focus more on finding random companies we've never heard of that we can get in front of and potentially build that relationship with and build that client.",
+      "timestamp": "00:09:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, yeah.",
+      "timestamp": "00:09:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Makes sense.",
+      "timestamp": "00:09:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If you were working before, like, in D.C.",
+      "timestamp": "00:09:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "and you went to other, like, states, so it's, like, different markets and more...",
+      "timestamp": "00:09:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:09:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Actually, two of our biggest clients, one's out of Florida, one's out of New Mexico, so...",
+      "timestamp": "00:09:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And I'd never worked with them before I started this business, so you never know, so...",
+      "timestamp": "00:09:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think a lot of more clients in different states, we never know, is right.",
+      "timestamp": "00:09:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, like, what do you think will be good?",
+      "timestamp": "00:09:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like, how many new clients you want to, like...",
+      "timestamp": "00:09:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Clients for, like, next 90 days, so you will think, oh, wow, it's good.",
+      "timestamp": "00:09:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:09:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, that's it.",
+      "timestamp": "00:09:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "A pledge question, because as I mentioned, a new client and new orders, you know, I could have one, sign one client and they need 10 jobs filled, or I could sign one client and they need one job filled.",
+      "timestamp": "00:10:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "client, you know, but new job opportunities, new orders or recs, as we call it, you know, we could certainly do 10 to 20 new recs, whether that's with one big client or with 20 different clients, it wouldn't matter to me.",
+      "timestamp": "00:10:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Sometimes it's better to have it spread out and have more companies you're working with and not have all your eggs in one basket.",
+      "timestamp": "00:10:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Right now, we're doing a lot of work with a really large general contractor that does work across the, you know, across the globe.",
+      "timestamp": "00:10:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, they're looking for people that they can send to long-term U.S.",
+      "timestamp": "00:10:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "federal government projects in lots of different countries and stuff.",
+      "timestamp": "00:10:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, it's interesting, they have to have security clearance, they have to be willing to go to, you know, Saudi Arabia for the next four years and that kind of stuff, you know.",
+      "timestamp": "00:10:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But there's a niche of people out there that do this kind of work and it's worth facing them down and trying to get them in front of our client.",
+      "timestamp": "00:10:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So yeah, they've given us six job opportunities currently.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We've been working on these roles for about three months and I think Monday we'll have our first guy.",
+      "timestamp": "00:11:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So I'll get to bill them for the very first time.",
+      "timestamp": "00:11:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We've been spending money and time for three months now on five different roles for them.",
+      "timestamp": "00:11:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So it'd be nice to get one guy started working for them and bill them for it and stuff.",
+      "timestamp": "00:11:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Cause yeah, I've been covering all the costs of that, you know, just for that one client, but also for, I think we have 49 recs open.",
+      "timestamp": "00:11:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we're working on 49 different job opportunities currently.",
+      "timestamp": "00:11:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, but the more that we have, the wider net there is.",
+      "timestamp": "00:11:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So we're gonna, you know, we might not find somebody this week for one job, but for a different job.",
+      "timestamp": "00:11:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So the more job opportunities, it's, it's opportunity, you know?",
+      "timestamp": "00:11:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah.",
+      "timestamp": "00:11:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:11:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:11:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:11:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:11:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you mentioned that you already doing pretty well and and just, uh, it's not an urgency.",
+      "timestamp": "00:11:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're just curious or I can go to run.",
+      "timestamp": "00:12:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, certainly we want to, you know, always do better and have opportunities and certainly wanted to talk to you about what exactly you guys do and how you, I guess you drive business towards us as far as taking care of some of the outreach and some of the marketing and that kind of stuff.",
+      "timestamp": "00:12:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Because a lot of what we do is we're, I mean, even during the pandemic, it was really bad.",
+      "timestamp": "00:12:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "It's gotten better, but it's hard to call an office and ask for the decision maker, especially at a fairly large company and get in front of them.",
+      "timestamp": "00:12:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So it's often messaging them on LinkedIn, sending them emails, pulling their emails off of different ways we can get their email and stuff and, you know, that kind of thing so we can get a conversation started.",
+      "timestamp": "00:12:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So you guys do a lot of that outreach, I assume?",
+      "timestamp": "00:12:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so reaching to right decision makers, if it's just random blasting, this is not a way that working in 2026, right?",
+      "timestamp": "00:12:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you say that you go into like your network and...",
+      "timestamp": "00:12:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's going pretty well, but Outreach, LinkedIn, and so on that you tried, it looks like it's not working, not performing as you want.",
+      "timestamp": "00:13:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you want to extend this, right?",
+      "timestamp": "00:13:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Sure.",
+      "timestamp": "00:13:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "There's only so much time that I can spend on my head of business development, who's basically the only guy in that department, can spend on LinkedIn messaging people or emailing people and that kind of stuff.",
+      "timestamp": "00:13:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You know, so we could have some automation to that process.",
+      "timestamp": "00:13:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "I think there's value there.",
+      "timestamp": "00:13:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:13:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Got you.",
+      "timestamp": "00:13:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, let me like clarify.",
+      "timestamp": "00:13:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So like now after all, pandemic is doing good, but you want to scale and you don't have now predictable system.",
+      "timestamp": "00:13:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, you know, okay, for next month, for next quarter, I have X amount of clients because now it's sometimes it's like big clients that one client can give you 20 or some only one.",
+      "timestamp": "00:13:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you cannot like see what you can hire to like scale and so on.",
+      "timestamp": "00:13:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right.",
+      "timestamp": "00:13:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so I think if you have a more predictable system, it will be better.",
+      "timestamp": "00:14:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right.",
+      "timestamp": "00:14:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so how we structure this, as you know, if we just need to reach out to decision-makers, it doesn't make any sense if we do this like random spray and pray, right?",
+      "timestamp": "00:14:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what we're consistently doing now is we're putting clients where we're working in front of decision-makers, but when timing is right.",
+      "timestamp": "00:14:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so we need to be sure that they are in urgency now, so they need to hire.",
+      "timestamp": "00:14:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:14:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so we're monitoring like markets on signals, for example, if it's like headcounts growing or like they have new project managers, management, so it usually makes sense that they will hire a new team or some leadership changing.",
+      "timestamp": "00:14:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're monitoring the exact same things, or they have new projects and new states, or we're monitoring.",
+      "timestamp": "00:14:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like portals for constructions or some projects awards.",
+      "timestamp": "00:15:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we see the moments in the market when it's saying that, okay, this company will need now real help with hiring.",
+      "timestamp": "00:15:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And what's working good for our clients now as well.",
+      "timestamp": "00:15:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So when we reaching out, so when we make a connection, so we introduce you, for example, like our trusted recruiter partner.",
+      "timestamp": "00:15:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And this is before this job's going publicly.",
+      "timestamp": "00:15:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you don't need to compete in with like 20 other recruiters.",
+      "timestamp": "00:15:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's when company feels that they need to hire because they like have new projects, they like a lot of stuff going on, but they not yet like posting is in Indeed or like staffing portals that exist.",
+      "timestamp": "00:15:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, in this moment, we reach now to this decision makers, they qualify them.",
+      "timestamp": "00:15:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So they're not like wasting time because they think if you have one business development guy.",
+      "timestamp": "00:15:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Bye.",
+      "timestamp": "00:15:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Bye.",
+      "timestamp": "00:15:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's maybe you sometimes do yourself calls.",
+      "timestamp": "00:16:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It can be a waste of if you're reaching out to a company, they don't have money, it's like a small startup, there's not an urgency, so it's not so predictable.",
+      "timestamp": "00:16:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right.",
+      "timestamp": "00:16:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So you're screening out the potential clients for the basic criteria and that kind of thing.",
+      "timestamp": "00:16:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, sometimes basic, sometimes not so basic, because it's different if you're just reaching out to a company who is doing well, so they don't need to hire or something like that.",
+      "timestamp": "00:16:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right, yeah.",
+      "timestamp": "00:16:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Like on LinkedIn, people will put a hiring swoosh or you can see that they're posting LinkedIn ads, but some of them never use LinkedIn ads and they're, you know, placing ads all over the place and stuff.",
+      "timestamp": "00:16:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So you have the AI, I assume that, you know, you can see what these companies are doing online as far as searches and stuff.",
+      "timestamp": "00:16:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, we have different instruments.",
+      "timestamp": "00:16:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're just making the right connection in right moments.",
+      "timestamp": "00:16:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "LinkedIn is maybe like 20% because the more niche it is and the more targeted, for example, example, if you...",
+      "timestamp": "00:16:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We put you in front of decision makers, like in SMBs, not too big, not too small, who needs exactly type of roles, like project management, and so on.",
+      "timestamp": "00:17:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's more about targeting and timing.",
+      "timestamp": "00:17:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:17:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, something like this.",
+      "timestamp": "00:17:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, basically, what are we doing?",
+      "timestamp": "00:17:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Is it something you're interested in or just curious and nice to have?",
+      "timestamp": "00:17:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "No, certainly.",
+      "timestamp": "00:17:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:17:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah, as far as vetting out the prospective clients and stuff like that, mean, obviously, you're finding people that are looking to hire, you know, doing initial screening, I assume, or just kind of forwarding information and say, these people are hiring, you should reach out to them.",
+      "timestamp": "00:17:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So you're doing more of that, more than that, right?",
+      "timestamp": "00:17:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, yeah, yeah.",
+      "timestamp": "00:17:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So basically, we're not doing like this, you know, like some leading agencies, they just giving you a bunch of fresh leads and say, okay, call them.",
+      "timestamp": "00:17:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And when you call them, when you reach out, they don't know who you are.",
+      "timestamp": "00:17:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "go.",
+      "timestamp": "00:17:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And this is pretty frustrating.",
+      "timestamp": "00:18:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're not doing this kind of stuff.",
+      "timestamp": "00:18:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's better I send you like five introductions per month when they all pre-qualified and like they already know.",
+      "timestamp": "00:18:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we say, okay, this is like Blueprints.",
+      "timestamp": "00:18:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "They are our trusted partners.",
+      "timestamp": "00:18:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So and so on.",
+      "timestamp": "00:18:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So when you usually like from intros with clients that are working now, like five intros, it's usually one tool.",
+      "timestamp": "00:18:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "placements.",
+      "timestamp": "00:18:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for you, it's, it's better because in like constructions, usually they don't need only one role.",
+      "timestamp": "00:18:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Sometimes it's like more, not just like executive source and other stuff.",
+      "timestamp": "00:18:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:18:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:18:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Are you making the initial like introduction?",
+      "timestamp": "00:18:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "How does that, is that like setting up a team's meeting and, or, or just turning over their information to me to then reach out to them directly?",
+      "timestamp": "00:18:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Or how does that structure it?",
+      "timestamp": "00:18:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "guess.",
+      "timestamp": "00:18:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:18:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it depends depends what.",
+      "timestamp": "00:18:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Basically, how we reach out to you.",
+      "timestamp": "00:19:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "This is the exact same process.",
+      "timestamp": "00:19:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we reach out to them.",
+      "timestamp": "00:19:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We confirm if they're actually hiring now.",
+      "timestamp": "00:19:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Sometimes, if you need to make a call, make a call.",
+      "timestamp": "00:19:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And if they're saying, okay, we need this exactly right now, we say, okay, our partners can help you to fill these roles.",
+      "timestamp": "00:19:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Are you interested?",
+      "timestamp": "00:19:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yes.",
+      "timestamp": "00:19:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "They say yes.",
+      "timestamp": "00:19:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And in this moment, they already, we like frame you as our partner.",
+      "timestamp": "00:19:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And usually it's good if you have niched case studies.",
+      "timestamp": "00:19:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you say you worked with big companies.",
+      "timestamp": "00:19:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if we say, okay, and like Blueprints, they already working with company X, Y, and Z.",
+      "timestamp": "00:19:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So kind of like this.",
+      "timestamp": "00:19:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So better what I find when we like taking new clients.",
+      "timestamp": "00:19:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we like targeting.",
+      "timestamp": "00:19:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're not doing every placements for everyone.",
+      "timestamp": "00:19:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We make one segment and we make introductions that's most valuable.",
+      "timestamp": "00:19:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So most profit, more easy to fill, and the right like avatars, like decision makers.",
+      "timestamp": "00:19:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:20:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Now, you guys making initial contact via, you said about 20% LinkedIn, so a lot of emailing or direct calling, or what's the best way that you're reaching out to these companies?",
+      "timestamp": "00:20:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, it's usually mixed.",
+      "timestamp": "00:20:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, it's like more scalable.",
+      "timestamp": "00:20:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's not about what like channel we use, LinkedIn or email.",
+      "timestamp": "00:20:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's about what timing and does this person, does this company needs now help with hiring or not?",
+      "timestamp": "00:20:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:20:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, like this.",
+      "timestamp": "00:20:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, I forget you to ask, what's like your average like fee for like one placement, I think like 30, 40 Ks or?",
+      "timestamp": "00:20:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, typically our base will often start out with is 20% of first year salary, just base salary, no benefits package or anything like that added to the cost.",
+      "timestamp": "00:20:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Depending on the role, depending on, you know, negotiating, maybe we might go to as low as 15%, but typically not.",
+      "timestamp": "00:20:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But...",
+      "timestamp": "00:20:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "...",
+      "timestamp": "00:20:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Sometimes we'll ask for a hire fee, like that lady in Richmond.",
+      "timestamp": "00:21:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You want to bring me in after multiple other recruiters have failed and you want me to work for less?",
+      "timestamp": "00:21:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "No, I want to work for more because it's going to take a lot of effort, time, and resources to find you candidates that these other guys haven't been able to find.",
+      "timestamp": "00:21:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And yeah, a lot of companies will not use a recruiter as a strategic part of their hiring process.",
+      "timestamp": "00:21:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "They'll end up using a recruiter because they have, you know, not been able to find the right person for that role, you know?",
+      "timestamp": "00:21:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So it's kind of like, I didn't want to do this, but okay, I'll work for the recruiter and pay the fee because I need the right person for this job, you know?",
+      "timestamp": "00:21:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So it's, we get a lot of the very difficult and, or just difficulty in general, like the difficult roles to fill, that kind of stuff.",
+      "timestamp": "00:21:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "I've got a few big companies and yeah, they, they're hiring for, I have one client that's an engineering firm.",
+      "timestamp": "00:21:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "They're hiring for their website, they're hiring for 80 different jobs.",
+      "timestamp": "00:21:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "I'm working on one for them because that's the.",
+      "timestamp": "00:21:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "One that they can't fill.",
+      "timestamp": "00:22:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "It's like, eh, you know, and I've been working on it for quite some time now.",
+      "timestamp": "00:22:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, you know, that's fine.",
+      "timestamp": "00:22:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And we may make a place with them and that might get us more opportunity to work on other things for them.",
+      "timestamp": "00:22:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But, you know, like I need companies that are really happy to pay the fee and ready to, you know, hire immediately if they get the right person in front of them.",
+      "timestamp": "00:22:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah, yeah.",
+      "timestamp": "00:22:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, let's say if we put you in front of like 10, 15, like managers who are making decisions about hiring this type of companies, like 50 to 100 headcount, would you be able to close like two, three, four of them or like what's your...",
+      "timestamp": "00:22:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Oh, yeah, hopefully more than that.",
+      "timestamp": "00:22:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But yes, you know, and it depends.",
+      "timestamp": "00:22:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You do have people who want to talk, but then it's like, oh, wow.",
+      "timestamp": "00:22:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, didn't realize the fee was going to be that much.",
+      "timestamp": "00:22:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You know, I'll get back to you and say, well, is your fees?",
+      "timestamp": "00:22:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And then you never hear from them again, follow up.",
+      "timestamp": "00:22:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "A times, that kind of stuff.",
+      "timestamp": "00:23:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah.",
+      "timestamp": "00:23:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Companies that already are working with another recruiter, it's a double-edged sword because, you know, they're familiar, they know what the cost is in general.",
+      "timestamp": "00:23:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "They're, you know, open to do that.",
+      "timestamp": "00:23:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But then you're also working in, you know, in competition with other recruiters, which I know I have clients that, you know, have other recruiters working on the same roles as I am and stuff.",
+      "timestamp": "00:23:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, you know, that's not good, but it's okay.",
+      "timestamp": "00:23:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, all right.",
+      "timestamp": "00:23:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Well, and how does it work as far as your cost?",
+      "timestamp": "00:23:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "As far as, you know, do you charge per lead, per signed client, per placement?",
+      "timestamp": "00:23:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You know, obviously, you're not working for free, right?",
+      "timestamp": "00:23:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah.",
+      "timestamp": "00:23:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's probably not the best way to make business working for free, right?",
+      "timestamp": "00:23:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:23:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, usually, like, how we structure things is, like, you mentioned that, like, I ask you, so you usually have a fee, like, 20% of salary.",
+      "timestamp": "00:23:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, is it, like, 20%?",
+      "timestamp": "00:23:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "30K total or what's the amount?",
+      "timestamp": "00:24:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, can be.",
+      "timestamp": "00:24:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "depends on the role, what they're offering to hire the person at and stuff like that.",
+      "timestamp": "00:24:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We've placed people for 40,000, 50,000.",
+      "timestamp": "00:24:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We've placed people for 280,000, I think, was the highest one we've done.",
+      "timestamp": "00:24:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, that's great.",
+      "timestamp": "00:24:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so usually how we structure things is for clients we're working with, for 90 days, we make this window.",
+      "timestamp": "00:24:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So this is a time that we can make a system that's not last one time, that's been improving overall at a time.",
+      "timestamp": "00:24:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, making like 10, 15 introductions, from there usually it's closing like 2, 3, 4 rolls.",
+      "timestamp": "00:24:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if like, let's say, conservatively, we will close three rolls for like 30, 40Ks, it's like 100K in margin.",
+      "timestamp": "00:24:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for one month we're charging, so 3K, and for nine months it's like 9K.",
+      "timestamp": "00:24:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's guarantee 10 to 15.",
+      "timestamp": "00:24:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So based on roles, what we need, what companies we're targeting.",
+      "timestamp": "00:25:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:25:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So 10 to 15 introductions over a 90-day period or per month?",
+      "timestamp": "00:25:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:25:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:25:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So sometimes it's more, but not less.",
+      "timestamp": "00:25:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:25:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So 3,000 a month for 90 days would be $9,000 and I would get 10 to 15 introductions?",
+      "timestamp": "00:25:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "it's not just random intros.",
+      "timestamp": "00:25:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's when we qualify them.",
+      "timestamp": "00:25:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yes.",
+      "timestamp": "00:25:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "That's the key.",
+      "timestamp": "00:25:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay.",
+      "timestamp": "00:25:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right.",
+      "timestamp": "00:25:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Interesting.",
+      "timestamp": "00:25:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And so 90 days is kind of a contract commitment.",
+      "timestamp": "00:25:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Certainly if it was going well, we're happy.",
+      "timestamp": "00:25:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "We can extend that, pass that date at 3,000 a month after that.",
+      "timestamp": "00:25:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, sure.",
+      "timestamp": "00:25:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So usually it's like a pilot because, you know, it takes time to, uh, like a feedback loop that's going on.",
+      "timestamp": "00:25:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually we're starting with this and after we, with some clients, we're doing like ref share.",
+      "timestamp": "00:25:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We'll be right back.",
+      "timestamp": "00:25:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "With some clients, just continue like retainer and so on.",
+      "timestamp": "00:26:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it depends.",
+      "timestamp": "00:26:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:26:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "At a comparable cost of $3,000 a month?",
+      "timestamp": "00:26:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "What?",
+      "timestamp": "00:26:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "$3,000 a month indefinitely?",
+      "timestamp": "00:26:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Or is it lower after 90 days?",
+      "timestamp": "00:26:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Or how does that fee structure work?",
+      "timestamp": "00:26:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:26:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So basically, if our clients make $100,000, so just paying $9,000 is not a problem.",
+      "timestamp": "00:26:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we usually get into targeting most high ROI avatars.",
+      "timestamp": "00:26:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for example, if some avatars like less churn and brings more like life value, so we can structure it on this.",
+      "timestamp": "00:26:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it makes more profitable working for our clients.",
+      "timestamp": "00:26:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, you know.",
+      "timestamp": "00:26:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for initial, we usually start with roles that are more easy to fill, that are more easy to target, you know, just to get the system going.",
+      "timestamp": "00:26:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And then we see like this.",
+      "timestamp": "00:26:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So the feedback, how it goes, maybe change the roles that we're targeting and so on, maybe change it in the companies.",
+      "timestamp": "00:27:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay.",
+      "timestamp": "00:27:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So let's say we did a 90-day commitment.",
+      "timestamp": "00:27:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You guys do all the kind of getting everything set up and get everything rolling and get, you know, leads coming in after 90 and it's $3,000 a month.",
+      "timestamp": "00:27:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So $9,000 in 90 days.",
+      "timestamp": "00:27:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And then it's just $3,000 a month after that.",
+      "timestamp": "00:27:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Or how does that work?",
+      "timestamp": "00:27:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Like, what is my annual cost for using your services?",
+      "timestamp": "00:27:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Assuming I love what you do and per year.",
+      "timestamp": "00:27:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "so it depends.",
+      "timestamp": "00:27:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually if just everything going good, so we just continue working like this.",
+      "timestamp": "00:27:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if clients ask us to more like niche to some avatars, that more difficult target, it can be changed.",
+      "timestamp": "00:27:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But basically we're doing what's best for both sides.",
+      "timestamp": "00:27:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:27:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So I could budget $3,000 a month and kind of just keep that in perpetuity.",
+      "timestamp": "00:27:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "As as everything's going on.",
+      "timestamp": "00:27:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, okay.",
+      "timestamp": "00:28:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right.",
+      "timestamp": "00:28:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay.",
+      "timestamp": "00:28:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And as far as it's just, what if you, you know, theoretically, you said 10 to 15 is kind of what you're promising, but who knows, maybe you only come up with nine one month, you know, is there any kind of, yeah, how do you back a guarantee that I'll bring you 10 to 15 leads per month?",
+      "timestamp": "00:28:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Or if you get 30 leads, you're not going to hold them back, I imagine, right?",
+      "timestamp": "00:28:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, fair question.",
+      "timestamp": "00:28:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So that's why we're doing at least 90 days contracts.",
+      "timestamp": "00:28:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because sometimes, yeah, for the month, it can be like two or three, next month, it can be more.",
+      "timestamp": "00:28:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Usually next month, for next month, it's getting better.",
+      "timestamp": "00:28:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But you know, it's sometimes it's like one quarter is better than another.",
+      "timestamp": "00:28:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for example, first quarter is good, second quarter is over.",
+      "timestamp": "00:28:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it depends on that.",
+      "timestamp": "00:28:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right.",
+      "timestamp": "00:28:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay.",
+      "timestamp": "00:28:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right.",
+      "timestamp": "00:28:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay, but it's the same fee, no matter what.",
+      "timestamp": "00:28:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So that gives you a kind of a number for",
+      "timestamp": "00:28:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "I think that there, I must have done a Google search that like a bunch of companies have been able to notice and because I've noticed I've been reached out to companies like yours multiple times in the last like, you know, week or so and that kind of thing.",
+      "timestamp": "00:29:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So it's interesting, you know, because they can, obviously, how did you hear about my company, you know, like, did you see that I did a Google search on something like that?",
+      "timestamp": "00:29:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Or how did you get in front of me, I guess?",
+      "timestamp": "00:29:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so we're doing our own research.",
+      "timestamp": "00:29:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So since we're working only with recruiters and staffing companies, you know, the market isn't so big.",
+      "timestamp": "00:29:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're just monitoring companies who in exact same time, maybe most likely need our service.",
+      "timestamp": "00:29:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So definitely we're doing that kind of stuff, how we will connect you with your companies that nearing to hiring engineers.",
+      "timestamp": "00:29:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay, so you're, you're doing the same lead generation.",
+      "timestamp": "00:29:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay,",
+      "timestamp": "00:29:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "For your own company as you are for your clients.",
+      "timestamp": "00:30:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, it's, you know, sometimes it's changing, but mostly, yeah, it's the same pipeline.",
+      "timestamp": "00:30:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:30:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Where, just hoping you mind, but where are you located in the world?",
+      "timestamp": "00:30:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Because, like, time zones and stuff like that, as far as outreach, is that, where do you live?",
+      "timestamp": "00:30:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so, I'm originally from Russia, but last three years I live in Bali, so now it's about 1 a.m., but since I work mostly with U.S.",
+      "timestamp": "00:30:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "clients, usually I go to bed, like, 4 a.m., so, usually it's not a problem in communication.",
+      "timestamp": "00:30:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Okay, because that is something that, you know, logistics and time, like I mentioned, I've got a client that's, you know, looking for people to work overseas, and a lot of them already are overseas, so it's like, I've got an app on my phone, obviously, or I'll just check, you know, online, and, like, what time is it in Poland right now?",
+      "timestamp": "00:30:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Can I call somebody?",
+      "timestamp": "00:30:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Like, oh, no, it's 2 in the morning in Poland.",
+      "timestamp": "00:30:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:30:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "All right, I'll send them an email.",
+      "timestamp": "00:30:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah.",
+      "timestamp": "00:30:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So, yeah.",
+      "timestamp": "00:30:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "So,",
+      "timestamp": "00:30:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "dealing with that kind of logistics and stuff.",
+      "timestamp": "00:31:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Bali, I've been to, I was a kid though, long time ago, think I was like 12 years old, I was in Bali with my family for four days or something like that.",
+      "timestamp": "00:31:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "But yeah, it's beautiful and very neat.",
+      "timestamp": "00:31:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I know it's changing a lot for the last 12 years.",
+      "timestamp": "00:31:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So before it was just village with people who eat bananas and coconuts, now it's a bit different.",
+      "timestamp": "00:31:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:31:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:31:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Who's doing a lot of construction in Bali where you are?",
+      "timestamp": "00:31:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, I invested in a couple of projects, but you know, it's a lot of risk.",
+      "timestamp": "00:31:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Here, because people go in and like not many developers with reputations, you know, so it's kind of bad every time.",
+      "timestamp": "00:31:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Interesting.",
+      "timestamp": "00:31:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right, cool.",
+      "timestamp": "00:31:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right.",
+      "timestamp": "00:31:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Do you have like a contract that you have or a, you know, proposal kind of thing you want to send me?",
+      "timestamp": "00:31:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, sure.",
+      "timestamp": "00:31:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If you want, I can send you a proposal, I think tomorrow.",
+      "timestamp": "00:31:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:31:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, because now it's a bit late.",
+      "timestamp": "00:31:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, yeah, get some sleep.",
+      "timestamp": "00:31:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Do you have like WhatsApp number if you don't mind?",
+      "timestamp": "00:31:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's, I think, more easy to communicate.",
+      "timestamp": "00:32:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "What's up?",
+      "timestamp": "00:32:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Oh, yeah.",
+      "timestamp": "00:32:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "My phone number, if you have it, it's, I think it's on my email, if we've emailed before.",
+      "timestamp": "00:32:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "If not, it's 571-228-0082.",
+      "timestamp": "00:32:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And that's also my number on WhatsApp.",
+      "timestamp": "00:32:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:32:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:32:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:32:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Mike, so I will send you a proposal, I think, tomorrow, the after tomorrow.",
+      "timestamp": "00:32:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So ideally, where do you want to get things going?",
+      "timestamp": "00:32:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Probably the next 30 days, 30, 45 days, something like that.",
+      "timestamp": "00:32:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "You know, probably get through January, mid-February, something like that to get rolling.",
+      "timestamp": "00:32:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah, that's good.",
+      "timestamp": "00:32:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually, for clients, we start working.",
+      "timestamp": "00:32:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We already have all infrastructure setting up, so it doesn't need to wait in, like, a lot of time.",
+      "timestamp": "00:32:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually, it's, like, two or three weeks to get in first intros, and then it's just usually getting higher.",
+      "timestamp": "00:32:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:32:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right.",
+      "timestamp": "00:32:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And would you ever consider doing like a fee for lead as far as not have like a monthly, you know, just kind of like a performance-based fee per cost, you know, per lead, that kind of thing?",
+      "timestamp": "00:33:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Because I've been offered that too.",
+      "timestamp": "00:33:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "And I don't know if that's better because it's hard to budget that, you know?",
+      "timestamp": "00:33:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so...",
+      "timestamp": "00:33:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All these leads, I don't need that many.",
+      "timestamp": "00:33:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Like, no, you have to pay us for them, you know?",
+      "timestamp": "00:33:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Yeah.",
+      "timestamp": "00:33:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, we start from like 90 days pilot and after if need some restructuring, so we can discuss it.",
+      "timestamp": "00:33:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, all right.",
+      "timestamp": "00:33:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Sounds fair.",
+      "timestamp": "00:33:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "All right.",
+      "timestamp": "00:33:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thanks, Leonid.",
+      "timestamp": "00:33:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Appreciate it.",
+      "timestamp": "00:33:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Get some sleep.",
+      "timestamp": "00:33:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, no, I have a lot of stuff going on right now, so it's like three hours more.",
+      "timestamp": "00:33:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right, right.",
+      "timestamp": "00:33:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But yeah, thank you.",
+      "timestamp": "00:33:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Have a great rest of your day, Mike.",
+      "timestamp": "00:33:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "You too.",
+      "timestamp": "00:33:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thanks.",
+      "timestamp": "00:33:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Bye-bye.",
+      "timestamp": "00:33:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Michael Grass",
+        "matched_calendar_invitee_email": null
+      },
+      "text": "Bye.",
+      "timestamp": "00:33:47"
+    }
+  ],
+  "transcript_language": "en",
+  "default_summary": {
+    "template_name": "General",
+    "markdown_formatted": "## Meeting Purpose\n\n[Evaluate a lead-gen partnership to scale a recruiting business.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=724.0)\n\n## Key Takeaways\n\n  - [**Goal:** Scale by adding 10–20 new job orders (\"recs\") per quarter, as the existing network of contacts is exhausted.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=587.0)\n  - [**Target:** Contingent direct placement for management roles in mid-size (50–100 employee) construction/engineering firms.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=221.0)\n  - [**Solution:** A 90-day pilot for $9k ($3k/mo) guarantees 10–15 pre-qualified introductions to decision-makers.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1459.0)\n  - [**Value Prop:** SystemHustle uses market signals to identify hiring urgency, securing introductions to roles *before* they go public, which avoids competition and fee negotiation.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=845.0)\n\n## Topics\n\n### Problem: Scaling Beyond the Network\n\n  - [**Business Model:** Contingent direct placement for management roles in construction, engineering, and architecture.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=66.0)\n  - [**Target Client:** Mid-size firms (50–100 employees) that lack an in-house recruiting team but have a budget for fees.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=221.0)\n      - [**Avoids:** Small startups (budget constraints) and large enterprises (internal recruiters, bureaucracy).](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=221.0)\n  - [**Growth Constraint:** The initial network of contacts in the D.C. metro area is exhausted, requiring a new, predictable client acquisition system.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=474.0)\n  - [**Financial Pressure:** The contingent model creates a cash-flow lag, as costs are incurred for months before a placement fee is earned.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=386.0)\n\n### Solution: SystemHustle's Targeted Outreach\n\n  - [**Core Strategy:** Use market signals (e.g., project awards, headcount growth) to identify firms with immediate hiring needs.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=845.0)\n  - [**Process:**](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=845.0)\n    1.  [**Identify Urgency:** Pinpoint firms needing to hire *now*.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=845.0)\n    2.  [**Secure Introduction:** Contact decision-makers and frame Blueprints as a trusted partner.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1123.0)\n    3.  [**Deliver Qualified Intro:** Provide a warm introduction to a pre-vetted prospect ready to discuss hiring.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1047.0)\n  - [**Benefit:** Access to roles before they are posted publicly, avoiding competition and fee negotiation.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=912.0)\n\n### Proposal: 90-Day Pilot\n\n  - [**Terms:** $3,000/month for a 90-day pilot ($9,000 total).](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1459.0)\n  - [**Guarantee:** 10–15 pre-qualified introductions over the 90-day period.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1459.0)\n  - [**Rationale:** The 90-day term allows time for feedback and system optimization, as monthly volume can fluctuate.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1685.0)\n  - [**Post-Pilot:** The engagement can continue at $3,000/month or be restructured (e.g., fee-share) to target higher-ROI clients.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1553.0)\n\n## Next Steps\n\n  - [**Leonid:** Send a formal proposal to Michael via WhatsApp.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1901.0)\n  - [**Michael:** Review the proposal and decide on a start date within the next 30–45 days.](https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq?tab=summary&timestamp=1947.0)\n"
+  },
+  "action_items": [
+    {
+      "description": "Send proposal to Michael re: 90-day pilot ($3k/mo, 10–15 intros); request review/decision",
+      "user_generated": false,
+      "completed": false,
+      "recording_timestamp": "00:31:30",
+      "recording_playback_url": "https://fathom.video/calls/540878599?timestamp=1890.9999",
+      "assignee": {
+        "name": "Leonid Shvorob",
+        "email": "leo@systemhustle.com",
+        "team": null
+      }
+    },
+    {
+      "description": "Add Michael to WhatsApp (571-228-0082)",
+      "user_generated": false,
+      "completed": false,
+      "recording_timestamp": "00:31:46",
+      "recording_playback_url": "https://fathom.video/calls/540878599?timestamp=1906.9999",
+      "assignee": {
+        "name": "Leonid Shvorob",
+        "email": "leo@systemhustle.com",
+        "team": null
+      }
+    }
+  ],
+  "calendar_invitees": [
+    {
+      "name": "mike@staffingblueprint.com",
+      "email": "mike@staffingblueprint.com",
+      "email_domain": "staffingblueprint.com",
+      "is_external": true,
+      "matched_speaker_display_name": null
+    },
+    {
+      "name": "Leonid Shvorob",
+      "email": "leo@systemhustle.com",
+      "email_domain": "systemhustle.com",
+      "is_external": false,
+      "matched_speaker_display_name": null
+    }
+  ],
+  "recorded_by": {
+    "name": "Leonid Shvorob",
+    "email": "leo@systemhustle.com",
+    "email_domain": "systemhustle.com",
+    "team": null
+  },
+  "share_url": "https://fathom.video/share/-BAATx7si6F6ojR_9QywW2jvrhNGArVq",
+  "crm_matches": null
+}

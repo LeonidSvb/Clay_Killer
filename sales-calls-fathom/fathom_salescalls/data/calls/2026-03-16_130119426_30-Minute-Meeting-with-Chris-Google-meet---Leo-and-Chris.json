@@ -1,0 +1,2237 @@
+{
+  "title": "30 Minute Meeting with Chris  (Google meet) - Leo and Chris",
+  "meeting_title": "30 Minute Meeting with Chris  (Google meet) - Leo and Chris",
+  "url": "https://fathom.video/calls/600969513",
+  "created_at": "2026-03-16T14:28:44Z",
+  "scheduled_start_time": "2026-03-16T14:00:00Z",
+  "scheduled_end_time": "2026-03-16T14:30:00Z",
+  "recording_id": 130119426,
+  "recording_start_time": "2026-03-16T14:00:32Z",
+  "recording_end_time": "2026-03-16T14:28:06Z",
+  "calendar_invitees_domains_type": "one_or_more_external",
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, no problem.",
+      "timestamp": "00:00:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:00:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Can you hear me?",
+      "timestamp": "00:00:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I can hear you fine, yeah.",
+      "timestamp": "00:00:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I can hear you fine, if you can hear me.",
+      "timestamp": "00:00:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, awesome.",
+      "timestamp": "00:00:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Long time to see you.",
+      "timestamp": "00:00:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "How have you been doing?",
+      "timestamp": "00:00:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, how's business?",
+      "timestamp": "00:00:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, from my side, all good.",
+      "timestamp": "00:00:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "How's yours?",
+      "timestamp": "00:00:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, yeah, we got really deep into the AI stuff, and I'm certainly finding it an enjoyable period of work.",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But just with, you know, what you can do.",
+      "timestamp": "00:00:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Which are the models you're using mostly?",
+      "timestamp": "00:00:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Claude Code still, or are you using Codex, or?",
+      "timestamp": "00:00:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so now I'm doing Claude Code, because it's like a lot of new applications, but I think it's basically like the same.",
+      "timestamp": "00:00:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's just like wrapping different software.",
+      "timestamp": "00:00:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But now I'm trying to make...",
+      "timestamp": "00:00:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "...",
+      "timestamp": "00:00:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Have you tried OpenClaw?",
+      "timestamp": "00:00:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I tried, but it's okay.",
+      "timestamp": "00:01:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But for the stuff I'm doing now, so it's not so useful.",
+      "timestamp": "00:01:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:01:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, nice.",
+      "timestamp": "00:01:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Tell me some use cases if you think what you could help me with.",
+      "timestamp": "00:01:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "What sort of things do you think would be the best spend of your time?",
+      "timestamp": "00:01:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:01:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It depends on your priorities, but for the last couple of months, I'm more focusing now for things more tied to sales, business development, like this stuff.",
+      "timestamp": "00:01:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And I'm coding to support it, like dashboards or sales automations or like in this area.",
+      "timestamp": "00:01:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if you have anything in mind that's like from this area, it would be good.",
+      "timestamp": "00:01:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:01:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Well, I...",
+      "timestamp": "00:01:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I...",
+      "timestamp": "00:01:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I'm always wanting to recruit more owners on the national park, property owners that rent out their properties.",
+      "timestamp": "00:02:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And the workflow is generally, I try and book a call with me.",
+      "timestamp": "00:02:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I find that's the most useful step if I can bring a personality, like a person to the sign-up process.",
+      "timestamp": "00:02:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That's normally quite helpful.",
+      "timestamp": "00:02:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Then I'm generally quite successful at getting them to sign up.",
+      "timestamp": "00:02:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "One of the places, it's funny, I was thinking about this last night, is a lot of owners are on Airbnb.",
+      "timestamp": "00:02:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But Airbnb is quite clever about restricting the contact details for the owners.",
+      "timestamp": "00:02:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And, you know, it's funny, I was thinking about this last night.",
+      "timestamp": "00:02:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I mean, it's like, do you use Playwright or any of those kind of, you know, like it will control?",
+      "timestamp": "00:02:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Or the browser, like, because often they'll write into the description, the name of the property, and then you can do a web search to go in, like, so you can find.",
+      "timestamp": "00:03:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "so basically, there is a lot of scrapers, you can find in Appify, and I'm sure it's like plenty of like Airbnb.",
+      "timestamp": "00:03:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for your case, I'm just start, like, researching.",
+      "timestamp": "00:03:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So maybe some of them can be LinkedIn, for example, if they own, they may be property investors in, like, UK.",
+      "timestamp": "00:03:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I think my gut instinct is that they're typically 60 years old, not very tech-savvy, you know, like an email is about as far as they'll get within the technology world.",
+      "timestamp": "00:03:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So I don't think you'll find them much on LinkedIn, but, yeah, the ultimate is trying to find an email address, even once we've got the email.",
+      "timestamp": "00:03:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We can automate our emails pretty easily with the API, but collecting email addresses and then maybe even the physical address, because we could post something out to their letterbox.",
+      "timestamp": "00:04:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That's another thing, Yeah, yeah.",
+      "timestamp": "00:04:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I think if, like, market is very small, like yours, it's better do whatever it takes to reach out to them.",
+      "timestamp": "00:04:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it can, first, emails, then get calls to set an appointment, and then if nothing works, like, send a letter.",
+      "timestamp": "00:04:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, like that, because, yeah, if market's big, like, I don't know, recruitment companies, U.S.",
+      "timestamp": "00:04:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "or others, you can just blast thousands of emails every day.",
+      "timestamp": "00:04:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But if it's more small, it takes more time to find these emails.",
+      "timestamp": "00:04:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So sometimes...",
+      "timestamp": "00:04:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "sometimes...",
+      "timestamp": "00:04:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It can be, I don't know, some like scrapers, as you say, from some sources that's not so easy to find, or maybe some databases, maybe there is like database of all owners, or maybe some, I don't know, website and internet, some forum where they're discussing.",
+      "timestamp": "00:05:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, you know, some non-obvious places where they can be, so yeah, in these cases, I'm just asking like CGPT or plot, okay, if this is our like market, what are best places to find it, and then just find it.",
+      "timestamp": "00:05:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So when find it, just make a campaign, like write good emails, and then send, and if it doesn't work, you can send it next month and next month until it's worked.",
+      "timestamp": "00:05:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So, yeah, I mean, I'm happy for you to spend some hours on that, if you want, like, you did a good job last time.",
+      "timestamp": "00:05:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I feel like, yeah, that kind of outreach, that kind of data collection of the contact details is, you know, it'd be a good one.",
+      "timestamp": "00:06:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I'm sure there's other things you could do as well, but ultimately my kind of North Star is creating sales from the properties I've got and like, you know, finding new inventory, which are the properties to kind of sign up with us.",
+      "timestamp": "00:06:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And, yeah, you know, why don't we agree that, you know, a certain amount of money or something, you can see what you can come up with.",
+      "timestamp": "00:06:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "You certainly added some good value last time.",
+      "timestamp": "00:06:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I particularly liked the change log.",
+      "timestamp": "00:06:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Do you remember you added that on the, I think, when we were doing the GitHub repositories?",
+      "timestamp": "00:06:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "It was, it was, it that was an improvement of our workflow when we were, you know, working with Claude Code.",
+      "timestamp": "00:06:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "It's keeping a record with.",
+      "timestamp": "00:06:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "With everything we've done.",
+      "timestamp": "00:07:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, yeah, yeah.",
+      "timestamp": "00:07:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So, yeah, there's sort of, yeah, there's little moments of things that can be really useful, and, yeah, certainly I've got confidence in your ability using the AI, and if there's value that you can add, I'm happy to, you know, create another project for us.",
+      "timestamp": "00:07:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, it's great.",
+      "timestamp": "00:07:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, what I'm thinking, if you have some special ideas outside of what we're talking, I'm open to hear, like, what's your ideas.",
+      "timestamp": "00:07:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But last time we discussed that you have, like, big database of emails already, like, the customers or, like, prospects you contacted.",
+      "timestamp": "00:07:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, have you done anything with this, or it's still in the list?",
+      "timestamp": "00:07:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, we've got, we've got, yeah, we've got some owners that have maybe been in touch with us, and then, no.",
+      "timestamp": "00:07:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We've never converted them to sign up.",
+      "timestamp": "00:08:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So there's a kind of list along those lines.",
+      "timestamp": "00:08:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We've tried various things.",
+      "timestamp": "00:08:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Like I tried like a MailChimp campaign where it would send, you know, every few weeks, like some kind of follow-up to them.",
+      "timestamp": "00:08:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, some of them are just, they just get a bit stuck at that crossing the line of committing to it.",
+      "timestamp": "00:08:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I've definitely found an improvement in my workflow when I actually try and talk to them, like brings a bit of a face to the business.",
+      "timestamp": "00:08:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So that's what I asked my team to do.",
+      "timestamp": "00:08:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "If anyone is a prospecting client, just book a meeting with me and I talk to them for 30 minutes.",
+      "timestamp": "00:08:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And I feel like that's as good as I can do.",
+      "timestamp": "00:08:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And then we follow them up with emails.",
+      "timestamp": "00:08:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But I also think there's a whole set of people that have maybe even never heard of us.",
+      "timestamp": "00:08:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Let me share my screen just to kind of show you.",
+      "timestamp": "00:08:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Okay, let's say I pick a destination, which is, I think you can go, so, actually this map isn't the best here, let me just show you.",
+      "timestamp": "00:09:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, so, look, we're in the UK here, this is like the UK, and this green area is the national park that we cover.",
+      "timestamp": "00:09:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So it's very geographically targeted, and actually one of the, this is, this destination here is where.",
+      "timestamp": "00:09:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We've got the strongest amount of properties and inventory.",
+      "timestamp": "00:10:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That's like where I started the business, but there's another area down here, which is called Linton, and this is full, it's actually called Linmouth and Linton, and this is full of holiday properties.",
+      "timestamp": "00:10:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So if I search this area here, Linton, if they're coming on Airbnb, you can start to see there's like 200 places to stay here, which is quite a lot, but I reckon a lot of these have never even heard of us.",
+      "timestamp": "00:10:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "It's like, if I take this one, for example, in the description here, they've got Lin Cottage.",
+      "timestamp": "00:10:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Sometimes you can find a website or something.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And in website, they have phone?",
+      "timestamp": "00:11:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:11:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So here you go.",
+      "timestamp": "00:11:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So they've got a website and then this is the data that I want.",
+      "timestamp": "00:11:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And for this one, once we've got that spreadsheet, we'll be able to see whether we've had any contact with them.",
+      "timestamp": "00:11:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "You see this one, we've never contacted.",
+      "timestamp": "00:11:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So that would be an example of a good person to contact.",
+      "timestamp": "00:11:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And often the description there.",
+      "timestamp": "00:11:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So I don't know why they're running some sort of scraper tool that can take these descriptions out and then search online to find if they've got a website.",
+      "timestamp": "00:11:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So this is exactly kind of target audience where, yeah, we don't tend to do like a room in a house.",
+      "timestamp": "00:11:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We tend to do like a whole property where they've got a kitchen.",
+      "timestamp": "00:11:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So if they've got a kitchen, that is.",
+      "timestamp": "00:11:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That's signal.",
+      "timestamp": "00:12:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That's our audience.",
+      "timestamp": "00:12:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But this person may have never heard of our business and we're happy to advertise alongside of them in, you know, like they can keep their existing listing.",
+      "timestamp": "00:12:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We just want to be like dual market with them.",
+      "timestamp": "00:12:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So that's, you know, that's, that's, I feel like that could be useful.",
+      "timestamp": "00:12:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Like, yeah, yeah, I think we're about like 500 or something that has never heard of us.",
+      "timestamp": "00:12:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And if we can convert some of those with email address and like postal number or phone number, like we can, we can then, you know, once we get to that point, we could ask your advice as well, what you think would help convert, but ultimately email outreach and maybe postal something in the post and get them to book a call with me.",
+      "timestamp": "00:12:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Or I think just call them, then say, this is like what you're doing.",
+      "timestamp": "00:12:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Interested, and if they're interested, they can call you, and you can walk them through and present them in service.",
+      "timestamp": "00:13:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "How do you want to do it?",
+      "timestamp": "00:13:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I can't remember what we did payment-wise last time.",
+      "timestamp": "00:13:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I think we just agreed an amount, didn't we?",
+      "timestamp": "00:13:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And I paid you up front or something.",
+      "timestamp": "00:13:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I can't remember.",
+      "timestamp": "00:13:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "You didn't like the hourly rate, which is fine.",
+      "timestamp": "00:13:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I think if it's more like, you know, sales, business development thing, that's what I'm focusing on.",
+      "timestamp": "00:13:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We can make like some fix, like, I don't know, collecting data.",
+      "timestamp": "00:13:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "This is like technical stuff, like scraper, to find all the contacts.",
+      "timestamp": "00:13:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And also, if you want, I can reach out to them on my sites via email, or I don't know, if you use CRM, I can make some process, like new CRM, some campaign.",
+      "timestamp": "00:13:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So you can monitor it.",
+      "timestamp": "00:13:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I can also, like call them.",
+      "timestamp": "00:13:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I'll make a process that's then.",
+      "timestamp": "00:13:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, can convert into meetings because it's like small markets and I think it's better not only sending emails but also calling and whatever needs to close.",
+      "timestamp": "00:14:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if we can make it, so it can be like process, repeatable, maybe for this area when we've done it, so you will have like a process that you can do like for other areas.",
+      "timestamp": "00:14:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I don't know if you have plans to extend in like, because you have kind of like software and...",
+      "timestamp": "00:14:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "it's, it's, yeah, that's, that's not a short answer that for me.",
+      "timestamp": "00:14:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So in terms of like the front, the front end, like business that competes with Airbnb, I've ended up with just this, this one national park, which has this, you know, it's like, we have our own Airbnb kind of style search here.",
+      "timestamp": "00:14:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I have, I don't...",
+      "timestamp": "00:14:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I plans, I think, to expand this part of the business outside of this area.",
+      "timestamp": "00:15:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But what I am building is the property management system, which is this part of it, which collects the bookings from these channels.",
+      "timestamp": "00:15:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "They come from Airbnb, Booking.com, and our local website.",
+      "timestamp": "00:15:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "This is a scalable business that then you could plug this into another part of the world.",
+      "timestamp": "00:15:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So let's say, don't know, aren't you still in Bali?",
+      "timestamp": "00:15:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Are in Bali?",
+      "timestamp": "00:15:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, still.",
+      "timestamp": "00:15:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So let's say someone in Bali wanted to recreate this business in Bali.",
+      "timestamp": "00:15:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "They need the property management software, which is this part, which I think is a part that I would rather sell and help people scale.",
+      "timestamp": "00:15:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So that's the bit that I'm trying to work on, is people who want to grow an agency in a pocket of the world, you know, to get, you know, them.",
+      "timestamp": "00:15:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "To give them the software to do that.",
+      "timestamp": "00:16:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And that's what BookingBrain, that's what the software does.",
+      "timestamp": "00:16:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "You know, you have to kind of onboard your properties and then you can manage a certain area.",
+      "timestamp": "00:16:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So, so yeah, I don't really want to, I don't really want to scale the, I don't really want to take on Airbnb, but I feel like there's a good business if you just pick a, pick a, pick a geographical area and you just become like a local business.",
+      "timestamp": "00:16:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:16:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That works alongside an Airbnb.",
+      "timestamp": "00:16:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Hmm.",
+      "timestamp": "00:16:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think it's, uh, can be done because a lot of places in the world, so it's can more easily to reach out to these people.",
+      "timestamp": "00:16:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, but as you say, it's like, you're thinking about it.",
+      "timestamp": "00:16:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's, can we do like, I don't test campaign to see what's like reaction and so on.",
+      "timestamp": "00:16:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But I think, uh, first we can start from.",
+      "timestamp": "00:16:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Um, .",
+      "timestamp": "00:16:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": ".",
+      "timestamp": "00:16:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": ".",
+      "timestamp": "00:16:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": ".",
+      "timestamp": "00:16:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "These areas in England, so, and then see how it goes, and later, if you will decide that it's a priority, we can make some tests, campaign, outreach for your book and brain.",
+      "timestamp": "00:17:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "What about, how much do you want to be paid for the, like, how do you want to separate the, do you want to do the outreach initially, just for that part?",
+      "timestamp": "00:17:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I mean, I could imagine a model that I can give you, like, an incentive of a commission for each sign-up, or something like that, like, you know, that, I can imagine a model where we do that, but initially, I just want to pay you for the time, or, you know, whatever, for the, for the kind of outreach, and then once we've got the database, we need to kind of, like, figure out how best to convert them.",
+      "timestamp": "00:17:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think if creating the workflow that can,",
+      "timestamp": "00:17:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like scrape, or I think if it's just one-time job, because if you have these properties, you will not do this again, I think, or maybe, I don't know, every year you can do it again, maybe some new owners will have something.",
+      "timestamp": "00:18:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we also can make like a workflow.",
+      "timestamp": "00:18:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So when I scrape it on my site, I can give it like to you, so you can use it later if you need.",
+      "timestamp": "00:18:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So this is one aspect, like building a list, like a pipeline of owners in this park for who we can reach out.",
+      "timestamp": "00:18:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So once this is done, I think, yeah, it's better like fix price, because it's very, you know, straightforward what we need to do.",
+      "timestamp": "00:18:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And then for, if I help you to reach out to them in different ways, like make a kind of success, system, when we start in one chat.",
+      "timestamp": "00:18:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, can do like commission base.",
+      "timestamp": "00:19:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, so kind of when you have a meeting with them, you qualify it, you pay me some commission.",
+      "timestamp": "00:19:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So, yeah, I mean, I'm essentially for incentive models, you know, to help me grow.",
+      "timestamp": "00:19:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, I've got one side of sales, which is growing the inventory or the properties.",
+      "timestamp": "00:19:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And then I've got another side of sales, which is getting people to book the properties.",
+      "timestamp": "00:19:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So there's two, there's two channels of sales really.",
+      "timestamp": "00:19:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But yeah, ultimately, I feel like there's no reason why I couldn't have, you know, 90% of the inventory on the national park.",
+      "timestamp": "00:19:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Like there's no reason for not to sign up with me because they can also advertise with Airbnb, you know, it's like, it's a way of just giving their property more exposure on different marketing channels.",
+      "timestamp": "00:19:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So, you know, there's no, there's no,",
+      "timestamp": "00:19:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "There's reason why they wouldn't be able to sign all of them up because they can continue their other marketing elsewhere.",
+      "timestamp": "00:20:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And that's what the channel manager does quite well is it connects the calendars to stop double bookings via the API.",
+      "timestamp": "00:20:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think if you have CRM, we can make it in your CRM, so it's more easy to connect with any systems you have, databases.",
+      "timestamp": "00:20:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So like with CRM, then like it checks if this client is in your database, have you contacted and so on.",
+      "timestamp": "00:20:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So kind of make a process, sales process that we will use later to help them.",
+      "timestamp": "00:20:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "That sounds good.",
+      "timestamp": "00:20:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "How much can I pay you?",
+      "timestamp": "00:20:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we can start just from, I don't know, like milestones.",
+      "timestamp": "00:20:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So first we need to collect this data.",
+      "timestamp": "00:20:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we need to scrape this then.",
+      "timestamp": "00:20:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "is at need need to prepare for this",
+      "timestamp": "00:20:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "To show me, find the websites, scrape the phone numbers, or like anything we have.",
+      "timestamp": "00:21:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So this is kind of one milestone I see.",
+      "timestamp": "00:21:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Then it's, when it's done, like, so also we should validate it from your database, but I think better do it in your CRM.",
+      "timestamp": "00:21:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So once we find it, we edit a new CRM, and from there, we go further.",
+      "timestamp": "00:21:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for this scraping, I need to check, but I think like three, four hundred dollars to create their database that we will use further.",
+      "timestamp": "00:21:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And, yeah, then we see, so what CRM are you using?",
+      "timestamp": "00:21:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We're using Freshdesk.",
+      "timestamp": "00:21:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "It's got, it's got a very good API.",
+      "timestamp": "00:21:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So it's...",
+      "timestamp": "00:21:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "We've got good integration with Claude, so yeah, if we can get the email addresses and any data that we've got, we can query the database, like you said, with checking past communication, and we'll be able to personalize emails outbound based on what we know about their business.",
+      "timestamp": "00:22:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So, yeah, that part has been significantly improved with Claude Code helping on those types of things.",
+      "timestamp": "00:22:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Good.",
+      "timestamp": "00:22:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, once we have all this database, I think, then we integrate it in CRM.",
+      "timestamp": "00:22:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, for example, if we have, like, fonts or anything, then we upload it in your CRM, then we validate it through your, like, database API or everything.",
+      "timestamp": "00:22:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, like this.",
+      "timestamp": "00:22:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, that's cool.",
+      "timestamp": "00:22:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, Well, I'm happy with that.",
+      "timestamp": "00:22:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, The...",
+      "timestamp": "00:22:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "The, yeah, things to remember is target properties that have a kitchen so people can cook within the property because sometimes if it's just a room with no kitchen, that's not really our target market.",
+      "timestamp": "00:23:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And then also within the National Park of Exmoor, but we do do the surrounding areas.",
+      "timestamp": "00:23:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So if they're 20 miles outside or something, 20 kilometers, that's fine.",
+      "timestamp": "00:23:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "They tend to be happy with that.",
+      "timestamp": "00:23:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So it's not like a strict boundary.",
+      "timestamp": "00:23:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "It's within the region of the National Park.",
+      "timestamp": "00:23:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And then I would say the biggest area for growth in terms of population is probably Linton, which is that one I showed you, spelled L-Y-N-T-O-N.",
+      "timestamp": "00:23:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And below that one, there's Linmouth.",
+      "timestamp": "00:23:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "It's a bit smaller, but they're often like a big brother and a little brother.",
+      "timestamp": "00:23:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "They're considered together.",
+      "timestamp": "00:23:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "People talk about Linton and Linmouth.",
+      "timestamp": "00:23:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And yeah.",
+      "timestamp": "00:23:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I think just scraping as much information as we can into a spreadsheet will give us a really good milestone to try and convert those, you know, and if you can help me, if you can help me sign up new owners, I could give you some incentive, like, I don't know, when we take the first, like the first booking of the new property is when I actually make some money out of it, because I don't make anything until, we take the first booking, but at the point of the first booking, I could, you know, I could give you a commission on that sale, basically, as they're trying to try and incentivize you, then, you know, once we've done that project, you might be able to then help me just generate more sales, like as well, I've got, I've got this website.",
+      "timestamp": "00:24:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, yeah, I think it's really what I like to do.",
+      "timestamp": "00:24:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if you will need help, I will definitely help you.",
+      "timestamp": "00:24:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "There's various avenues there.",
+      "timestamp": "00:25:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "There's social media, marketing, there's Google AdWords.",
+      "timestamp": "00:25:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I want to kind of ask, so if you have, if you sign a new property, like what's your goals for, I don't know, 2026?",
+      "timestamp": "00:25:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "How many new properties you want to sign?",
+      "timestamp": "00:25:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Have you any specific numbers in your mind?",
+      "timestamp": "00:25:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I I, we, we've got about 250 properties and I reckon there's about a thousand, like our target would be to get to about a thousand.",
+      "timestamp": "00:25:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So I feel like we can times our business by about four, four times.",
+      "timestamp": "00:25:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But it's a bit slow onboarding people.",
+      "timestamp": "00:25:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I could, you know, if we did, if we did suddenly onboard a lot of people, we could, we could take on more people to help with that.",
+      "timestamp": "00:25:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I've got another call in four minutes and I need to do a little bit of preparation for it.",
+      "timestamp": "00:25:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Okay.",
+      "timestamp": "00:25:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:25:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So let's start with what we've discussed.",
+      "timestamp": "00:25:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I'm also happy to pay you in advance.",
+      "timestamp": "00:26:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I know I've worked with you before, so I trust you.",
+      "timestamp": "00:26:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "And yeah, the end goal would be to collate a big spreadsheet of 250, 500, something like that, of people that we could start an outreach campaign for.",
+      "timestamp": "00:26:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Okay, awesome.",
+      "timestamp": "00:26:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I will recap this call and do some research.",
+      "timestamp": "00:26:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I will send you in WhatsApp.",
+      "timestamp": "00:26:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, it's good.",
+      "timestamp": "00:26:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I have like PayPal, if you're okay.",
+      "timestamp": "00:26:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I might convert you to email, any, because I find email a bit easier with dealing with things on volume.",
+      "timestamp": "00:26:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "But if you use the email address, stay at the best of Exmoor.co.uk.",
+      "timestamp": "00:26:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I'm sure you would have sent it there last time.",
+      "timestamp": "00:26:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Okay, okay.",
+      "timestamp": "00:26:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Just sharing with me your email.",
+      "timestamp": "00:26:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "will...",
+      "timestamp": "00:26:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "because WhatsApp, I definitely get a bit behind you, because I tend to use it for personal, and then I have like 25 in red messages.",
+      "timestamp": "00:26:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So send a email.",
+      "timestamp": "00:26:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "I'll be better at responding there.",
+      "timestamp": "00:26:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Okay, cool.",
+      "timestamp": "00:26:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So...",
+      "timestamp": "00:26:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "So...",
+      "timestamp": "00:26:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I want to start, like, this week, or what's your timeline?",
+      "timestamp": "00:27:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Whatever you you want, yeah.",
+      "timestamp": "00:27:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Just send me an invoice with the milestones and I'll pay you in advance.",
+      "timestamp": "00:27:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, Chris, nice talking to you.",
+      "timestamp": "00:27:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We'll reach out to you later.",
+      "timestamp": "00:27:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Cheers, mate.",
+      "timestamp": "00:27:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Chris Lister",
+        "matched_calendar_invitee_email": "chris@thebestofexmoor.co.uk"
+      },
+      "text": "Yeah, bye.",
+      "timestamp": "00:27:16"
+    }
+  ],
+  "transcript_language": "en",
+  "default_summary": {
+    "template_name": "General",
+    "markdown_formatted": "## Meeting Purpose\n\n[Define a project to acquire new property owners.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=119.0)\n\n## Key Takeaways\n\n  - [**Project:** Acquire new properties for \"Best of Exmoor\" by scraping Airbnb for owner contact info (email, phone, address) to build a sales pipeline.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=534.0)\n  - [**Goal:** Grow inventory from \\~250 to 1,000 properties, quadrupling the business.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1507.0)\n  - [**Scope:** Focus on the Exmoor National Park region, prioritizing the Linton/Lynmouth area, and target properties with a kitchen.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1380.0)\n  - [**Phased Payment:** A fixed fee (\\~$300–$400) for data collection, followed by a commission on new owner sign-ups.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1245.0)\n\n## Topics\n\n### Problem: Slow Owner Acquisition\n\n  - [**Goal:** Grow inventory from \\~250 to 1,000 properties.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1507.0)\n  - [**Challenge:** Airbnb restricts owner contact details, making direct outreach difficult.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=151.0)\n  - [**Current Process:** Book a 30-min call with Chris → high conversion rate.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=506.0)\n  - [**Target Profile:** Non-tech-savvy owners (\\~60+ years old) for whom email is the primary digital channel.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=216.0)\n\n### Solution: Data Scraping & Outreach\n\n  - [**Strategy:** Scrape Airbnb listings for property names, then web-search to find owner contact info (website, email, phone, address).](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=648.0)\n  - [**Target Criteria:**](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1380.0)\n      - [**Location:** Exmoor National Park region, including a \\~20km radius.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1396.0)\n      - [**Priority Area:** Linton & Lynmouth.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1415.0)\n      - [**Property Type:** Entire properties with a kitchen (not single rooms).](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=706.0)\n  - [**Deliverable:** A spreadsheet of 250–500+ new prospects.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1566.0)\n  - [**Integration:** Upload data to Freshdesk CRM to validate against existing contacts and personalize outreach.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1308.0)\n\n### Payment & Project Structure\n\n  - [**Phase 1: Data Collection**](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1245.0)\n      - [**Scope:** Scrape data and deliver a spreadsheet.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1250.0)\n      - [**Cost:** Fixed fee of \\~$300–$400, paid upfront.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1245.0)\n  - [**Phase 2: Outreach & Conversion**](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1125.0)\n      - [**Scope:** Execute a multi-channel outreach campaign (email, phone, mail).](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=262.0)\n      - [**Cost:** Commission-based, paid on the first booking of a new property.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1440.0)\n\n### Context: Business Strategy\n\n  - [**\"Best of Exmoor\":** A local agency for Exmoor National Park properties.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=875.0)\n  - [**\"BookingBrain\":** A scalable property management software for agencies worldwide.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=904.0)\n  - [**Rationale:** Focus on growing \"Best of Exmoor\" inventory to fund \"BookingBrain\" development.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=904.0)\n\n## Next Steps\n\n  - [**Leonid:**](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1580.0)\n      - [Research scraping feasibility and refine cost estimate.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1245.0)\n      - [Send a formal proposal and invoice to Chris via email.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1620.0)\n  - [**Chris:**](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1620.0)\n      - [Pay the invoice upon receipt.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1620.0)\n  - [**Communication:**](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1588.0)\n      - [Use email (`stay@thebestofexmoor.co.uk`) for all project communication.](https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR?tab=summary&timestamp=1588.0)\n"
+  },
+  "action_items": [
+    {
+      "description": "Research Exmoor/Lynton-Lynmouth owner data sources; send recap to Chris (email)",
+      "user_generated": false,
+      "completed": false,
+      "recording_timestamp": "00:26:09",
+      "recording_playback_url": "https://fathom.video/calls/600969513?timestamp=1569.9999",
+      "assignee": {
+        "name": "Leonid Shvorob",
+        "email": "leo@systemhustle.com",
+        "team": null
+      }
+    },
+    {
+      "description": "Email Chris invoice w/ milestones (~$300-400) for Exmoor/Lynton-Lynmouth owner data; start scraping on payment",
+      "user_generated": false,
+      "completed": false,
+      "recording_timestamp": "00:26:54",
+      "recording_playback_url": "https://fathom.video/calls/600969513?timestamp=1614.9999",
+      "assignee": {
+        "name": "Leonid Shvorob",
+        "email": "leo@systemhustle.com",
+        "team": null
+      }
+    }
+  ],
+  "calendar_invitees": [
+    {
+      "name": "Chris Lister",
+      "email": "chris@thebestofexmoor.co.uk",
+      "email_domain": "thebestofexmoor.co.uk",
+      "is_external": true,
+      "matched_speaker_display_name": null
+    },
+    {
+      "name": "Leonid Shvorob",
+      "email": "leo@systemhustle.com",
+      "email_domain": "systemhustle.com",
+      "is_external": false,
+      "matched_speaker_display_name": null
+    }
+  ],
+  "recorded_by": {
+    "name": "Leonid Shvorob",
+    "email": "leo@systemhustle.com",
+    "email_domain": "systemhustle.com",
+    "team": null
+  },
+  "share_url": "https://fathom.video/share/3BWGcN9x7oy6iVmMyQW7PcEN7c1LphcR",
+  "crm_matches": null
+}

@@ -1,0 +1,114 @@
+{
+  "name": "MX Provider Check — Google Sheets",
+  "nodes": [
+    {
+      "id": "b2000001-0000-0000-0000-000000000001",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 320],
+      "parameters": {}
+    },
+    {
+      "id": "b2000001-0000-0000-0000-000000000002",
+      "name": "Info",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [240, 120],
+      "parameters": {
+        "content": "## MX Provider Check — Google Sheets\n\n**Настройка (3 шага):**\n1. Нода **Read Leads** — вставь Spreadsheet ID и название листа с лидами\n2. Нода **Write Results** — вставь Spreadsheet ID и название листа для результатов (можно тот же файл, другой лист)\n3. Нажми Start\n\n**Результат:** новые колонки `mx_provider` и `mx_gateway` в листе результатов.\n\nЛист результатов создастся автоматически если его нет. Заголовки пишутся при первом запуске.",
+        "height": 160,
+        "width": 720,
+        "color": 4
+      }
+    },
+    {
+      "id": "b2000001-0000-0000-0000-000000000003",
+      "name": "Read Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [460, 320],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "isvTmT5STgsOYA7P",
+          "name": "Google Sheets"
+        }
+      },
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "filtersUI": {},
+        "combineFilters": "AND",
+        "options": {}
+      }
+    },
+    {
+      "id": "b2000001-0000-0000-0000-000000000004",
+      "name": "Process MX",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 320],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const CONCURRENCY = 40;\n\nconst DIRECT = [\n  { name: 'Google',     p: ['aspmx.l.google.com','googlemail.com','alt1.aspmx','alt2.aspmx','aspmx2.googlemail','aspmx3.googlemail'] },\n  { name: 'Microsoft',  p: ['mail.protection.outlook.com','olc.protection.outlook.com','outlook.com'] },\n  { name: 'Mimecast',   p: ['mimecast.com'] },\n  { name: 'Proofpoint', p: ['pphosted.com'] },\n  { name: 'Barracuda',  p: ['barracudanetworks.com'] },\n  { name: 'Zoho',       p: ['zoho.com','zoho.eu'] },\n  { name: 'ProtonMail', p: ['protonmail.ch'] },\n  { name: 'Yahoo',      p: ['yahoodns.net'] },\n];\n\nconst GATEWAYS = {\n  'hornetsecurity.com':  'Hornetsecurity',\n  'ppe-hosted.com':      'Proofpoint Essentials',\n  'sophos.com':          'Sophos',\n  'trendmicro.com':      'Trend Micro',\n  'zerospam.ca':         'ZeroSpam',\n  'antispameurope.com':  'Antispam Europe',\n  'mtaroutes.com':       'MTA Routes',\n  'mxthunder.net':       'MX Thunder',\n  'mxthunder.com':       'MX Thunder',\n  'iphmx.com':           'Cisco IronPort',\n  'arsmtp.com':          'AR SMTP',\n  'emailservice.co':     'Email Service',\n  'emailservice.io':     'Email Service',\n  'emailservice.cc':     'Email Service',\n  'siteprotect.com':     'SiteProtect',\n  'mailhop.org':         'Mailhop',\n  'titanhq.com':         'TitanHQ',\n  'gosecure.net':        'GoSecure',\n  'esvacloud.com':       'ESVA Cloud',\n  'megamailservers.com': 'Mega Mail Servers',\n  'mycloudmailbox.com':  'My Cloud Mailbox',\n  'ncisystems.com':      'NCI Systems',\n};\n\nfunction getDomain(email) {\n  email = (email || '').trim().toLowerCase();\n  return email.includes('@') ? email.split('@')[1] : '';\n}\n\nfunction classify(mxList, txt) {\n  if (!mxList.length) return ['No MX', ''];\n  const combined = mxList.join(' ').toLowerCase();\n  for (const { name, p } of DIRECT) {\n    if (p.some(x => combined.includes(x))) return [name, ''];\n  }\n  const parts = mxList[0].replace(/\\.$/, '').split('.');\n  const root = parts.slice(-2).join('.');\n  const gname = GATEWAYS[root] || root;\n  const hint = txt.includes('spf.protection.outlook.com') || txt.includes('onmicrosoft.com') ? 'Microsoft'\n             : txt.includes('_spf.google.com') ? 'Google' : '';\n  return ['Other', hint ? `${gname} (${hint})` : gname];\n}\n\nasync function fetchDNS(domain, type) {\n  try {\n    const r = await fetch(`https://dns.google/resolve?name=${domain}&type=${type}`);\n    if (!r.ok) return null;\n    return await r.json();\n  } catch { return null; }\n}\n\nconst items = $input.all();\n\n// Auto-detect email column\nconst firstItem = items[0]?.json || {};\nconst emailField = Object.keys(firstItem).find(k => k.trim().toLowerCase() === 'email') || 'Email';\n\nconst domains = [...new Set(items.map(i => getDomain(i.json[emailField])).filter(Boolean))];\nconsole.log(`Rows: ${items.length} | Unique domains: ${domains.length}`);\n\n// Concurrent DNS fetch\nconst results = {};\nconst queue = [...domains];\nconst workers = Array.from({ length: Math.min(CONCURRENCY, domains.length) }, async () => {\n  while (queue.length) {\n    const domain = queue.shift();\n    const [mxData, txtData] = await Promise.all([\n      fetchDNS(domain, 'MX'),\n      fetchDNS(domain, 'TXT')\n    ]);\n    const mx = (mxData?.Answer || []).filter(a => a.type === 15)\n      .map(a => a.data.split(' ').slice(1).join(' ').replace(/\\.$/, '').toLowerCase());\n    const txt = (txtData?.Answer || []).filter(a => a.type === 16)\n      .map(a => a.data).join(' ').toLowerCase();\n    results[domain] = classify(mx, txt);\n  }\n});\nawait Promise.all(workers);\n\nconst stats = {};\nconst output = items.map(item => {\n  const domain = getDomain(item.json[emailField]);\n  const [provider, gateway] = domain ? (results[domain] || ['Error', '']) : ['No email', ''];\n  stats[provider] = (stats[provider] || 0) + 1;\n  return { json: { ...item.json, mx_provider: provider, mx_gateway: gateway } };\n});\n\nconsole.log('Stats:', JSON.stringify(stats));\nreturn output;"
+      }
+    },
+    {
+      "id": "b2000001-0000-0000-0000-000000000005",
+      "name": "Write Results",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [940, 320],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "isvTmT5STgsOYA7P",
+          "name": "Google Sheets"
+        }
+      },
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SPREADSHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "MX Results",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {
+          "headerRow": true
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [[{"node": "Read Leads", "type": "main", "index": 0}]]
+    },
+    "Read Leads": {
+      "main": [[{"node": "Process MX", "type": "main", "index": 0}]]
+    },
+    "Process MX": {
+      "main": [[{"node": "Write Results", "type": "main", "index": 0}]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

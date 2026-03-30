@@ -1,0 +1,73 @@
+{
+  "name": "MX Provider Check",
+  "nodes": [
+    {
+      "id": "a1000001-0000-0000-0000-000000000001",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "parameters": {}
+    },
+    {
+      "id": "a1000001-0000-0000-0000-000000000002",
+      "name": "Read CSV",
+      "type": "n8n-nodes-base.readBinaryFile",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "parameters": {
+        "filePath": "C:\\Users\\79818\\Downloads\\your_leads.csv"
+      },
+      "notes": "Change filePath to your input CSV"
+    },
+    {
+      "id": "a1000001-0000-0000-0000-000000000003",
+      "name": "Process MX",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ===== CONFIG — change paths here =====\nconst OUTPUT_PATH = 'C:\\\\Users\\\\79818\\\\Downloads\\\\your_leads_mx.csv';\nconst CONCURRENCY = 40;\n\n// ===== PROVIDER PATTERNS =====\nconst DIRECT = [\n  { name: 'Google',     p: ['aspmx.l.google.com','googlemail.com','alt1.aspmx','alt2.aspmx','aspmx2.googlemail','aspmx3.googlemail'] },\n  { name: 'Microsoft',  p: ['mail.protection.outlook.com','olc.protection.outlook.com','outlook.com'] },\n  { name: 'Mimecast',   p: ['mimecast.com'] },\n  { name: 'Proofpoint', p: ['pphosted.com'] },\n  { name: 'Barracuda',  p: ['barracudanetworks.com'] },\n  { name: 'Zoho',       p: ['zoho.com','zoho.eu'] },\n  { name: 'ProtonMail', p: ['protonmail.ch'] },\n  { name: 'Yahoo',      p: ['yahoodns.net'] },\n];\n\nconst GATEWAYS = {\n  'hornetsecurity.com':   'Hornetsecurity',\n  'ppe-hosted.com':       'Proofpoint Essentials',\n  'sophos.com':           'Sophos',\n  'trendmicro.com':       'Trend Micro',\n  'zerospam.ca':          'ZeroSpam',\n  'antispameurope.com':   'Antispam Europe',\n  'mtaroutes.com':        'MTA Routes',\n  'mxthunder.net':        'MX Thunder',\n  'mxthunder.com':        'MX Thunder',\n  'iphmx.com':            'Cisco IronPort',\n  'arsmtp.com':           'AR SMTP',\n  'emailservice.co':      'Email Service',\n  'emailservice.io':      'Email Service',\n  'emailservice.cc':      'Email Service',\n  'siteprotect.com':      'SiteProtect',\n  'mailhop.org':          'Mailhop',\n  'titanhq.com':          'TitanHQ',\n  'gosecure.net':         'GoSecure',\n  'esvacloud.com':        'ESVA Cloud',\n  'megamailservers.com':  'Mega Mail Servers',\n  'mycloudmailbox.com':   'My Cloud Mailbox',\n  'ncisystems.com':       'NCI Systems',\n};\n\n// ===== HELPERS =====\nfunction getDomain(email) {\n  email = (email || '').trim().toLowerCase();\n  return email.includes('@') ? email.split('@')[1] : '';\n}\n\nfunction classify(mxList, txt) {\n  if (!mxList.length) return ['No MX', ''];\n  const combined = mxList.join(' ').toLowerCase();\n  for (const { name, p } of DIRECT) {\n    if (p.some(x => combined.includes(x))) return [name, ''];\n  }\n  const parts = mxList[0].replace(/\\.$/, '').split('.');\n  const root = parts.slice(-2).join('.');\n  const gname = GATEWAYS[root] || root;\n  const hint = txt.includes('spf.protection.outlook.com') || txt.includes('onmicrosoft.com') ? 'Microsoft'\n             : txt.includes('_spf.google.com') ? 'Google' : '';\n  return ['Other', hint ? `${gname} (${hint})` : gname];\n}\n\nfunction parseCSV(text) {\n  const lines = text.replace(/\\r\\n/g, '\\n').replace(/\\r/g, '\\n').split('\\n');\n  function parseLine(line) {\n    const res = []; let cur = ''; let q = false;\n    for (let i = 0; i < line.length; i++) {\n      const c = line[i];\n      if (c === '\"') {\n        if (q && line[i+1] === '\"') { cur += '\"'; i++; } else q = !q;\n      } else if (c === ',' && !q) { res.push(cur); cur = ''; }\n      else cur += c;\n    }\n    res.push(cur);\n    return res;\n  }\n  const headers = parseLine(lines[0]);\n  const rows = lines.slice(1).filter(l => l.trim()).map(l => {\n    const v = parseLine(l);\n    const row = {};\n    headers.forEach((h, i) => row[h] = (v[i] || '').trim());\n    return row;\n  });\n  return { headers, rows };\n}\n\nfunction buildCSV(headers, rows) {\n  const esc = v => `\"${String(v || '').replace(/\"/g, '\"\"')}\"`;\n  return [\n    headers.map(esc).join(','),\n    ...rows.map(r => headers.map(h => esc(r[h])).join(','))\n  ].join('\\n');\n}\n\nasync function fetchDNS(domain, type) {\n  try {\n    const r = await fetch(`https://dns.google/resolve?name=${domain}&type=${type}`);\n    if (!r.ok) return null;\n    return await r.json();\n  } catch { return null; }\n}\n\n// ===== MAIN =====\nconst item = $input.first();\nconst binaryKey = Object.keys(item.binary || {})[0] || 'data';\nconst binaryItem = item.binary[binaryKey];\nconst base64 = typeof binaryItem === 'string' ? binaryItem : binaryItem.data;\nconst rawText = Buffer.from(base64, 'base64').toString('utf-8').replace(/^\\uFEFF/, '');\n\nconst { headers, rows } = parseCSV(rawText);\nconst emailField = headers.find(h => h.trim().toLowerCase() === 'email') || headers[0];\nconst domains = [...new Set(rows.map(r => getDomain(r[emailField])).filter(Boolean))];\n\nconsole.log(`Rows: ${rows.length} | Unique domains: ${domains.length}`);\n\n// Concurrent DNS fetch\nconst results = {};\nconst queue = [...domains];\nconst workers = Array.from({ length: Math.min(CONCURRENCY, domains.length) }, async () => {\n  while (queue.length) {\n    const domain = queue.shift();\n    const [mxData, txtData] = await Promise.all([\n      fetchDNS(domain, 'MX'),\n      fetchDNS(domain, 'TXT')\n    ]);\n    const mx = (mxData?.Answer || []).filter(a => a.type === 15)\n      .map(a => a.data.split(' ').slice(1).join(' ').replace(/\\.$/, '').toLowerCase());\n    const txt = (txtData?.Answer || []).filter(a => a.type === 16)\n      .map(a => a.data).join(' ').toLowerCase();\n    results[domain] = classify(mx, txt);\n  }\n});\nawait Promise.all(workers);\n\n// Add columns\nconst newHeaders = [...headers, 'mx_provider', 'mx_gateway'];\nrows.forEach(row => {\n  const domain = getDomain(row[emailField]);\n  const [provider, gateway] = domain ? (results[domain] || ['Error', '']) : ['No email', ''];\n  row['mx_provider'] = provider;\n  row['mx_gateway'] = gateway;\n});\n\n// Stats log\nconst stats = {};\nrows.forEach(r => { stats[r.mx_provider] = (stats[r.mx_provider] || 0) + 1; });\nconsole.log('Results:', JSON.stringify(stats));\n\nconst csvOut = '\\uFEFF' + buildCSV(newHeaders, rows);\n\nreturn [{\n  json: { outputPath: OUTPUT_PATH, rowCount: rows.length, stats },\n  binary: {\n    csvData: {\n      data: Buffer.from(csvOut).toString('base64'),\n      mimeType: 'text/csv',\n      fileName: 'output_mx.csv'\n    }\n  }\n}];"
+      }
+    },
+    {
+      "id": "a1000001-0000-0000-0000-000000000004",
+      "name": "Save CSV",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [940, 300],
+      "parameters": {
+        "fileName": "={{ $json.outputPath }}",
+        "dataPropertyName": "csvData"
+      }
+    },
+    {
+      "id": "a1000001-0000-0000-0000-000000000005",
+      "name": "Info",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [240, 100],
+      "parameters": {
+        "content": "## MX Provider Check\n\n**Что делает:** читает CSV с колонкой Email, добавляет mx_provider + mx_gateway, сохраняет новый файл.\n\n**Настройка:**\n1. В ноде **Read CSV** — поменяй `filePath` на путь к входному файлу\n2. В ноде **Process MX** — поменяй `OUTPUT_PATH` вверху кода на путь к выходному файлу\n3. Запусти через Start\n\n**Результат в колонках:**\n- `mx_provider` — Google / Microsoft / Mimecast / Barracuda / Other / No MX\n- `mx_gateway` — если Other: `Hornetsecurity (Microsoft)`, `Sophos` и т.д.\n\n**Добавить новый шлюз:** в объект GATEWAYS в коде добавить строку `'domain.com': 'Name'`",
+        "height": 160,
+        "width": 700
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [[{"node": "Read CSV", "type": "main", "index": 0}]]
+    },
+    "Read CSV": {
+      "main": [[{"node": "Process MX", "type": "main", "index": 0}]]
+    },
+    "Process MX": {
+      "main": [[{"node": "Save CSV", "type": "main", "index": 0}]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

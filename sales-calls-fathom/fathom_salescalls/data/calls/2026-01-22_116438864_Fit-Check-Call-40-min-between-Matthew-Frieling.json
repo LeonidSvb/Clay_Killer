@@ -1,0 +1,3089 @@
+{
+  "title": "Fit Check Call (40 min) between Matthew Frieling",
+  "meeting_title": "Fit Check Call (40 min) between Leonid Shvorob and Matthew Frieling",
+  "url": "https://fathom.video/calls/540844167",
+  "created_at": "2026-01-22T18:56:31Z",
+  "scheduled_start_time": "2026-01-22T18:20:00Z",
+  "scheduled_end_time": "2026-01-22T19:00:00Z",
+  "recording_id": 116438864,
+  "recording_start_time": "2026-01-22T18:23:16Z",
+  "recording_end_time": "2026-01-22T18:56:21Z",
+  "calendar_invitees_domains_type": "one_or_more_external",
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "How are you?",
+      "timestamp": "00:00:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, I'm great.",
+      "timestamp": "00:00:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Great.",
+      "timestamp": "00:00:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Where are you based in?",
+      "timestamp": "00:00:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Oh, last three years, I'm based in Bali, Indonesia, so now it's already like 3 a.m.",
+      "timestamp": "00:00:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I know, I was going to say, it's so late there.",
+      "timestamp": "00:00:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Do you work through the night typically?",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, usually I'm working with U.S.",
+      "timestamp": "00:00:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "recruitment staffing companies, so usually I go to bed like 4 a.m.",
+      "timestamp": "00:00:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:00:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay, nice.",
+      "timestamp": "00:00:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I'm to put in my headphones here so I don't want disrupt it.",
+      "timestamp": "00:00:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So, and you said you work with U.S.",
+      "timestamp": "00:00:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "companies primarily?",
+      "timestamp": "00:00:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, recruitment staffing companies, so basically this.",
+      "timestamp": "00:00:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, I mentioned that you have very, like, very, very niche target, like Salesforce, SAP projects, right?",
+      "timestamp": "00:00:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, exactly.",
+      "timestamp": "00:00:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:00:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:00:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what kind of these projects for you is most profitable but most difficult to source consistently?",
+      "timestamp": "00:00:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, so we have an end client focus.",
+      "timestamp": "00:01:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "primarily we like to work with clients that are implementing SAP and or Salesforce.",
+      "timestamp": "00:01:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We have, you know, we have worked with outsourced partners to support lead generation and intake of, you know, leads supporting our key objectives, which is end client focused.",
+      "timestamp": "00:01:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So, you know, as an example, we had worked with a key partner that I had built a relationship with that had a good network in the SAP space.",
+      "timestamp": "00:01:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "you he was making introductions to.",
+      "timestamp": "00:01:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "To SAP America, we could get deeper connections and ties with SAP account executives as they were selling the S4HANA licenses to market.",
+      "timestamp": "00:02:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And then we would be kind of looped in as a support mechanism to make sure those implementations go well.",
+      "timestamp": "00:02:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And as an independent recruitment-focused, you know, SAP-focused recruitment firm, we kind of stand out in the market when it comes to that because a lot of organizations are maybe general IT or, you know, they don't really understand the SAP market the way that we do.",
+      "timestamp": "00:02:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And that comes down to understanding specific niche skill sets, to delivering high-caliber talent that are truly independent, that don't work with partners, why that's important to our clients.",
+      "timestamp": "00:02:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Client base is because a big part of what we offer is a truly independent model that actually puts key, you know, individuals and contributors in the client corner to offset risk with these implementations.",
+      "timestamp": "00:03:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "You know, a lot of companies, they, you know, they buy the licenses for SAP and then, you know, SAP introduces them to an implementation partner and they're off to the races and they're not thinking about how they maintain control of their SAP environment.",
+      "timestamp": "00:03:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "They're not thinking, they're just thinking, oh, okay, we have the partner that's going to execute.",
+      "timestamp": "00:03:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And, you know, the partner has their agenda and their agenda is to put out as many people on that project as possible, to bill as much as possible, to enact change orders.",
+      "timestamp": "00:03:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And if they don't have key resources.",
+      "timestamp": "00:03:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "In the client corner to maintain and stabilize their key objectives of the implementation, that completely gets drowned out by the agenda of the systems integrator, which is basically bill as much as possible, sell as many software licenses as possible.",
+      "timestamp": "00:04:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So there's a lot of conflict of interest with these systems integrators.",
+      "timestamp": "00:04:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Their intentions are to get the client successfully live on the platform, but the undercurrent of conflict is actually ends up being, you know, the primary objective of the systems integrator.",
+      "timestamp": "00:04:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And what we do is we offset that risk in these implementations, which is why we have primarily an end client focus.",
+      "timestamp": "00:04:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Do we deliver talent to partners?",
+      "timestamp": "00:04:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yes.",
+      "timestamp": "00:04:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But we do, we're very picky.",
+      "timestamp": "00:04:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We're not working with the IBMs.",
+      "timestamp": "00:04:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "They're the Accentures of the Deloitte's of the world, primarily because we have a brand protect, and our brand is, you know, end client focused.",
+      "timestamp": "00:05:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, end client, can you specify in more simple words?",
+      "timestamp": "00:05:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Sure, okay, so an end client is like, let's say it's Hershey's is implementing SAP as an example, or you have like, maybe it's, I don't know, I can name any company out there that's implementing the application themselves, right?",
+      "timestamp": "00:05:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So, you know, it could be, I don't know, name any company that's running, running SAP.",
+      "timestamp": "00:05:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, as I understand correctly, you have like, SAP and Salesforce engineers, and when company finished implementation.",
+      "timestamp": "00:05:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And nobody can maintain it.",
+      "timestamp": "00:06:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you put your staff in the companies and then helping them to maintain it for several months.",
+      "timestamp": "00:06:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And when everything's stabilized, they go to another project.",
+      "timestamp": "00:06:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Right.",
+      "timestamp": "00:06:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Or we bring in key people in the implementation.",
+      "timestamp": "00:06:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So we have contractors that we put out to the market and they might be SAP talent, both on the business and engineering side.",
+      "timestamp": "00:06:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It could be technical, could be functional.",
+      "timestamp": "00:06:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And Salesforce, I primarily focus on the SAP space, but I do a lot of work in Salesforce too, because most of our clients that are running SAP also leverage Salesforce as their CRM.",
+      "timestamp": "00:06:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So we, you know, we started Salesforce practice on the, on the back of our SAP bill, primarily because we had demand there in our, with our clients and we understood Salesforce.",
+      "timestamp": "00:06:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We utilized it ourselves.",
+      "timestamp": "00:07:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We'd become a partner to them.",
+      "timestamp": "00:07:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We started implementing a Salesforce solutions as well.",
+      "timestamp": "00:07:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But yeah, so two tracks, but primarily my targets are SAP.",
+      "timestamp": "00:07:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Ideally, they run both SAP and Salesforce because that gives us a lot more leverage with the client for them to work with us.",
+      "timestamp": "00:07:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But yeah, the end client focus is think it's not systems integrators, not IBM, Deloitte, Accenture.",
+      "timestamp": "00:07:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Those are big partners.",
+      "timestamp": "00:07:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "They're going to have a lot of requirements out there.",
+      "timestamp": "00:07:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And, you know, we could tie into them and support their growth, but our objective is to stay out of that track and stay focused on the client.",
+      "timestamp": "00:07:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And the reason for that is because it eliminates conflict of interest.",
+      "timestamp": "00:07:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We drive key...",
+      "timestamp": "00:07:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Individuals into the client environment, whether that be program managers, key architects, and areas that are very important to the client, and support on the client side against DSI, against the Systems Integrator.",
+      "timestamp": "00:08:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay, got you.",
+      "timestamp": "00:08:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, it's very niche, so I think it's not many companies like yours on the market.",
+      "timestamp": "00:08:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "No.",
+      "timestamp": "00:08:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "think maybe only you or maybe a couple of others, competitors.",
+      "timestamp": "00:08:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, we've been successful with it because, you know, maybe a decade ago, when we started the company back in 2013, no one really was doing this.",
+      "timestamp": "00:08:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But, you know, my business partner, he had a vision for the company.",
+      "timestamp": "00:08:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And it's, and now this model, after a decade, is becoming the norm.",
+      "timestamp": "00:08:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "of Like, organization.",
+      "timestamp": "00:08:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Organizations see great value in talking to a partner that independently places talent in their teams on a contract, contract to hire, or direct hire model.",
+      "timestamp": "00:09:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And the reason why that is is because organizations have had a lot of issues solely relying on the implementation partner because what they end up doing is that, you know, if you're interested, the reason why is because there's tons of lawsuits out there against Accenture's and IBM's and Deloitte's of the world because these implementations go sideways.",
+      "timestamp": "00:09:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And it's, you know, we're not talking about, you it's like hundreds of millions of dollars that are lost in these implementations and nothing gets done or it's a failed implementation.",
+      "timestamp": "00:09:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I mean, that's a lot of risk.",
+      "timestamp": "00:09:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "That's a lot of.",
+      "timestamp": "00:09:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Risk exposure, if you don't own your environment, you don't own your implementation internally.",
+      "timestamp": "00:10:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, yeah.",
+      "timestamp": "00:10:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it totally makes sense, I think.",
+      "timestamp": "00:10:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Now, when, like, companies realize that it's very important to support, like, their implementation and after maintenance, it's more demand for your sites.",
+      "timestamp": "00:10:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And you said that you have some referral programs who recommend you as a, like, partner, who help.",
+      "timestamp": "00:10:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But I guess it's not enough for, like, goals you're setting or?",
+      "timestamp": "00:10:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Well, right now we're in this, we're in a kind of in a holding pattern with that partner because they weren't delivering at the level we needed them to with leads at the cost that we were paying.",
+      "timestamp": "00:10:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So now I'm like, okay, I'm exploring the idea of other options, but I mean, honestly, right now we're probably completely in a holding pattern as we develop the leads that we do have in front of us.",
+      "timestamp": "00:10:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Just as we, you know, grow that market, 2025 was a hard year for us.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I mean, the U.S.",
+      "timestamp": "00:11:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "market, the tariffs, our clients had reorgs and layoffs and budget cuts.",
+      "timestamp": "00:11:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I mean, it was wild.",
+      "timestamp": "00:11:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So we're really in kind of a rebuild mode right now.",
+      "timestamp": "00:11:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Right?",
+      "timestamp": "00:11:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, yeah.",
+      "timestamp": "00:11:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "think this year is to be better for the U.S.",
+      "timestamp": "00:11:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "and all this stuff.",
+      "timestamp": "00:11:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you mentioned this kind of agency that's giving you leads or something.",
+      "timestamp": "00:11:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So they don't give enough leads or the quality of leads is bad or what's the main issues?",
+      "timestamp": "00:11:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I think mainly it's, it's not the, the, the amount of leads that we've gotten.",
+      "timestamp": "00:11:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's the, the, that the, I think 2025 is a hard year for us to be doing it with them because the leads that we did get introduced to were good and they were good.",
+      "timestamp": "00:11:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "They were good people to talk to.",
+      "timestamp": "00:12:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "They were decision makers within organizations.",
+      "timestamp": "00:12:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "All that was good, but budgets were so convoluted last year that we never got any real traction in return on investment with it.",
+      "timestamp": "00:12:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And we're working on that now because those leads aren't dead.",
+      "timestamp": "00:12:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "They can still be worked, but we're kind of in a holding pattern to make sure that we get a return on investment.",
+      "timestamp": "00:12:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Revisit, potentially revisit the partnership when that happens.",
+      "timestamp": "00:12:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I'm open to other options if it's more cost-effective and more effective overall.",
+      "timestamp": "00:12:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But we really do work in a niche space.",
+      "timestamp": "00:12:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We do need someone that understands what we do because it's narrow, as you mentioned.",
+      "timestamp": "00:12:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so you two times mentioned that their ROI is not so good.",
+      "timestamp": "00:12:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "for².",
+      "timestamp": "00:12:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thanks Thank",
+      "timestamp": "00:12:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "with that, guys.",
+      "timestamp": "00:13:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So how much you've gained and how much, like, intros you've got?",
+      "timestamp": "00:13:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, just curious.",
+      "timestamp": "00:13:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I don't know the exact numbers because my business partner runs that side of it, but I know that the ROI hasn't been, it hasn't, we haven't yielded our return on investment.",
+      "timestamp": "00:13:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Until we get there, we're probably not going to revisit this model for a while.",
+      "timestamp": "00:13:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We're, we did hire internal business development and account managers that are leveraging those leads and driving them forward to, to, to, to materialize them.",
+      "timestamp": "00:13:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Those, that's proving to be successful.",
+      "timestamp": "00:13:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We've got a number of new clients on the board right now that we're working hard to turn into dollars.",
+      "timestamp": "00:13:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But it's, you know, this, the cycle is a little slow, you know?",
+      "timestamp": "00:13:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I, I got now with the point.",
+      "timestamp": "00:13:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, So, So,",
+      "timestamp": "00:13:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Let's say now you want to target what kind of businesses?",
+      "timestamp": "00:14:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "like mid-markets included or only enterprise?",
+      "timestamp": "00:14:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, that's a great question.",
+      "timestamp": "00:14:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Mid-market is our sweet spot, mainly because if we work with a company that's $500 million in annual revenues up to, say, I mean, on the high side, like $6-7 billion.",
+      "timestamp": "00:14:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "One of my biggest clients is about $7 billion.",
+      "timestamp": "00:14:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I also work with clients up to $20 billion.",
+      "timestamp": "00:14:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "That gets convoluted, a little bit more complicated.",
+      "timestamp": "00:14:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "A lot of red tape, not ideal for us.",
+      "timestamp": "00:14:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We're a small, nimble organization.",
+      "timestamp": "00:14:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I think we're a better fit for mid-market.",
+      "timestamp": "00:14:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Mid-market for us is $500 million up to $3-4 billion, all the way ranging up to $7 billion in annual revenues.",
+      "timestamp": "00:14:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But yeah, that's definitely our sweet spot.",
+      "timestamp": "00:14:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, yeah, that's great.",
+      "timestamp": "00:14:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "That's great.",
+      "timestamp": "00:14:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Mid-market is for some businesses, it's high market.",
+      "timestamp": "00:14:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:14:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's better.",
+      "timestamp": "00:15:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's better.",
+      "timestamp": "00:15:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's easier to work with people like that.",
+      "timestamp": "00:15:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I guess for like one project, it can cover in all the costs for BizDev because I think this project takes, I don't know, six months or more?",
+      "timestamp": "00:15:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It can be.",
+      "timestamp": "00:15:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I've worked on projects that were multi-year.",
+      "timestamp": "00:15:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So six months to multi-year is depending on the size and scope of the project.",
+      "timestamp": "00:15:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, I mean, that's pretty probable.",
+      "timestamp": "00:15:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So yeah.",
+      "timestamp": "00:15:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And once we're hooked into a client, that client's always going to come back to us for talent if we do a good job for them.",
+      "timestamp": "00:15:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So yeah.",
+      "timestamp": "00:15:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "One good client will, that yields us extensive, you know, business is a large, is a good return on our investment.",
+      "timestamp": "00:15:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:15:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:15:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:15:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So also you mentioned that it was some introductions, but it didn't move anywhere.",
+      "timestamp": "00:15:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for example, if I can put you in front of.",
+      "timestamp": "00:15:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So.",
+      "timestamp": "00:15:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:15:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:15:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "For like five to seven decision makers, like IT directors, program transformation leaders, for the next 90 days, would you be able to close some of them or what's like the sales cycle?",
+      "timestamp": "00:16:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Depending on their needs, right?",
+      "timestamp": "00:16:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "If they have urgent needs and they need people in seats soon, then yeah, I mean, I can turn any client around into dollars within 60, 90 days.",
+      "timestamp": "00:16:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "90 days.",
+      "timestamp": "00:16:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "think last year was unique because everyone that I was talking to in the market was unique.",
+      "timestamp": "00:16:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "mean, you work in the staffing space.",
+      "timestamp": "00:16:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I'm sure you talk to, I'm sure you understand that the market was hard last year.",
+      "timestamp": "00:16:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, it's, you know, did you, have you guys been really busy because of that?",
+      "timestamp": "00:16:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Because you're, you have an outsourced model, right?",
+      "timestamp": "00:16:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so what's good for us, so we're not just, you know, spraying, praying.",
+      "timestamp": "00:16:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, as you mentioned, mentioned, if there is a note,",
+      "timestamp": "00:16:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Clear signal, clear urgency, it doesn't really make sense to make introduction.",
+      "timestamp": "00:17:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If they're okay, okay, it's nice to have, maybe we're going back to here like next quarter or next year.",
+      "timestamp": "00:17:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually we focus not on quantity but on quality.",
+      "timestamp": "00:17:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So first we specify this is urgent.",
+      "timestamp": "00:17:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what basically we're doing is we're monitoring the market to the signals.",
+      "timestamp": "00:17:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So in your case, like SAPs, sales forces, so we are looking for news and like in LinkedIn, like company websites and others that the budget is, and projects is approved, that implementation is planned and so on.",
+      "timestamp": "00:17:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Or sometimes it's where it's where a new leader who, like new CRM director or like new director of like IT and so on.",
+      "timestamp": "00:17:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually when like leadership changes, they like to show that they can do a good job.",
+      "timestamp": "00:17:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So in these cases, when we see, so these signals across the markets, it makes sense to make introductions.",
+      "timestamp": "00:18:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, great.",
+      "timestamp": "00:18:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Excellent.",
+      "timestamp": "00:18:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And then how do you guys operate from a cost structure?",
+      "timestamp": "00:18:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Now that's something I need to raise.",
+      "timestamp": "00:18:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I kind of do first line of, you know, idea checking.",
+      "timestamp": "00:18:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I, you know, like for instance, I'm, I'm the idea guy.",
+      "timestamp": "00:18:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Like I'm, I'm the managing partner of localworld, one of the founding partners of, of the company, but the CEO, Brendan, he's kind of like, he's going to be the one that writes the checks.",
+      "timestamp": "00:18:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "He's the one that makes the decisions at the end of the day.",
+      "timestamp": "00:18:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But that being said, you know, he trusts what I put forward because we've had success.",
+      "timestamp": "00:18:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Um, as an example, even though the ROI and the partner that we, you know, had previously worked with and we're pausing for now, we want to revisit that partnership once we see ROI, as an example, we implemented a tool set called.",
+      "timestamp": "00:18:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I don't know if you've heard of it, but it's an up-is-dev solution called SourceWhale.",
+      "timestamp": "00:19:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Are you familiar with that?",
+      "timestamp": "00:19:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Sorry, I heard something, but not too deep.",
+      "timestamp": "00:19:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, so it's an application that you kind of like, you know, you upload leads, we use ZoomInfo, we gather intel, we put that up, and then basically it's an automated messaging solution.",
+      "timestamp": "00:19:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So we build out email campaigns to keep people, and that kind of generates leads, incoming leads as well, right?",
+      "timestamp": "00:19:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So we kind of use a few different models for business development.",
+      "timestamp": "00:19:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We're not just like sitting on the phones all day.",
+      "timestamp": "00:19:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I mean, I have clients to manage too.",
+      "timestamp": "00:19:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So I have a lot of things on my plate on a given day.",
+      "timestamp": "00:19:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So for me, it's like I need to automate as much as possible, right?",
+      "timestamp": "00:19:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Whether that's outsourcing or automation.",
+      "timestamp": "00:19:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "yeah, makes sense.",
+      "timestamp": "00:19:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:19:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So-",
+      "timestamp": "00:19:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We kind of, you know, automating sometimes is good, but it's always needs a human touch.",
+      "timestamp": "00:20:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So always when we're working, you know, especially when there's biggest clients who are targeting enterprise, so it's more custom because it's more targeting and it's better always like quality over quantity.",
+      "timestamp": "00:20:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because if I send you a list of garbage leads that will need to, it's not now, in next year, you will just waste a lot of time just to nurture them and it doesn't make any sense.",
+      "timestamp": "00:20:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "for what I get with clients I'm working, when I just give them smaller amount of introductions, but they're more targeted.",
+      "timestamp": "00:20:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually with these clients, we continue working, working more and more because it's like less noise, more clarity.",
+      "timestamp": "00:20:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So kind of like this.",
+      "timestamp": "00:20:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And usually how we structure things at at least like 90 days pilots because it takes time to get initials.",
+      "timestamp": "00:20:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually like first months, we more like discover things, but usually in the end, like third, fourth week, already we see some intros, but it also depends because if it's just general staffing, you know, for like temporal workers, it's more easy to find and we can make like 20 introductions with even like decision makers for like three months.",
+      "timestamp": "00:21:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "In your case, I wouldn't be so confident in these numbers, but I think like five, six is more reasonable.",
+      "timestamp": "00:21:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And the first, and the first 30 days, did you say your first 90 days?",
+      "timestamp": "00:21:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, it's because it's niche.",
+      "timestamp": "00:21:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, yeah.",
+      "timestamp": "00:21:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So not for 30 days.",
+      "timestamp": "00:21:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, yeah.",
+      "timestamp": "00:21:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "for 90 days, like five, six is more reasonable.",
+      "timestamp": "00:21:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, got it.",
+      "timestamp": "00:21:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yep.",
+      "timestamp": "00:21:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And then for cost structure, how do you guys operate?",
+      "timestamp": "00:21:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So basically, operate 4K a month, and for 90 days is 12K.",
+      "timestamp": "00:22:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay, okay.",
+      "timestamp": "00:22:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So, and that could be like a 90-day run to see how that yields results, right?",
+      "timestamp": "00:22:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:22:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So basically, after 90 days, can be different.",
+      "timestamp": "00:22:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "With some clients, eventually, we're doing like refshare or some kind of long-term deals when we're more involved in processes.",
+      "timestamp": "00:22:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because when we align with, like, goals of our clients, we targeted more for LTV, for, like, retainers, than just for quantity.",
+      "timestamp": "00:22:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:22:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:22:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So, then, you know, the key is to close clients, too.",
+      "timestamp": "00:22:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's not just to make introductions.",
+      "timestamp": "00:22:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "There's an objective there on long-term growth together.",
+      "timestamp": "00:22:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, of course.",
+      "timestamp": "00:22:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because it doesn't make sense of, like, just interest.",
+      "timestamp": "00:22:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, especially when...",
+      "timestamp": "00:22:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "enterprise when like cycle of sales can be like five, six months and more, it's of course we need that we align because if our client who we're working, getting money, of course, he will stay with us for more time.",
+      "timestamp": "00:23:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:23:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We're not interested in like one-time, two-time stuff because it just doesn't work.",
+      "timestamp": "00:23:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It doesn't create stability in your organization either and your client base.",
+      "timestamp": "00:23:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, exactly.",
+      "timestamp": "00:23:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like as you're working with big clients, when you're, you know, that's if you're doing good stuff, they will go to you again.",
+      "timestamp": "00:23:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "so, yeah.",
+      "timestamp": "00:23:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay, great.",
+      "timestamp": "00:23:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And you're based in Bali.",
+      "timestamp": "00:23:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Do you, where are you originally from?",
+      "timestamp": "00:23:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Oh, I'm from Russia.",
+      "timestamp": "00:23:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Oh, okay.",
+      "timestamp": "00:23:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Amazing.",
+      "timestamp": "00:23:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:23:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:23:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I don't know if my accent is still too many Russians.",
+      "timestamp": "00:23:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "No, I was trying to figure it out.",
+      "timestamp": "00:23:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So that's, that's cool.",
+      "timestamp": "00:23:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Um, yeah.",
+      "timestamp": "00:23:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And how long have been in Bali?",
+      "timestamp": "00:24:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Oh, it's been like three years.",
+      "timestamp": "00:24:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:24:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Do you like it there?",
+      "timestamp": "00:24:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, don't, I hate winter, know, cold weather pisses me off.",
+      "timestamp": "00:24:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah.",
+      "timestamp": "00:24:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Amazing.",
+      "timestamp": "00:24:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Well, no, it's good to connect with you, Leo.",
+      "timestamp": "00:24:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And so what are your thoughts on, I kind of need to like, I'm glad we're connecting.",
+      "timestamp": "00:24:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And it's, you know, for us, it's a, it's a, it's a, it's going to be a wait and see situation a little bit, but I want to stay in contact with you as an option.",
+      "timestamp": "00:24:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And honestly, the 4K a month model would be, I think, very attractive from our end.",
+      "timestamp": "00:24:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I think it's, it's good.",
+      "timestamp": "00:24:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's a good pricing target if we're seeing results.",
+      "timestamp": "00:24:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But I think where we're at right now is that, you know, I have, I've got to turn some ROI.",
+      "timestamp": "00:24:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "On the investment we've made in partnerships, because right now we're in a holding pattern until that happens.",
+      "timestamp": "00:25:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And once that ROI starts to kick back in, what I could do and what might work is that we have a trusted partner that we work with already, and they've done a pretty good job in introductions, but haven't yielded the results that we would like to see long-term.",
+      "timestamp": "00:25:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yet, and until we see that, I think my business partner is going to be super, super skeptical on making another investment on outsourcing.",
+      "timestamp": "00:25:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But that being said, the cost structure is more affordable than the other partner, although the cost structure associated with the other partner is relevant to the fact that they truly understand our business.",
+      "timestamp": "00:25:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So that's something that...",
+      "timestamp": "00:25:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "You know, just being transparent with you, that's going to be a hurdle with my business partner.",
+      "timestamp": "00:26:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "He wants to know that you understand the SAP market and how to tackle it before we would enter into it.",
+      "timestamp": "00:26:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "makes sense.",
+      "timestamp": "00:26:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually with like new niches that are more niche-specific, of course, we're doing like some kick-off calls and so on.",
+      "timestamp": "00:26:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So more back and forth about targeting, about which roles better to target and so on, about like how we position you.",
+      "timestamp": "00:26:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because if like I reach into IT directors, so it should be the reason.",
+      "timestamp": "00:26:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And also we should like frame you like a partner who we trust, who have this amount of cases in the relevant companies.",
+      "timestamp": "00:26:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it should make sense.",
+      "timestamp": "00:26:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But, you know, every business owner said, okay, our business is very specific, but basically the process is so-so.",
+      "timestamp": "00:26:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So just...",
+      "timestamp": "00:26:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So...",
+      "timestamp": "00:26:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "In recruitment and staffing, it's just reaching to the right decision makers, in the right timing, connecting, and during moments.",
+      "timestamp": "00:27:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And yeah, that's all.",
+      "timestamp": "00:27:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, that's true.",
+      "timestamp": "00:27:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, after introduction, you're doing all the specific stuff about your business, right?",
+      "timestamp": "00:27:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because you have a lot of years in this niche, so of course you know how to better talk with these clients, but for initial points when making an intro, I think I'm pretty confident that we can make it.",
+      "timestamp": "00:27:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, okay, great.",
+      "timestamp": "00:27:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And I, you know, I think what I would say is, you know, from my perspective is like, let me, I think what we could do is, how do you operate on next steps?",
+      "timestamp": "00:27:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Because right now, I know we're in a holding pattern, like I can't make, I can't make a case.",
+      "timestamp": "00:27:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so usually, if, you I can't",
+      "timestamp": "00:27:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we need another person to bless it so we can make a second call.",
+      "timestamp": "00:28:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what do you think your partner, when he can do this?",
+      "timestamp": "00:28:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Also, I can send you some more information if you need it.",
+      "timestamp": "00:28:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I would like that.",
+      "timestamp": "00:28:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Anything that's, like, relevant to niche skills that you've supported staffing, other staffing agencies on, business cases, anything I can provide to him?",
+      "timestamp": "00:28:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I mean, it can be general staffing, too.",
+      "timestamp": "00:28:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's fine.",
+      "timestamp": "00:28:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But the capability and niche staffing would be, I think, a big sell to him.",
+      "timestamp": "00:28:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "He's not easy.",
+      "timestamp": "00:28:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "My business partner is German.",
+      "timestamp": "00:28:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I mean, yeah, and I'm, like, we started this company together back in 2013.",
+      "timestamp": "00:28:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "You know, he's, like, I know him very well.",
+      "timestamp": "00:28:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "He's like my brother, but he's also my partner.",
+      "timestamp": "00:29:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We're close.",
+      "timestamp": "00:29:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We understand each other.",
+      "timestamp": "00:29:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We know our strengths and weaknesses.",
+      "timestamp": "00:29:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "You know, I kind of know what he needs to see to get him interested.",
+      "timestamp": "00:29:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So I need material for sure.",
+      "timestamp": "00:29:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:29:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:29:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I will make like for the next couple of days kind of proposal, send you over.",
+      "timestamp": "00:29:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And if everything good, I think for next week, we can schedule a next meeting.",
+      "timestamp": "00:29:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "your partner, your German brother, we will set this up.",
+      "timestamp": "00:29:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:29:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Sounds good.",
+      "timestamp": "00:29:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And here's my outlook.",
+      "timestamp": "00:29:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Like, I don't want you to over-invest in time because the timing might be off right now.",
+      "timestamp": "00:29:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Right?",
+      "timestamp": "00:29:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So I want to something that I can share, but if it's marketing materials you have built, please just send that and I'll start there.",
+      "timestamp": "00:29:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "If I need something more, I'll let you know.",
+      "timestamp": "00:29:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Because what I don't want to do is have you over-invest in time.",
+      "timestamp": "00:29:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, yeah, sure.",
+      "timestamp": "00:29:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I just send you a couple of.",
+      "timestamp": "00:29:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Relevant case studies that we have, I think it will be enough.",
+      "timestamp": "00:30:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Please, I think so.",
+      "timestamp": "00:30:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I don't want, I want to be like very honest with you because what I don't want you to do is spend too much time on a proposal with something that I don't think we're ready to make a decision on.",
+      "timestamp": "00:30:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Mainly because what we did just in January is paused our other partner.",
+      "timestamp": "00:30:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "For me to make an introduction on this now, it would not land well with my partner.",
+      "timestamp": "00:30:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I need to know, and I'm very good at reading when the timing's right, and I'll hold on to the materials and we can stay in contact, and then I can make it.",
+      "timestamp": "00:30:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Next week won't be it.",
+      "timestamp": "00:30:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I'll be honest.",
+      "timestamp": "00:30:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Like, it won't be it.",
+      "timestamp": "00:30:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I don't think it'll land well.",
+      "timestamp": "00:30:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And I'm trying to give you as much like honest feedback on that because I took the call today because I'm curious.",
+      "timestamp": "00:30:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "We had a partner that we had to pause for the time being.",
+      "timestamp": "00:30:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I'm potentially open to a new partnership.",
+      "timestamp": "00:30:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "But the timing needs to be correct, and it's not.",
+      "timestamp": "00:30:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, no pressure.",
+      "timestamp": "00:31:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's good to make a new connection always.",
+      "timestamp": "00:31:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I can send you in WhatsApp if you have.",
+      "timestamp": "00:31:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "think it's more easy to stay in touch.",
+      "timestamp": "00:31:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Totally.",
+      "timestamp": "00:31:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Same number as I call you or different?",
+      "timestamp": "00:31:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Different number.",
+      "timestamp": "00:31:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "It's 248-248-318-8155.",
+      "timestamp": "00:31:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay, got you.",
+      "timestamp": "00:31:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I ping you tomorrow.",
+      "timestamp": "00:31:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And I think, yeah, for next week, I send you what I think is relevant.",
+      "timestamp": "00:31:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So just let me know, like, next week or whatever.",
+      "timestamp": "00:31:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "WhatsApp's great.",
+      "timestamp": "00:31:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So I actually use a lot.",
+      "timestamp": "00:31:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And if you want to, like, follow with me texting, whatever you need, like, I'm on there a lot.",
+      "timestamp": "00:31:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "So I'll respond and we'll stay in contact.",
+      "timestamp": "00:31:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "And if the timing presents itself.",
+      "timestamp": "00:31:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "and I have the materials, I can just say, hey, I talked to, and I don't know how Brendan will respond to it right now, and that's part of my issue, is if I pitch it to him now, he'll shoot it down hard, and we'll never have a chance.",
+      "timestamp": "00:32:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "I'm open, like, I, you know.",
+      "timestamp": "00:32:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, you know, Matthew, I think, you know better, so it's not urgency from my side.",
+      "timestamp": "00:32:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, great.",
+      "timestamp": "00:32:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, that's good.",
+      "timestamp": "00:32:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Okay, and I, I'm giving you that feedback, because what I don't want to do is set wrong expectations, you know.",
+      "timestamp": "00:32:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, no worries at all.",
+      "timestamp": "00:32:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, man, it was a pleasure to meet you.",
+      "timestamp": "00:32:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Great, great, great connecting, Leo, and we'll be in touch, okay?",
+      "timestamp": "00:32:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah, stay in touch.",
+      "timestamp": "00:32:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "will ping you in a WhatsApp soon.",
+      "timestamp": "00:32:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "All right, talk soon.",
+      "timestamp": "00:32:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:32:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Bye.",
+      "timestamp": "00:32:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Bye.",
+      "timestamp": "00:32:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Bye.",
+      "timestamp": "00:32:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Frieling",
+        "matched_calendar_invitee_email": "mfrieling@localworldinc.com"
+      },
+      "text": "Bye.",
+      "timestamp": "00:32:56"
+    }
+  ],
+  "transcript_language": "en",
+  "default_summary": {
+    "template_name": "General",
+    "markdown_formatted": "## Meeting Purpose\n\n[To explore a lead generation partnership for LocalWorld's niche staffing services.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=620.0)\n\n## Key Takeaways\n\n  - [**LocalWorld's Niche:** Staffing SAP/Salesforce talent for end-clients, not SIs (IBM, Accenture), to provide independent oversight and mitigate implementation risk.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=69.0)\n  - [**Strategic Pause:** A previous lead-gen partner was paused due to poor ROI, making LocalWorld's CEO highly skeptical of new outsourced investments.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1804.0)\n  - [**SystemHustle's Offer:** A 90-day pilot for $4k/mo, targeting 5–7 decision-maker intros by monitoring market signals (e.g., new leadership, project announcements) to ensure urgency.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=956.0)\n  - [**Path Forward:** A partnership is not imminent. LocalWorld must first realize ROI from its previous investment. SystemHustle will provide case studies for future consideration.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1804.0)\n\n## Topics\n\n### LocalWorld's Niche & Strategy\n\n  - [**Focus:** Staffing SAP & Salesforce talent for end-clients (e.g., Hershey's), not Systems Integrators (SIs) like IBM, Accenture, or Deloitte.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=69.0)\n  - [**Value Proposition:** Provides independent oversight to mitigate SI-driven risks (e.g., scope creep, change orders) and protect client interests.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=180.0)\n  - [**Target Market:** Mid-market companies ($500M–$7B annual revenue).](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=840.0)\n      - [**Rationale:** Avoids the red tape and complexity of larger enterprises.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=852.0)\n  - [**Project Scope:** Long-term engagements (6 months to multi-year), making client retention highly valuable.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=903.0)\n\n### Strategic Pause & CEO Skepticism\n\n  - [**Context:** A previous lead-gen partnership was paused in January due to poor ROI.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1804.0)\n      - [**Root Cause:** Good leads were generated, but 2025 market conditions (reorgs, budget cuts) prevented closing.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=694.0)\n  - [**Impact:** CEO Brendan is now highly skeptical of new outsourced investments.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1528.0)\n  - [**Current Focus:** Internal BDRs are now working the existing lead pipeline to realize ROI before considering new partnerships.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=800.0)\n\n### SystemHustle's Proposed Solution\n\n  - [**Methodology:** Quality over quantity.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1002.0)\n      - [Monitors market signals (new leadership, project announcements) to identify urgent needs.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1038.0)\n      - [Targets decision-makers (e.g., IT Directors) with a custom, human-touch approach.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1200.0)\n  - [**Pilot Program:**](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1251.0)\n      - [**Term:** 90 days.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1251.0)\n      - [**Cost:** $4,000/month ($12,000 total).](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1312.0)\n      - [**Goal:** 5–7 qualified decision-maker intros.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1251.0)\n  - [**Long-Term Goal:** Build a retainer-based partnership focused on LTV and shared success.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1337.0)\n\n### Path Forward\n\n  - [**Timing:** A partnership is not imminent. Matthew must first demonstrate ROI from the previous investment to gain CEO Brendan's approval.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1804.0)\n  - [**Requirement:** SystemHustle must prove its capability in the niche SAP/Salesforce market.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1560.0)\n  - [**Action:** SystemHustle will send case studies for Matthew to review and present when the timing is right.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1758.0)\n\n## Next Steps\n\n  - [**Leonid (SystemHustle):**](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1758.0)\n      - [Send relevant case studies to Matthew.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1758.0)\n      - [Connect with Matthew on WhatsApp to maintain contact.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1862.0)\n  - [**Matthew (LocalWorld):**](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1804.0)\n      - [Review materials and present the partnership concept to CEO Brendan when the timing is appropriate.](https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG?tab=summary&timestamp=1804.0)\n"
+  },
+  "action_items": [
+    {
+      "description": "WhatsApp Matthew case studies/materials; then Matthew review, share w/ Brendan, schedule 2nd call when timing right",
+      "user_generated": false,
+      "completed": false,
+      "recording_timestamp": "00:29:31",
+      "recording_playback_url": "https://fathom.video/calls/540844167?timestamp=1771.9999",
+      "assignee": {
+        "name": "Leonid Shvorob",
+        "email": "leo@systemhustle.com",
+        "team": null
+      }
+    }
+  ],
+  "calendar_invitees": [
+    {
+      "name": "Matthew Frieling",
+      "email": "mfrieling@localworldinc.com",
+      "email_domain": "localworldinc.com",
+      "is_external": true,
+      "matched_speaker_display_name": null
+    },
+    {
+      "name": "Leonid Shvorob",
+      "email": "leo@systemhustle.com",
+      "email_domain": "systemhustle.com",
+      "is_external": false,
+      "matched_speaker_display_name": null
+    }
+  ],
+  "recorded_by": {
+    "name": "Leonid Shvorob",
+    "email": "leo@systemhustle.com",
+    "email_domain": "systemhustle.com",
+    "team": null
+  },
+  "share_url": "https://fathom.video/share/zWnZz-gGGzoQZwsi-w_bx24TiUxLR2QG",
+  "crm_matches": null
+}

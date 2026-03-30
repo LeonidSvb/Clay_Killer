@@ -1,0 +1,11 @@
+{
+  "name": "sales-calls-fathom",
+  "version": "1.0.0",
+  "description": "Fathom sales calls library for System Hustle",
+  "scripts": {
+    "sync": "node scripts/sync-calls.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

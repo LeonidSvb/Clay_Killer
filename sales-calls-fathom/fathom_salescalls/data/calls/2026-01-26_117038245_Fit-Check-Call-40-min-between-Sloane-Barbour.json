@@ -1,0 +1,2731 @@
+{
+  "title": "Fit Check Call (40 min) between Sloane Barbour",
+  "meeting_title": "Fit Check Call (40 min) between Leonid Shvorob and Sloane Barbour",
+  "url": "https://fathom.video/calls/542823008",
+  "created_at": "2026-01-26T15:31:30Z",
+  "scheduled_start_time": "2026-01-26T15:00:00Z",
+  "scheduled_end_time": "2026-01-26T15:40:00Z",
+  "recording_id": 117038245,
+  "recording_start_time": "2026-01-26T15:00:39Z",
+  "recording_end_time": "2026-01-26T15:31:18Z",
+  "calendar_invitees_domains_type": "one_or_more_external",
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "What's up, Matthew?",
+      "timestamp": "00:00:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, can you hear me?",
+      "timestamp": "00:00:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "I can hear you.",
+      "timestamp": "00:00:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so we're waiting to slow on, or what's our plan?",
+      "timestamp": "00:00:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I'm going to message him right now.",
+      "timestamp": "00:00:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, cool.",
+      "timestamp": "00:00:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:00:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thank you.",
+      "timestamp": "00:00:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thank you.",
+      "timestamp": "00:01:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Thank you.",
+      "timestamp": "00:01:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Nice to meet you.",
+      "timestamp": "00:02:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, thank you for jumping on the call, guys.",
+      "timestamp": "00:02:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So how's going on on your side?",
+      "timestamp": "00:02:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Oh, it's good.",
+      "timestamp": "00:02:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "It's very snowy here.",
+      "timestamp": "00:02:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're both in New York.",
+      "timestamp": "00:02:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, sorry for you, but I didn't see snow like last three years.",
+      "timestamp": "00:02:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Kind of missing it right now.",
+      "timestamp": "00:02:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Where are you located?",
+      "timestamp": "00:02:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So now I'm in Bali, Indonesia.",
+      "timestamp": "00:02:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's like rain season outside.",
+      "timestamp": "00:02:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But wouldn't complain much.",
+      "timestamp": "00:02:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, I wouldn't complain about Bali either.",
+      "timestamp": "00:02:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Very, very snowy here.",
+      "timestamp": "00:02:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I was just out shumbling.",
+      "timestamp": "00:02:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, so just so you know, Matt is going to be kind of asking a lot of the questions on this call.",
+      "timestamp": "00:02:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "He's our business development and sales SDR person.",
+      "timestamp": "00:02:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So he's been responsible for lead gen and meeting creation.",
+      "timestamp": "00:02:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Obviously, I got an email from you or one of your colleagues.",
+      "timestamp": "00:02:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Definitely interested in just understanding your system a bit more.",
+      "timestamp": "00:02:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Just to be completely clear.",
+      "timestamp": "00:02:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're targeting primarily staffing firms.",
+      "timestamp": "00:03:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So these are, you know, the recruiting companies themselves and the staffing firms, more so than we're targeting, you know, direct employers and enterprise employers, although we would look at enterprise employers, you know, with several thousand job listings, but most companies, we want to go through the staffing firm.",
+      "timestamp": "00:03:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And our product is recruitment marketing and automation.",
+      "timestamp": "00:03:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we work with a staffing firm and integrate with Indeed, LinkedIn, ZipRecruiter, every major job board, and basically improve their candidate acquisition funnel by 30% to 40% using our AI technology.",
+      "timestamp": "00:03:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And we also do agents, recruiting agents, AI agents, screening, scheduling, and we implement them inside of the staffing firm's workflow, integrated directly into their CRM and ATS systems.",
+      "timestamp": "00:03:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we have both proprietary agents and sort of customized agents that we build on behalf of our clients.",
+      "timestamp": "00:03:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we",
+      "timestamp": "00:03:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "That's our business.",
+      "timestamp": "00:04:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're doing really well.",
+      "timestamp": "00:04:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're doing many million dollars in sales.",
+      "timestamp": "00:04:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We've been around for a little over three years, and we're looking to rapidly scale our meeting generation capability.",
+      "timestamp": "00:04:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, gotcha.",
+      "timestamp": "00:04:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you're doing all their, like, backend stuff for the sales school businesses, right?",
+      "timestamp": "00:04:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, mean, basically, I mean, these companies are very old school, as you know, and they have pretty antiquated processes, and they work, and a lot of what recruiting involves is very human, you know, scheduling, talking on the phone, screening applicants, which historically has been difficult to automate.",
+      "timestamp": "00:04:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And I've been in staffing for 16 years, but now AI allows you to automate and contextualize resume and job description and customer data and candidate data in a way that wasn't as easy before.",
+      "timestamp": "00:04:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we think it's a unique opportunity to accelerate some of these businesses in terms of revenue and profitability.",
+      "timestamp": "00:05:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And then we can obviously capture some amount of that improvement.",
+      "timestamp": "00:05:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I totally got you.",
+      "timestamp": "00:05:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, mostly I'm working also with recruitment staffing firms.",
+      "timestamp": "00:05:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we have also the same customers, the same market we're targeting, but I'm mostly going on to smaller firms and you're mostly going to high headcount firms as I go.",
+      "timestamp": "00:05:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So can you share with me like what kind of staffing agencies bring you highest LTVs and slowest churn from all the market?",
+      "timestamp": "00:05:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, so healthcare staffing firms is probably the most prominent, excuse me, is probably the most prominent in terms of how we think about to tell you,",
+      "timestamp": "00:05:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "What is my dog doing?",
+      "timestamp": "00:06:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Sorry, my dog is chewing on something.",
+      "timestamp": "00:06:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Healthcare staffing firms that are spending on job boards in candidate acquisition anywhere between $20,000 and $150,000 a month.",
+      "timestamp": "00:06:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And usually this means that they have, you know, at any given time, hundreds if not thousands of jobs posted on their career page or going out to the different job boards.",
+      "timestamp": "00:06:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "That's how we kind of measure the initial opportunity for us because we're going to take over that ad spend and we're going to optimize it.",
+      "timestamp": "00:06:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And then we're going to use that relationship to expand into, you know, building out agents and doing some of the more custom AI work that we do.",
+      "timestamp": "00:06:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But we really land into that recruitment marketing spend.",
+      "timestamp": "00:06:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And our co-founders and colleagues and executive team, like one of my guys, Justin, you know.",
+      "timestamp": "00:06:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "He worked in Indeed for seven years, and then he worked at ZipRecruiter for six years.",
+      "timestamp": "00:07:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So he basically helped take ZipRecruiter public, and he ran candidate acquisition for ZipRecruiter.",
+      "timestamp": "00:07:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we have an incredible team when it comes to acquiring job seekers for clients.",
+      "timestamp": "00:07:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So that's really what our expertise is.",
+      "timestamp": "00:07:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, yeah, I got you.",
+      "timestamp": "00:07:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you're saying that spending like $200,000, I think is $10,000 plus in annual revenue, and maybe have 10 plus recruiters?",
+      "timestamp": "00:07:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Oh, at least 10.",
+      "timestamp": "00:07:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Usually they have, yeah, 30, 40 or more recruiters and have...",
+      "timestamp": "00:07:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Now, we can work with mid-market companies, like I think you're describing, like 10, 15 recruiters, you know.",
+      "timestamp": "00:07:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We have some clients like that, but we're focused on the larger ones right now.",
+      "timestamp": "00:07:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, makes sense.",
+      "timestamp": "00:07:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you're working only with the U.S.",
+      "timestamp": "00:07:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "or other countries as well?",
+      "timestamp": "00:07:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Only U.S., only U.S.",
+      "timestamp": "00:07:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:07:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, so...",
+      "timestamp": "00:07:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I think market, maybe total market is 1,000 companies.",
+      "timestamp": "00:08:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If we narrow it to healthcare, it's maybe 300, 400.",
+      "timestamp": "00:08:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's not too big.",
+      "timestamp": "00:08:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, mean, I think, well, you know, the healthcare clients that we have are spending millions of dollars a year.",
+      "timestamp": "00:08:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So the enterprise side is really, and mid-market is probably what we're going for.",
+      "timestamp": "00:08:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But yeah, I mean, we're not looking for like small business where there's tens of thousands.",
+      "timestamp": "00:08:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So in the US, there's 27,000 staffing firms.",
+      "timestamp": "00:08:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "That's the data we have.",
+      "timestamp": "00:08:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I don't know if you have different data.",
+      "timestamp": "00:08:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And we estimate that about 10% of that, maybe 20% of that is the market we would want to go after.",
+      "timestamp": "00:08:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So there's probably 3,000 4,000 total companies that spend over 5 or 10K a month.",
+      "timestamp": "00:08:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But that's sort of our minimum, right?",
+      "timestamp": "00:09:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Anything less than $10,000 a month, we're not really going to pay that much attention to.",
+      "timestamp": "00:09:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So six-figure deals annually.",
+      "timestamp": "00:09:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, makes sense.",
+      "timestamp": "00:09:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So your plan is you pay proceeds for recruiters or what's the price of your service and so on?",
+      "timestamp": "00:09:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yes, it's based on number of job listings and how much money they want to promote their job listings.",
+      "timestamp": "00:09:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So if they want to spend $10,000, $20,000, $50,000 a month, whatever, we're going to deploy that budget to acquire them job seekers.",
+      "timestamp": "00:09:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So really, it depends on how many job seekers they need to acquire every month to deliver for their customers.",
+      "timestamp": "00:09:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So if you're a healthcare staffing firm, how many nurse jobs do you have every month?",
+      "timestamp": "00:09:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You've got 100 nurse jobs?",
+      "timestamp": "00:09:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Well, you've probably got to spend $300 to $400 per job to get enough nurses to fill your customer demand.",
+      "timestamp": "00:09:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we'll spend $30,000 a month with that client.",
+      "timestamp": "00:09:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like we kind of...",
+      "timestamp": "00:09:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We work with them.",
+      "timestamp": "00:10:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "They're usually already spending some amount.",
+      "timestamp": "00:10:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Usually we get them to spend at least that.",
+      "timestamp": "00:10:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And then we kind of scale from there.",
+      "timestamp": "00:10:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So it's performance-based for the recruitment marketing spend.",
+      "timestamp": "00:10:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But the AI spend for the agents and stuff is based on number of interviews that our AI does.",
+      "timestamp": "00:10:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Stuff like that.",
+      "timestamp": "00:10:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Usage-based.",
+      "timestamp": "00:10:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:10:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay.",
+      "timestamp": "00:10:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay.",
+      "timestamp": "00:10:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Got you.",
+      "timestamp": "00:10:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:10:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what is like your business processes right now?",
+      "timestamp": "00:10:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "How are getting this enterprise clients that you're working with?",
+      "timestamp": "00:10:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like inbound, like from your relationship or network or what's the...",
+      "timestamp": "00:10:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You know, it's a combination of things.",
+      "timestamp": "00:10:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "My network, my relationships, my credibility, my LinkedIn.",
+      "timestamp": "00:10:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like that's been a big part of it.",
+      "timestamp": "00:10:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Events, referrals.",
+      "timestamp": "00:10:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So the outbound motion that Matt has been running has not converted at a very good level.",
+      "timestamp": "00:10:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And I think this is a problem in general with outbound right now from everyone I speak to.",
+      "timestamp": "00:10:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we're using...",
+      "timestamp": "00:10:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're Apollo.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're using HubSpot.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're using various AI tools.",
+      "timestamp": "00:11:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're doing manual.",
+      "timestamp": "00:11:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Matt's making thousands and thousands of phone calls.",
+      "timestamp": "00:11:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And Matt has generated leads and revenue from outbound, but it's like a smaller portion of our total sales.",
+      "timestamp": "00:11:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But I want to be able to go myself, use my network, use my LinkedIn, and use events to go after the larger mid-market and the enterprise clients.",
+      "timestamp": "00:11:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And then I want Matt and maybe a partner like you guys to generate the higher volume sort of leads with the bigger mid-market companies and, or like healthcare providers directly, like hospital systems that like are about to post a bunch of jobs.",
+      "timestamp": "00:11:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like those are the kind of opportunities that we would look for you.",
+      "timestamp": "00:11:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like, so obviously you could, you could help us on the enterprise and do, you know, outbound or whatever it is you do.",
+      "timestamp": "00:11:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I think I understand your system.",
+      "timestamp": "00:11:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You know, we're, I'm very familiar with this industry.",
+      "timestamp": "00:11:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So I've worked with Aspen Technology, you know.",
+      "timestamp": "00:11:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And that I think there's like three or four of those companies that have like, you job listing data.",
+      "timestamp": "00:12:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we'd be curious, like how you would attack this and what sort of that looks like and what your experience is specifically trying to generate leads at staffing firms.",
+      "timestamp": "00:12:05"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So it seems like you generate leads for staffing firms, which means probably know a lot of staffing firms, which means maybe you want to just do referrals for us and I'll pay you 10% or whatever.",
+      "timestamp": "00:12:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But I think, you know, we would like to see how much you, you know, what exactly you do here.",
+      "timestamp": "00:12:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, makes sense.",
+      "timestamp": "00:12:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you mentioned that you also want to target healthcare providers.",
+      "timestamp": "00:12:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So like, so your service can be used not only for staffing firms, but for like, healthcare, like clinics and so on, who do it without recruiters, but their internal teams?",
+      "timestamp": "00:12:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, we do we work with both direct employers and staffing firms, but direct employers is a lower priority.",
+      "timestamp": "00:12:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:12:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, we go.",
+      "timestamp": "00:12:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, Yeah, go.",
+      "timestamp": "00:12:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We have both customers, but about 80% of our revenue is staffing.",
+      "timestamp": "00:13:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, okay.",
+      "timestamp": "00:13:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you also targeting this like hospitals and some like clinics who doing hiring themselves or now your main focus on staffing agencies for like bigger sizes, as you mentioned, right?",
+      "timestamp": "00:13:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Big staffing agencies.",
+      "timestamp": "00:13:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay, okay.",
+      "timestamp": "00:13:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, say that Matthew and your team tried some outreach that didn't convert much.",
+      "timestamp": "00:13:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If you share with me what you tried, what not, I can compare with strategies that I use that I will uncover later.",
+      "timestamp": "00:13:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So just to see if it makes sense.",
+      "timestamp": "00:13:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, so we use Apollo.",
+      "timestamp": "00:13:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And I mean, you could probably speak a bit more to some of the numbers, but I think the conversion rates are less than 1%, I mean, into meetings and stuff.",
+      "timestamp": "00:13:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "Yeah, not really getting a lot of opens either, which is one of bigger issues.",
+      "timestamp": "00:14:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "We're doing some A-B testing on those different subject lines, and just not getting the open.",
+      "timestamp": "00:14:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "So not sure if it's just a messaging thing, a subject line thing, or just going to spam and not getting opened.",
+      "timestamp": "00:14:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yes, this.",
+      "timestamp": "00:14:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, so you're doing just blasting, spraying to Apollo leads?",
+      "timestamp": "00:14:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "No.",
+      "timestamp": "00:14:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And what's like their process?",
+      "timestamp": "00:14:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "We're not doing the spraying, we're doing the targeted outreach, the targeted messaging, two different personas.",
+      "timestamp": "00:14:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "So having a bunch of different stuff running at the same time.",
+      "timestamp": "00:14:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "it's not spraying, it's really going to target messaging.",
+      "timestamp": "00:14:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:14:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, basically it's most about quality, what's like signals you got.",
+      "timestamp": "00:14:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you're doing signal-based when you've got some signals, for example, so this staffing firm needs, like they're expanding, or they have more job boards, jobs.",
+      "timestamp": "00:14:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So the list set that I built out, it already has what they're spending a year.",
+      "timestamp": "00:14:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "So that's kind of, signal is baked into it.",
+      "timestamp": "00:14:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "So we're trying to use some Apollo signals to kind of get more traction, but using the list that we build out.",
+      "timestamp": "00:14:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "And the companies that we're reaching out to, they're already spending the minimum amount of money that other companies we want to work with.",
+      "timestamp": "00:15:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "So that kind of signal is already baked in, and they already have jobs that they're posting, which we know.",
+      "timestamp": "00:15:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "Those two signals are baked into the list that I built out.",
+      "timestamp": "00:15:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, so we have, obviously, Apollo incorporates job listing data, but for an example, one of the things that we did for, you know, like, we do LinkedIn advertising.",
+      "timestamp": "00:15:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we'll run ads on LinkedIn, we'll see who comes to our website and who engages with those ads and what our top engaged customers or prospects are, and then we'll run targeted campaigns against those customer names.",
+      "timestamp": "00:15:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we're doing, like, account-based marketing on the enterprise.",
+      "timestamp": "00:15:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "When we're doing an event, Matt will do a bunch of outreach for event meetings, which has worked really well because I think it's, like, a catalyst of, like, one thing.",
+      "timestamp": "00:15:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But, yeah, would say just the general, like, hey, these 100 companies are mid-market, and they're posting between 50 and 150 jobs a month.",
+      "timestamp": "00:15:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Let's do",
+      "timestamp": "00:15:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Some prospecting to them via Apollo, we're not really seeing anything like material come back from that.",
+      "timestamp": "00:16:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And as Matt said, I mean, we have SendGrid, we've warmed up multiple inboxes, we're sending from like six different emails.",
+      "timestamp": "00:16:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like, I feel like we've set up everything correctly, but I could be wrong.",
+      "timestamp": "00:16:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, yeah, yeah.",
+      "timestamp": "00:16:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I think I know what's one of the issues you're facing because in terms of how the emails should place into mailboxes, of recruiters, and this is a very old-school industry, and especially for enterprise, the main issue, their message was delivered.",
+      "timestamp": "00:16:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because they all have Microsoft providers, and now it's very tricky to land it to inbox.",
+      "timestamp": "00:16:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we have the whole process around it.",
+      "timestamp": "00:16:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So this is first.",
+      "timestamp": "00:16:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, guess this, and also like about the quality of copy and so on.",
+      "timestamp": "00:16:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "This is second, based on what signals you get.",
+      "timestamp": "00:16:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "you.",
+      "timestamp": "00:16:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thank",
+      "timestamp": "00:16:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Because only like getting the signals that they spend in X amount of money, usually this kind of signals this okay, but what works for clients that I work in, so we're trying to make in more like not obvious signals, that can be so this like companies change like leadership, or they just change of hiring volume or something.",
+      "timestamp": "00:17:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So based, like based on targets, based on the goal, we're making the list of signals and going like quarterly, like main messages, like checking in, what's going on, what's up, and if we around this time get more specific signals, we double down on that.",
+      "timestamp": "00:17:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "For example, they like hire new ops leaders, so on, it's usually for you guys, I think makes sense that they with.",
+      "timestamp": "00:17:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Be more receptive to your service, so this as well, and also how you mentioned that events work for you, so I think in this case it's good to monitoring some very niche events, especially for staffing firms, and just keeping some signals from there.",
+      "timestamp": "00:18:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Matthew Miller",
+        "matched_calendar_invitee_email": "matthew@engin.co"
+      },
+      "text": "And also in terms of kind of those new people who are starting jobs, like I'm using LinkedIn sales and have a lot to really get granular in that, in terms of who's posted within the past 30 days, who's changed jobs in the last 90 days, so really kind of using those signals as well, and then transferring them over to Apollo, so getting granular there, using the account list that we're going after.",
+      "timestamp": "00:18:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You know, I've been running outbound and SDR teams for, I mean ever, for since 2006, we've been doing outbound and various types, you know, outreach when it first came out was amazing, and then it got bad because everyone got it, and then, you know.",
+      "timestamp": "00:18:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Spam rules get tight.",
+      "timestamp": "00:19:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like there's obviously always evolving issues you have to face.",
+      "timestamp": "00:19:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And my wife works for Salesforce and she knows a lot about, you know, deliverability and whatnot.",
+      "timestamp": "00:19:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And I, we've definitely heard that Microsoft and Microsoft inbox controls, you know, bounce rate, delivery rates are very low, bounce rates are very high.",
+      "timestamp": "00:19:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So, I mean, what's special about your system that allows you to inbox people that have Microsoft that we couldn't just do with Apollo?",
+      "timestamp": "00:19:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Like, why can't Apollo do that, given that they're one of the leaders in the space?",
+      "timestamp": "00:19:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, that's a good question.",
+      "timestamp": "00:19:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If I just tell you all my secrets straight away, it wouldn't make much sense for me, right?",
+      "timestamp": "00:19:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But on the, like, base level, what we're doing, we're tracking, deliverability across providers.",
+      "timestamp": "00:19:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, when we launch campaign, we say, okay, for Google, this is our baseline, how many, like, replies we have, so we can...",
+      "timestamp": "00:19:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Pairing with Microsoft, if we see lower rates, we see if it's landing or not, if it's not landing, we do it again, again, again, until it's landing.",
+      "timestamp": "00:20:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's a lot of stuff from here, and if you're just using Apollo, they don't have this kind of analytics, so it's good just to, I don't know, touch the water, but for, like, long-term game, as you say, if you want to scale, I think you should know when your message getting into inbox, when it's not, so you can, like, tweak in your angles, different, like, copies, like, value prepositions.",
+      "timestamp": "00:20:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I think for you, if you don't crack there, these points, because, like, 80%, I think for enterprise is, like, 90% is Microsoft mailboxes.",
+      "timestamp": "00:20:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So kind of like this.",
+      "timestamp": "00:20:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, and Lena, do you have a, so when we work with you, or if we were.",
+      "timestamp": "00:20:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're work with you.",
+      "timestamp": "00:21:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "What is the arrangement in terms of how we understand the analytics of what you're delivering?",
+      "timestamp": "00:21:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You know, how do we, do we basically, because I've worked with third-party lead generation services, so this is not that new to me, but typically we'll give them, you know, a bunch of copy, target list, ICP, all of that.",
+      "timestamp": "00:21:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You'll create the campaigns, you'll start doing, you know, outbound, you'll run it from multiple warmed up email addresses.",
+      "timestamp": "00:21:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Are you emailing from our domain?",
+      "timestamp": "00:21:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Do you set up your own domains?",
+      "timestamp": "00:21:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You know, how does it work?",
+      "timestamp": "00:21:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:21:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay, yeah.",
+      "timestamp": "00:21:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, usually, what you're saying, there's, like, I don't know, maybe lead agency playbook, where you're just giving a bunch of, like, your playbooks for them, your rules, and they're doing just technical stuff.",
+      "timestamp": "00:21:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "That's not how I'm working with clients, because I'm about business development, so I, what we're doing when we have onboarding new clients, we're seeing what we can do, we have our copy that's working.",
+      "timestamp": "00:21:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So...",
+      "timestamp": "00:21:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So...",
+      "timestamp": "00:21:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So at least we're trying different strategies.",
+      "timestamp": "00:22:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "For example, we can create accounts under your name or we can use our infrastructure and reach now to the center price and say, okay, we know this.",
+      "timestamp": "00:22:02"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I have some guys that helps you reduce costs on your hiring.",
+      "timestamp": "00:22:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Do you want to reconnect you too?",
+      "timestamp": "00:22:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So try different angles and this kind of stuff.",
+      "timestamp": "00:22:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So how are tracking all these metrics?",
+      "timestamp": "00:22:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If it's important for you, just we can clients access all their numbers.",
+      "timestamp": "00:22:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So also you can share like what numbers working for you, what outreach strategies you already try, what works, what not.",
+      "timestamp": "00:22:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We can take a couple of these because of course you understand your market better, at least for now in outreach.",
+      "timestamp": "00:22:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yes.",
+      "timestamp": "00:22:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And it makes sense to try a couple of these.",
+      "timestamp": "00:22:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, but usually all their infrastructure, all their mapping signals.",
+      "timestamp": "00:22:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "All their internal systems that we use to identify their people, in your case, like OPS leaders and who are working in this kind of healthcare staffing agencies when something's changing.",
+      "timestamp": "00:23:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So this I prefer doing myself.",
+      "timestamp": "00:23:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Got it.",
+      "timestamp": "00:23:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So do you charge per lead generated?",
+      "timestamp": "00:23:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Is it a monthly fee?",
+      "timestamp": "00:23:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Is it a retainer?",
+      "timestamp": "00:23:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "What's your cost structure?",
+      "timestamp": "00:23:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So yeah, usually when I'm working with my lovely recruiters, it's like a 90-day pilot, because what lasts, like if just one month or something, it doesn't make sense, because to make the system running, it takes some time.",
+      "timestamp": "00:23:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for you, I think it can be more than 90 days, but yeah, 90 days is a minimal baseline.",
+      "timestamp": "00:23:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "In terms of generating opportunities, usually, it's if it's more...",
+      "timestamp": "00:23:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Or like smaller businesses, more commodity.",
+      "timestamp": "00:24:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like if I work in for healthcare recruitment itself, I would say that I can connect them with like at least five decision makers per month.",
+      "timestamp": "00:24:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But for you, because you're targeting more enterprise clients, I would say that like three, five good opportunities, good conversations that I make for you for like first 90 days, it will be good.",
+      "timestamp": "00:24:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay.",
+      "timestamp": "00:24:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we do a 90 day pilot with our customers.",
+      "timestamp": "00:24:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I like that arrangement.",
+      "timestamp": "00:24:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I agree.",
+      "timestamp": "00:24:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're looking to invest for some time.",
+      "timestamp": "00:24:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We would be looking, look, we're doing a ton of our own campaigns, obviously.",
+      "timestamp": "00:24:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're doing marketing, we're doing outbound, we're doing this.",
+      "timestamp": "00:24:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So we'd be looking for this as like a supplemental, like if we can generate, you know, 20 or 30% of our lead base from a partner like you, that would be great.",
+      "timestamp": "00:24:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Right now our close rate.",
+      "timestamp": "00:24:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "is very high.",
+      "timestamp": "00:24:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're closing like 30%.",
+      "timestamp": "00:24:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "35% to 40% of every person we talk to, that's a qualified opportunity, which probably needs any to raise my prices.",
+      "timestamp": "00:25:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But we definitely have very good success.",
+      "timestamp": "00:25:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We know how to qualify.",
+      "timestamp": "00:25:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We know exactly what we're looking for.",
+      "timestamp": "00:25:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We can give very specific feedback on lead quality.",
+      "timestamp": "00:25:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But yeah, I mean, if you're seeing, if you have these signals on job listings and you're able to identify, hey, this company went from 30 to 50 job listings a month on average in the last three months, that's probably a strong signal that there's growth and that they're going to be investing heavily in this category, right?",
+      "timestamp": "00:25:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So it sounds like, you know, they hire a new VP of marketing.",
+      "timestamp": "00:25:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "They hire a new head of recruiting operations.",
+      "timestamp": "00:25:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "They hire a new CMO, right?",
+      "timestamp": "00:25:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "They get a new executive on the team who wants to shake things up.",
+      "timestamp": "00:25:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But the people we sell to, Leonid, like in a staffing firm, it's almost always VP marketing or chief marketing officer because usually this sits under marketing.",
+      "timestamp": "00:25:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So it's probably the same person you sell to in staffing firms, which means that.",
+      "timestamp": "00:25:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "You could just start to make referrals and get paid, which would be totally fine by us.",
+      "timestamp": "00:26:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "However you get the leads doesn't matter.",
+      "timestamp": "00:26:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Maybe they're existing customers of yours.",
+      "timestamp": "00:26:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And then the other person that we see inside of a staffing firm is like recruiting operations manager, head of recruiting ops, director of recruiting, VP recruiting, chief operating officer.",
+      "timestamp": "00:26:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So usually it's kind of like somehow both of those people.",
+      "timestamp": "00:26:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And then once we get in, of course, the CTO, the head of product, like we're working with them on the AI implementations, but we're not really going in through the CTO because they usually don't pay.",
+      "timestamp": "00:26:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "They are not like responsible for the marketing to get candidates.",
+      "timestamp": "00:26:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And so that's kind of why we focus more on the VP marketing.",
+      "timestamp": "00:26:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, makes sense.",
+      "timestamp": "00:26:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I would first targeting all ops roles, but if you're saying for you marketing doing also good as well, yeah, it's a good signal.",
+      "timestamp": "00:26:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, in terms of singles, uh, that you mentioned, uh, what we do in these cases.",
+      "timestamp": "00:26:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we just, uh,",
+      "timestamp": "00:26:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We the chunk of markets, as you say, like 3K firms, and then we annually monitoring them like every one month, sometimes every week, and we see changes in their job boards, in their website, LinkedIn, and when we see something change, we analyze what change, if it's change looks like a signal, we're reaching out.",
+      "timestamp": "00:27:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So basically like this.",
+      "timestamp": "00:27:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And what would we expect if we were to work together in terms of a monthly budget we would put towards this?",
+      "timestamp": "00:27:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for clients I worked before with SaaS, I charged from 5K to 7K.",
+      "timestamp": "00:27:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So basically like this, because it's more system-heavy to make all this infrastructure running.",
+      "timestamp": "00:27:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we can make another call when I make just proposals, when I make more info, what signals we're tracking, and I will see about.",
+      "timestamp": "00:27:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I'll look more deep in your markets and I can finalize the price, but usually it's from $5,000 to $7,000.",
+      "timestamp": "00:28:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Got it.",
+      "timestamp": "00:28:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So that's fine.",
+      "timestamp": "00:28:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So can you do me a favor?",
+      "timestamp": "00:28:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Can we please take a look at that proposal?",
+      "timestamp": "00:28:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're talking to a few different partners here.",
+      "timestamp": "00:28:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're going to make a decision by the end of the month on this.",
+      "timestamp": "00:28:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're going to try to get launched as soon as possible.",
+      "timestamp": "00:28:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So yeah, I would love to see what that proposal looks like.",
+      "timestamp": "00:28:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "And if you have specific experience working with like software companies or marketing, recruitment marketing companies like us, selling to staffing firms, obviously that would be fantastic.",
+      "timestamp": "00:28:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:28:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So I know when they're sending proposals, they usually get buried.",
+      "timestamp": "00:28:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if you have someone from your team that also want to join for our next call, we can schedule it.",
+      "timestamp": "00:28:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like you say, you want to make the decision by the end of the month.",
+      "timestamp": "00:28:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's already last week.",
+      "timestamp": "00:28:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "It's",
+      "timestamp": "00:28:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, no, I think by the – you're right.",
+      "timestamp": "00:29:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I thought it was actually – I'm just looking at my calendar.",
+      "timestamp": "00:29:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're probably – based on the calls we have coming up, we're probably not going to be able to get to that.",
+      "timestamp": "00:29:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So it's probably going to have to be by mid-February.",
+      "timestamp": "00:29:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "But let me see here.",
+      "timestamp": "00:29:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "I'm looking at my calendar.",
+      "timestamp": "00:29:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, I'd like to do – if we could do another call like Monday, same time on Monday, February 2nd.",
+      "timestamp": "00:29:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Matt, if that works for you, I think that would be good.",
+      "timestamp": "00:29:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:29:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay, that was great.",
+      "timestamp": "00:29:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I will prepare all the info that we're talking and also some cases with like staffing agencies and one couple of like SaaSs.",
+      "timestamp": "00:29:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I worked.",
+      "timestamp": "00:29:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if you wanted to take a look and from there we can make a decision if it makes sense to work together or not.",
+      "timestamp": "00:29:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Yeah, absolutely.",
+      "timestamp": "00:29:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Okay.",
+      "timestamp": "00:29:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "So thank you, guys.",
+      "timestamp": "00:29:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I will send you calendar invitation.",
+      "timestamp": "00:29:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thank",
+      "timestamp": "00:29:59"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Today, tomorrow, and I guess see you 2nd February, unless you have some questions for me right now.",
+      "timestamp": "00:30:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "No, we're good.",
+      "timestamp": "00:30:08"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "This is helpful, and we get it, and this is pretty standard.",
+      "timestamp": "00:30:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "We're just looking for the right partner, so yeah, we'll look forward to seeing that proposal.",
+      "timestamp": "00:30:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, Sloane, Matthew, have a good rest of your day.",
+      "timestamp": "00:30:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Sloane Barbour",
+        "matched_calendar_invitee_email": "sloane@engin.co"
+      },
+      "text": "Thanks.",
+      "timestamp": "00:30:19"
+    }
+  ],
+  "transcript_language": "en",
+  "default_summary": {
+    "template_name": "General",
+    "markdown_formatted": "## Meeting Purpose\n\n[Evaluate SystemHustle as a partner for scaling engin's meeting generation.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=171.0)\n\n## Key Takeaways\n\n  - **Problem:** engin's outbound outreach (Apollo) has \\<1% conversion, blocked by poor email deliverability to the staffing industry's dominant Microsoft inboxes.\n  - [**Solution:** SystemHustle proposes a signal-based strategy to bypass deliverability issues and target high-intent prospects (e.g., firms with sudden job-post growth), aiming for 3-5 qualified meetings in a 90-day pilot.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=980.0)\n  - [**Opportunity:** engin needs to scale meeting volume to supplement its high-converting inbound channels (35-40% close rate) and capture a market of \\~3,000–4,000 target firms.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1476.0)\n  - [**Decision:** engin will review a formal proposal from SystemHustle on **Feb 2nd** to decide on a partnership by mid-February.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1694.0)\n\n## Topics\n\n### engin's Business & Market\n\n  - [**Product:** AI-powered recruitment marketing & automation for staffing firms.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=179.0)\n      - [**Goal:** Improve candidate acquisition funnels by 30-40%.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=203.0)\n      - [**Services:** AI agents for screening/scheduling, integrated with client CRMs/ATSs.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=203.0)\n  - [**Target Market:** US staffing firms, with a focus on healthcare.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=329.0)\n      - [**Ideal Client Profile (ICP):** Firms spending $20k–$150k/mo on job boards, typically with 30-40+ recruiters.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=329.0)\n      - [**Market Size:** \\~3,000–4,000 firms spending \\>$10k/mo on job boards.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=516.0)\n  - [**Sales Motion:**](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=625.0)\n      - [**Inbound (High-Converting):** Sloane's network, events, referrals.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=625.0)\n      - [**Outbound (Low-Converting):** Matthew's Apollo-based campaigns.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=807.0)\n  - [**Sales Process:**](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1546.0)\n      - [**Target Personas:** VP Marketing/CMO (budget holder), Head of Recruiting Ops (user).](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1546.0)\n      - [**Close Rate:** 35-40% on qualified opportunities.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1496.0)\n\n### Outbound Performance & Challenges\n\n  - [**Current Strategy:** Targeted campaigns via Apollo and HubSpot, not \"spraying.\"](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=857.0)\n  - **[Performance:](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=807.0)** \\<1% conversion to meetings; low open rates.\n  - [**Root Cause:** Poor email deliverability to the staffing industry's dominant Microsoft inboxes.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=980.0)\n      - [**Impact:** Messages are likely sent to spam, preventing opens and conversions.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=841.0)\n\n### SystemHustle's Proposed Solution\n\n  - [**Core Insight:** The staffing industry's reliance on Microsoft inboxes requires a specialized deliverability strategy.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=980.0)\n  - [**Proposed Strategy:**](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=980.0)\n      - [**Deliverability Optimization:** Continuously test and adjust campaigns to ensure inbox placement on Microsoft domains.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1176.0)\n      - [**Signal-Based Targeting:** Monitor target firms for high-intent signals beyond basic spend data.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1010.0)\n          - [**Examples:** Sudden job-post growth (e.g., 30→50/mo), new ops/marketing leadership hires.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1519.0)\n      - [**Quarterly Cadence:** Maintain a quarterly check-in with the market, doubling down on outreach when a strong signal is detected.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1020.0)\n  - [**Engagement Model:**](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1402.0)\n      - [**Pilot:** 90-day minimum, as time is needed to build momentum.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1410.0)\n      - [**Deliverables:** 3-5 qualified meetings/conversations in the first 90 days.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1434.0)\n      - [**Pricing:** $5k–$7k/month retainer.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1642.0)\n      - [**Structure:** SystemHustle manages all infrastructure, copy, and targeting, with engin providing market feedback.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1255.0)\n\n## Next Steps\n\n  - [**Leonid:** Send a calendar invite for the follow-up call.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1757.0)\n  - [**Leonid:** Prepare a formal proposal with case studies (staffing, SaaS) for the next meeting.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1770.0)\n  - [**All:** Meet on **Monday, February 2nd, at 11:00 AM EST** to review the proposal and discuss a partnership.](https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG?tab=summary&timestamp=1757.0)\n"
+  },
+  "action_items": [],
+  "calendar_invitees": [
+    {
+      "name": "Sloane Barbour",
+      "email": "sloane@engin.co",
+      "email_domain": "engin.co",
+      "is_external": true,
+      "matched_speaker_display_name": null
+    },
+    {
+      "name": "matthew@engin.co",
+      "email": "matthew@engin.co",
+      "email_domain": "engin.co",
+      "is_external": true,
+      "matched_speaker_display_name": null
+    },
+    {
+      "name": "Leonid Shvorob",
+      "email": "leo@systemhustle.com",
+      "email_domain": "systemhustle.com",
+      "is_external": false,
+      "matched_speaker_display_name": null
+    }
+  ],
+  "recorded_by": {
+    "name": "Leonid Shvorob",
+    "email": "leo@systemhustle.com",
+    "email_domain": "systemhustle.com",
+    "team": null
+  },
+  "share_url": "https://fathom.video/share/mmHYyezSE9mb1pzkF_G_AfsLXzXdueLG",
+  "crm_matches": null
+}

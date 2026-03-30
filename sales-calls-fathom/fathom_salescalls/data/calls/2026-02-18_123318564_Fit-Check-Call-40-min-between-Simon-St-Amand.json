@@ -1,0 +1,1593 @@
+{
+  "title": "Fit Check Call (40 min) between Simon St-Amand",
+  "meeting_title": "Fit Check Call (40 min) between Leonid Shvorob and Simon St-Amand",
+  "url": "https://fathom.video/calls/570424904",
+  "created_at": "2026-02-18T15:22:22Z",
+  "scheduled_start_time": "2026-02-18T15:00:00Z",
+  "scheduled_end_time": "2026-02-18T15:40:00Z",
+  "recording_id": 123318564,
+  "recording_start_time": "2026-02-18T14:50:24Z",
+  "recording_end_time": "2026-02-18T15:21:25Z",
+  "calendar_invitees_domains_type": "one_or_more_external",
+  "transcript": [
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Good How's it going?",
+      "timestamp": "00:08:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Good.",
+      "timestamp": "00:08:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Thank you.",
+      "timestamp": "00:08:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Thank Thank you.",
+      "timestamp": "00:08:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah, so yeah, perfect.",
+      "timestamp": "00:09:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, where are you calling from?",
+      "timestamp": "00:09:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Canada?",
+      "timestamp": "00:09:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Montreal, yeah, Montreal in Canada.",
+      "timestamp": "00:09:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Never been there, but your sounds like French a little bit.",
+      "timestamp": "00:09:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, yeah, yeah, fully French.",
+      "timestamp": "00:09:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, in Bali, a lot of French people come in, especially this time.",
+      "timestamp": "00:09:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Really, yeah, leave the cold.",
+      "timestamp": "00:09:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, okay.",
+      "timestamp": "00:09:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, sorry for, like, last time, it's, like, was some mess up with time zones.",
+      "timestamp": "00:09:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "No problem.",
+      "timestamp": "00:09:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, yeah, let's just start right away.",
+      "timestamp": "00:09:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "What's make you, first of all, jumping on this call?",
+      "timestamp": "00:09:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like, what's, like, changing in your processes that you think that it's a good time to talk about for new clients?",
+      "timestamp": "00:09:42"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So, open, I opened a new division in a new, uh, province.",
+      "timestamp": "00:09:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:09:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And, uh, we're...",
+      "timestamp": "00:09:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Having a hard time to get new clients over there, like where I'm located, we have a good reputation, we have a good base, but over there is brand new and we're having a hard time.",
+      "timestamp": "00:10:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So I'm like, we need something new, we need something different.",
+      "timestamp": "00:10:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So I'm curious to see what's on the market.",
+      "timestamp": "00:10:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So new division, you mean in your region in Canada?",
+      "timestamp": "00:10:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah, so there's a different province.",
+      "timestamp": "00:10:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "I'm in Quebec, which is more French, and now we're developing in Ontario, which is more English.",
+      "timestamp": "00:10:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So that's where we're having a problem is my team and Derek cannot help us here and we can't help us there a lot.",
+      "timestamp": "00:10:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So that's the biggest problem.",
+      "timestamp": "00:10:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, so you're already hiring recruiters, but they're just sitting and waiting.",
+      "timestamp": "00:10:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So they're doing some cold calls, some emails and things, but it's taking longer than I thought it would.",
+      "timestamp": "00:10:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So they have a couple of contracts.",
+      "timestamp": "00:10:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "They have a couple of",
+      "timestamp": "00:10:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "But not that much.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "I would like them to up more.",
+      "timestamp": "00:11:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So more is like how many new contracts you want for this division, like for this quarter or for next quarter?",
+      "timestamp": "00:11:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "I would like between six to ten per month.",
+      "timestamp": "00:11:11"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:11:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:11:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So now you have like referrals, but only in Oregon and for like new division is only cold calling.",
+      "timestamp": "00:11:22"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, it's only really cold call, cold email, cold outreach.",
+      "timestamp": "00:11:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So that's always longer.",
+      "timestamp": "00:11:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "It's less motivating.",
+      "timestamp": "00:11:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you have some outbound system that's giving you results or it's just recruiters who are doing like...",
+      "timestamp": "00:11:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "No, only recruiters doing their thing.",
+      "timestamp": "00:11:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So just searching LinkedIn and like DMing or what's usually...",
+      "timestamp": "00:11:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, both.",
+      "timestamp": "00:12:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So they search LinkedIn, they search database, they search job ads, and things like that.",
+      "timestamp": "00:12:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "And then they try to talk to people over there.",
+      "timestamp": "00:12:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "But I feel like they're having a hard time having discussion.",
+      "timestamp": "00:12:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Once we have the discussion, it normally goes not easy, but easier.",
+      "timestamp": "00:12:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "And they're just having a hard time getting that first conversation, first meeting.",
+      "timestamp": "00:12:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:12:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, I think you have a good reputation, like, in the market long time.",
+      "timestamp": "00:12:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's not a problem with, like...",
+      "timestamp": "00:12:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you're targeting SPG companies, or what's your ideal customers that you want to reach?",
+      "timestamp": "00:12:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So between 20 employees and 400 is usually where we have the most success.",
+      "timestamp": "00:12:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:12:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:12:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's like mid-level management, or what kind of roles?",
+      "timestamp": "00:12:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, mid-level management to higher management.",
+      "timestamp": "00:12:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:12:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:12:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And...",
+      "timestamp": "00:12:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "What's...",
+      "timestamp": "00:12:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "It's like usually fee, like 30, 40K.",
+      "timestamp": "00:13:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Around, I think our average right now is 16.",
+      "timestamp": "00:13:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "In US or in Canadian?",
+      "timestamp": "00:13:10"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "In Canadian.",
+      "timestamp": "00:13:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:13:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So if you make 6, 10 new placements for months, it will be a good start.",
+      "timestamp": "00:13:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So our, our, our, our percentage of placement is usually around 40%, about 40 to 50, so if we get 3 to 6, it's at least 3 placements per month.",
+      "timestamp": "00:13:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:13:36"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:13:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:13:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "What do you mean?",
+      "timestamp": "00:13:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's like, if you have 10 conversations, you're closing 5 placements from this, or what the matter?",
+      "timestamp": "00:13:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "No, no, in 10 mandates, we close 5 normally, if they're not exclusive.",
+      "timestamp": "00:13:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:13:55"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:13:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, you mean, if, uh,",
+      "timestamp": "00:13:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I put you in front of 10 like hiring managers, decision makers in this mid-level SPG companies.",
+      "timestamp": "00:14:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually how much of them your team could close?",
+      "timestamp": "00:14:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "50%.",
+      "timestamp": "00:14:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Meetings depend.",
+      "timestamp": "00:14:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "If there's one conversation, I think at least 50%, if not 80%.",
+      "timestamp": "00:14:16"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Usually when we get in front of the client, we normally get the job.",
+      "timestamp": "00:14:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:14:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:14:25"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually when like you have a new client, new company, they need only one person or sometimes two, three or more.",
+      "timestamp": "00:14:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "You mean placement?",
+      "timestamp": "00:14:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:14:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:14:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "they start with one, but normally it's around two to four per year.",
+      "timestamp": "00:14:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:14:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:14:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "That's cool.",
+      "timestamp": "00:14:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And it's like it's retained or contingency?",
+      "timestamp": "00:14:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:14:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "do contingency mostly, yeah.",
+      "timestamp": "00:14:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:14:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And like the cycle, how much...",
+      "timestamp": "00:14:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "How many days or weeks do need to make a placement?",
+      "timestamp": "00:15:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Five weeks is our average.",
+      "timestamp": "00:15:03"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, not bad.",
+      "timestamp": "00:15:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's pretty fast.",
+      "timestamp": "00:15:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, cool.",
+      "timestamp": "00:15:12"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what I also want to ask, so now your team, they're doing cold calls, so how much results do they have for one month?",
+      "timestamp": "00:15:14"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "How many people they can close or something?",
+      "timestamp": "00:15:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I'm sorry, can you repeat the question?",
+      "timestamp": "00:15:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:15:30"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "So now your team is doing cold outreach?",
+      "timestamp": "00:15:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:15:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for one month, they're doing this outreach.",
+      "timestamp": "00:15:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "How many results do they have?",
+      "timestamp": "00:15:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "They're getting about two mandates per month.",
+      "timestamp": "00:15:40"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:15:43"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Two mandates.",
+      "timestamp": "00:15:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:15:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And it's like, how big is the team in this division?",
+      "timestamp": "00:15:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like two, three people or more?",
+      "timestamp": "00:15:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Two people, yeah.",
+      "timestamp": "00:15:54"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Two people.",
+      "timestamp": "00:15:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:15:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:15:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it looks like...",
+      "timestamp": "00:15:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like now, they're all day sitting and just cold calling, right?",
+      "timestamp": "00:16:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:16:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay, gotcha.",
+      "timestamp": "00:16:06"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, I think I ask enough questions to see if that is, I think, a good fit, actually.",
+      "timestamp": "00:16:09"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, do you have any questions for me or I can explain to you how usually you work?",
+      "timestamp": "00:16:21"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Could explain a little bit how you guys work and how you succeed?",
+      "timestamp": "00:16:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:16:31"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Okay.",
+      "timestamp": "00:16:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so, as you're saying, now that, like, generic outreach in 2026 just doesn't work because so many competitors who are using, like, different systems, some more advanced, some less.",
+      "timestamp": "00:16:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But now just, like, cold calling, outreach, it's not so good because sometimes you can, like, see the job posts and call and they're already working with other agencies.",
+      "timestamp": "00:16:47"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "and so on.",
+      "timestamp": "00:17:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So when already a role is published, it's more difficult to close, usually.",
+      "timestamp": "00:17:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And it's just, I think, not the best efficient using the time of recruiters.",
+      "timestamp": "00:17:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "I guess they can do a good job in making a placement, but usually it's good when this process is outsourced.",
+      "timestamp": "00:17:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And like, my experience with clients, we're working.",
+      "timestamp": "00:17:26"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So what we're doing, it's really flipping the thing.",
+      "timestamp": "00:17:29"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we're not, like, waiting when, like, referrals coming or, like, cold calling, like, calling, like, five hours a day, they will succeed.",
+      "timestamp": "00:17:33"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "We're tracking the signals along the old market.",
+      "timestamp": "00:17:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, for example, in your case, we see when they're, like, SPG brands, like, mid-markets.",
+      "timestamp": "00:17:50"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "They're growing, so they open a new location, like you open a division, they open a new location, or they're launching a new product, or they're hiring a new leader, or they're firing some leader, C-suite.",
+      "timestamp": "00:18:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And usually the signals means that they are growing, or they need help with hiring, so we're not reaching out just randomly, just like spraying prey, when I think it's not good for reputation of like your company, if you will just blast all the market, so we're not doing like this.",
+      "timestamp": "00:18:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, and when we monitoring the signals, we do it daily, and we have the infrastructure, the system, they're doing this, so it's not relying like on hours of manual work of your team, and when we see this signal, usually it's like a combination, so for example, if company listing several jobs, and exact time they like.",
+      "timestamp": "00:18:37"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Like some leadership changing or they mentioned they're linked in something.",
+      "timestamp": "00:19:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we stake in two or three signals.",
+      "timestamp": "00:19:04"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And when we see it, it's their point for us to reach out for them and confirming if they're really hiring right now, if they have money and if they're really serious to make a placement of the exact role.",
+      "timestamp": "00:19:07"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So in this time, introduce you like our trusted recruiting partner.",
+      "timestamp": "00:19:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So it's not like when you're just outreaching by yourself.",
+      "timestamp": "00:19:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Usually when it's like warm introduction, it's a good response because they needing a help exactly in that moment.",
+      "timestamp": "00:19:35"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And then we introduce you as a solution.",
+      "timestamp": "00:19:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So usually from this, like if we just start working, so first three months, let's say it's like from",
+      "timestamp": "00:19:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So you will have access to all new intros, like we usually do in Slack channel when it sees that the new company detected.",
+      "timestamp": "00:21:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So when we reach out to them, you see it.",
+      "timestamp": "00:21:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And once a week, once in two weeks, I send some data.",
+      "timestamp": "00:21:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So we have this kind of signals, then it's clear what's going on.",
+      "timestamp": "00:21:20"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "But it needs to be like, you know, good communications, because when we get a response from company who saying yes, it's good if like one of your people just reach them very fast.",
+      "timestamp": "00:21:27"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:21:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "And how does the pricing work?",
+      "timestamp": "00:21:52"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, so about pricing, it's 3k per month.",
+      "timestamp": "00:21:56"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "For the pilots, we do it in 90 days, usually, because just if one month, it's not enough time to get consistently.",
+      "timestamp": "00:22:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So maybe first month, we usually have like three, like five intros.",
+      "timestamp": "00:22:13"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And when we set up the system, you start seeing like positive replies and introductions from their second week.",
+      "timestamp": "00:22:17"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So for 90 days, it's 10 to 15.",
+      "timestamp": "00:22:28"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "And that's how it's worked.",
+      "timestamp": "00:22:32"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "After, we can discuss in like doing more volume or depends on what kind of results we get.",
+      "timestamp": "00:22:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So kind of like that.",
+      "timestamp": "00:22:41"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:22:45"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Okay.",
+      "timestamp": "00:22:48"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Yeah, I'm curious.",
+      "timestamp": "00:22:49"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Can you send me a proposal?",
+      "timestamp": "00:22:51"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "I can look at it with the team and give you some news next week.",
+      "timestamp": "00:22:53"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Mm-hmm.",
+      "timestamp": "00:22:57"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah, you know, usually proposals...",
+      "timestamp": "00:22:58"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "They just get buried.",
+      "timestamp": "00:23:00"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If you have some people who are doing business developments on your site, we can schedule a call and I will explain on the call all how we're working, get you through live their proposals.",
+      "timestamp": "00:23:01"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "If you have any questions, we can discuss this right away.",
+      "timestamp": "00:23:15"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:23:18"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:23:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "Let me talk to them, see, and schedule something with you then.",
+      "timestamp": "00:23:19"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:23:23"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, ideally, when you want to start, if, like, everything is good, like, this month?",
+      "timestamp": "00:23:24"
+    },
+    {
+      "speaker": {
+        "display_name": "Simon St-Amand",
+        "matched_calendar_invitee_email": "sstamand@proforce.ca"
+      },
+      "text": "The start of March would be good.",
+      "timestamp": "00:23:34"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Okay.",
+      "timestamp": "00:23:38"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, you want, in March, already start having introductions, right?",
+      "timestamp": "00:23:39"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "Yeah.",
+      "timestamp": "00:23:44"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, as I said, usually it takes, like, two weeks to set everything.",
+      "timestamp": "00:23:46"
+    },
+    {
+      "speaker": {
+        "display_name": "Leonid Shvorob",
+        "matched_calendar_invitee_email": "leo@systemhustle.com"
+      },
+      "text": "So, it's good because it's, like, mid-February if we're starting, like, this week, I think first week.",
+      "timestamp": "00:23:51"
+    }
+  ],
+  "transcript_language": "en",
+  "default_summary": {
+    "template_name": "General",
+    "markdown_formatted": "## Meeting Purpose\n\n[Evaluate SystemHustle's lead-gen service for Proforce Personnel's new division.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=579.0)\n\n## Key Takeaways\n\n  - [**Problem:** Proforce's new Ontario division is failing to meet its 6–10 mandate/month goal, securing only \\~2/month via inefficient cold outreach.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=579.0)\n  - [**Solution:** SystemHustle proposes a signal-based system that monitors market events (e.g., new locations, leadership changes) to generate warm, pre-qualified introductions.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=993.0)\n  - [**Offer:** A 90-day pilot for $3k/month, targeting 10–15 introductions. The 90-day term is critical to demonstrate consistent results, which typically ramp up after the first month.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1312.0)\n  - [**Decision:** Simon is interested but needs to review with his team. He will schedule a follow-up call, as Leonid prefers a live proposal review over a static document.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1369.0)\n\n## Topics\n\n### Proforce's Ontario Division: Performance Gap\n\n  - [**Goal:** 6–10 new mandates per month.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=663.0)\n  - [**Current Performance:** \\~2 mandates per month.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=914.0)\n  - [**Method:** Cold outreach (calls, emails, LinkedIn DMs) by a 2-person team.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=704.0)\n  - [**Challenge:** Difficulty securing initial meetings; once in a meeting, the close rate is high (50–80%).](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=730.0)\n  - [**Client Profile:**](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=752.0)\n      - [**Size:** 20–400 employees.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=752.0)\n      - [**Roles:** Mid-level to higher management.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=752.0)\n      - [**Avg. Fee:** $16k CAD (contingency).](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=780.0)\n      - [**Avg. Placement Time:** 5 weeks.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=897.0)\n      - [**Placement Rate:** 40–50% of mandates.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=796.0)\n\n### SystemHustle's Signal-Based Lead Generation\n\n  - [**Strategy:** Replaces cold outreach with warm introductions.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1049.0)\n  - [**Process:**](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1049.0)\n    1.  [**Monitor Signals:** Track market events (e.g., new locations, product launches, leadership changes) indicating hiring intent.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1066.0)\n    2.  [**Combine Signals:** Validate intent by cross-referencing multiple signals (e.g., new job posts + leadership change).](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1117.0)\n    3.  [**Pre-Qualify:** Engage the company to confirm hiring need and budget.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1147.0)\n    4.  [**Introduce:** Make a warm introduction to Proforce as a trusted partner.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1164.0)\n  - [**Communication:** Proforce gets real-time updates in a shared Slack channel and must follow up quickly.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1260.0)\n\n### Pilot Program & Pricing\n\n  - [**Term:** 90-day pilot at $3k/month.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1312.0)\n  - [**Rationale for 90 days:** A single month is insufficient to establish consistent results; performance typically ramps up after the first month.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1312.0)\n  - [**Target:** 10–15 introductions over the 90-day period.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1312.0)\n\n## Next Steps\n\n  - [**Simon:** Discuss the pilot program with the Proforce team.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1369.0)\n  - [**Simon:** Schedule a follow-up call with Leonid and the team for a live proposal review.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1369.0)\n  - [**Leonid:** Await the scheduling of the follow-up call.](https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U?tab=summary&timestamp=1369.0)\n"
+  },
+  "action_items": [
+    {
+      "description": "Align w/ BD team; schedule proposal review w/ Leonid; attend review; decide on 90-day pilot",
+      "user_generated": false,
+      "completed": false,
+      "recording_timestamp": "00:22:47",
+      "recording_playback_url": "https://fathom.video/calls/570424904?timestamp=1367.9999",
+      "assignee": {
+        "name": "Simon St-Amand",
+        "email": "sstamand@proforce.ca",
+        "team": null
+      }
+    }
+  ],
+  "calendar_invitees": [
+    {
+      "name": "Simon St-Amand",
+      "email": "sstamand@proforce.ca",
+      "email_domain": "proforce.ca",
+      "is_external": true,
+      "matched_speaker_display_name": null
+    },
+    {
+      "name": "Leonid Shvorob",
+      "email": "leo@systemhustle.com",
+      "email_domain": "systemhustle.com",
+      "is_external": false,
+      "matched_speaker_display_name": null
+    }
+  ],
+  "recorded_by": {
+    "name": "Leonid Shvorob",
+    "email": "leo@systemhustle.com",
+    "email_domain": "systemhustle.com",
+    "team": null
+  },
+  "share_url": "https://fathom.video/share/SMGELiygjLtN5isssxkuHm1zGw75KC-U",
+  "crm_matches": null
+}
