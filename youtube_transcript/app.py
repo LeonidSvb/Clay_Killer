@@ -324,7 +324,11 @@ if _in_streamlit():
                 video_id = h["video_id"]
                 transcript_text = h.get("text", "")
                 messages = h.get("messages", [])
-                tasks = h.get("tasks", [])
+                # явно берём задачи только этого видео из свежей истории
+                tasks = next(
+                    (entry.get("tasks", []) for entry in load_history() if entry["video_id"] == video_id),
+                    [],
+                )
 
                 left, right = st.columns([1, 1])
 
@@ -468,8 +472,7 @@ if _in_streamlit():
                     continue
 
                 yt_url = f"https://www.youtube.com/watch?v={h['video_id']}"
-                st.markdown(f"### [{h['title']}]({yt_url})")
-                st.caption(f"{h.get('channel', '')}  •  {h['date']}")
+                st.markdown(f"**[{h['title']}]({yt_url})** &nbsp; `{h.get('channel', '')}` &nbsp; {h['date']}")
 
                 for task in visible:
                     icon = {"todo": "⬜", "done": "✅", "dropped": "❌"}.get(task["status"], "⬜")
