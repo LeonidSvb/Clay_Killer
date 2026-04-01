@@ -10,7 +10,7 @@ MODEL = os.getenv("MODEL", "deepseek/deepseek-chat")
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
-async def _call(messages: list, max_tokens: int = 3000, temperature: float = 0.8) -> str:
+async def _call(messages: list, max_tokens: int = None, temperature: float = 0.8) -> str:
     headers = {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
@@ -19,9 +19,10 @@ async def _call(messages: list, max_tokens: int = 3000, temperature: float = 0.8
         "model": MODEL,
         "messages": messages,
         "temperature": temperature,
-        "max_tokens": max_tokens,
     }
-    async with httpx.AsyncClient(timeout=90.0) as client:
+    if max_tokens is not None:
+        payload["max_tokens"] = max_tokens
+    async with httpx.AsyncClient(timeout=120.0) as client:
         last_exc = None
         for attempt in range(2):
             try:
@@ -102,7 +103,7 @@ async def generate_chapter(story: dict, direction: str = None) -> str:
         {"role": "system", "content": system},
         {"role": "user", "content": user_msg},
     ]
-    return await _call(messages, max_tokens=3000, temperature=0.8)
+    return await _call(messages, temperature=0.8)
 
 
 def _parse_json(raw: str) -> dict:
