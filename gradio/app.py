@@ -3,7 +3,7 @@ import gradio as gr
 from config import MODEL_NAMES, MAX_PROMPT_SLOTS, DEFAULT_PROMPT, DEFAULT_JUDGE_PROMPT
 from core import (
     calculate_plan, run_experiment, build_dataframe, apply_filters,
-    get_numeric_cols, list_prompts, load_prompt, save_prompt,
+    get_numeric_cols, build_summary, list_prompts, load_prompt, save_prompt,
 )
 
 
@@ -167,6 +167,9 @@ with gr.Blocks(title="LLM Testing Lab") as demo:
         label="Результаты", wrap=True, interactive=False,
     )
 
+    # ── SUMMARY ───────────────────────────────────────────────────────────────
+    summary_box = gr.Markdown("")
+
     # ── EVENTS ────────────────────────────────────────────────────────────────
 
     # add prompt slot — update Group visibility (fix: outputs are groups not textboxes)
@@ -211,18 +214,18 @@ with gr.Blocks(title="LLM Testing Lab") as demo:
         ):
             if update["error"]:
                 yield (
-                    update["status"],
-                    gr.update(), gr.update(), gr.update(), gr.update(),
-                    prev_rows,
+                    update["status"], gr.update(),
+                    gr.update(), gr.update(), gr.update(),
+                    prev_rows, "",
                 )
                 return
 
             rows = update["rows"]
             if rows:
                 prev_rows = rows
-                df        = build_dataframe(rows)
-                num_cols  = get_numeric_cols(rows)
-                models_in = ["Все модели"] + sorted({r["model"] for r in rows})
+                df         = build_dataframe(rows)
+                num_cols   = get_numeric_cols(rows)
+                models_in  = ["Все модели"] + sorted({r["model"] for r in rows})
                 prompts_in = (
                     ["Все промпты"]
                     + [f"Промпт {i}" for i in sorted({r["prompt_idx"] for r in rows})]
@@ -234,12 +237,13 @@ with gr.Blocks(title="LLM Testing Lab") as demo:
                     gr.update(choices=models_in,  value="Все модели"),
                     gr.update(choices=prompts_in, value="Все промпты"),
                     rows,
+                    build_summary(rows),
                 )
             else:
                 yield (
-                    update["status"],
-                    gr.update(), gr.update(), gr.update(), gr.update(),
-                    prev_rows,
+                    update["status"], gr.update(),
+                    gr.update(), gr.update(), gr.update(),
+                    prev_rows, "",
                 )
 
     btn_run.click(
@@ -248,7 +252,7 @@ with gr.Blocks(title="LLM Testing Lab") as demo:
         outputs=[
             status_box, results_table,
             filter_col, filter_model, filter_prompt,
-            raw_state,
+            raw_state, summary_box,
         ],
         show_progress=False,
     )

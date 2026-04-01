@@ -250,6 +250,64 @@ def run_experiment(models, prompts, temperature, n_outputs, judge_models, judge_
     yield {"status": status, "rows": raw_rows, "error": False}
 
 
+# ── SUMMARY ───────────────────────────────────────────────────────────────────
+
+def build_summary(rows: list) -> str:
+    if not rows:
+        return ""
+
+    df = pd.DataFrame(rows)
+    if "overall" not in df.columns:
+        return ""
+
+    lines = ["### Сводка"]
+
+    # best model
+    if df["model"].nunique() > 1:
+        bm = df.groupby("model")["overall"].mean().sort_values(ascending=False)
+        best_m = bm.index[0]
+        worst_m = bm.index[-1]
+        lines.append(
+            f"**Лучшая модель:** {best_m} — avg {bm.iloc[0]:.2f}"
+            + (f" | Хуже всех: {worst_m} — avg {bm.iloc[-1]:.2f}" if len(bm) > 1 else "")
+        )
+
+    # best prompt
+    if df["prompt_idx"].nunique() > 1:
+        bp = df.groupby("prompt_idx")["overall"].mean().sort_values(ascending=False)
+        best_p = bp.index[0]
+        worst_p = bp.index[-1]
+        lines.append(
+            f"**Лучший промпт:** П{best_p} — avg {bp.iloc[0]:.2f}"
+            + (f" | Хуже: П{worst_p} — avg {bp.iloc[-1]:.2f}" if len(bp) > 1 else "")
+        )
+
+    # score distribution
+    overall = df["overall"]
+    lines.append(
+        f"**Overall:** min {overall.min():.1f} / avg {overall.mean():.2f} / max {overall.max():.1f}"
+    )
+
+    # top output
+    top_row = df.loc[df["overall"].idxmax()]
+    top_text = top_row.get("output_short", top_row.get("output", ""))
+    lines.append(f"**Топ выход ({top_row['overall']:.1f}):** {top_text}")
+
+    # numeric criteria breakdown (if more than just overall)
+    base = {"model", "prompt_idx", "temperature", "judge", "output", "output_short", "overall"}
+    num_criteria = [
+        c for c in df.columns
+        if c not in base and pd.api.types.is_numeric_dtype(df[c])
+    ]
+    if num_criteria:
+        means = {c: df[c].mean() for c in num_criteria}
+        sorted_c = sorted(means, key=means.get, reverse=True)
+        parts = [f"{c}: {means[c]:.2f}" for c in sorted_c]
+        lines.append("**Критерии (avg):** " + " | ".join(parts))
+
+    return "\n\n".join(lines)
+
+
 # ── AGGREGATION ───────────────────────────────────────────────────────────────
 
 def build_dataframe(rows: list) -> pd.DataFrame:
