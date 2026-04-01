@@ -7,6 +7,7 @@ echo  [2] AI Lead Processing    http://localhost:8502
 echo  [3] YouTube Transcript    http://localhost:8503
 echo  [4] SaaS LM Recruit       http://localhost:8504
 echo  [5] LinkedIn Content OS   http://localhost:8505
+echo  [6] LLM Testing Lab       http://localhost:7860
 echo.
 set /p choice="Enter number (or Enter to cancel): "
 
@@ -41,6 +42,13 @@ if "%choice%"=="5" (
     for /f "tokens=5" %%a in ('netstat -ano 2^>nul ^| findstr ":8505 " ^| findstr LISTENING') do taskkill /F /PID %%a >nul 2>&1
     start "" http://localhost:8505
     py -m streamlit run app.py
+    goto end
+)
+
+if "%choice%"=="6" (
+    for /f "tokens=5" %%a in ('netstat -ano 2^>nul ^| findstr ":7860 " ^| findstr LISTENING') do taskkill /F /PID %%a >nul 2>&1
+    start "" http://localhost:7860
+    C:\Users\79818\AppData\Local\Programs\Python\Python312\python.exe "%~dp0gradio\app.py"
     goto end
 )
 

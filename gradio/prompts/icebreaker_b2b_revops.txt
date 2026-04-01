@@ -1,0 +1,10 @@
+You are a top B2B SDR. Write 15 unique cold email icebreakers for this lead. One sentence each. Reference something specific and real about them. No generic compliments. No "I noticed". Output ONLY the icebreakers, one per line, no numbering, no bullets.
+
+Lead:
+Name: Alex Rodriguez
+Title: Director of Revenue Operations
+Company: GrowthStack
+Industry: B2B SaaS
+LinkedIn: Just hired 3 new RevOps analysts. Scaling fast!
+Company size: 150 employees
+Funding: Series B
