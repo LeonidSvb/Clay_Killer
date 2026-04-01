@@ -93,16 +93,16 @@ async def cb_welcome_new(callback: CallbackQuery, state: FSMContext):
 async def cb_welcome_list(callback: CallbackQuery):
     await callback.answer()
     await callback.message.edit_reply_markup(reply_markup=None)
-    from handlers.manage import cmd_list
-    await cmd_list(callback.message)
+    from handlers.manage import show_list
+    await show_list(callback.message, callback.from_user.id)
 
 
 @router.callback_query(F.data == "welcome:chapters")
 async def cb_welcome_chapters(callback: CallbackQuery):
     await callback.answer()
     await callback.message.edit_reply_markup(reply_markup=None)
-    from handlers.chapters import cmd_chapters
-    await cmd_chapters(callback.message)
+    from handlers.chapters import show_chapters
+    await show_chapters(callback.message, callback.from_user.id)
 
 
 async def start_quiz(message: Message, state: FSMContext):

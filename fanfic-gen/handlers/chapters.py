@@ -90,9 +90,7 @@ def chapter_nav_keyboard(idx: int, total: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[row])
 
 
-@router.message(Command("chapters"))
-async def cmd_chapters(message: Message):
-    user_id = message.from_user.id
+async def show_chapters(message: Message, user_id: int):
     story = get_current_story(user_id)
 
     if not story:
@@ -113,6 +111,11 @@ async def cmd_chapters(message: Message):
         reply_markup=chapters_list_keyboard_titled(chapters, 0),
         parse_mode="HTML",
     )
+
+
+@router.message(Command("chapters"))
+async def cmd_chapters(message: Message):
+    await show_chapters(message, message.from_user.id)
 
 
 @router.callback_query(F.data.startswith("ch:page:"))

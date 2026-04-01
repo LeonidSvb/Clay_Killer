@@ -61,9 +61,7 @@ def stories_keyboard(stories: list, current_id: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=rows)
 
 
-@router.message(Command("list"))
-async def cmd_list(message: Message):
-    user_id = message.from_user.id
+async def show_list(message: Message, user_id: int):
     stories = get_all_stories(user_id)
     data = load_user_data(user_id)
     current_id = data.get("current_story_id")
@@ -89,6 +87,11 @@ async def cmd_list(message: Message):
             reply_markup=story_card_keyboard(s["id"], is_active),
             parse_mode="HTML",
         )
+
+
+@router.message(Command("list"))
+async def cmd_list(message: Message):
+    await show_list(message, message.from_user.id)
 
 
 @router.callback_query(F.data.startswith("story:load:"))
@@ -137,8 +140,8 @@ async def cb_story_chapters(callback: CallbackQuery):
     user_id = callback.from_user.id
 
     set_current_story(user_id, story_id)
-    from handlers.chapters import cmd_chapters
-    await cmd_chapters(callback.message)
+    from handlers.chapters import show_chapters
+    await show_chapters(callback.message, user_id)
 
 
 @router.callback_query(F.data.startswith("story:del:"))
