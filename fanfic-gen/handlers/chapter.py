@@ -70,15 +70,9 @@ def get_main_keyboard() -> InlineKeyboardMarkup:
             InlineKeyboardButton(text="Продолжить так же", callback_data="dir:continue"),
             InlineKeyboardButton(text="Написать своё",     callback_data="dir:custom"),
         ],
-        [
-            InlineKeyboardButton(text=label, callback_data=f"intent:{key}")
-            for key, label in INTENTS[:3]
-        ],
-        [
-            InlineKeyboardButton(text=label, callback_data=f"intent:{key}")
-            for key, label in INTENTS[3:]
-        ],
     ]
+    for key, label in INTENTS:
+        rows.append([InlineKeyboardButton(text=label, callback_data=f"intent:{key}")])
     return InlineKeyboardMarkup(inline_keyboard=rows)
 
 
@@ -198,25 +192,23 @@ async def cb_intent(callback: CallbackQuery, state: FSMContext):
         await state.update_data(technique_options=options)
         await state.set_state(ChapterStates.waiting_technique_choice)
 
+        text = "<b>Выбери как пойдёт следующая глава:</b>\n\n"
+        for i, opt in enumerate(options, 1):
+            text += f"<b>{i}. {opt['title']}</b>\n{opt['direction']}\n\n"
+
         rows = []
-        for i, opt in enumerate(options):
-            rows.append([
-                InlineKeyboardButton(
-                    text=opt["title"],
-                    callback_data=f"tech:{i}"
-                )
-            ])
+        btn_row = [
+            InlineKeyboardButton(text=str(i), callback_data=f"tech:{i - 1}")
+            for i in range(1, len(options) + 1)
+        ]
+        rows.append(btn_row)
         rows.append([
             InlineKeyboardButton(text="Написать своё", callback_data="dir:custom_from_tech")
         ])
 
         kb = InlineKeyboardMarkup(inline_keyboard=rows)
         await wait_msg.delete()
-        await callback.message.answer(
-            "<b>Выбери как пойдёт следующая глава:</b>",
-            reply_markup=kb,
-            parse_mode="HTML",
-        )
+        await callback.message.answer(text, reply_markup=kb, parse_mode="HTML")
     except Exception as e:
         await wait_msg.edit_text(f"Ошибка: {e}")
 

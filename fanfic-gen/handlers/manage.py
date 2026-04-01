@@ -8,6 +8,7 @@ from aiogram.types import (
     InlineKeyboardButton,
 )
 
+from states import ManageStates
 from logic.storage import (
     get_current_story,
     get_all_stories,
@@ -16,10 +17,9 @@ from logic.storage import (
     set_current_story,
     delete_story,
 )
-from logic.state import rollback_chapter, add_chapter, apply_summary
+from logic.state import rollback_chapter
 from logic.generate import generate_chapter
-from logic.summarize import summarize_chapter
-from handlers.chapter import send_chapter
+from handlers.chapter import send_chapter, get_main_keyboard
 
 router = Router()
 
@@ -84,7 +84,7 @@ async def cb_story_load(callback: CallbackQuery):
 
 
 @router.callback_query(F.data.startswith("story:del:"))
-async def cb_story_delete(callback: CallbackQuery):
+async def cb_story_delete(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     story_id = callback.data.split(":", 2)[2]
     user_id = callback.from_user.id
@@ -92,45 +92,46 @@ async def cb_story_delete(callback: CallbackQuery):
     stories = get_all_stories(user_id)
     title = next((s["title"] for s in stories if s["id"] == story_id), story_id)
 
-    kb = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="Да, удалить", callback_data=f"story:delconfirm:{story_id}"),
-        InlineKeyboardButton(text="Отмена",      callback_data="story:delcancel"),
-    ]])
+    await state.set_state(ManageStates.waiting_delete_confirm)
+    await state.update_data(delete_story_id=story_id, delete_story_title=title)
+
     await callback.message.answer(
-        f'Удалить историю "<b>{title}</b>"? Это необратимо.',
-        reply_markup=kb,
+        f'Удаление необратимо.\n\n'
+        f'Введи название истории полностью чтобы подтвердить:\n'
+        f'<code>{title}</code>',
         parse_mode="HTML",
     )
 
 
-@router.callback_query(F.data.startswith("story:delconfirm:"))
-async def cb_story_delconfirm(callback: CallbackQuery):
-    await callback.answer()
-    story_id = callback.data.split(":", 2)[2]
-    user_id = callback.from_user.id
+@router.message(ManageStates.waiting_delete_confirm)
+async def handle_delete_confirm(message: Message, state: FSMContext):
+    data = await state.get_data()
+    story_id = data.get("delete_story_id")
+    title = data.get("delete_story_title", "")
+    user_id = message.from_user.id
 
-    stories = get_all_stories(user_id)
-    title = next((s["title"] for s in stories if s["id"] == story_id), story_id)
+    if message.text.strip() != title:
+        await message.answer(
+            f'Название не совпадает. Введи точно:\n<code>{title}</code>\n\nИли напиши /list чтобы отменить.',
+            parse_mode="HTML",
+        )
+        return
+
+    await state.clear()
 
     if delete_story(user_id, story_id):
-        await callback.message.edit_text(f'История "<b>{title}</b>" удалена.', parse_mode="HTML")
+        await message.answer(f'История "<b>{title}</b>" удалена.', parse_mode="HTML")
         remaining = get_all_stories(user_id)
         if remaining:
             data = load_user_data(user_id)
             current_id = data.get("current_story_id")
-            await callback.message.answer(
+            await message.answer(
                 "<b>Оставшиеся истории:</b>",
                 reply_markup=stories_keyboard(remaining, current_id),
                 parse_mode="HTML",
             )
     else:
-        await callback.message.edit_text("История не найдена.")
-
-
-@router.callback_query(F.data == "story:delcancel")
-async def cb_story_delcancel(callback: CallbackQuery):
-    await callback.answer()
-    await callback.message.delete()
+        await message.answer("История не найдена.")
 
 
 @router.message(Command("load"))
@@ -195,17 +196,11 @@ async def cmd_regen(message: Message, state: FSMContext):
     save_story(user_id, story)
     await state.clear()
 
-    wait_msg = await message.answer("Перегенерирую последнюю главу...")
-    try:
-        chapter_text = await generate_chapter(story)
-        story = add_chapter(story, chapter_text)
-        try:
-            summary = await summarize_chapter(story, chapter_text)
-            story = apply_summary(story, summary)
-        except Exception:
-            pass
-        save_story(user_id, story)
-        await wait_msg.delete()
-        await send_chapter(message, state, story, chapter_text)
-    except Exception as e:
-        await wait_msg.edit_text(f"Ошибка: {e}\n\nПопробуй /regen снова")
+    chapter_num = story["state"].get("chapter_count", 0) + 1
+    await message.answer(
+        f"Последняя глава откатана. Как перегенерировать главу {chapter_num}?",
+        reply_markup=get_main_keyboard(),
+        parse_mode="HTML",
+    )
+    from states import ChapterStates
+    await state.set_state(ChapterStates.waiting_direction)

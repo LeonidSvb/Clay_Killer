@@ -21,6 +21,9 @@ def add_chapter(story: dict, chapter_text: str) -> dict:
     story["last_chapters"].append(chapter_text)
     if len(story["last_chapters"]) > 3:
         story["last_chapters"] = story["last_chapters"][-3:]
+    if "all_chapters" not in story:
+        story["all_chapters"] = []
+    story["all_chapters"].append(chapter_text)
     story["state"]["chapter_count"] = story["state"].get("chapter_count", 0) + 1
     return story
 
@@ -28,6 +31,8 @@ def add_chapter(story: dict, chapter_text: str) -> dict:
 def rollback_chapter(story: dict) -> dict:
     if story["last_chapters"]:
         story["last_chapters"].pop()
+    if story.get("all_chapters"):
+        story["all_chapters"].pop()
     if story["summaries"]:
         story["summaries"].pop()
     count = story["state"].get("chapter_count", 0)

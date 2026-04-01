@@ -58,6 +58,7 @@ def create_story(user_id: int, title: str, state: dict) -> dict:
         "state": state,
         "summaries": [],
         "last_chapters": [],
+        "all_chapters": [],
         "direction": None,
     }
     data["stories"].append(story)

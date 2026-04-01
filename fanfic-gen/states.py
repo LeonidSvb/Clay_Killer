@@ -14,3 +14,7 @@ class ChapterStates(StatesGroup):
     waiting_custom = State()
     waiting_option = State()
     waiting_technique_choice = State()
+
+
+class ManageStates(StatesGroup):
+    waiting_delete_confirm = State()
