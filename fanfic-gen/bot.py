@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.types import BotCommand
 
 from handlers.start import router as start_router
 from handlers.chapter import router as chapter_router
@@ -21,6 +22,14 @@ async def main():
     dp.include_router(start_router)
     dp.include_router(chapter_router)
     dp.include_router(manage_router)
+
+    await bot.set_my_commands([
+        BotCommand(command="start",  description="Главное меню / новая история"),
+        BotCommand(command="next",   description="Следующая глава"),
+        BotCommand(command="list",   description="Мои истории"),
+        BotCommand(command="regen",  description="Перегенерировать последнюю главу"),
+        BotCommand(command="load",   description="Переключить историю: /load 2"),
+    ])
 
     print("Bot running...")
     await dp.start_polling(bot, allowed_updates=["message", "callback_query"])

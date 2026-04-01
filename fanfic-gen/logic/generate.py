@@ -105,6 +105,78 @@ async def generate_chapter(story: dict, direction: str = None) -> str:
     return await _call(messages, max_tokens=3000, temperature=0.8)
 
 
+def _parse_json(raw: str) -> dict:
+    raw = raw.strip()
+    if raw.startswith("```"):
+        parts = raw.split("```")
+        raw = parts[1]
+        if raw.startswith("json"):
+            raw = raw[4:]
+    return json.loads(raw.strip())
+
+
+INTENT_LABELS = {
+    "pacing_slow": "замедлить темп, добавить атмосферы и глубины",
+    "pacing_fast": "добавить динамики и напряжения",
+    "character": "углубить характер или внутренний мир персонажа",
+    "plot": "сделать неожиданный поворот в сюжете",
+    "world": "раскрыть мир и его устройство",
+    "relationships": "развить отношения между персонажами",
+}
+
+
+async def generate_technique_options(story: dict, category: str, techniques: list) -> list:
+    state = story["state"]
+    summaries = story.get("summaries", [])
+    last_summary = summaries[-1]["summary"] if summaries else "история только началась"
+    chars = state.get("characters", [])
+
+    chars_text = ""
+    if chars:
+        lines = []
+        for c in chars:
+            lines.append(f"- {c['name']}: {c.get('traits', '')}. Цель: {c.get('goal', '')}. Состояние: {c.get('current_state', '')}")
+        chars_text = "\n".join(lines)
+    else:
+        chars_text = "персонажи ещё не установлены"
+
+    techniques_text = ""
+    for t in techniques:
+        req = ", ".join(t.get("requires", [])) or "нет"
+        techniques_text += (
+            f"ID: {t['id']}\n"
+            f"Название: {t['name']}\n"
+            f"Описание: {t['description']}\n"
+            f"Подсказка: {t['prompt_hint']}\n"
+            f"Частота: {t['frequency']} | Требует: {req}\n\n"
+        )
+
+    intent_label = INTENT_LABELS.get(category, "улучшить следующую главу")
+
+    prompt = (
+        f"Ты помогаешь управлять нарративом новеллы.\n\n"
+        f"Текущий контекст:\n"
+        f"Жанр: {state['genre']}\n"
+        f"Глава: {state.get('chapter_count', 1)}\n"
+        f"Персонажи:\n{chars_text}\n"
+        f"Последние события: {last_summary}\n\n"
+        f"Пользователь хочет: {intent_label}\n\n"
+        f"Доступные техники:\n{techniques_text}"
+        f"Выбери 4-5 наиболее релевантных техник для ЭТОГО момента истории.\n"
+        f"Учитывай: какие персонажи уже есть, что произошло, частоту использования.\n"
+        f"Для каждой выбранной техники:\n"
+        f"- адаптируй под конкретных персонажей этой истории\n"
+        f"- напиши title: короткий заголовок до 7 слов (что произойдёт в главе)\n"
+        f"- напиши direction: 2-3 предложения как писать эту главу\n\n"
+        f"Верни ТОЛЬКО валидный JSON без markdown блоков:\n"
+        f'{{ "options": [ {{"title": "...", "direction": "..."}} ] }}'
+    )
+
+    result = await _call([{"role": "user", "content": prompt}], max_tokens=1000, temperature=0.85)
+    data = _parse_json(result)
+    return data["options"]
+
+
 async def generate_options(story: dict) -> list:
     state = story["state"]
     summaries = story.get("summaries", [])
@@ -123,13 +195,5 @@ async def generate_options(story: dict) -> list:
     )
 
     result = await _call([{"role": "user", "content": prompt}], max_tokens=500, temperature=0.9)
-
-    result = result.strip()
-    if result.startswith("```"):
-        parts = result.split("```")
-        result = parts[1]
-        if result.startswith("json"):
-            result = result[4:]
-
-    data = json.loads(result.strip())
+    data = _parse_json(result)
     return data["options"]

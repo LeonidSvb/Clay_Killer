@@ -78,3 +78,15 @@ def set_current_story(user_id: int, story_id: str) -> bool:
 
 def get_all_stories(user_id: int) -> list:
     return load_user_data(user_id).get("stories", [])
+
+
+def delete_story(user_id: int, story_id: str) -> bool:
+    data = load_user_data(user_id)
+    before = len(data["stories"])
+    data["stories"] = [s for s in data["stories"] if s["id"] != story_id]
+    if len(data["stories"]) == before:
+        return False
+    if data.get("current_story_id") == story_id:
+        data["current_story_id"] = data["stories"][-1]["id"] if data["stories"] else None
+    save_user_data(user_id, data)
+    return True
