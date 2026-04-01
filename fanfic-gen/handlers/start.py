@@ -27,11 +27,14 @@ router = Router()
 def welcome_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=[
         [
-            InlineKeyboardButton(text="Продолжить", callback_data="welcome:continue"),
-            InlineKeyboardButton(text="Новая история", callback_data="welcome:new"),
+            InlineKeyboardButton(text="Следующая глава", callback_data="welcome:continue"),
         ],
         [
-            InlineKeyboardButton(text="Мои истории", callback_data="welcome:list"),
+            InlineKeyboardButton(text="Читать главы",   callback_data="welcome:chapters"),
+            InlineKeyboardButton(text="Мои истории",    callback_data="welcome:list"),
+        ],
+        [
+            InlineKeyboardButton(text="Новая история",  callback_data="welcome:new"),
         ],
     ])
 
@@ -48,10 +51,17 @@ async def cmd_start(message: Message, state: FSMContext):
         current = next((s for s in stories if s["id"] == current_id), stories[-1])
         chapter_count = current["state"].get("chapter_count", 0)
 
+        summaries = current.get("summaries", [])
+        last_title = summaries[-1]["summary"][:60] + "..." if summaries else ""
+        last_chapter_num = chapter_count
+
+        text = f"<b>{current['title']}</b>\nГлав: {chapter_count}"
+        if summaries:
+            last_summary_entry = summaries[-1]
+            text += f"  |  Последняя: Глава {last_summary_entry['chapter']}"
+
         await message.answer(
-            f'Активная история: <b>{current["title"]}</b>\n'
-            f'Глав написано: {chapter_count}\n\n'
-            f'Что делаем?',
+            text,
             reply_markup=welcome_keyboard(),
             parse_mode="HTML",
         )
@@ -85,6 +95,14 @@ async def cb_welcome_list(callback: CallbackQuery):
     await callback.message.edit_reply_markup(reply_markup=None)
     from handlers.manage import cmd_list
     await cmd_list(callback.message)
+
+
+@router.callback_query(F.data == "welcome:chapters")
+async def cb_welcome_chapters(callback: CallbackQuery):
+    await callback.answer()
+    await callback.message.edit_reply_markup(reply_markup=None)
+    from handlers.chapters import cmd_chapters
+    await cmd_chapters(callback.message)
 
 
 async def start_quiz(message: Message, state: FSMContext):

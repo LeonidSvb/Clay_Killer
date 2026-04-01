@@ -24,6 +24,25 @@ from handlers.chapter import send_chapter, get_main_keyboard
 router = Router()
 
 
+def story_card_keyboard(story_id: str, is_active: bool) -> InlineKeyboardMarkup:
+    if is_active:
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Читать далее", callback_data=f"story:continue:{story_id}"),
+                InlineKeyboardButton(text="Главы",        callback_data=f"story:chapters:{story_id}"),
+                InlineKeyboardButton(text="Удалить",      callback_data=f"story:del:{story_id}"),
+            ]
+        ])
+    else:
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Выбрать",  callback_data=f"story:load:{story_id}"),
+                InlineKeyboardButton(text="Главы",    callback_data=f"story:chapters:{story_id}"),
+                InlineKeyboardButton(text="Удалить",  callback_data=f"story:del:{story_id}"),
+            ]
+        ])
+
+
 def stories_keyboard(stories: list, current_id: str) -> InlineKeyboardMarkup:
     rows = []
     for i, s in enumerate(stories, 1):
@@ -54,10 +73,22 @@ async def cmd_list(message: Message):
         return
 
     await message.answer(
-        "<b>Твои истории:</b>\nНажми чтобы переключиться, или удали:",
-        reply_markup=stories_keyboard(stories, current_id),
+        f"<b>Мои истории ({len(stories)})</b>",
         parse_mode="HTML",
     )
+
+    for i, s in enumerate(stories, 1):
+        is_active = s["id"] == current_id
+        chapter_count = s["state"].get("chapter_count", 0)
+        created = s.get("created_at", "")[:10]
+        marker = "  —  активная" if is_active else ""
+
+        await message.answer(
+            f"<b>{i}. {s['title']}</b>{marker}\n"
+            f"{chapter_count} глав  ·  {created}",
+            reply_markup=story_card_keyboard(s["id"], is_active),
+            parse_mode="HTML",
+        )
 
 
 @router.callback_query(F.data.startswith("story:load:"))
@@ -75,12 +106,39 @@ async def cb_story_load(callback: CallbackQuery):
         if s["id"] == story_id:
             chapter_count = s["state"].get("chapter_count", 0)
             await callback.message.edit_text(
-                f'Активная история: <b>{s["title"]}</b>\n'
-                f"Глав написано: {chapter_count}\n\n"
-                f"Продолжить: /next",
+                f'<b>{s["title"]}</b> — активная\n'
+                f"{chapter_count} глав\n\n"
+                f"Продолжай с /next или читай через /chapters",
                 parse_mode="HTML",
             )
             return
+
+
+@router.callback_query(F.data.startswith("story:continue:"))
+async def cb_story_continue(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    story_id = callback.data.split(":", 2)[2]
+    user_id = callback.from_user.id
+
+    set_current_story(user_id, story_id)
+    story = get_current_story(user_id)
+    if not story:
+        return
+
+    from handlers.chapter import generate_and_send
+    await state.clear()
+    await generate_and_send(callback.message, state, user_id, story, None)
+
+
+@router.callback_query(F.data.startswith("story:chapters:"))
+async def cb_story_chapters(callback: CallbackQuery):
+    await callback.answer()
+    story_id = callback.data.split(":", 2)[2]
+    user_id = callback.from_user.id
+
+    set_current_story(user_id, story_id)
+    from handlers.chapters import cmd_chapters
+    await cmd_chapters(callback.message)
 
 
 @router.callback_query(F.data.startswith("story:del:"))
