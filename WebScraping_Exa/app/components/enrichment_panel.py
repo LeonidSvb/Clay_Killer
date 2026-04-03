@@ -370,8 +370,6 @@ def _render_run_section_llm(
     df: pd.DataFrame,
     filtered_df: pd.DataFrame,
     prompt_text: str | None,
-    output_type: str = "Text",
-    output_config: dict | None = None,
 ) -> None:
     st.markdown("**Run**")
     autorun = st.session_state.pop("panel_autorun", False)
@@ -380,7 +378,7 @@ def _render_run_section_llm(
     workspace_id = st.session_state.get("workspace_id")
 
     if autorun and not running:
-        _do_run_llm(df, row_indices, prompt_text, output_type, output_config)
+        _do_run_llm(df, row_indices, prompt_text)
         return
 
     can_queue = bool(workspace_id)
@@ -392,19 +390,18 @@ def _render_run_section_llm(
                 "Running..." if running else "Run (inline)",
                 use_container_width=True, key="btn_run", disabled=running,
             ):
-                _do_run_llm(df, row_indices, prompt_text, output_type, output_config)
+                _do_run_llm(df, row_indices, prompt_text)
         with c2:
             output_col = st.session_state.get("last_save_map", {})
             output_col_name = list(output_col.values())[0] if output_col else "result"
             if st.button("Queue (background)", type="primary", use_container_width=True, key="btn_queue_llm", disabled=running):
-                _queue_llm_task(workspace_id, df, row_indices, prompt_text, output_type,
-                                output_config, output_col_name)
+                _queue_llm_task(workspace_id, df, row_indices, prompt_text, output_col_name)
     else:
         if st.button(
             "Running..." if running else "Run",
             type="primary", use_container_width=True, key="btn_run", disabled=running,
         ):
-            _do_run_llm(df, row_indices, prompt_text, output_type, output_config)
+            _do_run_llm(df, row_indices, prompt_text)
 
 
 def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
@@ -444,8 +441,6 @@ def _queue_llm_task(
     df: pd.DataFrame,
     row_indices: list,
     prompt_text: str,
-    output_type: str,
-    output_config: dict | None,
     output_col: str,
 ) -> None:
     try:
@@ -454,8 +449,6 @@ def _queue_llm_task(
         payload = {
             "enrichment_type": "llm",
             "prompt_text": prompt_text,
-            "output_type": output_type,
-            "output_config": output_config or {},
             "output_col": output_col,
             "concurrency": st.session_state.get("llm_concurrency", 50),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
@@ -641,8 +634,6 @@ def _do_run_llm(
     df: pd.DataFrame,
     row_indices: list[int],
     prompt_text: str | None,
-    output_type: str = "Text",
-    output_config: dict | None = None,
 ) -> None:
     if st.session_state.get("run_in_progress"):
         return
@@ -662,13 +653,13 @@ def _do_run_llm(
     st.session_state["run_type"] = "llm"
 
     st.session_state.run_in_progress = True
-    _log.info(f"LLM run started | rows={len(row_indices)} output_type={output_type} concurrency={concurrency}")
+    _log.info(f"LLM run started | rows={len(row_indices)} concurrency={concurrency}")
 
     def worker_fn(pq, se):
         return run_llm_enrichment(
             df=df, prompt_text=prompt_text, row_indices=row_indices,
             concurrency=concurrency, progress_queue=pq, stop_event=se,
-            api_key=api_key, output_type=output_type, output_config=output_config,
+            api_key=api_key,
         )
 
     _start_run_thread(worker_fn)
@@ -845,7 +836,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- CONFIG (type-specific) --
     if enrichment_type == "LLM Extraction":
-        prompt_text, output_type, output_config = render_prompt_editor(df)
+        prompt_text = render_prompt_editor(df)
 
     elif enrichment_type == "MX Check":
         email_cols = [c for c in df.columns if "email" in c.lower() or "mail" in c.lower()]
@@ -949,7 +940,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- RUN --
     if enrichment_type == "LLM Extraction":
-        _render_run_section_llm(df, filtered_df, prompt_text, output_type, output_config)
+        _render_run_section_llm(df, filtered_df, prompt_text)
     elif enrichment_type == "MX Check":
         _render_run_section_mx(df, filtered_df, email_col)
     else:
@@ -960,8 +951,6 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         from core import ui_state
         enr: dict = {
             "type": enrichment_type,
-            "output_type": st.session_state.get("panel_output_type", "Text"),
-            "output_config": st.session_state.get("panel_output_config", {}),
             "email_col": st.session_state.get("mx_email_col", ""),
             "url_col": st.session_state.get("exa_url_col", ""),
             "exa_mode": st.session_state.get("exa_mode", "summary"),

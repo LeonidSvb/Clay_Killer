@@ -125,9 +125,9 @@ def get_json_suffix_v2(output_type: str, output_config: dict | None = None) -> s
 def render_prompt_for_row(
     template: str,
     row: pd.Series,
+    # legacy params kept for backward compat — no longer appended automatically
     output_type: str = "Text",
     output_config: dict | None = None,
-    # legacy params kept for backward compat
     include_reasoning: bool = False,
     include_guardrail: bool = False,
 ) -> str:
@@ -137,11 +137,6 @@ def render_prompt_for_row(
         if val in ("nan", "None"):
             val = ""
         filled = filled.replace("{{" + col + "}}", val)
-    _NEW_TYPES = {"Text", "Boolean", "Score", "Structured"}
-    if output_type in _NEW_TYPES or output_config is not None:
-        filled += get_json_suffix_v2(output_type, output_config or {})
-    else:
-        filled += get_json_suffix(output_type, include_reasoning, include_guardrail)
     return filled
 
 
@@ -265,9 +260,9 @@ def run_llm_enrichment(
     progress_queue: queue.Queue,
     stop_event: threading.Event,
     api_key: str = "",
+    # legacy params — accepted but ignored
     output_type: str = "Text",
     output_config: dict | None = None,
-    # legacy params kept for backward compat
     include_reasoning: bool = False,
     include_guardrail: bool = False,
 ) -> list[dict]:
@@ -280,9 +275,7 @@ def run_llm_enrichment(
     items = []
     for idx in row_indices:
         row = df.iloc[idx]
-        rendered = render_prompt_for_row(
-            prompt_text, row, output_type, output_config, include_reasoning, include_guardrail
-        )
+        rendered = render_prompt_for_row(prompt_text, row)
         items.append({"idx": idx, "rendered_prompt": rendered})
 
     return asyncio.run(_call_llm_batch(
