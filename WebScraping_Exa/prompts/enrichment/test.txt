@@ -1,0 +1,6 @@
+Analyze the company below and return structured JSON.
+
+Company: {{Company Name}}
+Website: {{Website}}
+
+Return JSON: {"field": "value", "confidence": <0-10>}

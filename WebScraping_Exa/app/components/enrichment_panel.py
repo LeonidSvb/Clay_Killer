@@ -192,8 +192,14 @@ def _render_output_section(df: pd.DataFrame) -> None:
             else:
                 col_selections[key] = None
 
-    # Save / Discard
-    s1, s2 = st.columns(2)
+    # Rerun / Save / Discard
+    r_col, s1, s2 = st.columns(3)
+    with r_col:
+        if st.button("Rerun", use_container_width=True, key="_btn_rerun"):
+            st.session_state["panel_rerun"] = True
+            st.session_state["run_results"] = None
+            st.session_state["run_elapsed"] = 0.0
+            st.rerun()
     with s1:
         if st.button("Save to table", type="primary", use_container_width=True):
             rename_map = {k: v for k, v in col_selections.items() if v is not None}
@@ -288,19 +294,26 @@ def _get_row_indices(
     return row_indices
 
 
-def _render_run_section_llm(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None, include_reasoning: bool = False) -> None:
+def _render_run_section_llm(
+    df: pd.DataFrame,
+    filtered_df: pd.DataFrame,
+    prompt_text: str | None,
+    include_reasoning: bool = False,
+    include_guardrail: bool = False,
+) -> None:
     st.markdown("**Run**")
     autorun = st.session_state.pop("panel_autorun", False)
     row_indices = _get_row_indices(df, filtered_df)
     running = st.session_state.get("run_in_progress", False)
+    output_type = st.session_state.get("panel_output_type", "Extract")
     if autorun and not running:
-        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"), include_reasoning)
+        _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
         return
     if st.button(
         "Running..." if running else "Run",
         type="primary", use_container_width=True, key="btn_run", disabled=running,
     ):
-        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"), include_reasoning)
+        _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
 
 
 def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
@@ -318,44 +331,123 @@ def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_co
         _do_run_mx(df, row_indices, email_col)
 
 
-def _run_with_progress(worker_fn, row_indices: list[int]) -> tuple[list[dict], float]:
-    """Generic threading + progress pattern. Returns (results, elapsed)."""
-    progress_queue: queue.Queue = queue.Queue()
-    stop_event = threading.Event()
-    results_holder: list[dict] = []
+def _start_run_thread(worker_fn) -> None:
+    """Start worker thread non-blocking. Stores refs in session_state for polling."""
+    pq: queue.Queue = queue.Queue()
+    se = threading.Event()
+    holder: list[dict] = []
 
     def worker() -> None:
-        results_holder.extend(worker_fn(progress_queue, stop_event))
+        holder.extend(worker_fn(pq, se))
 
     thread = threading.Thread(target=worker, daemon=True)
-    progress_bar = st.progress(0)
-    status = st.empty()
-    t0 = time.time()
     thread.start()
 
-    while thread.is_alive() or not progress_queue.empty():
+    st.session_state["_run_thread"] = thread
+    st.session_state["_run_queue"] = pq
+    st.session_state["_stop_event"] = se
+    st.session_state["_results_holder"] = holder
+    st.session_state["_run_t0"] = time.time()
+    st.session_state["_run_last_upd"] = {}
+
+
+def _poll_and_render_progress() -> None:
+    """Polls progress queue, renders progress + Stop button. Reruns until done."""
+    thread: threading.Thread | None = st.session_state.get("_run_thread")
+    pq: queue.Queue | None = st.session_state.get("_run_queue")
+    se: threading.Event | None = st.session_state.get("_stop_event")
+    holder: list[dict] = st.session_state.get("_results_holder", [])
+    t0: float = st.session_state.get("_run_t0", time.time())
+    stopped = se.is_set() if se else False
+
+    if st.button("Stop", key="_btn_stop", type="secondary", disabled=stopped):
+        if se:
+            se.set()
+        st.rerun()
+
+    # Drain queue — keep only the latest update
+    last_upd: dict = st.session_state.get("_run_last_upd", {})
+    if pq:
         try:
-            upd = progress_queue.get(timeout=0.4)
-            total = upd["total"] or 1
-            pct = upd["done"] / total
-            progress_bar.progress(pct)
-            status.text(
-                f"{upd['done']}/{upd['total']} | "
-                f"{upd['speed']:.1f}/sec | ETA {upd['eta']}s | "
-                f"ok={upd['ok']} | errors={upd['errors']}"
-            )
+            while True:
+                last_upd = pq.get_nowait()
         except queue.Empty:
             pass
+    st.session_state["_run_last_upd"] = last_upd
 
-    thread.join()
-    elapsed = time.time() - t0
-    progress_bar.progress(1.0)
-    status.text(
-        f"{len(results_holder)}/{len(row_indices)} done | "
-        f"ok={sum(1 for r in results_holder if r['ok'])} | "
-        f"errors={sum(1 for r in results_holder if not r['ok'])}"
-    )
-    return results_holder, elapsed
+    if last_upd:
+        total = last_upd["total"] or 1
+        pct = last_upd["done"] / total
+        st.progress(pct)
+        prefix = "Stopping... " if stopped else ""
+        st.text(
+            f"{prefix}{last_upd['done']}/{last_upd['total']} | "
+            f"{last_upd['speed']:.1f}/sec | ETA {last_upd['eta']}s | "
+            f"ok={last_upd['ok']} | errors={last_upd['errors']}"
+        )
+    else:
+        st.progress(0)
+        st.text("Starting...")
+
+    if thread and not thread.is_alive():
+        thread.join()
+        elapsed = time.time() - t0
+        results = list(holder)
+
+        if st.session_state.get("run_type") == "mx":
+            _log_and_store_mx(results, elapsed)
+        else:
+            _log_and_store_llm(results, elapsed)
+
+        for k in ["_run_thread", "_run_queue", "_stop_event", "_results_holder", "_run_t0", "_run_last_upd"]:
+            st.session_state.pop(k, None)
+        st.rerun()
+    else:
+        time.sleep(0.25)
+        st.rerun()
+
+
+def _log_and_store_llm(results: list[dict], elapsed: float) -> None:
+    row_indices = st.session_state.get("run_row_indices", [])
+    ok = sum(1 for r in results if r["ok"])
+    timings = sorted([r["elapsed"] for r in results if isinstance(r.get("elapsed"), (int, float))])
+    if timings:
+        p50 = timings[len(timings) // 2]
+        p90 = timings[int(len(timings) * 0.9)]
+        _log.info(
+            f"LLM run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} "
+            f"elapsed={elapsed:.1f}s | p50={p50:.1f}s p90={p90:.1f}s max={timings[-1]:.1f}s"
+        )
+    else:
+        _log.info(f"LLM run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    for r in results:
+        if not r["ok"] and r.get("error"):
+            _log.error(f"LLM row {r['idx']} | {r['error']}")
+        elif r.get("elapsed", 0) > 15:
+            _log.warning(f"LLM slow row {r['idx']} | elapsed={r['elapsed']:.1f}s")
+    st.session_state.run_in_progress = False
+    st.session_state.run_results = results
+    st.session_state.run_elapsed = elapsed
+
+
+def _log_and_store_mx(results: list[dict], elapsed: float) -> None:
+    row_indices = st.session_state.get("run_row_indices", [])
+    ok = sum(1 for r in results if r["ok"])
+    _log.info(f"MX run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    for r in results:
+        if not r["ok"] and r.get("error"):
+            _log.error(f"MX row {r['idx']} | {r['error']}")
+    for r in results:
+        if r["ok"]:
+            r["data"] = {
+                "mx_provider": r.get("mx_provider", ""),
+                "mx_real": r.get("mx_real", ""),
+            }
+        else:
+            r["data"] = {}
+    st.session_state.run_in_progress = False
+    st.session_state.run_results = results
+    st.session_state.run_elapsed = elapsed
 
 
 def _do_run_llm(
@@ -364,6 +456,7 @@ def _do_run_llm(
     prompt_text: str | None,
     output_type: str = "Extract",
     include_reasoning: bool = False,
+    include_guardrail: bool = False,
 ) -> None:
     if st.session_state.get("run_in_progress"):
         return
@@ -377,9 +470,11 @@ def _do_run_llm(
         st.error("Prompt is empty.")
         return
 
-    # Save prompt vars for output preview
+    # Save prompt vars and run params for output preview / rerun
     import re as _re
     st.session_state["run_prompt_cols"] = _re.findall(r"\{\{(.+?)\}\}", prompt_text)
+    st.session_state["run_row_indices"] = row_indices
+    st.session_state["run_type"] = "llm"
 
     st.session_state.run_in_progress = True
     _log.info(f"LLM run started | rows={len(row_indices)} output_type={output_type} concurrency={concurrency}")
@@ -388,18 +483,11 @@ def _do_run_llm(
         return run_llm_enrichment(
             df=df, prompt_text=prompt_text, row_indices=row_indices,
             concurrency=concurrency, progress_queue=pq, stop_event=se,
-            api_key=api_key, output_type=output_type, include_reasoning=include_reasoning,
+            api_key=api_key, output_type=output_type,
+            include_reasoning=include_reasoning, include_guardrail=include_guardrail,
         )
 
-    results, elapsed = _run_with_progress(worker_fn, row_indices)
-    st.session_state.run_in_progress = False
-    ok = sum(1 for r in results if r["ok"])
-    _log.info(f"LLM run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
-    for r in results:
-        if not r["ok"] and r.get("error"):
-            _log.error(f"LLM row {r['idx']} | {r['error']}")
-    st.session_state.run_results = results
-    st.session_state.run_elapsed = elapsed
+    _start_run_thread(worker_fn)
     st.rerun()
 
 
@@ -412,6 +500,10 @@ def _do_run_mx(
         return
     concurrency = st.session_state.get("mx_concurrency", st.session_state.get("default_concurrency", 60))
 
+    st.session_state["run_row_indices"] = row_indices
+    st.session_state["run_type"] = "mx"
+    st.session_state["run_email_col_stored"] = email_col
+
     st.session_state.run_in_progress = True
     _log.info(f"MX run started | rows={len(row_indices)} email_col={email_col} concurrency={concurrency}")
 
@@ -421,24 +513,7 @@ def _do_run_mx(
             concurrency=concurrency, progress_queue=pq, stop_event=se,
         )
 
-    results, elapsed = _run_with_progress(worker_fn, row_indices)
-    st.session_state.run_in_progress = False
-    ok = sum(1 for r in results if r["ok"])
-    _log.info(f"MX run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
-    for r in results:
-        if not r["ok"] and r.get("error"):
-            _log.error(f"MX row {r['idx']} | {r['error']}")
-    # Convert MX results to same format as LLM results for _render_output_section
-    for r in results:
-        if r["ok"]:
-            r["data"] = {
-                "mx_provider": r.get("mx_provider", ""),
-                "mx_real": r.get("mx_real", ""),
-            }
-        else:
-            r["data"] = {}
-    st.session_state.run_results = results
-    st.session_state.run_elapsed = elapsed
+    _start_run_thread(worker_fn)
     st.rerun()
 
 
@@ -452,7 +527,28 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     if filtered_df is None:
         filtered_df = df
 
+    # Handle rerun request (triggered from Rerun button in output section)
+    if st.session_state.get("panel_rerun") and not st.session_state.get("run_in_progress"):
+        st.session_state.pop("panel_rerun", None)
+        _ri = st.session_state.get("run_row_indices", [])
+        if st.session_state.get("run_type") == "mx":
+            _do_run_mx(df, _ri, st.session_state.get("run_email_col_stored", ""))
+        else:
+            _do_run_llm(
+                df, _ri,
+                st.session_state.get("prompt_textarea", ""),
+                st.session_state.get("panel_output_type", "Extract"),
+                st.session_state.get("include_reasoning", False),
+                st.session_state.get("include_guardrail", False),
+            )
+        return
+
     st.markdown("### Enrichment")
+
+    # If run in progress — show progress + Stop, skip the rest of the panel
+    if st.session_state.get("run_in_progress"):
+        _poll_and_render_progress()
+        return
 
     # Type selector
     enrichment_type = st.selectbox(
@@ -464,7 +560,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- CONFIG (type-specific) --
     if enrichment_type == "LLM Extraction":
-        ot_col, r_col = st.columns([3, 2])
+        ot_col, r_col, g_col = st.columns([3, 2, 2])
         with ot_col:
             output_type = st.selectbox(
                 "Output type",
@@ -479,6 +575,12 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                 key="include_reasoning",
                 disabled=(output_type != "Extract"),
                 help="Add reasoning field to Extract output",
+            )
+        with g_col:
+            include_guardrail = st.checkbox(
+                "Flag insufficient data",
+                key="include_guardrail",
+                help='LLM returns "INSUFFICIENT_DATA" when info is not enough',
             )
         prompt_text = render_prompt_editor(df, output_type)
 
@@ -501,6 +603,6 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     else:
         # -- RUN --
         if enrichment_type == "LLM Extraction":
-            _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning)
+            _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning, include_guardrail)
         else:
             _render_run_section_mx(df, filtered_df, email_col)

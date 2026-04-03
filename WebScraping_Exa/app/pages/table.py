@@ -29,6 +29,7 @@ def render_table() -> None:
     filtered_df = _apply_filters(df)
     _render_row_count(df, filtered_df)
     _render_fill_remaining_bar(df)
+    _render_col_manager(df)
     visible_cols = _get_visible_cols(filtered_df)
     _render_dataframe(filtered_df, visible_cols)
 
@@ -74,6 +75,30 @@ def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
                     "<script>window.parent.document.querySelector('.main').scrollTop = 999999;</script>",
                     height=0,
                 )
+                st.rerun()
+
+
+def _render_col_manager(df: pd.DataFrame) -> None:
+    """Delete buttons for generated columns."""
+    new_cols = [c for c in st.session_state.get("new_cols", []) if c in df.columns]
+    if not new_cols:
+        return
+
+    st.caption("Generated columns:")
+    btn_cols = st.columns(min(len(new_cols), 6))
+    for i, col in enumerate(new_cols):
+        with btn_cols[i % 6]:
+            if st.button(f"{col} ✕", key=f"del_col_{col}", use_container_width=True,
+                         help=f"Delete column '{col}'"):
+                st.session_state.df.drop(columns=[col], inplace=True)
+                st.session_state.new_cols = [c for c in st.session_state.new_cols if c != col]
+                st.session_state.visible_cols = []
+                source = st.session_state.get("source_file")
+                if source:
+                    try:
+                        st.session_state.df.to_csv(source, index=False)
+                    except Exception:
+                        pass
                 st.rerun()
 
 

@@ -1,0 +1,66 @@
+2026-04-03 12:52:25 | INFO  | LLM run started | rows=10 output_type=Boolean concurrency=50
+2026-04-03 12:52:32 | INFO  | LLM run done | rows=10 ok=10 errors=0 elapsed=6.2s
+2026-04-03 12:56:20 | INFO  | LLM run started | rows=10 output_type=Extract concurrency=50
+2026-04-03 12:56:31 | INFO  | LLM run done | rows=10 ok=10 errors=0 elapsed=10.9s
+2026-04-03 13:08:06 | INFO  | LLM run started | rows=50 output_type=Extract concurrency=50
+2026-04-03 13:08:34 | INFO  | LLM run done | rows=50 ok=50 errors=0 elapsed=27.8s
+2026-04-03 13:26:43 | INFO  | LLM run started | rows=50 output_type=Extract concurrency=50
+2026-04-03 13:26:55 | INFO  | LLM run done | rows=50 ok=50 errors=0 elapsed=11.9s | p50=2.5s p90=4.2s max=10.7s
+2026-04-03 13:26:55 | WARNING | LLM slow row 20 | elapsed=10.7s
+2026-04-03 13:29:30 | INFO  | LLM run started | rows=10450 output_type=Boolean concurrency=50
+2026-04-03 13:36:52 | INFO  | LLM run done | rows=10450 ok=10449 errors=1 elapsed=442.3s | p50=1.4s p90=4.1s max=26.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 591 | elapsed=11.5s
+2026-04-03 13:36:52 | WARNING | LLM slow row 590 | elapsed=11.6s
+2026-04-03 13:36:52 | WARNING | LLM slow row 584 | elapsed=12.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 589 | elapsed=12.5s
+2026-04-03 13:36:52 | WARNING | LLM slow row 588 | elapsed=12.6s
+2026-04-03 13:36:52 | WARNING | LLM slow row 964 | elapsed=10.0s
+2026-04-03 13:36:52 | WARNING | LLM slow row 971 | elapsed=10.5s
+2026-04-03 13:36:52 | WARNING | LLM slow row 1912 | elapsed=11.9s
+2026-04-03 13:36:52 | WARNING | LLM slow row 2269 | elapsed=11.7s
+2026-04-03 13:36:52 | WARNING | LLM slow row 2266 | elapsed=12.0s
+2026-04-03 13:36:52 | WARNING | LLM slow row 2320 | elapsed=10.3s
+2026-04-03 13:36:52 | WARNING | LLM slow row 2267 | elapsed=12.8s
+2026-04-03 13:36:52 | WARNING | LLM slow row 2503 | elapsed=10.7s
+2026-04-03 13:36:52 | WARNING | LLM slow row 2501 | elapsed=10.9s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3432 | elapsed=12.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3440 | elapsed=12.3s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3472 | elapsed=11.6s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3431 | elapsed=13.3s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3640 | elapsed=10.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3647 | elapsed=12.7s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3649 | elapsed=12.6s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3707 | elapsed=10.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3648 | elapsed=12.9s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3680 | elapsed=11.9s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3709 | elapsed=10.8s
+2026-04-03 13:36:52 | WARNING | LLM slow row 3925 | elapsed=11.5s
+2026-04-03 13:36:52 | WARNING | LLM slow row 4409 | elapsed=11.2s
+2026-04-03 13:36:52 | WARNING | LLM slow row 5001 | elapsed=10.2s
+2026-04-03 13:36:52 | WARNING | LLM slow row 5002 | elapsed=10.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 4901 | elapsed=15.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 5887 | elapsed=11.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 5888 | elapsed=13.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 6600 | elapsed=10.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 6601 | elapsed=10.6s
+2026-04-03 13:36:52 | ERROR | LLM row 6839 | empty_response
+2026-04-03 13:36:52 | WARNING | LLM slow row 7059 | elapsed=10.7s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7149 | elapsed=10.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7153 | elapsed=10.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7181 | elapsed=10.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7123 | elapsed=12.9s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7193 | elapsed=10.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7195 | elapsed=10.2s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7144 | elapsed=12.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7107 | elapsed=13.8s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7161 | elapsed=11.7s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7032 | elapsed=17.2s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7164 | elapsed=12.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7166 | elapsed=12.1s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7200 | elapsed=10.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 7199 | elapsed=12.4s
+2026-04-03 13:36:52 | WARNING | LLM slow row 9602 | elapsed=11.2s
+2026-04-03 13:36:52 | WARNING | LLM slow row 9994 | elapsed=13.9s
+2026-04-03 13:36:52 | WARNING | LLM slow row 10368 | elapsed=10.0s
+2026-04-03 13:36:52 | WARNING | LLM slow row 10465 | elapsed=26.4s
+2026-04-03 13:45:39 | INFO  | LLM run started | rows=10450 output_type=Extract concurrency=50

@@ -99,10 +99,24 @@ _EXTRACT_WITH_REASONING = (
 )
 
 
-def get_json_suffix(output_type: str, include_reasoning: bool = False) -> str:
+_GUARDRAIL = (
+    '\n\nIf you cannot determine this from the available information, '
+    'use "INSUFFICIENT_DATA" as the main value and set confidence to 1.'
+)
+
+
+def get_json_suffix(
+    output_type: str,
+    include_reasoning: bool = False,
+    include_guardrail: bool = False,
+) -> str:
     if output_type == "Extract" and include_reasoning:
-        return _EXTRACT_WITH_REASONING
-    return JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+        base = _EXTRACT_WITH_REASONING
+    else:
+        base = JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+    if include_guardrail:
+        base += _GUARDRAIL
+    return base
 
 
 def render_prompt_for_row(
@@ -110,6 +124,7 @@ def render_prompt_for_row(
     row: pd.Series,
     output_type: str = "Extract",
     include_reasoning: bool = False,
+    include_guardrail: bool = False,
 ) -> str:
     filled = template
     for col in row.index:
@@ -117,7 +132,7 @@ def render_prompt_for_row(
         if val in ("nan", "None"):
             val = ""
         filled = filled.replace("{{" + col + "}}", val)
-    filled += get_json_suffix(output_type, include_reasoning)
+    filled += get_json_suffix(output_type, include_reasoning, include_guardrail)
     return filled
 
 
@@ -177,24 +192,29 @@ async def _call_llm_batch(
         }
         async with sem:
             if stop_event.is_set():
-                return {"idx": idx, "data": {}, "ok": False, "error": "stopped"}
+                return {"idx": idx, "data": {}, "ok": False, "error": "stopped", "elapsed": 0.0}
+            t_row = time.time()
             try:
                 resp = await client.post(
                     "https://openrouter.ai/api/v1/chat/completions",
                     json=payload,
                     timeout=30.0,
                 )
+                elapsed_row = time.time() - t_row
                 if resp.status_code != 200:
                     return {"idx": idx, "data": {}, "ok": False,
-                            "error": f"HTTP {resp.status_code}: {resp.text[:80]}"}
+                            "error": f"HTTP {resp.status_code}: {resp.text[:80]}",
+                            "elapsed": elapsed_row}
                 data = resp.json()
                 raw_content = data["choices"][0]["message"]["content"]
                 if not raw_content:
-                    return {"idx": idx, "data": {}, "ok": False, "error": "empty_response"}
+                    return {"idx": idx, "data": {}, "ok": False, "error": "empty_response",
+                            "elapsed": elapsed_row}
                 parsed = parse_json_response(raw_content)
-                return {"idx": idx, "data": parsed, "ok": True, "error": None}
+                return {"idx": idx, "data": parsed, "ok": True, "error": None, "elapsed": elapsed_row}
             except Exception as exc:
-                return {"idx": idx, "data": {}, "ok": False, "error": str(exc)[:120]}
+                return {"idx": idx, "data": {}, "ok": False, "error": str(exc)[:120],
+                        "elapsed": time.time() - t_row}
 
     async with httpx.AsyncClient(headers=headers) as client:
         tasks = [asyncio.create_task(call_one(item)) for item in items]
@@ -234,17 +254,18 @@ def run_llm_enrichment(
     api_key: str = "",
     output_type: str = "Extract",
     include_reasoning: bool = False,
+    include_guardrail: bool = False,
 ) -> list[dict]:
     """
     Runs LLM enrichment synchronously (call inside threading.Thread).
-    Returns list of {"idx": int, "data": dict, "ok": bool, "error": str|None}.
+    Returns list of {"idx": int, "data": dict, "ok": bool, "error": str|None, "elapsed": float}.
     """
     key = api_key or os.getenv("OPENROUTER_API_KEY", "")
 
     items = []
     for idx in row_indices:
         row = df.iloc[idx]
-        rendered = render_prompt_for_row(prompt_text, row, output_type, include_reasoning)
+        rendered = render_prompt_for_row(prompt_text, row, output_type, include_reasoning, include_guardrail)
         items.append({"idx": idx, "rendered_prompt": rendered})
 
     return asyncio.run(_call_llm_batch(
