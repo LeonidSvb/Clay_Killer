@@ -5,6 +5,8 @@ from app.components.enrichment_panel import render_enrichment_panel
 
 OPERATORS = ["=", "!=", ">=", "<=", "contains", "not contains", "is empty", "is not empty"]
 
+TABLE_HEIGHT = 320
+
 
 def _fill_pct(series: pd.Series) -> int:
     total = len(series)
@@ -21,28 +23,16 @@ def render_table() -> None:
     if df is None:
         return
 
-    panel_open = st.session_state.get("panel_open", False)
+    st.divider()
+    _render_toolbar(df)
+    filtered_df = _apply_filters(df)
+    _render_row_count(df, filtered_df)
+    _render_fill_remaining_bar(df)
+    visible_cols = _get_visible_cols(filtered_df)
+    _render_dataframe(filtered_df, visible_cols)
 
-    if panel_open:
-        col_left, col_right = st.columns([3, 2], gap="medium")
-        with col_left:
-            st.divider()
-            _render_toolbar(df)
-            filtered_df = _apply_filters(df)
-            _render_row_count(df, filtered_df)
-            _render_fill_remaining_bar(df)
-            visible_cols = _get_visible_cols(filtered_df)
-            _render_dataframe(filtered_df, visible_cols)
-        with col_right:
-            render_enrichment_panel(filtered_df)
-    else:
-        st.divider()
-        _render_toolbar(df)
-        filtered_df = _apply_filters(df)
-        _render_row_count(df, filtered_df)
-        _render_fill_remaining_bar(df)
-        visible_cols = _get_visible_cols(filtered_df)
-        _render_dataframe(filtered_df, visible_cols)
+    st.divider()
+    render_enrichment_panel(filtered_df)
 
 
 def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
@@ -77,7 +67,6 @@ def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
                 key=f"fill_remaining_{col}",
                 use_container_width=True,
             ):
-                st.session_state.panel_open = True
                 st.session_state.panel_prefill_fill_col = col
                 st.rerun()
 
@@ -87,17 +76,11 @@ def _render_toolbar(df: pd.DataFrame) -> None:
     filename = source.replace("\\", "/").split("/")[-1] if source else "untitled"
     n_rows, n_cols = df.shape
 
-    c1, c2, c3 = st.columns([4, 1, 1.5])
+    c1, c2 = st.columns([4, 1])
     with c1:
         st.markdown(f"**{filename}** &nbsp; {n_rows:,} rows &nbsp; {n_cols} cols")
     with c2:
         _render_filter_toggle(df)
-    with c3:
-        if not st.session_state.get("panel_open", False):
-            if st.button("+ Enrichment", type="primary", use_container_width=True):
-                st.session_state.panel_open = True
-                st.rerun()
-
 
 
 def _render_filter_toggle(df: pd.DataFrame) -> None:
@@ -212,7 +195,6 @@ def _get_visible_cols(df: pd.DataFrame) -> list[str]:
 def _render_dataframe(df: pd.DataFrame, visible_cols: list[str]) -> None:
     new_cols = st.session_state.get("new_cols", [])
 
-    # Переименовываем колонки для отображения: "Company Name" → "Company Name (87%)"
     rename_map = {col: f"{col} ({_fill_pct(df[col])}%)" for col in visible_cols}
     display_df = df[visible_cols].rename(columns=rename_map)
 
@@ -230,8 +212,7 @@ def _render_dataframe(df: pd.DataFrame, visible_cols: list[str]) -> None:
             display_df.style.apply(highlight_new, axis=None),
             hide_index=True,
             use_container_width=True,
+            height=TABLE_HEIGHT,
         )
     else:
-        st.dataframe(display_df, hide_index=True, use_container_width=True)
-
-
+        st.dataframe(display_df, hide_index=True, use_container_width=True, height=TABLE_HEIGHT)

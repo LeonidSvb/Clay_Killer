@@ -25,7 +25,6 @@ _DEFAULTS: dict = {
     "working_folder": os.getenv("WORKING_FOLDER", ""),
     "new_cols": [],
     "selected_input_cols": [],
-    "panel_open": False,
     "enrichment_type": "LLM Extraction",
     "run_results": None,
     "last_save_map": {},

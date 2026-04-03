@@ -356,13 +356,6 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     if filtered_df is None:
         filtered_df = df
 
-    # Close button
-    if st.button("X Close", use_container_width=True, key="btn_close_panel"):
-        st.session_state.panel_open = False
-        st.session_state.run_results = None
-        st.session_state.run_elapsed = 0.0
-        st.rerun()
-
     st.markdown("### Enrichment")
 
     # Type selector
