@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 from app.components.file_browser import render_file_browser
 from app.components.enrichment_panel import render_enrichment_panel
@@ -68,6 +69,11 @@ def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
                 use_container_width=True,
             ):
                 st.session_state.panel_prefill_fill_col = col
+                st.session_state.panel_autorun = True
+                components.html(
+                    "<script>window.parent.document.querySelector('.main').scrollTop = 999999;</script>",
+                    height=0,
+                )
                 st.rerun()
 
 

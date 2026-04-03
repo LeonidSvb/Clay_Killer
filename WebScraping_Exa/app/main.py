@@ -27,6 +27,7 @@ _DEFAULTS: dict = {
     "selected_input_cols": [],
     "enrichment_type": "LLM Extraction",
     "run_results": None,
+    "run_in_progress": False,
     "last_save_map": {},
     "visible_cols": [],
     "filters": [],

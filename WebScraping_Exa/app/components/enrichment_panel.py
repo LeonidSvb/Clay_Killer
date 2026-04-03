@@ -261,15 +261,31 @@ def _get_row_indices(
 
 def _render_run_section_llm(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None) -> None:
     st.markdown("**Run**")
+    autorun = st.session_state.pop("panel_autorun", False)
     row_indices = _get_row_indices(df, filtered_df)
-    if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
+    running = st.session_state.get("run_in_progress", False)
+    if autorun and not running:
+        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
+        return
+    if st.button(
+        "Running..." if running else "Run",
+        type="primary", use_container_width=True, key="btn_run", disabled=running,
+    ):
         _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
 
 
 def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
     st.markdown("**Run**")
+    autorun = st.session_state.pop("panel_autorun", False)
     row_indices = _get_row_indices(df, filtered_df)
-    if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
+    running = st.session_state.get("run_in_progress", False)
+    if autorun and not running:
+        _do_run_mx(df, row_indices, email_col)
+        return
+    if st.button(
+        "Running..." if running else "Run",
+        type="primary", use_container_width=True, key="btn_run", disabled=running,
+    ):
         _do_run_mx(df, row_indices, email_col)
 
 
@@ -319,6 +335,8 @@ def _do_run_llm(
     prompt_text: str | None,
     output_type: str = "Extract",
 ) -> None:
+    if st.session_state.get("run_in_progress"):
+        return
     concurrency = st.session_state.get("llm_concurrency", st.session_state.get("default_concurrency", 50))
     api_key = st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
 
@@ -329,6 +347,8 @@ def _do_run_llm(
         st.error("Prompt is empty.")
         return
 
+    st.session_state.run_in_progress = True
+
     def worker_fn(pq, se):
         return run_llm_enrichment(
             df=df, prompt_text=prompt_text, row_indices=row_indices,
@@ -337,6 +357,7 @@ def _do_run_llm(
         )
 
     results, elapsed = _run_with_progress(worker_fn, row_indices)
+    st.session_state.run_in_progress = False
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
     st.rerun()
@@ -347,7 +368,11 @@ def _do_run_mx(
     row_indices: list[int],
     email_col: str,
 ) -> None:
+    if st.session_state.get("run_in_progress"):
+        return
     concurrency = st.session_state.get("mx_concurrency", st.session_state.get("default_concurrency", 60))
+
+    st.session_state.run_in_progress = True
 
     def worker_fn(pq, se):
         return run_mx_enrichment(
@@ -356,6 +381,7 @@ def _do_run_mx(
         )
 
     results, elapsed = _run_with_progress(worker_fn, row_indices)
+    st.session_state.run_in_progress = False
     # Convert MX results to same format as LLM results for _render_output_section
     for r in results:
         if r["ok"]:
