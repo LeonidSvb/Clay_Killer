@@ -27,7 +27,7 @@ import pandas as pd
 import streamlit as st
 
 from app.components.prompt_editor import render_prompt_editor
-from app.enrichments.llm import run_llm_enrichment, list_enrichment_prompts
+from app.enrichments.llm import run_llm_enrichment
 
 
 # ── Run summary ────────────────────────────────────────────────────────────────
@@ -194,7 +194,7 @@ def _is_empty(val) -> bool:
     return str(val).strip() in ("", "nan", "None")
 
 
-def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_name: str) -> None:
+def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None) -> None:
     st.markdown("**Run**")
 
     # Default row mode — set when opened via "Fill remaining" button on a column
@@ -250,12 +250,12 @@ def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_name
     st.caption(f"{row_count:,} rows selected")
 
     if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
-        _do_run(df, row_indices, prompt_name)
+        _do_run(df, row_indices, prompt_text)
 
 
-def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_name: str) -> None:
+def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_text: str | None) -> None:
     input_cols = st.session_state.get("panel_input_cols", [])
-    concurrency = st.session_state.get("panel_concurrency", 50)
+    concurrency = st.session_state.get("llm_concurrency", st.session_state.get("default_concurrency", 50))
     api_key = st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
 
     if not input_cols:
@@ -263,6 +263,9 @@ def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_name: str) -> None:
         return
     if not api_key:
         st.error("OpenRouter API key not set. Go to Settings tab.")
+        return
+    if not prompt_text or not prompt_text.strip():
+        st.error("Prompt is empty.")
         return
 
     progress_queue: queue.Queue = queue.Queue()
@@ -273,7 +276,7 @@ def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_name: str) -> None:
         res = run_llm_enrichment(
             df=df,
             input_columns=input_cols,
-            prompt_name=prompt_name,
+            prompt_text=prompt_text,
             row_indices=row_indices,
             concurrency=concurrency,
             progress_queue=progress_queue,
@@ -363,17 +366,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- CONFIG --
     st.markdown("**Prompt**")
-    prompt_name = render_prompt_editor(df)
-
-    concurrency = st.number_input(
-        "Concurrency",
-        min_value=1,
-        max_value=200,
-        value=st.session_state.get("panel_concurrency",
-                                   st.session_state.get("default_concurrency", 50)),
-        key="panel_concurrency_input",
-    )
-    st.session_state.panel_concurrency = concurrency
+    prompt_text = render_prompt_editor(df)
 
     st.markdown("---")
 
@@ -382,4 +375,4 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         _render_output_section(df)
     else:
         # -- RUN --
-        _render_run_section(df, filtered_df, prompt_name)
+        _render_run_section(df, filtered_df, prompt_text)

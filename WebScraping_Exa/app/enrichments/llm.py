@@ -199,7 +199,7 @@ async def _call_llm_batch(
 def run_llm_enrichment(
     df: pd.DataFrame,
     input_columns: list[str],
-    prompt_name: str,
+    prompt_text: str,
     row_indices: list[int],
     concurrency: int,
     progress_queue: queue.Queue,
@@ -210,7 +210,8 @@ def run_llm_enrichment(
     Runs LLM enrichment synchronously (call inside threading.Thread).
     Returns list of {"idx": int, "data": dict, "ok": bool, "error": str|None}.
     """
-    template, is_column_style = load_enrichment_prompt(prompt_name)
+    is_column_style = "{text}" not in prompt_text
+    template = prompt_text
     key = api_key or os.getenv("OPENROUTER_API_KEY", "")
 
     items = []

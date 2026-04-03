@@ -55,16 +55,25 @@ def render_settings() -> None:
 
     st.divider()
     st.subheader("Enrichment Defaults")
-    st.caption("These values are pre-filled in each enrichment config. You can override them per-run.")
+    st.caption("Concurrency = number of parallel requests per enrichment type.")
 
-    concurrency = st.number_input(
-        "Default concurrency (requests in parallel)",
+    llm_conc = st.number_input(
+        "LLM Extraction — concurrency",
         min_value=1, max_value=200,
-        value=st.session_state.get("default_concurrency", 50),
-        help="Used as default in LLM, Scraping, and MX enrichments. Each enrichment can override this.",
+        value=st.session_state.get("llm_concurrency", 50),
+        key="settings_llm_concurrency",
     )
-    if concurrency != st.session_state.get("default_concurrency"):
-        st.session_state.default_concurrency = int(concurrency)
+    if int(llm_conc) != st.session_state.get("llm_concurrency"):
+        st.session_state.llm_concurrency = int(llm_conc)
+
+    mx_conc = st.number_input(
+        "MX Check — concurrency",
+        min_value=1, max_value=200,
+        value=st.session_state.get("mx_concurrency", 60),
+        key="settings_mx_concurrency",
+    )
+    if int(mx_conc) != st.session_state.get("mx_concurrency"):
+        st.session_state.mx_concurrency = int(mx_conc)
 
 
 def _save_env() -> None:
@@ -72,6 +81,7 @@ def _save_env() -> None:
     set_key(str(ENV_PATH), "OPENROUTER_API_KEY", st.session_state.get("openrouter_key", ""))
     set_key(str(ENV_PATH), "EXA_API_KEY", st.session_state.get("exa_key", ""))
     set_key(str(ENV_PATH), "WORKING_FOLDER", st.session_state.get("working_folder", ""))
-    set_key(str(ENV_PATH), "DEFAULT_CONCURRENCY", str(st.session_state.get("default_concurrency", 50)))
+    set_key(str(ENV_PATH), "LLM_CONCURRENCY", str(st.session_state.get("llm_concurrency", 50)))
+    set_key(str(ENV_PATH), "MX_CONCURRENCY", str(st.session_state.get("mx_concurrency", 60)))
     os.environ["OPENROUTER_API_KEY"] = st.session_state.get("openrouter_key", "")
     os.environ["EXA_API_KEY"] = st.session_state.get("exa_key", "")

@@ -32,6 +32,8 @@ _DEFAULTS: dict = {
     "visible_cols": [],
     "filters": [],
     "default_concurrency": int(os.getenv("DEFAULT_CONCURRENCY", "50")),
+    "llm_concurrency": int(os.getenv("LLM_CONCURRENCY", "50")),
+    "mx_concurrency": int(os.getenv("MX_CONCURRENCY", "60")),
     "openrouter_key": os.getenv("OPENROUTER_API_KEY", ""),
     "exa_key": os.getenv("EXA_API_KEY", ""),
 }
