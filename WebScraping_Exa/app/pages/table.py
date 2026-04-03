@@ -43,8 +43,6 @@ def render_table() -> None:
         _render_fill_remaining_bar(df)
         visible_cols = _get_visible_cols(filtered_df)
         _render_dataframe(filtered_df, visible_cols)
-        st.divider()
-        _render_run_button()
 
 
 def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
@@ -89,41 +87,17 @@ def _render_toolbar(df: pd.DataFrame) -> None:
     filename = source.replace("\\", "/").split("/")[-1] if source else "untitled"
     n_rows, n_cols = df.shape
 
-    c1, c2, c3, c4 = st.columns([4, 1, 1, 1])
+    c1, c2, c3 = st.columns([4, 1, 1.5])
     with c1:
         st.markdown(f"**{filename}** &nbsp; {n_rows:,} rows &nbsp; {n_cols} cols")
     with c2:
-        csv_bytes = df.to_csv(index=False, encoding="utf-8-sig").encode("utf-8-sig")
-        st.download_button(
-            "Download",
-            data=csv_bytes,
-            file_name=filename,
-            mime="text/csv",
-            use_container_width=True,
-        )
-    with c3:
-        _render_columns_toggle(df)
-    with c4:
         _render_filter_toggle(df)
+    with c3:
+        if not st.session_state.get("panel_open", False):
+            if st.button("+ Enrichment", type="primary", use_container_width=True):
+                st.session_state.panel_open = True
+                st.rerun()
 
-
-def _render_columns_toggle(df: pd.DataFrame) -> None:
-    all_cols = list(df.columns)
-    current = st.session_state.get("visible_cols", all_cols) or all_cols
-
-    with st.popover("Columns", use_container_width=True):
-        selected = st.multiselect(
-            "Show columns",
-            options=all_cols,
-            default=[c for c in current if c in all_cols],
-            label_visibility="collapsed",
-        )
-        if st.button("Show all", use_container_width=True):
-            st.session_state.visible_cols = all_cols
-            st.rerun()
-        if selected != st.session_state.get("visible_cols"):
-            st.session_state.visible_cols = selected if selected else all_cols
-            st.rerun()
 
 
 def _render_filter_toggle(df: pd.DataFrame) -> None:
@@ -261,7 +235,3 @@ def _render_dataframe(df: pd.DataFrame, visible_cols: list[str]) -> None:
         st.dataframe(display_df, hide_index=True, use_container_width=True)
 
 
-def _render_run_button() -> None:
-    if st.button("+ Run Enrichment", type="primary"):
-        st.session_state.panel_open = True
-        st.rerun()
