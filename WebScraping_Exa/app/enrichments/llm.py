@@ -137,8 +137,9 @@ def render_prompt_for_row(
         if val in ("nan", "None"):
             val = ""
         filled = filled.replace("{{" + col + "}}", val)
-    if output_config is not None:
-        filled += get_json_suffix_v2(output_type, output_config)
+    _NEW_TYPES = {"Text", "Boolean", "Score", "Structured"}
+    if output_type in _NEW_TYPES or output_config is not None:
+        filled += get_json_suffix_v2(output_type, output_config or {})
     else:
         filled += get_json_suffix(output_type, include_reasoning, include_guardrail)
     return filled

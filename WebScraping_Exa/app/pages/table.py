@@ -5,6 +5,7 @@ import pandas as pd
 from app.components.file_browser import render_file_browser
 from app.components.enrichment_panel import render_enrichment_panel
 from app.components.plusvibe_push import render_plusvibe_push
+from app.components.col_stats import render_col_stats
 from core import ui_state
 
 OPERATORS = ["=", "!=", ">=", "<=", "contains", "not contains", "is empty", "is not empty"]
@@ -64,7 +65,7 @@ def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
     cols_with_empty: list[tuple[str, int]] = []
     for col in new_cols:
         empty = df[col].apply(
-            lambda v: pd.isna(v) or str(v).strip() in ("", "nan", "None")
+            lambda v: str(v).strip() in ("", "nan", "None")
         ).sum()
         if empty > 0:
             cols_with_empty.append((col, int(empty)))
@@ -90,10 +91,12 @@ def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
 
 
 def _render_col_manager(df: pd.DataFrame) -> None:
-    """Delete buttons for generated columns."""
+    """Delete buttons + stats for generated columns."""
     new_cols = [c for c in st.session_state.get("new_cols", []) if c in df.columns]
     if not new_cols:
         return
+
+    last_run_col = st.session_state.get("_last_run_col", "")
 
     st.caption("Generated columns:")
     btn_cols = st.columns(min(len(new_cols), 6))
@@ -104,6 +107,8 @@ def _render_col_manager(df: pd.DataFrame) -> None:
                 st.session_state.df.drop(columns=[col], inplace=True)
                 st.session_state.new_cols = [c for c in st.session_state.new_cols if c != col]
                 st.session_state.visible_cols = []
+                if st.session_state.get("_last_run_col") == col:
+                    st.session_state.pop("_last_run_col", None)
                 source = st.session_state.get("source_file")
                 if source:
                     try:
@@ -111,6 +116,11 @@ def _render_col_manager(df: pd.DataFrame) -> None:
                     except Exception:
                         pass
                 st.rerun()
+
+    for col in new_cols:
+        is_last = col == last_run_col
+        with st.expander(f"Stats: {col}", expanded=is_last):
+            render_col_stats(df, col)
 
 
 def _render_toolbar(df: pd.DataFrame) -> None:

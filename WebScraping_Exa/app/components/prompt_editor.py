@@ -60,139 +60,189 @@ def _is_empty_row(row: pd.Series) -> bool:
     return all(str(v).strip() in ("", "nan", "None") for v in row.values)
 
 
-def _render_prompt_library() -> None:
-    """Prompt library: load, save, rename, delete saved prompts."""
-    saved = list_enrichment_prompts()
+# ── Prompt library — two-mode UX ──────────────────────────────────────────────
+#
+# BROWSE MODE: dropdown (selector only) + Edit / Dup / New buttons
+# EDIT MODE:   name input + Save / Save as new / Del / Cancel
+#
+# Dropdown NEVER auto-loads. Actions only through buttons.
+# ──────────────────────────────────────────────────────────────────────────────
 
-    current_text = st.session_state.get("prompt_textarea", _DEFAULT_TEXT)
-    st.session_state["_prompt_backup"] = current_text
+def _enter_edit_mode(name: str) -> None:
+    text, _, default_col, ot, oc = load_enrichment_prompt(name)
+    st.session_state.prompt_textarea = text
+    st.session_state["_loaded_prompt_name"] = name
+    st.session_state["_edit_original_name"] = name
+    st.session_state["_edit_original_text"] = text
+    st.session_state["_edit_name"] = name
+    st.session_state["panel_output_type"] = ot or _DEFAULT_OUTPUT_TYPE
+    st.session_state["panel_output_config"] = oc or {}
+    st.session_state["_loaded_output_type"] = ot or _DEFAULT_OUTPUT_TYPE
+    st.session_state["_loaded_output_config"] = oc or {}
+    st.session_state["_editor_mode"] = "edit"
+    st.session_state.pop("_confirm_delete", None)
+    st.rerun()
 
-    lib_col, new_col = st.columns([5, 1])
 
-    with lib_col:
-        options = ["— select saved prompt —"] + saved
-        loaded_name = st.session_state.get("_loaded_prompt_name", "")
-        default_idx = (saved.index(loaded_name) + 1) if loaded_name in saved else 0
+def _enter_dup_mode(name: str) -> None:
+    text, _, default_col, ot, oc = load_enrichment_prompt(name)
+    st.session_state.prompt_textarea = text
+    st.session_state["_edit_original_name"] = ""
+    st.session_state["_edit_original_text"] = ""
+    st.session_state["_edit_name"] = f"{name} copy"
+    st.session_state["panel_output_type"] = ot or _DEFAULT_OUTPUT_TYPE
+    st.session_state["panel_output_config"] = oc or {}
+    st.session_state["_editor_mode"] = "new"
+    st.session_state.pop("_confirm_delete", None)
+    st.rerun()
 
-        selected = st.selectbox(
-            "Saved prompts",
-            options,
-            index=default_idx,
-            key="_prompt_select",
-            label_visibility="collapsed",
-        )
 
-        if selected != "— select saved prompt —" and selected != st.session_state.get("_loaded_prompt_name"):
-            text, _, default_output_col, loaded_ot, loaded_oc = load_enrichment_prompt(selected)
-            st.session_state.prompt_textarea = text
-            st.session_state["_loaded_prompt_name"] = selected
-            st.session_state["_loaded_prompt_text"] = text
-            st.session_state["prompt_default_output_col"] = default_output_col
-            st.session_state["panel_output_type"] = loaded_ot or _DEFAULT_OUTPUT_TYPE
-            st.session_state["panel_output_config"] = loaded_oc or {}
-            st.session_state["_loaded_output_type"] = loaded_ot or _DEFAULT_OUTPUT_TYPE
-            st.session_state["_loaded_output_config"] = loaded_oc or {}
-            st.session_state.pop("_confirm_delete", None)
-            st.rerun()
+def _enter_new_mode() -> None:
+    st.session_state.prompt_textarea = _DEFAULT_TEXT
+    st.session_state["_edit_original_name"] = ""
+    st.session_state["_edit_original_text"] = ""
+    st.session_state["_edit_name"] = ""
+    st.session_state["panel_output_type"] = _DEFAULT_OUTPUT_TYPE
+    st.session_state["panel_output_config"] = {}
+    st.session_state["_editor_mode"] = "new"
+    st.session_state.pop("_confirm_delete", None)
+    st.rerun()
+
+
+def _do_save(name: str, text: str, original_name: str) -> None:
+    output_type = st.session_state.get("panel_output_type", _DEFAULT_OUTPUT_TYPE)
+    output_config = st.session_state.get("panel_output_config", {})
+    if original_name and original_name != name:
+        delete_enrichment_prompt(original_name)
+    save_enrichment_prompt(name, text, output_type, output_config)
+    st.session_state["_loaded_prompt_name"] = name
+    st.session_state["_edit_original_name"] = name
+    st.session_state["_edit_original_text"] = text
+    st.session_state["_edit_name"] = name
+    st.session_state["_loaded_output_type"] = output_type
+    st.session_state["_loaded_output_config"] = output_config
+    st.session_state["_editor_mode"] = "edit"
+    st.session_state.pop("_confirm_delete", None)
+    st.rerun()
+
+
+def _render_browse(saved: list[str]) -> None:
+    loaded = st.session_state.get("_loaded_prompt_name", "")
+
+    drop_col, edit_col, dup_col, new_col = st.columns([5, 1, 1, 1])
+
+    with drop_col:
+        if saved:
+            idx = saved.index(loaded) if loaded in saved else 0
+            st.selectbox(
+                "Prompts", saved, index=idx,
+                key="_browse_select", label_visibility="collapsed",
+            )
+        else:
+            st.caption("No saved prompts yet")
+
+    selected = st.session_state.get("_browse_select", saved[0] if saved else "")
+
+    with edit_col:
+        if st.button("Edit", use_container_width=True, key="_btn_edit", disabled=not saved):
+            _enter_edit_mode(selected)
+
+    with dup_col:
+        if st.button("Dup", use_container_width=True, key="_btn_dup", disabled=not saved):
+            _enter_dup_mode(selected)
 
     with new_col:
-        if st.button("+ New", use_container_width=True, key="_btn_new_prompt"):
-            st.session_state.prompt_textarea = _DEFAULT_TEXT
-            st.session_state["_loaded_prompt_name"] = ""
-            st.session_state["_loaded_prompt_text"] = ""
-            st.session_state.pop("_confirm_delete", None)
-            st.rerun()
+        if st.button("New", use_container_width=True, key="_btn_new"):
+            _enter_new_mode()
 
-    loaded_name = st.session_state.get("_loaded_prompt_name", "")
-    loaded_text = st.session_state.get("_loaded_prompt_text", "")
+    if loaded:
+        st.caption(f"Loaded: **{loaded}**")
 
-    if loaded_name:
-        name_col, upd_col, del_col = st.columns([4, 1, 1])
 
-        with name_col:
-            new_name = st.text_input(
-                "Prompt name",
-                value=loaded_name,
-                key="_prompt_name_input",
-                label_visibility="collapsed",
-                placeholder="Prompt name",
-            )
+def _render_editor(mode: str) -> None:
+    is_new = mode == "new"
+    original_name = st.session_state.get("_edit_original_name", "")
+    original_text = st.session_state.get("_edit_original_text", "")
+    current_text = st.session_state.get("prompt_textarea", _DEFAULT_TEXT)
+    edit_name = st.session_state.get("_edit_name", "")
 
-        is_modified = (current_text != loaded_text) or (new_name.strip() != loaded_name)
+    is_dirty = (current_text != original_text) or (edit_name.strip() != original_name)
 
-        with upd_col:
-            if st.button(
-                "Update" + (" *" if is_modified else ""),
-                use_container_width=True,
-                key="_btn_update",
-                type="primary" if is_modified else "secondary",
-                disabled=not is_modified,
-            ):
-                clean_name = new_name.strip()
-                if clean_name and clean_name != loaded_name:
-                    delete_enrichment_prompt(loaded_name)
-                output_type = st.session_state.get("panel_output_type", _DEFAULT_OUTPUT_TYPE)
-                output_config = st.session_state.get("panel_output_config", {})
-                save_enrichment_prompt(clean_name or loaded_name, current_text, output_type, output_config)
-                st.session_state["_loaded_prompt_name"] = clean_name or loaded_name
-                st.session_state["_loaded_prompt_text"] = current_text
-                st.session_state["_loaded_output_type"] = output_type
-                st.session_state["_loaded_output_config"] = output_config
-                st.rerun()
+    # Mode label
+    if is_new:
+        st.markdown("**New prompt**")
+    else:
+        marker = " *" if is_dirty else ""
+        st.markdown(f"**Editing: {original_name}**{marker}")
+        if is_dirty:
+            st.caption("Unsaved changes")
+
+    # Name + actions row
+    if is_new:
+        name_col, save_col, cancel_col = st.columns([5, 1.5, 1])
+    else:
+        name_col, save_col, saveas_col, del_col, cancel_col = st.columns([4, 1.5, 2, 1, 1])
+
+    with name_col:
+        new_name = st.text_input(
+            "Name", value=edit_name, key="_edit_name_input",
+            label_visibility="collapsed", placeholder="Prompt name",
+        )
+        if new_name != edit_name:
+            st.session_state["_edit_name"] = new_name
+
+    name_ok = bool(new_name.strip())
+
+    with save_col:
+        if is_new:
+            if st.button("Save", use_container_width=True, key="_btn_save",
+                         type="primary", disabled=not name_ok):
+                _do_save(new_name.strip(), current_text, original_name="")
+        else:
+            label = "Save *" if is_dirty else "Save"
+            if st.button(label, use_container_width=True, key="_btn_save",
+                         type="primary" if is_dirty else "secondary", disabled=not is_dirty):
+                _do_save(new_name.strip() or original_name, current_text, original_name)
+
+    if not is_new:
+        with saveas_col:
+            saveas_disabled = not name_ok or new_name.strip() == original_name
+            if st.button("Save as new", use_container_width=True, key="_btn_saveas",
+                         disabled=saveas_disabled):
+                _do_save(new_name.strip(), current_text, original_name="")
 
         with del_col:
             confirming = st.session_state.get("_confirm_delete", False)
             if confirming:
-                if st.button("Sure?", use_container_width=True, key="_btn_del_confirm", type="primary"):
-                    delete_enrichment_prompt(loaded_name)
+                if st.button("Sure?", use_container_width=True, key="_btn_del_confirm",
+                             type="primary"):
+                    delete_enrichment_prompt(original_name)
                     st.session_state.prompt_textarea = _DEFAULT_TEXT
                     st.session_state["_loaded_prompt_name"] = ""
-                    st.session_state["_loaded_prompt_text"] = ""
+                    st.session_state["_editor_mode"] = "browse"
                     st.session_state.pop("_confirm_delete", None)
                     st.rerun()
             else:
-                if st.button("Delete", use_container_width=True, key="_btn_delete"):
+                if st.button("Del", use_container_width=True, key="_btn_delete"):
                     st.session_state["_confirm_delete"] = True
                     st.rerun()
 
-    elif saved:
-        sa_col, sa_btn = st.columns([4, 2])
-        with sa_col:
-            save_name = st.text_input(
-                "Save as", key="_save_as_name",
-                label_visibility="collapsed",
-                placeholder="Name this prompt to save...",
-            )
-        with sa_btn:
-            if st.button("Save", use_container_width=True, key="_btn_save_new",
-                         disabled=not save_name.strip()):
-                output_type = st.session_state.get("panel_output_type", _DEFAULT_OUTPUT_TYPE)
-                output_config = st.session_state.get("panel_output_config", {})
-                save_enrichment_prompt(save_name.strip(), current_text, output_type, output_config)
-                st.session_state["_loaded_prompt_name"] = save_name.strip()
-                st.session_state["_loaded_prompt_text"] = current_text
-                st.session_state["_loaded_output_type"] = output_type
-                st.session_state["_loaded_output_config"] = output_config
-                st.rerun()
+    with cancel_col:
+        if st.button("Cancel", use_container_width=True, key="_btn_cancel"):
+            if original_name and original_text:
+                st.session_state.prompt_textarea = original_text
+            st.session_state["_editor_mode"] = "browse"
+            st.session_state.pop("_confirm_delete", None)
+            st.rerun()
+
+
+def _render_prompt_library() -> None:
+    saved = list_enrichment_prompts()
+    mode = st.session_state.get("_editor_mode", "browse")
+    if mode in ("edit", "new"):
+        _render_editor(mode)
     else:
-        sa_col, sa_btn = st.columns([4, 2])
-        with sa_col:
-            save_name = st.text_input(
-                "Save as", key="_save_as_name",
-                label_visibility="collapsed",
-                placeholder="Name this prompt to save...",
-            )
-        with sa_btn:
-            if st.button("Save", use_container_width=True, key="_btn_save_new",
-                         disabled=not save_name.strip()):
-                output_type = st.session_state.get("panel_output_type", _DEFAULT_OUTPUT_TYPE)
-                output_config = st.session_state.get("panel_output_config", {})
-                save_enrichment_prompt(save_name.strip(), current_text, output_type, output_config)
-                st.session_state["_loaded_prompt_name"] = save_name.strip()
-                st.session_state["_loaded_prompt_text"] = current_text
-                st.session_state["_loaded_output_type"] = output_type
-                st.session_state["_loaded_output_config"] = output_config
-                st.rerun()
+        _render_browse(saved)
 
 
 def _render_output_config(output_type: str) -> dict:
@@ -229,7 +279,7 @@ def _render_output_config(output_type: str) -> dict:
         new_schema = st.text_area(
             "JSON schema",
             value=schema_val,
-            height=80,
+            height=160,
             key="_oc_structured_schema",
             label_visibility="collapsed",
             placeholder='{"field": "string", "tags": ["string"]}',
@@ -243,8 +293,7 @@ def render_prompt_editor(df: pd.DataFrame | None = None) -> tuple[str, str, dict
     """Renders prompt library + side-by-side editor. Returns (prompt_text, output_type, output_config)."""
 
     if "prompt_textarea" not in st.session_state:
-        backup = st.session_state.get("_prompt_backup", _DEFAULT_TEXT)
-        st.session_state.prompt_textarea = backup
+        st.session_state.prompt_textarea = _DEFAULT_TEXT
 
     _render_prompt_library()
 
@@ -253,7 +302,7 @@ def render_prompt_editor(df: pd.DataFrame | None = None) -> tuple[str, str, dict
     with col_edit:
         st.text_area(
             "prompt",
-            height=220,
+            height=340,
             key="prompt_textarea",
             label_visibility="collapsed",
             placeholder="Write your question here. Use {{Column Name}} to insert data.",
@@ -275,9 +324,9 @@ def render_prompt_editor(df: pd.DataFrame | None = None) -> tuple[str, str, dict
 
         output_config = _render_output_config(output_type)
 
-        # Auto-save output config when it changes (if a prompt is loaded)
+        # Auto-save output config only when actively editing an existing prompt
         loaded_name = st.session_state.get("_loaded_prompt_name", "")
-        if loaded_name:
+        if loaded_name and st.session_state.get("_editor_mode") == "edit":
             prev_ot = st.session_state.get("_loaded_output_type", "")
             prev_oc = st.session_state.get("_loaded_output_config", {})
             if output_type != prev_ot or output_config != prev_oc:

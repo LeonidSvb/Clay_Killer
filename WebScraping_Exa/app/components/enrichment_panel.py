@@ -282,6 +282,8 @@ def _render_output_section(df: pd.DataFrame) -> None:
             existing_new = st.session_state.get("new_cols", [])
             st.session_state.new_cols = list(set(existing_new + new_col_names))
             st.session_state.last_save_map = rename_map
+            if new_col_names:
+                st.session_state["_last_run_col"] = new_col_names[0]
             st.session_state.run_results = None
             st.session_state.run_elapsed = 0.0
             st.session_state.visible_cols = []
