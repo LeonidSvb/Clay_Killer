@@ -193,6 +193,13 @@ def _render_output_section(df: pd.DataFrame) -> None:
             st.session_state.run_elapsed = 0.0
             # Reset visible_cols so new columns are included in main table
             st.session_state.visible_cols = []
+            # Auto-save enriched CSV back to source file
+            source = st.session_state.get("source_file")
+            if source:
+                try:
+                    st.session_state.df.to_csv(source, index=False)
+                except Exception as e:
+                    st.warning(f"Auto-save failed: {e}")
             st.rerun()
 
     with s2:
