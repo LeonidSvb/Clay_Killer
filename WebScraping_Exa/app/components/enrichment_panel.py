@@ -38,6 +38,28 @@ _EXA_QUERY_PATH = Path(__file__).parent.parent.parent / "prompts" / "exa_summary
 _log = get_logger()
 
 
+def _log_inline_task(workspace_id: int, results: list, rename_map: dict) -> None:
+    """Log a completed inline enrichment run as a task record (status=done)."""
+    try:
+        from core.tasks import create_task
+        run_type = st.session_state.get("run_type", "llm")
+        output_col = list(rename_map.values())[0] if rename_map else "result"
+        ok = sum(1 for r in results if r.get("ok"))
+        total = len(results)
+        payload = {
+            "enrichment_type": run_type,
+            "output_col": output_col,
+            "source": "inline",
+        }
+        task_id = create_task(workspace_id, payload, total)
+        if task_id:
+            from core.tasks import update_task_progress, complete_task
+            update_task_progress(task_id, ok, total - ok)
+            complete_task(task_id)
+    except Exception as e:
+        _log.warning(f"Failed to log inline task: {e}")
+
+
 def _save_results_to_db(workspace_id: int, results: list, rename_map: dict) -> None:
     """Save enrichment results to workspace_leads.data in DB."""
     try:
@@ -257,10 +279,9 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
             workspace_id = st.session_state.get("workspace_id")
             if workspace_id:
-                # DB mode: save enrichment results to workspace_leads.data
                 _save_results_to_db(workspace_id, results, rename_map)
+                _log_inline_task(workspace_id, results, rename_map)
             else:
-                # CSV mode: auto-save back to file
                 source = st.session_state.get("source_file")
                 if source:
                     try:
