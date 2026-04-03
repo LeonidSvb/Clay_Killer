@@ -16,6 +16,8 @@ import time
 import httpx
 import pandas as pd
 
+from core.errors import normalize_exception
+
 DOH_URL = "https://dns.google/resolve"
 
 MX_PATTERNS: list[tuple[str, str]] = [
@@ -109,7 +111,7 @@ async def _run_mx_batch(
 
         async with sem:
             if stop_event.is_set():
-                return {"idx": idx, "mx_real": "", "mx_provider": "", "ok": False, "error": "stopped"}
+                return {"idx": idx, "mx_real": "", "mx_provider": "", "ok": False, "error": "sys_stopped"}
 
             if domain not in domain_cache:
                 domain_cache[domain] = await _fetch_mx(domain, client)

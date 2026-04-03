@@ -38,6 +38,7 @@ from app.enrichments.exa import (
 from app.enrichments.llm import run_llm_enrichment
 from app.enrichments.mx import run_mx_enrichment
 from app.utils.logger import get_logger
+from core.errors import split_into_output_and_error, collect_output_keys
 
 _EXA_QUERY_PATH = Path(__file__).parent.parent.parent / "prompts" / "exa_summary_query.txt"
 
@@ -75,7 +76,7 @@ def _save_results_to_db(workspace_id: int, results: list, rename_map: dict) -> N
             return
         rows_to_save = []
         for r in results:
-            if not r.get("ok") or not r.get("data"):
+            if not r.get("data"):
                 continue
             idx = r["idx"]
             try:
@@ -271,7 +272,7 @@ def _render_output_section(df: pd.DataFrame) -> None:
             new_col_names = list(rename_map.values())
 
             for result in results:
-                if not result["ok"] or not result.get("data"):
+                if not result.get("data"):
                     continue
                 idx = result["idx"]
                 for src_key, dst_name in rename_map.items():
@@ -559,14 +560,20 @@ def _poll_and_render_progress() -> None:
         elapsed = time.time() - t0
         results = list(holder)
 
-        run_type = st.session_state.get("run_type")
+        run_type = st.session_state.get("run_type", "llm")
         if run_type == "mx":
-            _log_and_store_mx(results, elapsed)
+            results = _normalize_mx_results(results)
+            _log_and_store("mx", results, elapsed, output_col="mx_provider")
         elif run_type == "exa":
             skipped = st.session_state.pop("_exa_skipped_count", 0)
-            _log_and_store_exa(results, skipped, elapsed)
+            mode    = st.session_state.get("run_exa_mode", "summary")
+            out_col = EXA_OUTPUT_COL.get(mode) or "Website Summary"
+            _log_and_store("exa", results, elapsed, output_col=out_col, skipped=skipped)
         else:
-            _log_and_store_llm(results, elapsed)
+            # LLM: determine output_col from last run context
+            ok_keys = collect_output_keys(results)
+            out_col = next(iter(ok_keys), "result")
+            _log_and_store("llm", results, elapsed, output_col=out_col)
 
         for k in ["_run_thread", "_run_queue", "_stop_event", "_results_holder", "_run_t0", "_run_last_upd"]:
             st.session_state.pop(k, None)
@@ -576,78 +583,59 @@ def _poll_and_render_progress() -> None:
         st.rerun()
 
 
-def _log_and_store_llm(results: list[dict], elapsed: float) -> None:
+def _log_and_store(
+    run_type: str,
+    results: list[dict],
+    elapsed: float,
+    output_col: str,
+    skipped: int = 0,
+) -> None:
+    """
+    Unified log + store for all enrichment types.
+    - Logs summary + per-row errors with context
+    - Applies split_into_output_and_error: success rows keep data clean,
+      failure rows get data["{output_col} Error"] = error_code
+    - Stores processed results in session_state
+    """
     row_indices = st.session_state.get("run_row_indices", [])
-    ok = sum(1 for r in results if r["ok"])
-    timings = sorted([r["elapsed"] for r in results if isinstance(r.get("elapsed"), (int, float))])
-    if timings:
-        p50 = timings[len(timings) // 2]
-        p90 = timings[int(len(timings) * 0.9)]
-        _log.info(
-            f"LLM run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} "
-            f"elapsed={elapsed:.1f}s | p50={p50:.1f}s p90={p90:.1f}s max={timings[-1]:.1f}s"
-        )
-    else:
-        _log.info(f"LLM run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    ok  = sum(1 for r in results if r["ok"])
+    err = len(results) - ok
+
+    # Summary log
+    extra = f" | skipped={skipped}" if skipped else ""
+    _log.info(
+        f"{run_type.upper()} run done | rows={len(row_indices)} processed={len(results)}"
+        f"{extra} ok={ok} errors={err} elapsed={elapsed:.1f}s"
+    )
+
+    # Per-row error + slow logs
     for r in results:
         if not r["ok"] and r.get("error"):
-            _log.error(f"LLM row {r['idx']} | {r['error']}")
-        elif r.get("elapsed", 0) > 15:
-            _log.warning(f"LLM slow row {r['idx']} | elapsed={r['elapsed']:.1f}s")
-    # Populate error markers for failed rows using keys from successful rows
-    ok_keys = {k for r in results if r["ok"] and r.get("data") for k in r["data"] if k != "raw"}
-    for r in results:
-        if not r["ok"]:
-            err = r.get("error") or "error"
-            r["data"] = {k: f"[{err}]" for k in ok_keys} if ok_keys else {"result": f"[{err}]"}
+            ctx = r.get("url") or r.get("domain") or ""
+            ctx_str = f" | {ctx}" if ctx else ""
+            _log.error(f"{run_type} row {r['idx']}{ctx_str} | {r['error']}")
+        elif run_type == "llm" and r.get("elapsed", 0) > 15:
+            _log.warning(f"llm slow row {r['idx']} | elapsed={r['elapsed']:.1f}s")
+
+    # Apply output/error split — clean separation of data and error columns
+    processed = split_into_output_and_error(results, output_col)
+
     st.session_state.run_in_progress = False
-    st.session_state.run_results = results
-    st.session_state.run_elapsed = elapsed
+    st.session_state.run_results     = processed
+    st.session_state.run_elapsed     = elapsed
+    if skipped:
+        st.session_state["run_exa_skipped"] = skipped
 
 
-def _log_and_store_mx(results: list[dict], elapsed: float) -> None:
-    row_indices = st.session_state.get("run_row_indices", [])
-    ok = sum(1 for r in results if r["ok"])
-    _log.info(f"MX run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+def _normalize_mx_results(results: list[dict]) -> list[dict]:
+    """MX adapter returns non-standard fields — normalize to data dict before storing."""
     for r in results:
-        if not r["ok"] and r.get("error"):
-            _log.error(f"MX row {r['idx']} | {r['error']}")
-    for r in results:
-        err = r.get("error") or "error"
-        if r["ok"]:
+        if r["ok"] and not r.get("data"):
             r["data"] = {
                 "mx_provider": r.get("mx_provider", ""),
-                "mx_real": r.get("mx_real", ""),
+                "mx_real":     r.get("mx_real", ""),
             }
-        else:
-            r["data"] = {"mx_provider": f"[{err}]", "mx_real": ""}
-    st.session_state.run_in_progress = False
-    st.session_state.run_results = results
-    st.session_state.run_elapsed = elapsed
-
-
-def _log_and_store_exa(results: list[dict], skipped: int, elapsed: float) -> None:
-    row_indices = st.session_state.get("run_row_indices", [])
-    ok = sum(1 for r in results if r["ok"])
-    _log.info(
-        f"Exa run done | rows={len(row_indices)} processed={len(results)} "
-        f"skipped={skipped} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s"
-    )
-    for r in results:
-        if not r["ok"] and r.get("error"):
-            _log.error(f"Exa row {r['idx']} | url={r.get('url', '')} | {r['error']}")
-    # Determine output col name for this mode
-    mode = st.session_state.get("run_exa_mode", "summary")
-    out_col = EXA_OUTPUT_COL.get(mode) or "Website Summary"
-    # Populate error markers so failed rows appear in preview and can be saved
-    for r in results:
-        if not r["ok"]:
-            err = r.get("error") or "error"
-            r["data"] = {out_col: f"[{err}]"}
-    st.session_state.run_in_progress = False
-    st.session_state.run_results = results
-    st.session_state.run_elapsed = elapsed
-    st.session_state["run_exa_skipped"] = skipped
+    return results
 
 
 def _do_run_llm(

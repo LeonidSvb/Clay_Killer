@@ -23,6 +23,7 @@ import httpx
 import pandas as pd
 
 from core.llm import parse_json_response, load_system_context
+from core.errors import normalize_http_error, normalize_exception
 
 PROMPTS_DIR = Path(__file__).parent.parent.parent / "prompts"
 ENRICHMENT_PROMPTS_DIR = PROMPTS_DIR / "enrichment"
@@ -214,17 +215,21 @@ async def _call_llm_batch(
                 elapsed_row = time.time() - t_row
                 if resp.status_code != 200:
                     return {"idx": idx, "data": {}, "ok": False,
-                            "error": f"HTTP {resp.status_code}: {resp.text[:80]}",
+                            "error": normalize_http_error(resp.status_code, resp.text),
                             "elapsed": elapsed_row}
                 data = resp.json()
                 raw_content = data["choices"][0]["message"]["content"]
                 if not raw_content:
-                    return {"idx": idx, "data": {}, "ok": False, "error": "empty_response",
+                    return {"idx": idx, "data": {}, "ok": False, "error": "llm_empty_response",
                             "elapsed": elapsed_row}
                 parsed = parse_json_response(raw_content)
+                if not parsed:
+                    return {"idx": idx, "data": {}, "ok": False, "error": "llm_parse_error",
+                            "elapsed": elapsed_row}
                 return {"idx": idx, "data": parsed, "ok": True, "error": None, "elapsed": elapsed_row}
             except Exception as exc:
-                return {"idx": idx, "data": {}, "ok": False, "error": str(exc)[:120],
+                return {"idx": idx, "data": {}, "ok": False,
+                        "error": normalize_exception(exc),
                         "elapsed": time.time() - t_row}
 
     async with httpx.AsyncClient(headers=headers) as client:

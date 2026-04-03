@@ -2,12 +2,12 @@
 app/enrichments/exa.py — Exa website enrichment adapter.
 
 Modes:
-  summary    — Exa AI generates summary from a query prompt → "Website Summary"
-  text       — Raw scraped text, pipe to your LLM           → "Website Text"
-  highlights — Relevant excerpts from a query               → "Website Highlights"
-  structured — Exa AI returns structured JSON fields        → one col per schema field
+  summary    — Exa AI summary from a query prompt  → "Website Summary"
+  text       — Raw scraped text + quality stats     → "Website Text" + "Website Text Quality"
+  highlights — Relevant excerpts from a query       → "Website Highlights"
+  structured — Exa AI structured JSON fields        → one col per schema key
 
-Auto-skips rows with empty URL (returns [empty_url] without calling API).
+Uses core.errors for standardized result schema and error codes.
 """
 
 import asyncio
@@ -19,6 +19,11 @@ import time
 
 import aiohttp
 import pandas as pd
+
+from core.errors import (
+    error_result, success_result,
+    normalize_http_error, normalize_exception,
+)
 
 CONCURRENCY_DEFAULT = 50
 
@@ -64,25 +69,32 @@ DEFAULT_HIGHLIGHTS_QUERY = "Key facts about what the company does, who they serv
 DEFAULT_STRUCTURED_SCHEMA = {
     "type": "object",
     "properties": {
-        "industry":      {"type": "string", "description": "Primary industry or sector"},
-        "icp":           {"type": "string", "description": "Ideal customer profile — who they sell to"},
-        "specialization":{"type": "string", "description": "Core operational focus"},
-        "geography":     {"type": "string", "description": "Geographic markets served"},
-        "differentiator":{"type": "string", "description": "How they differentiate from competitors"},
+        "industry":       {"type": "string", "description": "Primary industry or sector"},
+        "icp":            {"type": "string", "description": "Ideal customer profile — who they sell to"},
+        "specialization": {"type": "string", "description": "Core operational focus"},
+        "geography":      {"type": "string", "description": "Geographic markets served"},
+        "differentiator": {"type": "string", "description": "How they differentiate from competitors"},
     },
     "required": ["industry", "icp", "specialization"],
 }
+
+# Text quality thresholds (words)
+_TEXT_QUALITY = [
+    (500, "good"),
+    (100, "ok"),
+    (0,   "poor"),
+]
 
 
 # ── Payload builder ────────────────────────────────────────────────────────────
 
 def build_payload(url: str, cfg: dict) -> dict:
-    mode       = cfg.get("mode", "summary")
-    max_age    = cfg.get("max_age_hours", 24)
-    query      = cfg.get("query", DEFAULT_QUERY)
-    max_chars  = cfg.get("max_chars", 5000)
-    verbosity  = cfg.get("verbosity", "standard")
-    schema     = cfg.get("schema", DEFAULT_STRUCTURED_SCHEMA)
+    mode      = cfg.get("mode", "summary")
+    max_age   = cfg.get("max_age_hours", 24)
+    query     = cfg.get("query", DEFAULT_QUERY)
+    max_chars = cfg.get("max_chars", 5000)
+    verbosity = cfg.get("verbosity", "standard")
+    schema    = cfg.get("schema", DEFAULT_STRUCTURED_SCHEMA)
 
     base = {"ids": [url], "maxAgeHours": max_age}
 
@@ -98,15 +110,28 @@ def build_payload(url: str, cfg: dict) -> dict:
     return base
 
 
+def _text_quality_label(text: str) -> str:
+    words = len(text.split())
+    for threshold, label in _TEXT_QUALITY:
+        if words >= threshold:
+            return f"{label} ({words} words)"
+    return f"poor ({words} words)"
+
+
 def extract_output(result: dict, mode: str) -> dict:
-    """Extract output dict from a single Exa result item."""
+    """Extract output dict from a single Exa result item. Returns {} on empty."""
     if mode == "summary":
         text = result.get("summary") or ""
         return {"Website Summary": text} if text else {}
 
     elif mode == "text":
         text = result.get("text") or ""
-        return {"Website Text": text} if text else {}
+        if not text:
+            return {}
+        return {
+            "Website Text": text,
+            "Website Text Quality": _text_quality_label(text),
+        }
 
     elif mode == "highlights":
         items = result.get("highlights") or []
@@ -117,14 +142,13 @@ def extract_output(result: dict, mode: str) -> dict:
         raw = result.get("summary") or ""
         if not raw:
             return {}
-        # Exa returns structured as JSON string when schema is provided
         try:
             parsed = json.loads(raw) if isinstance(raw, str) else raw
             if isinstance(parsed, dict):
                 return {k: str(v) for k, v in parsed.items() if v is not None}
         except (json.JSONDecodeError, TypeError):
             pass
-        return {"Website Summary": raw}  # fallback: treat as plain text
+        return {"Website Summary": raw}  # fallback
 
     return {}
 
@@ -144,11 +168,10 @@ async def _fetch_one(
     mode = cfg.get("mode", "summary")
 
     if stop_event.is_set():
-        return {"idx": idx, "url": url, "data": {}, "ok": False, "error": "stopped", "elapsed": 0.0}
+        return error_result(idx, "sys_stopped", url=url)
 
-    # Auto-skip empty / clearly invalid URLs
     if not url or url in ("nan", "None", "http://", "https://"):
-        return {"idx": idx, "url": url, "data": {}, "ok": False, "error": "empty_url", "elapsed": 0.0}
+        return error_result(idx, "data_empty_url", url=url)
 
     t0 = time.time()
     async with sem:
@@ -161,33 +184,31 @@ async def _fetch_one(
                 timeout=aiohttp.ClientTimeout(total=90),
             ) as resp:
                 elapsed = time.time() - t0
+
                 if resp.status != 200:
                     err_body = await resp.text()
-                    return {"idx": idx, "url": url, "data": {}, "ok": False,
-                            "error": f"HTTP_{resp.status}: {err_body[:60]}", "elapsed": elapsed}
+                    err_code = normalize_http_error(resp.status, err_body)
+                    return error_result(idx, err_code, elapsed, url=url)
 
                 data        = await resp.json()
                 exa_results = data.get("results", [])
 
                 if not exa_results:
-                    return {"idx": idx, "url": url, "data": {}, "ok": False,
-                            "error": "no_result", "elapsed": elapsed}
+                    return error_result(idx, "api_no_result", elapsed, url=url)
 
                 output = extract_output(exa_results[0], mode)
 
                 if not output:
-                    return {"idx": idx, "url": url, "data": {}, "ok": False,
-                            "error": "empty_content", "elapsed": elapsed}
+                    return error_result(idx, "api_empty_content", elapsed, url=url)
 
-                return {"idx": idx, "url": url, "data": output, "ok": True,
-                        "error": None, "elapsed": elapsed}
+                return success_result(idx, output, elapsed, url=url)
 
         except asyncio.TimeoutError:
-            return {"idx": idx, "url": url, "data": {}, "ok": False,
-                    "error": "timeout", "elapsed": time.time() - t0}
-        except Exception as e:
-            return {"idx": idx, "url": url, "data": {}, "ok": False,
-                    "error": str(e)[:100], "elapsed": time.time() - t0}
+            elapsed = time.time() - t0
+            return error_result(idx, f"api_timeout ({elapsed:.0f}s)", elapsed, url=url)
+        except Exception as exc:
+            elapsed = time.time() - t0
+            return error_result(idx, normalize_exception(exc), elapsed, url=url)
 
 
 async def _run_exa_batch(
@@ -242,14 +263,15 @@ def run_exa_enrichment(
 ) -> tuple[list[dict], int]:
     """
     Runs Exa enrichment synchronously (call inside threading.Thread).
-    cfg keys: mode, query, max_chars, verbosity, schema, max_age_hours.
     Returns (results, skipped_count).
-    results: [{"idx": int, "data": dict, "ok": bool, "error": str|None, "elapsed": float}]
-    skipped_count: rows with empty URL that were not sent to API.
+    Each result follows core.errors standard schema:
+      {"idx", "ok", "data", "error", "elapsed", "url"}
+    skipped_count: rows with empty URL not sent to API.
     """
-    key = api_key or os.getenv("EXA_API_KEY", "")
+    key     = api_key or os.getenv("EXA_API_KEY", "")
     items   = []
     skipped = 0
+
     for idx in row_indices:
         url = str(df.iloc[idx].get(url_col, "")).strip()
         if not url or url in ("nan", "None"):
@@ -258,9 +280,7 @@ def run_exa_enrichment(
         items.append({"idx": idx, "url": url})
 
     results = asyncio.run(_run_exa_batch(
-        items=items,
-        cfg=cfg,
-        api_key=key,
+        items=items, cfg=cfg, api_key=key,
         concurrency=concurrency,
         progress_queue=progress_queue,
         stop_event=stop_event,
