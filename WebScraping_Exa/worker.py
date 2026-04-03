@@ -229,6 +229,48 @@ def _run_exa(task_id: int, workspace_id: int, leads: list, payload: dict) -> Non
     )
 
 
+def _run_plusvibe_push(task_id: int, payload: dict) -> None:
+    from app.utils.plusvibe_api import push_leads_batch
+    from core.tasks import update_task_progress, complete_task, fail_task
+
+    rows = payload.get("rows", [])
+    col_map = payload.get("col_map", {})
+    api_key = payload.get("api_key") or os.getenv("PLUSVIBE_API_KEY", "")
+    pv_workspace_id = payload.get("workspace_id") or os.getenv("PLUSVIBE_WORKSPACE_ID", "")
+    base_url = payload.get("base_url") or os.getenv("PLUSVIBE_BASE_URL", "https://api.plusvibe.ai/api/v1")
+
+    if not rows or not col_map:
+        log.warning(f"Task {task_id}: empty rows or col_map")
+        complete_task(task_id)
+        return
+
+    pq: queue.Queue = queue.Queue()
+    se = threading.Event()
+    results_holder: list = []
+
+    thread = threading.Thread(
+        target=lambda: results_holder.extend(
+            push_leads_batch(rows, col_map, api_key, pv_workspace_id, pq, se, base_url)
+        ),
+        daemon=True,
+    )
+    thread.start()
+
+    while thread.is_alive():
+        _drain_queue(pq)
+        done = len(results_holder)
+        errors = sum(1 for r in results_holder if not r.get("ok"))
+        update_task_progress(task_id, done, errors)
+        time.sleep(1)
+
+    thread.join()
+    ok = sum(1 for r in results_holder if r.get("ok"))
+    errors = len(results_holder) - ok
+    update_task_progress(task_id, len(results_holder), errors)
+    complete_task(task_id)
+    log.info(f"Task {task_id} PlusVibe push done: {ok}/{len(results_holder)} ok, {errors} errors")
+
+
 def _normalize_mx(results: list) -> list:
     out = []
     for r in results:
@@ -293,6 +335,11 @@ def process_task(task: dict) -> None:
     enrichment_type = payload.get("enrichment_type", "llm")
 
     log.info(f"Task {task_id} started | type={enrichment_type} workspace={workspace_id}")
+
+    if enrichment_type == "plusvibe_push":
+        update_task_progress(task_id, 0)
+        _run_plusvibe_push(task_id, payload)
+        return
 
     leads = get_workspace_leads(workspace_id)
     if not leads:

@@ -271,6 +271,82 @@ def save_enrichment_batch(workspace_id: int, rows: list) -> None:
         conn.close()
 
 
+def get_plusvibe_campaigns() -> list[dict]:
+    """Return active/paused/completed campaigns from public.campaigns."""
+    conn = get_connection()
+    if not conn:
+        return []
+    try:
+        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+            cur.execute("""
+                SELECT c.id, c.name, c.status, c.lead_count, c.replied_count, c.open_rate, c.replied_rate
+                FROM public.campaigns c
+                WHERE c.deleted_from_source_at IS NULL
+                  AND EXISTS (
+                      SELECT 1 FROM public.leads l
+                      WHERE l.campaign_id = c.id
+                        AND l.deleted_from_source_at IS NULL
+                  )
+                ORDER BY c.modified_at DESC NULLS LAST
+            """)
+            return [dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+
+def get_plusvibe_lead_statuses(campaign_id: str) -> list[str]:
+    """Return distinct lead statuses present in the given campaign."""
+    conn = get_connection()
+    if not conn:
+        return []
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT DISTINCT status FROM public.leads
+                WHERE campaign_id = %s
+                  AND deleted_from_source_at IS NULL
+                  AND status IS NOT NULL
+                ORDER BY status
+            """, (campaign_id,))
+            return [r[0] for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+
+def get_plusvibe_leads(campaign_id: str, statuses: list[str]) -> list[dict]:
+    """Return leads for a campaign filtered by statuses.
+    PlusVibe fields take priority; enrichment.leads_master fills in extra columns."""
+    conn = get_connection()
+    if not conn:
+        return []
+    try:
+        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+            cur.execute("""
+                SELECT
+                    l.email, l.first_name, l.last_name, l.job_title,
+                    l.company_name, l.company_website, l.linkedin_person_url,
+                    l.phone_number, l.city, l.country, l.mx,
+                    l.status, l.label, l.sent_step, l.total_steps,
+                    l.replied_count, l.opened_count, l.notes, l.enrichment,
+                    lm.company_linkedin,
+                    lm.linkedin_url       AS linkedin_url_apollo,
+                    lm.employees_count,
+                    lm.industry,
+                    lm.keywords,
+                    lm.company_revenue,
+                    lm.company_short_description
+                FROM public.leads l
+                LEFT JOIN enrichment.leads_master lm ON lm.email = l.email
+                WHERE l.campaign_id = %s
+                  AND l.deleted_from_source_at IS NULL
+                  AND l.status = ANY(%s)
+                ORDER BY l.email
+            """, (campaign_id, statuses))
+            return [dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+
 def get_workspace_leads(workspace_id: int) -> list[dict]:
     """Return all leads for a workspace with leads_master fields + workspace data jsonb."""
     conn = get_connection()
