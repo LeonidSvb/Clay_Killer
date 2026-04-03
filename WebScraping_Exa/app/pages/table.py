@@ -3,6 +3,8 @@ import streamlit.components.v1 as components
 import pandas as pd
 from app.components.file_browser import render_file_browser
 from app.components.enrichment_panel import render_enrichment_panel
+from app.components.plusvibe_push import render_plusvibe_push
+from core import ui_state
 
 OPERATORS = ["=", "!=", ">=", "<=", "contains", "not contains", "is empty", "is not empty"]
 
@@ -33,8 +35,16 @@ def render_table() -> None:
     visible_cols = _get_visible_cols(filtered_df)
     _render_dataframe(filtered_df, visible_cols)
 
+    source = st.session_state.get("source_file")
+    if source:
+        ui_state.save_source(
+            ui_state.get_key(source, st.session_state.get("workspace_id")),
+            {"visible_cols": visible_cols, "filters": st.session_state.get("filters", [])},
+        )
+
     st.divider()
     render_enrichment_panel(filtered_df)
+    render_plusvibe_push(filtered_df)
 
 
 def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
@@ -106,10 +116,13 @@ def _render_toolbar(df: pd.DataFrame) -> None:
     source = st.session_state.get("source_file", "")
     filename = source.replace("\\", "/").split("/")[-1] if source else "untitled"
     n_rows, n_cols = df.shape
+    visible = st.session_state.get("visible_cols", [])
+    n_visible = len([c for c in visible if c in df.columns]) if visible else n_cols
+    cols_label = f"{n_visible} of {n_cols} cols" if n_visible != n_cols else f"{n_cols} cols"
 
     c1, c2 = st.columns([4, 1])
     with c1:
-        st.markdown(f"**{filename}** &nbsp; {n_rows:,} rows &nbsp; {n_cols} cols")
+        st.markdown(f"**{filename}** &nbsp; {n_rows:,} rows &nbsp; {cols_label}")
     with c2:
         _render_filter_toggle(df)
 

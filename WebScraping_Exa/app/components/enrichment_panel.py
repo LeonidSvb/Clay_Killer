@@ -292,7 +292,7 @@ def _render_output_section(df: pd.DataFrame) -> None:
                 _log_inline_task(workspace_id, results, rename_map)
             else:
                 source = st.session_state.get("source_file")
-                if source:
+                if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
                     try:
                         st.session_state.df.to_csv(source, index=False)
                     except Exception as e:
@@ -983,3 +983,21 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         _render_run_section_mx(df, filtered_df, email_col)
     else:
         _render_run_section_exa(df, filtered_df, url_col, exa_cfg)
+
+    source = st.session_state.get("source_file")
+    if source:
+        from core import ui_state
+        enr: dict = {
+            "type": enrichment_type,
+            "output_type": st.session_state.get("panel_output_type", "Extract"),
+            "include_reasoning": st.session_state.get("include_reasoning", False),
+            "include_guardrail": st.session_state.get("include_guardrail", False),
+            "email_col": st.session_state.get("mx_email_col", ""),
+            "url_col": st.session_state.get("exa_url_col", ""),
+            "exa_mode": st.session_state.get("exa_mode", "summary"),
+            "prompt_text": st.session_state.get("prompt_textarea", ""),
+        }
+        ui_state.save_source(
+            ui_state.get_key(source, st.session_state.get("workspace_id")),
+            {"enrichment": enr},
+        )

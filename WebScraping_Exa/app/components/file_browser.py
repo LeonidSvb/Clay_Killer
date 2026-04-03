@@ -4,6 +4,8 @@ import csv
 from pathlib import Path
 from datetime import datetime
 
+from core import ui_state
+
 
 def _count_rows(path: Path) -> int:
     """Точный подсчёт строк через csv.reader — корректно обрабатывает многострочные ячейки."""
@@ -43,7 +45,7 @@ def render_file_browser() -> None:
     # ── Переключатель источника ────────────────────────────────────────────────
     source_mode = st.radio(
         "Load from",
-        ["Folder", "Database"],
+        ["Folder", "Database", "PlusVibe"],
         horizontal=True,
         key="fb_source_mode",
         label_visibility="collapsed",
@@ -51,12 +53,52 @@ def render_file_browser() -> None:
 
     if source_mode == "Folder":
         _render_folder_section(folder)
-    else:
+    elif source_mode == "Database":
         _render_db_section()
+    else:
+        _render_plusvibe_section()
 
     # ── Upload ─────────────────────────────────────────────────────────────────
     if show_upload:
         _render_upload(folder)
+
+
+# ---------------------------------------------------------------------------
+# UI state restore helper
+# ---------------------------------------------------------------------------
+
+def _restore_ui_state(df: pd.DataFrame, source_file: str, workspace_id) -> None:
+    key = ui_state.get_key(source_file, workspace_id)
+    saved = ui_state.load_source(key)
+    if not saved:
+        return
+
+    if "visible_cols" in saved:
+        valid = [c for c in saved["visible_cols"] if c in df.columns]
+        if valid:
+            st.session_state.visible_cols = valid
+
+    if "filters" in saved:
+        st.session_state.filters = saved["filters"]
+
+    enr = saved.get("enrichment", {})
+    if enr.get("type"):
+        st.session_state["panel_enrichment_type"] = enr["type"]
+    if enr.get("output_type"):
+        st.session_state["panel_output_type"] = enr["output_type"]
+    for bool_key in ("include_reasoning", "include_guardrail"):
+        if bool_key in enr:
+            st.session_state[bool_key] = enr[bool_key]
+    if enr.get("email_col"):
+        st.session_state["mx_email_col"] = enr["email_col"]
+    if enr.get("url_col"):
+        st.session_state["exa_url_col"] = enr["url_col"]
+    if enr.get("exa_mode"):
+        st.session_state["exa_mode"] = enr["exa_mode"]
+    if enr.get("prompt_text"):
+        st.session_state["prompt_textarea"] = enr["prompt_text"]
+        st.session_state["_loaded_prompt_name"] = ""
+        st.session_state["_loaded_prompt_text"] = ""
 
 
 # ---------------------------------------------------------------------------
@@ -155,6 +197,119 @@ def _render_db_section() -> None:
             _open_from_db(selected_ws, leads)
 
 
+def _render_plusvibe_section() -> None:
+    try:
+        from core.db import get_plusvibe_campaigns, get_plusvibe_lead_statuses, get_plusvibe_leads, is_connected
+    except ImportError:
+        st.error("core.db not available")
+        return
+
+    if not is_connected():
+        st.warning("Not connected to database. Check DATABASE_URL in Settings.")
+        return
+
+    campaigns = get_plusvibe_campaigns()
+    if not campaigns:
+        st.info("No campaigns with leads found.")
+        return
+
+    all_statuses = sorted({c["status"] for c in campaigns})
+    camp_status_filter = st.multiselect(
+        "Campaign status",
+        options=all_statuses,
+        default=["PAUSED"] if "PAUSED" in all_statuses else all_statuses,
+        key="pv_camp_status_filter",
+        label_visibility="collapsed",
+    )
+    filtered_campaigns = [c for c in campaigns if c["status"] in camp_status_filter] if camp_status_filter else campaigns
+
+    def camp_label(c: dict) -> str:
+        leads = f"{c['lead_count']:,}" if c["lead_count"] else "?"
+        rate = f" | reply {c['replied_rate']}%" if c["replied_rate"] else ""
+        return f"[{c['status']}] {c['name']}  ({leads} leads{rate})"
+
+    c_select, c_load = st.columns([5, 1])
+    with c_select:
+        selected = st.selectbox(
+            "campaign_select",
+            filtered_campaigns,
+            format_func=camp_label,
+            label_visibility="collapsed",
+            key="pv_campaign",
+        )
+
+    # Статусы для выбранной кампании
+    current_camp_id = selected["id"] if selected else None
+    if st.session_state.get("pv_last_campaign_id") != current_camp_id:
+        st.session_state["pv_last_campaign_id"] = current_camp_id
+        st.session_state.pop("pv_statuses", None)
+
+    if selected:
+        avail_statuses = get_plusvibe_lead_statuses(selected["id"])
+    else:
+        avail_statuses = []
+
+    default_statuses = ["NOT_CONTACTED"] if "NOT_CONTACTED" in avail_statuses else avail_statuses[:1]
+    selected_statuses = st.multiselect(
+        "Statuses",
+        options=avail_statuses,
+        default=default_statuses,
+        key="pv_statuses",
+        label_visibility="collapsed",
+    )
+
+    with c_load:
+        current = st.session_state.get("source_file", "")
+        label = f"[PV] {selected['name']}" if selected else ""
+        already_open = current == label
+        if st.button(
+            "Opened" if already_open else "Load",
+            disabled=already_open or not selected or not selected_statuses,
+            use_container_width=True,
+            key="open_pv_btn",
+        ):
+            with st.spinner("Loading from PlusVibe DB..."):
+                leads = get_plusvibe_leads(selected["id"], selected_statuses)
+            _open_from_plusvibe(selected, leads)
+
+
+def _open_from_plusvibe(campaign: dict, leads: list) -> None:
+    if not leads:
+        st.warning("No leads found for selected statuses.")
+        return
+
+    enrichment_keys: set = set()
+    rows = []
+    for lead in leads:
+        row = {k: v for k, v in lead.items() if k != "enrichment"}
+        enrichment = lead.get("enrichment") or {}
+        if isinstance(enrichment, dict):
+            enrichment_keys.update(enrichment.keys())
+            row.update(enrichment)
+        rows.append(row)
+
+    df = pd.DataFrame(rows)
+
+    # Скрываем колонки где >80% значений пустые
+    non_empty_cols = []
+    for col in df.columns:
+        filled = df[col].apply(
+            lambda v: v is not None and str(v).strip() not in ("", "nan", "None", "null")
+        ).sum()
+        if filled / max(len(df), 1) > 0.2:
+            non_empty_cols.append(col)
+
+    st.session_state.df = df
+    st.session_state.source_file = f"[PV] {campaign['name']}"
+    st.session_state.workspace_id = None
+    st.session_state.new_cols = list(enrichment_keys)
+    st.session_state.run_results = None
+    st.session_state.visible_cols = non_empty_cols
+    st.session_state.filters = []
+    _restore_ui_state(df, st.session_state.source_file, None)
+    st.rerun()
+
+
 def _open_from_db(workspace: dict, leads: list) -> None:
     if not leads:
         st.warning("No leads in this workspace.")
@@ -178,6 +333,7 @@ def _open_from_db(workspace: dict, leads: list) -> None:
     st.session_state.run_results = None
     st.session_state.visible_cols = list(df.columns)
     st.session_state.filters = []
+    _restore_ui_state(df, st.session_state.source_file, workspace["id"])
     st.rerun()
 
 
@@ -205,6 +361,7 @@ def _open_file(path: str) -> None:
     st.session_state.run_results = None
     st.session_state.visible_cols = list(df.columns)
     st.session_state.filters = []
+    _restore_ui_state(df, path, None)
     st.rerun()
 
 
@@ -226,8 +383,10 @@ def _render_upload(folder: str = "") -> None:
 
         st.session_state.df = df
         st.session_state.source_file = path
+        st.session_state.workspace_id = None
         st.session_state.new_cols = []
         st.session_state.run_results = None
         st.session_state.visible_cols = list(df.columns)
         st.session_state.filters = []
+        _restore_ui_state(df, path, None)
         st.rerun()
