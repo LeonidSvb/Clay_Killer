@@ -13,6 +13,10 @@ start /B ssh -i "%USERPROFILE%\.ssh\id_ed25519_hostinger" -o StrictHostKeyChecki
 :: Wait for tunnel to establish
 timeout /t 2 /nobreak >nul
 
+:: Start worker in background
+echo Starting enrichment worker...
+start /B py worker.py
+
 :: Start app
 echo Starting Lead Enrichment on http://localhost:8501
 start "" http://localhost:8501

@@ -21,12 +21,15 @@ from core.db import (
     delete_workspace,
     rename_workspace,
 )
+from core.tasks import get_workspace_tasks, get_active_tasks
 
 
 def render():
     st.title("Database")
 
     _render_connection()
+    st.divider()
+    _render_active_tasks()
     st.divider()
     _render_import()
     st.divider()
@@ -51,6 +54,47 @@ def _render_connection():
         st.success(f"Connected — {masked}")
     else:
         st.error("Cannot connect. Check DATABASE_URL in Settings.")
+
+
+# ---------------------------------------------------------------------------
+# Active tasks
+# ---------------------------------------------------------------------------
+
+def _render_active_tasks():
+    active = get_active_tasks()
+
+    if not active:
+        return
+
+    st.subheader("Active Tasks")
+
+    has_processing = any(t["status"] == "processing" for t in active)
+    if has_processing:
+        st.caption("Auto-refreshing every 3 seconds...")
+
+    for t in active:
+        total = t["total"] or 1
+        processed = t["processed"] or 0
+        pct = processed / total
+
+        enrichment_type = t["payload"].get("enrichment_type", "enrichment").upper()
+        output_col = t["payload"].get("output_col", "")
+        label = f"**{t['workspace_name']}** — {enrichment_type}"
+        if output_col:
+            label += f" → `{output_col}`"
+
+        st.markdown(label)
+        st.progress(pct)
+        st.caption(
+            f"#{t['id']} {t['status']} | "
+            f"{processed:,} / {t['total'] or '?'} rows"
+            + (f" | {t['errors']} errors" if t.get("errors") else "")
+        )
+
+    if has_processing:
+        import time
+        time.sleep(3)
+        st.rerun()
 
 
 # ---------------------------------------------------------------------------
@@ -163,7 +207,7 @@ def _render_workspaces():
         return
 
     for ws in workspaces:
-        col1, col2, col3 = st.columns([5, 1, 1])
+        col1, col2, col3, col4 = st.columns([5, 1, 1, 1])
         with col1:
             created = ws["created_at"].strftime("%Y-%m-%d %H:%M")
             rows_label = f"{ws['total_rows']} rows" if ws["total_rows"] else "? rows"
@@ -174,9 +218,14 @@ def _render_workspaces():
             if ws["file_name"]:
                 st.caption(ws["file_name"])
         with col2:
+            history_open = st.session_state.get(f"show_tasks_{ws['id']}", False)
+            if st.button("History" if not history_open else "Hide", key=f"hist_ws_{ws['id']}"):
+                st.session_state[f"show_tasks_{ws['id']}"] = not history_open
+                st.rerun()
+        with col3:
             if st.button("Rename", key=f"ren_ws_{ws['id']}"):
                 st.session_state[f"renaming_{ws['id']}"] = True
-        with col3:
+        with col4:
             if st.button("Delete", key=f"del_ws_{ws['id']}"):
                 st.session_state[f"confirm_del_{ws['id']}"] = True
 
@@ -213,6 +262,25 @@ def _render_workspaces():
                 if st.button("Cancel", key=f"cancel_del_{ws['id']}"):
                     del st.session_state[f"confirm_del_{ws['id']}"]
                     st.rerun()
+
+        # Task history for this workspace
+        if st.session_state.get(f"show_tasks_{ws['id']}"):
+            tasks = get_workspace_tasks(ws["id"])
+            if tasks:
+                _STATUS_ICON = {"done": "✓", "failed": "✗", "processing": "...", "pending": "·"}
+                for t in tasks:
+                    icon = _STATUS_ICON.get(t["status"], "?")
+                    etype = t["payload"].get("enrichment_type", "?").upper()
+                    col = t["payload"].get("output_col", "")
+                    date = t["created_at"].strftime("%m-%d %H:%M")
+                    st.caption(
+                        f"{icon} {date} | {etype}"
+                        + (f" → {col}" if col else "")
+                        + f" | {t['processed']}/{t['total'] or '?'} rows"
+                        + (f" | {t['errors']} err" if t.get("errors") else "")
+                    )
+            else:
+                st.caption("No enrichment history.")
 
 
 # ---------------------------------------------------------------------------

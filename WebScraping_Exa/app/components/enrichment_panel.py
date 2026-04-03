@@ -34,6 +34,34 @@ from app.utils.logger import get_logger
 _log = get_logger()
 
 
+def _save_results_to_db(workspace_id: int, results: list, rename_map: dict) -> None:
+    """Save enrichment results to workspace_leads.data in DB."""
+    try:
+        from core.db import save_enrichment_batch
+        df_full = st.session_state.get("df")
+        if df_full is None or "email" not in df_full.columns:
+            return
+        rows_to_save = []
+        for r in results:
+            if not r.get("ok") or not r.get("data"):
+                continue
+            idx = r["idx"]
+            try:
+                email = str(df_full.at[idx, "email"]).strip()
+            except Exception:
+                continue
+            if not email or "@" not in email:
+                continue
+            data = {rename_map.get(k, k): v for k, v in r["data"].items() if rename_map.get(k)}
+            if data:
+                rows_to_save.append({"email": email, "data": data})
+        if rows_to_save:
+            save_enrichment_batch(workspace_id, rows_to_save)
+            _log.info(f"Saved {len(rows_to_save)} enrichment rows to DB workspace {workspace_id}")
+    except Exception as e:
+        _log.error(f"DB save failed: {e}")
+
+
 # ── Run summary ────────────────────────────────────────────────────────────────
 
 def _render_run_summary(results: list[dict], elapsed: float) -> None:
@@ -215,18 +243,23 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
             existing_new = st.session_state.get("new_cols", [])
             st.session_state.new_cols = list(set(existing_new + new_col_names))
-            st.session_state.last_save_map = rename_map  # remember for next run
+            st.session_state.last_save_map = rename_map
             st.session_state.run_results = None
             st.session_state.run_elapsed = 0.0
-            # Reset visible_cols so new columns are included in main table
             st.session_state.visible_cols = []
-            # Auto-save enriched CSV back to source file
-            source = st.session_state.get("source_file")
-            if source:
-                try:
-                    st.session_state.df.to_csv(source, index=False)
-                except Exception as e:
-                    st.warning(f"Auto-save failed: {e}")
+
+            workspace_id = st.session_state.get("workspace_id")
+            if workspace_id:
+                # DB mode: save enrichment results to workspace_leads.data
+                _save_results_to_db(workspace_id, results, rename_map)
+            else:
+                # CSV mode: auto-save back to file
+                source = st.session_state.get("source_file")
+                if source:
+                    try:
+                        st.session_state.df.to_csv(source, index=False)
+                    except Exception as e:
+                        st.warning(f"Auto-save failed: {e}")
             st.rerun()
 
     with s2:
@@ -306,14 +339,32 @@ def _render_run_section_llm(
     row_indices = _get_row_indices(df, filtered_df)
     running = st.session_state.get("run_in_progress", False)
     output_type = st.session_state.get("panel_output_type", "Extract")
+    workspace_id = st.session_state.get("workspace_id")
+
     if autorun and not running:
         _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
         return
-    if st.button(
-        "Running..." if running else "Run",
-        type="primary", use_container_width=True, key="btn_run", disabled=running,
-    ):
-        _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
+
+    if workspace_id:
+        c1, c2 = st.columns(2)
+        with c1:
+            if st.button(
+                "Running..." if running else "Run (inline)",
+                use_container_width=True, key="btn_run", disabled=running,
+            ):
+                _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
+        with c2:
+            output_col = st.session_state.get("last_save_map", {})
+            output_col_name = list(output_col.values())[0] if output_col else "result"
+            if st.button("Queue (background)", type="primary", use_container_width=True, key="btn_queue_llm", disabled=running):
+                _queue_llm_task(workspace_id, df, row_indices, prompt_text, output_type,
+                                include_reasoning, include_guardrail, output_col_name)
+    else:
+        if st.button(
+            "Running..." if running else "Run",
+            type="primary", use_container_width=True, key="btn_run", disabled=running,
+        ):
+            _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
 
 
 def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
@@ -321,14 +372,88 @@ def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_co
     autorun = st.session_state.pop("panel_autorun", False)
     row_indices = _get_row_indices(df, filtered_df)
     running = st.session_state.get("run_in_progress", False)
+    workspace_id = st.session_state.get("workspace_id")
+
     if autorun and not running:
         _do_run_mx(df, row_indices, email_col)
         return
-    if st.button(
-        "Running..." if running else "Run",
-        type="primary", use_container_width=True, key="btn_run", disabled=running,
-    ):
-        _do_run_mx(df, row_indices, email_col)
+
+    if workspace_id:
+        c1, c2 = st.columns(2)
+        with c1:
+            if st.button(
+                "Running..." if running else "Run (inline)",
+                use_container_width=True, key="btn_run", disabled=running,
+            ):
+                _do_run_mx(df, row_indices, email_col)
+        with c2:
+            if st.button("Queue (background)", type="primary", use_container_width=True, key="btn_queue_mx", disabled=running):
+                _queue_mx_task(workspace_id, df, row_indices, email_col)
+    else:
+        if st.button(
+            "Running..." if running else "Run",
+            type="primary", use_container_width=True, key="btn_run", disabled=running,
+        ):
+            _do_run_mx(df, row_indices, email_col)
+
+
+def _queue_llm_task(
+    workspace_id: int,
+    df: pd.DataFrame,
+    row_indices: list,
+    prompt_text: str,
+    output_type: str,
+    include_reasoning: bool,
+    include_guardrail: bool,
+    output_col: str,
+) -> None:
+    try:
+        from core.tasks import create_task
+        total = len(row_indices)
+        payload = {
+            "enrichment_type": "llm",
+            "prompt_text": prompt_text,
+            "output_type": output_type,
+            "output_col": output_col,
+            "include_reasoning": include_reasoning,
+            "include_guardrail": include_guardrail,
+            "concurrency": st.session_state.get("llm_concurrency", 50),
+            "filter_empty": st.session_state.get("row_mode") == "Fill missing",
+        }
+        task_id = create_task(workspace_id, payload, total)
+        if task_id:
+            st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
+            _log.info(f"Queued LLM task {task_id} workspace={workspace_id} rows={total}")
+        else:
+            st.error("Failed to create task. Check DB connection.")
+    except Exception as e:
+        st.error(f"Queue failed: {e}")
+
+
+def _queue_mx_task(
+    workspace_id: int,
+    df: pd.DataFrame,
+    row_indices: list,
+    email_col: str,
+) -> None:
+    try:
+        from core.tasks import create_task
+        total = len(row_indices)
+        payload = {
+            "enrichment_type": "mx",
+            "email_col": email_col,
+            "output_col": "mx_provider",
+            "concurrency": st.session_state.get("mx_concurrency", 60),
+            "filter_empty": st.session_state.get("row_mode") == "Fill missing",
+        }
+        task_id = create_task(workspace_id, payload, total)
+        if task_id:
+            st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
+            _log.info(f"Queued MX task {task_id} workspace={workspace_id} rows={total}")
+        else:
+            st.error("Failed to create task. Check DB connection.")
+    except Exception as e:
+        st.error(f"Queue failed: {e}")
 
 
 def _start_run_thread(worker_fn) -> None:

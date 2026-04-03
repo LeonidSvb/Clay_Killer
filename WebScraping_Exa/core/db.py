@@ -247,6 +247,30 @@ def delete_workspace(workspace_id: int) -> bool:
         conn.close()
 
 
+def save_enrichment_batch(workspace_id: int, rows: list) -> None:
+    """
+    Merge enrichment results into workspace_leads.data JSONB.
+    rows: [{"email": str, "data": {key: value, ...}}, ...]
+    """
+    conn = get_connection()
+    if not conn:
+        return
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                for row in rows:
+                    cur.execute(
+                        """
+                        UPDATE workspace_leads
+                        SET data = data || %s::jsonb
+                        WHERE workspace_id = %s AND email = %s
+                        """,
+                        (psycopg2.extras.Json(row["data"]), workspace_id, row["email"])
+                    )
+    finally:
+        conn.close()
+
+
 def get_workspace_leads(workspace_id: int) -> list[dict]:
     """Return all leads for a workspace with leads_master fields + workspace data jsonb."""
     conn = get_connection()

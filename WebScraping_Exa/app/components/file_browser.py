@@ -160,18 +160,21 @@ def _open_from_db(workspace: dict, leads: list) -> None:
         st.warning("No leads in this workspace.")
         return
 
+    enrichment_keys: set = set()
     rows = []
     for lead in leads:
         row = {k: v for k, v in lead.items() if k not in ("enrichment_data", "wl_id")}
         enrichment = lead.get("enrichment_data") or {}
         if isinstance(enrichment, dict):
+            enrichment_keys.update(enrichment.keys())
             row.update(enrichment)
         rows.append(row)
 
     df = pd.DataFrame(rows)
     st.session_state.df = df
     st.session_state.source_file = f"[DB] {workspace['name']}"
-    st.session_state.new_cols = []
+    st.session_state.workspace_id = workspace["id"]
+    st.session_state.new_cols = list(enrichment_keys)
     st.session_state.run_results = None
     st.session_state.visible_cols = list(df.columns)
     st.session_state.filters = []
@@ -197,6 +200,7 @@ def _open_file(path: str) -> None:
         df = pd.read_csv(path)
     st.session_state.df = df
     st.session_state.source_file = path
+    st.session_state.workspace_id = None
     st.session_state.new_cols = []
     st.session_state.run_results = None
     st.session_state.visible_cols = list(df.columns)
