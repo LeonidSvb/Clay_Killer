@@ -74,17 +74,18 @@ def render_prompt_editor(df: pd.DataFrame | None = None, output_type: str = "Ext
     col_edit, col_preview = st.columns([1, 1], gap="small")
 
     with col_edit:
-        # Column chips — compact, 3 per row
+        # Column chips — one row per 6 cols, ordered as in table, fill% shown
         if df is not None and not df.empty:
             cols = list(df.columns)
-            chips_per_row = 3
+            chips_per_row = 6
             for row_start in range(0, len(cols), chips_per_row):
                 row_cols = cols[row_start: row_start + chips_per_row]
                 chip_containers = st.columns(len(row_cols))
                 for ci, col in enumerate(row_cols):
+                    pct = _fill_pct(df[col])
                     with chip_containers[ci]:
                         if st.button(
-                            col[:14],
+                            f"{col[:10]} {pct}%",
                             key=f"chip_{col}",
                             use_container_width=True,
                             help=col,

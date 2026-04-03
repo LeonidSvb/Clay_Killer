@@ -1,14 +1,14 @@
 """
-app/components/enrichment_panel.py — Enrichment side panel (LLM Extraction).
+app/components/enrichment_panel.py — Enrichment side panel.
+
+Supports:
+  - LLM Extraction: prompt editor, output type, OpenRouter
+  - MX Check: email column selector, Google DoH DNS lookup
 
 Layout:
   [X Close]
-  Type: [ LLM Extraction ]
-  -- INPUT --
-  Input columns: multiselect
-  -- CONFIG --
-  Prompt editor
-  Concurrency
+  Type: [ LLM Extraction | MX Check ]
+  -- CONFIG (type-specific) --
   -- RUN --
   Rows selector + [Run] button
   Progress bar
@@ -28,6 +28,7 @@ import streamlit as st
 
 from app.components.prompt_editor import render_prompt_editor
 from app.enrichments.llm import run_llm_enrichment
+from app.enrichments.mx import run_mx_enrichment
 
 
 # ── Run summary ────────────────────────────────────────────────────────────────
@@ -175,7 +176,6 @@ def _render_output_section(df: pd.DataFrame) -> None:
             st.session_state.last_save_map = rename_map  # remember for next run
             st.session_state.run_results = None
             st.session_state.run_elapsed = 0.0
-            st.session_state.panel_open = False
             st.rerun()
 
     with s2:
@@ -194,10 +194,12 @@ def _is_empty(val) -> bool:
     return str(val).strip() in ("", "nan", "None")
 
 
-def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None) -> None:
-    st.markdown("**Run**")
-
-    # Default row mode — set when opened via "Fill remaining" button on a column
+def _get_row_indices(
+    df: pd.DataFrame,
+    filtered_df: pd.DataFrame,
+    fill_col: str | None = None,
+) -> list[int]:
+    """Render row mode radio and return selected row indices."""
     prefill_col = st.session_state.pop("panel_prefill_fill_col", None)
     default_mode_idx = 0
     row_modes = ["Preview 10", "All", "Filtered", "Custom", "Fill missing"]
@@ -216,82 +218,50 @@ def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text
 
     if row_mode == "Preview 10":
         row_indices = list(range(min(10, len(df))))
-        row_count = len(row_indices)
-
     elif row_mode == "All":
         row_indices = list(range(len(df)))
-        row_count = len(row_indices)
-
     elif row_mode == "Filtered":
         row_indices = list(filtered_df.index)
-        row_count = len(row_indices)
-
     elif row_mode == "Custom":
         custom_n = st.number_input("Rows to run", min_value=1, max_value=len(df),
                                    value=min(50, len(df)), key="custom_row_count")
         row_indices = list(range(int(custom_n)))
-        row_count = int(custom_n)
-
     else:  # Fill missing
-        all_cols = list(df.columns)
-        saved_col = st.session_state.get("fill_missing_col", all_cols[0] if all_cols else None)
-        default_col_idx = all_cols.index(saved_col) if saved_col in all_cols else 0
-        target_col = st.selectbox(
-            "Fill empty rows in column:",
-            options=all_cols,
-            index=default_col_idx,
-            key="fill_missing_col_select",
-        )
-        st.session_state["fill_missing_col"] = target_col
+        target_col = fill_col or list(df.columns)[0]
         empty_mask = df[target_col].apply(_is_empty)
         row_indices = list(df[empty_mask].index)
-        row_count = len(row_indices)
 
-    st.caption(f"{row_count:,} rows selected")
+    st.caption(f"{len(row_indices):,} rows selected")
+    return row_indices
 
+
+def _render_run_section_llm(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None) -> None:
+    st.markdown("**Run**")
+    row_indices = _get_row_indices(df, filtered_df)
     if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
-        _do_run(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
+        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
 
 
-def _do_run(
-    df: pd.DataFrame,
-    row_indices: list[int],
-    prompt_text: str | None,
-    output_type: str = "Extract",
-) -> None:
-    concurrency = st.session_state.get("llm_concurrency", st.session_state.get("default_concurrency", 50))
-    api_key = st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
+def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
+    st.markdown("**Run**")
+    row_indices = _get_row_indices(df, filtered_df)
+    if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
+        _do_run_mx(df, row_indices, email_col)
 
-    if not api_key:
-        st.error("OpenRouter API key not set. Go to Settings tab.")
-        return
-    if not prompt_text or not prompt_text.strip():
-        st.error("Prompt is empty.")
-        return
 
+def _run_with_progress(worker_fn, row_indices: list[int]) -> tuple[list[dict], float]:
+    """Generic threading + progress pattern. Returns (results, elapsed)."""
     progress_queue: queue.Queue = queue.Queue()
     stop_event = threading.Event()
     results_holder: list[dict] = []
 
     def worker() -> None:
-        res = run_llm_enrichment(
-            df=df,
-            prompt_text=prompt_text,
-            row_indices=row_indices,
-            concurrency=concurrency,
-            progress_queue=progress_queue,
-            stop_event=stop_event,
-            api_key=api_key,
-            output_type=output_type,
-        )
-        results_holder.extend(res)
+        results_holder.extend(worker_fn(progress_queue, stop_event))
 
     thread = threading.Thread(target=worker, daemon=True)
-
     progress_bar = st.progress(0)
     status = st.empty()
     t0 = time.time()
-
     thread.start()
 
     while thread.is_alive() or not progress_queue.empty():
@@ -310,15 +280,68 @@ def _do_run(
 
     thread.join()
     elapsed = time.time() - t0
-
     progress_bar.progress(1.0)
     status.text(
         f"{len(results_holder)}/{len(row_indices)} done | "
         f"ok={sum(1 for r in results_holder if r['ok'])} | "
         f"errors={sum(1 for r in results_holder if not r['ok'])}"
     )
+    return results_holder, elapsed
 
-    st.session_state.run_results = results_holder
+
+def _do_run_llm(
+    df: pd.DataFrame,
+    row_indices: list[int],
+    prompt_text: str | None,
+    output_type: str = "Extract",
+) -> None:
+    concurrency = st.session_state.get("llm_concurrency", st.session_state.get("default_concurrency", 50))
+    api_key = st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
+
+    if not api_key:
+        st.error("OpenRouter API key not set. Go to Settings tab.")
+        return
+    if not prompt_text or not prompt_text.strip():
+        st.error("Prompt is empty.")
+        return
+
+    def worker_fn(pq, se):
+        return run_llm_enrichment(
+            df=df, prompt_text=prompt_text, row_indices=row_indices,
+            concurrency=concurrency, progress_queue=pq, stop_event=se,
+            api_key=api_key, output_type=output_type,
+        )
+
+    results, elapsed = _run_with_progress(worker_fn, row_indices)
+    st.session_state.run_results = results
+    st.session_state.run_elapsed = elapsed
+    st.rerun()
+
+
+def _do_run_mx(
+    df: pd.DataFrame,
+    row_indices: list[int],
+    email_col: str,
+) -> None:
+    concurrency = st.session_state.get("mx_concurrency", st.session_state.get("default_concurrency", 60))
+
+    def worker_fn(pq, se):
+        return run_mx_enrichment(
+            df=df, email_col=email_col, row_indices=row_indices,
+            concurrency=concurrency, progress_queue=pq, stop_event=se,
+        )
+
+    results, elapsed = _run_with_progress(worker_fn, row_indices)
+    # Convert MX results to same format as LLM results for _render_output_section
+    for r in results:
+        if r["ok"]:
+            r["data"] = {
+                "mx_provider": r.get("mx_provider", ""),
+                "mx_real": r.get("mx_real", ""),
+            }
+        else:
+            r["data"] = {}
+    st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
     st.rerun()
 
@@ -345,21 +368,31 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     # Type selector
     enrichment_type = st.selectbox(
         "Type",
-        ["LLM Extraction"],
+        ["LLM Extraction", "MX Check"],
         key="panel_enrichment_type",
         label_visibility="collapsed",
     )
 
-    # Output type (LLM only)
-    output_type = st.selectbox(
-        "Output type",
-        ["Boolean", "Score 0-10", "Extract", "Full profile"],
-        key="panel_output_type",
-        label_visibility="collapsed",
-    )
+    # -- CONFIG (type-specific) --
+    if enrichment_type == "LLM Extraction":
+        output_type = st.selectbox(
+            "Output type",
+            ["Boolean", "Score 0-10", "Extract", "Full profile"],
+            key="panel_output_type",
+            label_visibility="collapsed",
+        )
+        prompt_text = render_prompt_editor(df, output_type)
 
-    # -- CONFIG --
-    prompt_text = render_prompt_editor(df, output_type)
+    else:  # MX Check
+        email_cols = [c for c in df.columns if "email" in c.lower() or "mail" in c.lower()]
+        all_cols = list(df.columns)
+        default_options = email_cols if email_cols else all_cols
+        email_col = st.selectbox(
+            "Email column",
+            options=default_options,
+            key="mx_email_col",
+        )
+        st.caption("Looks up MX records via DNS and classifies the email provider (Google, Microsoft, Zoho, etc.)")
 
     st.markdown("---")
 
@@ -368,4 +401,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         _render_output_section(df)
     else:
         # -- RUN --
-        _render_run_section(df, filtered_df, prompt_text)
+        if enrichment_type == "LLM Extraction":
+            _render_run_section_llm(df, filtered_df, prompt_text)
+        else:
+            _render_run_section_mx(df, filtered_df, email_col)
