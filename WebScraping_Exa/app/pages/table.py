@@ -29,6 +29,7 @@ def render_table() -> None:
 
     st.divider()
     _render_toolbar(df)
+    _render_delete_confirm(df)
     filtered_df = _apply_filters(df)
     _render_row_count(df, filtered_df)
     _render_col_manager(df)
@@ -114,11 +115,83 @@ def _render_toolbar(df: pd.DataFrame) -> None:
     n_visible = len([c for c in visible if c in df.columns]) if visible else n_cols
     cols_label = f"{n_visible} of {n_cols} cols" if n_visible != n_cols else f"{n_cols} cols"
 
-    c1, c2 = st.columns([4, 1])
+    c1, c2, c3 = st.columns([4, 1, 1])
     with c1:
         st.markdown(f"**{filename}** &nbsp; {n_rows:,} rows &nbsp; {cols_label}")
     with c2:
+        _render_col_mgr_popover(df)
+    with c3:
         _render_filter_toggle(df)
+
+
+def _render_col_mgr_popover(df: pd.DataFrame) -> None:
+    """Column manager: sorted by fill%, checkboxes, delete with confirmation."""
+    col_list = list(df.columns)
+    fill_pcts = {col: _fill_pct(df[col]) for col in col_list}
+    # Least filled first; ties → newest (rightmost) first
+    sorted_cols = sorted(col_list, key=lambda c: (fill_pcts[c], -col_list.index(c)))
+
+    pending = st.session_state.get("_cols_to_delete", [])
+
+    with st.popover("Cols", use_container_width=True):
+        st.caption("Select columns to delete:")
+        selected = []
+        for col in sorted_cols:
+            pct = fill_pcts[col]
+            label = f"{col} — {pct}%"
+            checked = col in pending
+            if st.checkbox(label, value=checked, key=f"_cmgr_{col}"):
+                selected.append(col)
+
+        if selected:
+            if st.button(
+                f"Delete {len(selected)} column{'s' if len(selected) > 1 else ''}",
+                key="_cmgr_delete_btn",
+                type="primary",
+                use_container_width=True,
+            ):
+                st.session_state["_cols_to_delete"] = selected
+                st.rerun()
+        else:
+            st.caption("Check columns above to delete them")
+
+
+def _render_delete_confirm(df: pd.DataFrame) -> None:
+    """Confirmation banner for column deletion."""
+    cols_to_delete = [
+        c for c in st.session_state.get("_cols_to_delete", [])
+        if c in df.columns
+    ]
+    if not cols_to_delete:
+        return
+
+    names = ", ".join(f"`{c}`" for c in cols_to_delete)
+    st.warning(f"Delete {names}?")
+    yes_col, no_col, _ = st.columns([1, 1, 6])
+    with yes_col:
+        if st.button("Yes, delete", key="_cmgr_confirm_yes", type="primary", use_container_width=True):
+            for col in cols_to_delete:
+                if col in st.session_state.df.columns:
+                    st.session_state.df.drop(columns=[col], inplace=True)
+            st.session_state.new_cols = [
+                c for c in st.session_state.get("new_cols", []) if c not in cols_to_delete
+            ]
+            st.session_state["_last_run_cols"] = [
+                c for c in st.session_state.get("_last_run_cols", []) if c not in cols_to_delete
+            ]
+            st.session_state.visible_cols = []
+            st.session_state.pop("_cols_to_delete", None)
+            source = st.session_state.get("source_file")
+            if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
+                try:
+                    st.session_state.df.to_csv(source, index=False)
+                except Exception:
+                    pass
+            st.rerun()
+    with no_col:
+        if st.button("Cancel", key="_cmgr_confirm_no", use_container_width=True):
+            st.session_state.pop("_cols_to_delete", None)
+            st.rerun()
 
 
 def _render_filter_toggle(df: pd.DataFrame) -> None:
