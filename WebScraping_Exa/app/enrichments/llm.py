@@ -73,20 +73,20 @@ def delete_enrichment_prompt(name: str) -> bool:
 JSON_SUFFIXES: dict[str, str] = {
     "Boolean": (
         '\n\nReturn JSON only: '
-        '{"result": true, "confidence": 8, "reasoning": "one sentence"}'
+        '{"result": true, "confidence": <1-10 based on info quality>, "reasoning": "one sentence"}'
     ),
     "Score 0-10": (
         '\n\nReturn JSON only: '
-        '{"score": 7, "confidence": 8, "reasoning": "one sentence"}'
+        '{"score": <0-10>, "confidence": <1-10 based on info quality>, "reasoning": "one sentence"}'
     ),
     "Extract": (
         '\n\nReturn JSON only: '
-        '{"value": "extracted text", "confidence": 8}'
+        '{"value": "extracted text", "confidence": <1-10 based on info quality>}'
     ),
     "Full profile": (
         '\n\nReturn JSON only: '
         '{"summary": "2-3 sentences", "industry": "primary industry", '
-        '"target_market": "who they sell to", "confidence": 8}'
+        '"target_market": "who they sell to", "confidence": <1-10 based on info quality>}'
     ),
 }
 

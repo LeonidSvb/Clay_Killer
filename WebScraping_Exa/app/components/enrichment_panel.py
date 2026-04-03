@@ -29,6 +29,9 @@ import streamlit as st
 from app.components.prompt_editor import render_prompt_editor
 from app.enrichments.llm import run_llm_enrichment
 from app.enrichments.mx import run_mx_enrichment
+from app.utils.logger import get_logger
+
+_log = get_logger()
 
 
 # ── Run summary ────────────────────────────────────────────────────────────────
@@ -251,9 +254,17 @@ def _get_row_indices(
                                    value=min(50, len(df)), key="custom_row_count")
         row_indices = list(range(int(custom_n)))
     else:  # Fill missing
-        target_col = fill_col or list(df.columns)[0]
-        empty_mask = df[target_col].apply(_is_empty)
-        row_indices = list(df[empty_mask].index)
+        all_cols = list(filtered_df.columns)
+        saved_col = st.session_state.get("fill_missing_col")
+        default_col = saved_col if saved_col in all_cols else (fill_col if fill_col in all_cols else all_cols[0])
+        target_col = st.selectbox(
+            "Fill empty rows in column:",
+            options=all_cols,
+            index=all_cols.index(default_col),
+            key="fill_missing_col",
+        )
+        empty_mask = filtered_df[target_col].apply(_is_empty)
+        row_indices = list(filtered_df[empty_mask].index)
 
     st.caption(f"{len(row_indices):,} rows selected")
     return row_indices
@@ -348,6 +359,7 @@ def _do_run_llm(
         return
 
     st.session_state.run_in_progress = True
+    _log.info(f"LLM run started | rows={len(row_indices)} output_type={output_type} concurrency={concurrency}")
 
     def worker_fn(pq, se):
         return run_llm_enrichment(
@@ -358,6 +370,11 @@ def _do_run_llm(
 
     results, elapsed = _run_with_progress(worker_fn, row_indices)
     st.session_state.run_in_progress = False
+    ok = sum(1 for r in results if r["ok"])
+    _log.info(f"LLM run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    for r in results:
+        if not r["ok"] and r.get("error"):
+            _log.error(f"LLM row {r['idx']} | {r['error']}")
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
     st.rerun()
@@ -373,6 +390,7 @@ def _do_run_mx(
     concurrency = st.session_state.get("mx_concurrency", st.session_state.get("default_concurrency", 60))
 
     st.session_state.run_in_progress = True
+    _log.info(f"MX run started | rows={len(row_indices)} email_col={email_col} concurrency={concurrency}")
 
     def worker_fn(pq, se):
         return run_mx_enrichment(
@@ -382,6 +400,11 @@ def _do_run_mx(
 
     results, elapsed = _run_with_progress(worker_fn, row_indices)
     st.session_state.run_in_progress = False
+    ok = sum(1 for r in results if r["ok"])
+    _log.info(f"MX run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    for r in results:
+        if not r["ok"] and r.get("error"):
+            _log.error(f"MX row {r['idx']} | {r['error']}")
     # Convert MX results to same format as LLM results for _render_output_section
     for r in results:
         if r["ok"]:
