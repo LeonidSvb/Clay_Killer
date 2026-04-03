@@ -1,4 +1,3 @@
-import json
 import re
 import streamlit as st
 import streamlit.components.v1 as components
@@ -239,14 +238,44 @@ def _get_visible_cols(df: pd.DataFrame) -> list[str]:
 
 
 def _render_dataframe(df: pd.DataFrame, visible_cols: list[str]) -> None:
-    is_llm = st.session_state.get("panel_enrichment_type") == "LLM Extraction"
-    if is_llm:
-        _render_interactive_table(df, visible_cols)
-    else:
-        _render_static_table(df, visible_cols)
+    _render_prompt_col_selector(df, visible_cols)
+    _render_native_table(df, visible_cols)
 
 
-def _render_static_table(df: pd.DataFrame, visible_cols: list[str]) -> None:
+def _render_prompt_col_selector(df: pd.DataFrame, visible_cols: list[str]) -> None:
+    """Compact row of toggle buttons above the table — only in LLM Extraction mode."""
+    if st.session_state.get("panel_enrichment_type") != "LLM Extraction":
+        return
+
+    prompt = st.session_state.get("prompt_textarea", "")
+    in_prompt = set(re.findall(r"\{\{(.+?)\}\}", prompt))
+
+    cols_to_show = visible_cols[:20]
+    max_per_row = 10
+    for row_start in range(0, len(cols_to_show), max_per_row):
+        row_slice = cols_to_show[row_start: row_start + max_per_row]
+        btn_cols = st.columns(len(row_slice))
+        for ci, col in enumerate(row_slice):
+            sel = col in in_prompt
+            with btn_cols[ci]:
+                if st.button(
+                    f"✓ {col}" if sel else col,
+                    key=f"psel_{col}",
+                    use_container_width=True,
+                    type="primary" if sel else "secondary",
+                ):
+                    if sel:
+                        st.session_state.prompt_textarea = re.sub(
+                            r"\s*\{\{" + re.escape(col) + r"\}\}", "",
+                            st.session_state.get("prompt_textarea", ""),
+                        ).strip()
+                    else:
+                        current = st.session_state.get("prompt_textarea", "")
+                        st.session_state.prompt_textarea = (current.rstrip() + f" {{{{{col}}}}}").lstrip()
+                    st.rerun()
+
+
+def _render_native_table(df: pd.DataFrame, visible_cols: list[str]) -> None:
     new_cols = st.session_state.get("new_cols", [])
     rename_map = {col: f"{col} ({_fill_pct(df[col])}%)" for col in visible_cols}
     display_df = df[visible_cols].rename(columns=rename_map)
@@ -269,191 +298,3 @@ def _render_static_table(df: pd.DataFrame, visible_cols: list[str]) -> None:
         )
     else:
         st.dataframe(display_df, hide_index=True, use_container_width=True, height=TABLE_HEIGHT)
-
-
-def _render_interactive_table(df: pd.DataFrame, visible_cols: list[str]) -> None:
-    """HTML table with clickable resizable headers — LLM Extraction mode only."""
-    new_cols = set(st.session_state.get("new_cols", []))
-
-    # Process incoming column selection from JS
-    raw = st.session_state.get("_col_sel_input", "")
-    if raw:
-        newly_selected = [c for c in raw.split("|||") if c in visible_cols]
-        prompt = st.session_state.get("prompt_textarea", "")
-        for col in visible_cols:
-            prompt = re.sub(r"\s*\{\{" + re.escape(col) + r"\}\}", "", prompt)
-        prompt = prompt.strip()
-        for col in newly_selected:
-            prompt = (prompt + f" {{{{{col}}}}}").lstrip()
-        st.session_state.prompt_textarea = prompt.strip()
-        st.session_state["_col_sel_input"] = ""
-        st.rerun()
-
-    # Current prompt selection
-    prompt = st.session_state.get("prompt_textarea", "")
-    in_prompt = set(re.findall(r"\{\{(.+?)\}\}", prompt))
-
-    # Build column metadata
-    cols_meta = [
-        {
-            "name": col,
-            "label": f"{col} ({_fill_pct(df[col])}%)",
-            "is_new": col in new_cols,
-            "selected": col in in_prompt,
-        }
-        for col in visible_cols
-    ]
-
-    # Build rows (cap at 1000 for performance)
-    rows_data = []
-    for i in range(min(len(df), 1000)):
-        row = df.iloc[i]
-        rows_data.append([
-            "" if str(row.get(col, "")) in ("nan", "None") else str(row.get(col, ""))
-            for col in visible_cols
-        ])
-
-    cols_json = json.dumps(cols_meta)
-    rows_json = json.dumps(rows_data)
-
-    # Hidden input (CSS-collapsed)
-    st.text_input("col_sel", key="_col_sel_input", label_visibility="collapsed")
-    st.markdown(
-        "<style>div:has(>div>input[aria-label='col_sel'])"
-        "{height:0!important;overflow:hidden;margin:0!important;padding:0!important}</style>",
-        unsafe_allow_html=True,
-    )
-
-    html_code = f"""
-<style>
-  *{{box-sizing:border-box;margin:0;padding:0}}
-  body{{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:transparent}}
-  .wrap{{height:{TABLE_HEIGHT}px;overflow:auto;border:1px solid #e0e0e0;border-radius:4px}}
-  table{{border-collapse:collapse;table-layout:fixed;width:max-content;min-width:100%}}
-  thead tr th{{position:sticky;top:0;z-index:10}}
-  th{{
-    position:relative;padding:7px 20px 7px 10px;
-    border:1px solid #e0e0e0;background:#f8f9fa;
-    font-size:11.5px;font-weight:600;color:#555;
-    text-align:left;cursor:pointer;user-select:none;
-    white-space:nowrap;overflow:hidden;min-width:80px;width:160px
-  }}
-  th:hover{{background:#eef2ff;color:#333}}
-  th.selected{{background:#dbeafe;color:#1d4ed8;border-color:#93c5fd}}
-  th.selected:hover{{background:#bfdbfe}}
-  th.new-col{{background:#fef9c3}}
-  th.new-col.selected{{background:#dbeafe}}
-  .resizer{{
-    position:absolute;right:0;top:0;bottom:0;width:5px;
-    cursor:col-resize;z-index:1
-  }}
-  .resizer:hover,.resizer.active{{background:#93c5fd}}
-  td{{
-    padding:6px 10px;border:1px solid #efefef;
-    font-size:12px;color:#333;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    max-width:220px;cursor:default;
-  }}
-  td.expanded{{
-    white-space:pre-wrap;overflow:visible;max-width:400px;
-    background:#fffbea!important;z-index:5;position:relative;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-  }}
-  td.new-col{{background:#fef9c3!important}}
-  td.selected{{background:#eff6ff}}
-  td.new-col.selected{{background:#dbeafe}}
-  tr:nth-child(even) td{{background:#fafafa}}
-  tr:nth-child(even) td.selected{{background:#eff6ff}}
-</style>
-<div class="wrap">
-  <table><thead><tr id="hrow"></tr></thead><tbody id="tbody"></tbody></table>
-</div>
-<script>
-const COLS = {cols_json};
-const ROWS = {rows_json};
-let selected = new Set(COLS.filter(c=>c.selected).map(c=>c.name));
-
-function sendToStreamlit(){{
-  const val = [...selected].join("|||");
-  const input = window.parent.document.querySelector('input[aria-label="col_sel"]');
-  if(!input) return;
-  Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value')
-        .set.call(input, val);
-  input.dispatchEvent(new Event('input',{{bubbles:true}}));
-}}
-
-function refreshCells(){{
-  document.querySelectorAll("td[data-col]").forEach(td=>{{
-    td.classList.toggle("selected", selected.has(td.dataset.col));
-  }});
-}}
-
-// Build headers
-const hrow = document.getElementById("hrow");
-COLS.forEach((col,i)=>{{
-  const th = document.createElement("th");
-  if(col.selected) th.classList.add("selected");
-  if(col.is_new)   th.classList.add("new-col");
-  th.textContent = col.label;
-
-  th.addEventListener("click", e=>{{
-    if(e.target.classList.contains("resizer")) return;
-    if(e.ctrlKey||e.metaKey){{
-      selected.has(col.name) ? selected.delete(col.name) : selected.add(col.name);
-    }} else {{
-      if(selected.has(col.name) && selected.size===1){{
-        selected.clear();
-      }} else {{
-        selected.clear();
-        selected.add(col.name);
-      }}
-    }}
-    hrow.querySelectorAll("th").forEach((t,j)=>{{
-      t.classList.toggle("selected", selected.has(COLS[j].name));
-    }});
-    refreshCells();
-    sendToStreamlit();
-  }});
-
-  const resizer = document.createElement("div");
-  resizer.className = "resizer";
-  th.appendChild(resizer);
-  let startX, startW;
-  resizer.addEventListener("mousedown", e=>{{
-    e.preventDefault(); e.stopPropagation();
-    startX=e.pageX; startW=th.offsetWidth;
-    resizer.classList.add("active");
-    const onMove=e=>{{ th.style.width=Math.max(60,startW+e.pageX-startX)+"px"; }};
-    const onUp=()=>{{
-      resizer.classList.remove("active");
-      document.removeEventListener("mousemove",onMove);
-      document.removeEventListener("mouseup",onUp);
-    }};
-    document.addEventListener("mousemove",onMove);
-    document.addEventListener("mouseup",onUp);
-  }});
-
-  hrow.appendChild(th);
-}});
-
-// Build rows
-const tbody = document.getElementById("tbody");
-ROWS.forEach(row=>{{
-  const tr = document.createElement("tr");
-  COLS.forEach((col,i)=>{{
-    const td = document.createElement("td");
-    td.dataset.col = col.name;
-    td.textContent = row[i];
-    if(col.is_new) td.classList.add("new-col");
-    if(selected.has(col.name)) td.classList.add("selected");
-    td.addEventListener("dblclick", ()=>{{
-      td.classList.toggle("expanded");
-    }});
-    tr.appendChild(td);
-  }});
-  tbody.appendChild(tr);
-}});
-</script>
-"""
-
-    components.html(html_code, height=TABLE_HEIGHT + 42, scrolling=False)

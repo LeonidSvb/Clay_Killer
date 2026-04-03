@@ -36,6 +36,7 @@ _DEFAULTS: dict = {
     "llm_concurrency": int(os.getenv("LLM_CONCURRENCY", "50")),
     "mx_concurrency": int(os.getenv("MX_CONCURRENCY", "60")),
     "panel_output_type": "Boolean",
+    "panel_enrichment_type": "LLM Extraction",
     "openrouter_key": os.getenv("OPENROUTER_API_KEY", ""),
     "exa_key": os.getenv("EXA_API_KEY", ""),
 }
