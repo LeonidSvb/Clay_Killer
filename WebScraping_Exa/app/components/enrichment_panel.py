@@ -78,7 +78,7 @@ def _save_results_to_db(workspace_id: int, results: list, rename_map: dict) -> N
                 continue
             if not email or "@" not in email:
                 continue
-            data = {rename_map.get(k, k): v for k, v in r["data"].items() if rename_map.get(k)}
+            data = {rename_map[k]: v for k, v in r["data"].items() if k in rename_map}
             if data:
                 rows_to_save.append({"email": email, "data": data})
         if rows_to_save:
