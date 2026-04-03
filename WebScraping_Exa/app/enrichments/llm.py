@@ -93,10 +93,23 @@ JSON_SUFFIXES: dict[str, str] = {
 
 # ── Row rendering ──────────────────────────────────────────────────────────────
 
+_EXTRACT_WITH_REASONING = (
+    '\n\nReturn JSON only: '
+    '{"value": "extracted text", "confidence": <1-10 based on info quality>, "reasoning": "one sentence"}'
+)
+
+
+def get_json_suffix(output_type: str, include_reasoning: bool = False) -> str:
+    if output_type == "Extract" and include_reasoning:
+        return _EXTRACT_WITH_REASONING
+    return JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+
+
 def render_prompt_for_row(
     template: str,
     row: pd.Series,
     output_type: str = "Extract",
+    include_reasoning: bool = False,
 ) -> str:
     filled = template
     for col in row.index:
@@ -104,7 +117,7 @@ def render_prompt_for_row(
         if val in ("nan", "None"):
             val = ""
         filled = filled.replace("{{" + col + "}}", val)
-    filled += JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+    filled += get_json_suffix(output_type, include_reasoning)
     return filled
 
 
@@ -220,6 +233,7 @@ def run_llm_enrichment(
     stop_event: threading.Event,
     api_key: str = "",
     output_type: str = "Extract",
+    include_reasoning: bool = False,
 ) -> list[dict]:
     """
     Runs LLM enrichment synchronously (call inside threading.Thread).
@@ -230,7 +244,7 @@ def run_llm_enrichment(
     items = []
     for idx in row_indices:
         row = df.iloc[idx]
-        rendered = render_prompt_for_row(prompt_text, row, output_type)
+        rendered = render_prompt_for_row(prompt_text, row, output_type, include_reasoning)
         items.append({"idx": idx, "rendered_prompt": rendered})
 
     return asyncio.run(_call_llm_batch(

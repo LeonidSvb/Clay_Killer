@@ -20,6 +20,7 @@ import streamlit as st
 from app.enrichments.llm import (
     render_prompt_preview,
     JSON_SUFFIXES,
+    get_json_suffix,
     list_enrichment_prompts,
     load_enrichment_prompt,
     save_enrichment_prompt,
@@ -244,7 +245,8 @@ def render_prompt_editor(df: pd.DataFrame | None = None, output_type: str = "Ext
             rendered = render_prompt_preview(current_text, df, preview_row)
             st.code(rendered, language=None)
 
-            suffix_preview = JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+            include_reasoning = st.session_state.get("include_reasoning", False)
+            suffix_preview = get_json_suffix(output_type, include_reasoning)
             st.caption(f"+ auto-appended: `{suffix_preview.strip()}`")
 
             if found_cols:

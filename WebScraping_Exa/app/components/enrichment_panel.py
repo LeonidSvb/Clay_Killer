@@ -93,26 +93,44 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
     st.markdown("**Output**")
 
-    # Preview table — all ok rows, scrollable
+    # Preview table — source cols + output cols, scrollable
     ok_results = [r for r in results if r["ok"] and r.get("data")]
     if ok_results:
+        prompt_cols = st.session_state.get("run_prompt_cols", [])
+        df_full: pd.DataFrame | None = st.session_state.get("df")
+
         preview_rows = []
         for r in ok_results:
-            row_data = {"row": r["idx"]}
+            row_data = {}
+            # Source columns used in prompt
+            if df_full is not None and prompt_cols:
+                for pc in prompt_cols:
+                    if pc in df_full.columns:
+                        val = df_full.at[r["idx"], pc]
+                        row_data[pc] = str(val)[:60] if str(val) not in ("nan", "None") else ""
             row_data.update({k: v for k, v in r["data"].items() if k != "raw"})
             preview_rows.append(row_data)
+
         preview_df = pd.DataFrame(preview_rows)
-        # Narrow column config for short-value columns (boolean, score, confidence)
+
+        # Column config: small width for short-value cols, center via Styler
+        _SMALL_COLS = {"confidence", "score", "result", "mx_provider"}
         col_cfg = {}
+        center_cols = []
         for col in preview_df.columns:
-            if col in ("row", "confidence"):
-                col_cfg[col] = st.column_config.NumberColumn(col, width="small")
-            elif col in ("result",):
+            if col in _SMALL_COLS or col == "row":
                 col_cfg[col] = st.column_config.Column(col, width="small")
-            elif col in ("score",):
-                col_cfg[col] = st.column_config.NumberColumn(col, width="small")
+                center_cols.append(col)
+
+        styled = preview_df.style
+        if center_cols:
+            styled = styled.set_properties(
+                subset=[c for c in center_cols if c in preview_df.columns],
+                **{"text-align": "center"},
+            )
+
         st.dataframe(
-            preview_df,
+            styled,
             hide_index=True,
             use_container_width=True,
             height=min(400, 36 + len(preview_df) * 35),
@@ -270,19 +288,19 @@ def _get_row_indices(
     return row_indices
 
 
-def _render_run_section_llm(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None) -> None:
+def _render_run_section_llm(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text: str | None, include_reasoning: bool = False) -> None:
     st.markdown("**Run**")
     autorun = st.session_state.pop("panel_autorun", False)
     row_indices = _get_row_indices(df, filtered_df)
     running = st.session_state.get("run_in_progress", False)
     if autorun and not running:
-        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
+        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"), include_reasoning)
         return
     if st.button(
         "Running..." if running else "Run",
         type="primary", use_container_width=True, key="btn_run", disabled=running,
     ):
-        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
+        _do_run_llm(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"), include_reasoning)
 
 
 def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
@@ -345,6 +363,7 @@ def _do_run_llm(
     row_indices: list[int],
     prompt_text: str | None,
     output_type: str = "Extract",
+    include_reasoning: bool = False,
 ) -> None:
     if st.session_state.get("run_in_progress"):
         return
@@ -358,6 +377,10 @@ def _do_run_llm(
         st.error("Prompt is empty.")
         return
 
+    # Save prompt vars for output preview
+    import re as _re
+    st.session_state["run_prompt_cols"] = _re.findall(r"\{\{(.+?)\}\}", prompt_text)
+
     st.session_state.run_in_progress = True
     _log.info(f"LLM run started | rows={len(row_indices)} output_type={output_type} concurrency={concurrency}")
 
@@ -365,7 +388,7 @@ def _do_run_llm(
         return run_llm_enrichment(
             df=df, prompt_text=prompt_text, row_indices=row_indices,
             concurrency=concurrency, progress_queue=pq, stop_event=se,
-            api_key=api_key, output_type=output_type,
+            api_key=api_key, output_type=output_type, include_reasoning=include_reasoning,
         )
 
     results, elapsed = _run_with_progress(worker_fn, row_indices)
@@ -441,12 +464,22 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- CONFIG (type-specific) --
     if enrichment_type == "LLM Extraction":
-        output_type = st.selectbox(
-            "Output type",
-            ["Boolean", "Score 0-10", "Extract", "Full profile"],
-            key="panel_output_type",
-            label_visibility="collapsed",
-        )
+        ot_col, r_col = st.columns([3, 2])
+        with ot_col:
+            output_type = st.selectbox(
+                "Output type",
+                ["Boolean", "Score 0-10", "Extract", "Full profile"],
+                key="panel_output_type",
+                label_visibility="collapsed",
+            )
+        with r_col:
+            include_reasoning = st.checkbox(
+                "Include reasoning",
+                value=st.session_state.get("include_reasoning", False),
+                key="include_reasoning",
+                disabled=(output_type != "Extract"),
+                help="Add reasoning field to Extract output",
+            )
         prompt_text = render_prompt_editor(df, output_type)
 
     else:  # MX Check
@@ -468,6 +501,6 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     else:
         # -- RUN --
         if enrichment_type == "LLM Extraction":
-            _render_run_section_llm(df, filtered_df, prompt_text)
+            _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning)
         else:
             _render_run_section_mx(df, filtered_df, email_col)
