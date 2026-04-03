@@ -27,6 +27,20 @@ def render_settings() -> None:
             st.session_state.working_folder = new_folder
 
     st.divider()
+    st.subheader("Database")
+    st.caption("PostgreSQL connection string. Used in the Database tab.")
+
+    show_db = st.toggle("Show DATABASE_URL", value=False)
+    db_url = st.text_input(
+        "DATABASE_URL",
+        value=os.getenv("DATABASE_URL", ""),
+        type="default" if show_db else "password",
+        placeholder="postgresql://user:password@host:5432/outreach",
+    )
+    if db_url != os.getenv("DATABASE_URL", ""):
+        os.environ["DATABASE_URL"] = db_url
+
+    st.divider()
     st.subheader("API Keys")
 
     show_or = st.toggle("Show OpenRouter key", value=False)
@@ -83,5 +97,6 @@ def _save_env() -> None:
     set_key(str(ENV_PATH), "WORKING_FOLDER", st.session_state.get("working_folder", ""))
     set_key(str(ENV_PATH), "LLM_CONCURRENCY", str(st.session_state.get("llm_concurrency", 50)))
     set_key(str(ENV_PATH), "MX_CONCURRENCY", str(st.session_state.get("mx_concurrency", 60)))
+    set_key(str(ENV_PATH), "DATABASE_URL", os.getenv("DATABASE_URL", ""))
     os.environ["OPENROUTER_API_KEY"] = st.session_state.get("openrouter_key", "")
     os.environ["EXA_API_KEY"] = st.session_state.get("exa_key", "")

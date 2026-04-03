@@ -10,6 +10,7 @@ load_dotenv(Path(__file__).parent.parent / ".env", override=True)
 import streamlit as st
 from app.pages.table import render_table
 from app.pages.settings import render_settings
+from app.pages.database import render as render_database
 
 st.set_page_config(
     page_title="Lead Enrichment",
@@ -43,10 +44,13 @@ for _k, _v in _DEFAULTS.items():
     if _k not in st.session_state:
         st.session_state[_k] = _v
 
-tab_table, tab_settings = st.tabs(["Table", "Settings"])
+tab_table, tab_database, tab_settings = st.tabs(["Table", "Database", "Settings"])
 
 with tab_table:
     render_table()
+
+with tab_database:
+    render_database()
 
 with tab_settings:
     render_settings()
