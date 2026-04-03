@@ -6,6 +6,13 @@ for /f "tokens=5" %%a in ('netstat -ano 2^>nul ^| findstr ":8501 " ^| findstr LI
     taskkill /F /PID %%a >nul 2>&1
 )
 
+:: SSH tunnel for Postgres (local 5433 -> VPS 5432)
+echo Opening SSH tunnel to Postgres...
+start /B ssh -i "%USERPROFILE%\.ssh\id_ed25519_hostinger" -o StrictHostKeyChecking=no -L 5433:localhost:5432 -N root@72.61.143.225
+
+:: Wait for tunnel to establish
+timeout /t 2 /nobreak >nul
+
 :: Start app
 echo Starting Lead Enrichment on http://localhost:8501
 start "" http://localhost:8501
