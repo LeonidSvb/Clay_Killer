@@ -381,7 +381,7 @@ def _render_run_section_llm(
         _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
         return
 
-    can_queue = workspace_id and st.session_state.get("row_mode") in ("All", "Fill missing", "Filtered")
+    can_queue = bool(workspace_id)
 
     if can_queue:
         c1, c2 = st.columns(2)
@@ -416,7 +416,7 @@ def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_co
         _do_run_mx(df, row_indices, email_col)
         return
 
-    can_queue = workspace_id and st.session_state.get("row_mode") in ("All", "Fill missing", "Filtered")
+    can_queue = bool(workspace_id)
 
     if can_queue:
         c1, c2 = st.columns(2)
@@ -800,7 +800,7 @@ def _render_run_section_exa(
         _do_run_exa(df, row_indices, url_col, cfg)
         return
 
-    can_queue = workspace_id and st.session_state.get("row_mode") in ("All", "Fill missing", "Filtered")
+    can_queue = bool(workspace_id)
 
     if can_queue:
         c1, c2 = st.columns(2)
