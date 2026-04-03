@@ -6,7 +6,7 @@
       "prompt": "You are evaluating whether a B2B company is a good fit for outbound email-based business development.\n\nReturn ONLY a JSON object:\n{{\n  \"fit\": true,\n  \"reason\": \"<short explanation>\",\n  \"confidence\": <0-10>\n}}\n\nfit must be: true, false, or null (null = insufficient data to decide)\n\nEvaluation criteria:\n\nMarket Size (Critical)\nThe company's target market must be broad enough for outbound.\nEstimate if their Total Addressable Market (TAM) is:\n- Large (5000+ companies) -> good\n- Medium (1000-5000) -> acceptable\n- Small (<1000) -> NOT a fit\nIf the company serves a very niche or limited segment -> NOT a fit\n\nGeography\nMust serve:\n- Nationwide OR\n- Multiple regions OR\n- International markets\nIf limited to one city or one small local area -> NOT a fit\n\nSales Model\n- Must be B2B\n- Must rely on acquiring clients (not just inbound or marketplaces)\n\nService Type\nPrefer companies that sell:\n- Services, Staffing, Consulting, Outsourcing\nAvoid:\n- Pure local services (e.g. small local logistics, local trucking only in one city)\n\nScalability via Outbound\n- The company should realistically benefit from cold email outreach\n- If their business depends on local relationships or offline deals -> NOT a fit\n\nUncertainty Handling (Critical)\n- If there is not enough information to confidently evaluate TAM, geography, or sales model:\n  - \"fit\": null\n  - \"reason\": \"insufficient data\"\n\nBe strict. Do not guess. Do not assume missing information.\nconfidence reflects how much usable data was available to make this judgement (0-10).\n\nCompany info:\n{{Website Summary}}",
       "output_type": "Boolean",
       "output_config": {
-        "confidence": true
+        "confidence": false
       }
     },
     "icp_score": {
@@ -18,27 +18,33 @@
       }
     },
     "company_profile": {
-      "prompt": "Analyse the company website content below and produce a detailed factual summary.\n\nReturn JSON:\n{{\n  \"summary\": \"<800-1200 char factual description: what they do, core services, geography, target clients, differentiators. Facts only, no marketing language. If something is not stated, say so explicitly.>\",\n  \"confidence\": <0-10>\n}}\n\nWebsite content:\n{{Website Summary}}",
-      "output_type": "Boolean",
+      "prompt": "Analyse the company website content below and produce a detailed factual summary.\n\nReturn JSON:\n{{\n  \"summary\": \"<800-1200 char factual description: what they do, core services, geography, target clients, differentiators. Facts only, no marketing language. If something is not stated, say so explicitly.>\",\n  \"confidence\": <0-10>\n}}\n\nWebsite content:\n{{Website Summary}} ",
+      "output_type": "Text",
       "output_config": {
         "schema": "{\"summary\": \"string\", \"confidence\": \"number\"}",
         "confidence": true
       }
     },
-    "industry": {
-      "prompt": "Identify what industry or niche {{Company Name}} operates in.\n\nReturn JSON:\n{{\n  \"value\": \"<industry in 2-3 casual lowercase words or 'insufficient data'>\",\n  \"confidence\": <0-10>\n}}\n\nGood examples: \"peer-to-peer storage\", \"ai customer support\", \"b2b sales recruiting\"\n\nRules:\n- 2-4 words maximum, lowercase\n- Be specific — not \"software\" but \"project management software\"\n- No punctuation\n\nCompany info:\n{{Website Summary}}",
-      "output_type": "Text",
-      "output_config": {}
-    },
     "pain_point": {
       "prompt": "Identify one specific pain point {{Company Name}} likely faces based on their business description.\n\nReturn JSON:\n{{\n  \"value\": \"<the pain point phrase or 'insufficient data'>\",\n  \"confidence\": <0-10>\n}}\n\nGood examples: \"scaling outbound without burning domains\", \"finding qualified sales hires in a tight market\"\n\nRules:\n- Only ONE pain point, 8-12 words max, lowercase, no punctuation\n- Base it ONLY on what's in the company info\n- Be specific, not generic like \"growing their business\"\n\nCompany info:\n{{Website Summary}}",
-      "output_type": "Text",
-      "output_config": {}
+      "output_type": "Structured",
+      "output_config": {
+        "schema": "{\n  \"field\": \"string\"\n}"
+      }
     },
     "current_method": {
       "prompt": "Describe how {{Company Name}} is most likely getting customers right now.\n\nReturn JSON:\n{{\n  \"value\": \"<acquisition method in 4-7 words or 'insufficient data'>\",\n  \"confidence\": <0-10>\n}}\n\nGood examples: \"referrals and word of mouth\", \"cold calling and LinkedIn outreach\"\n\nRules: 4-7 words, lowercase, no punctuation\n\nCompany info:\n{{Website Summary}}",
       "output_type": "Text",
       "output_config": {}
+    },
+    "Recruitment - Industry": {
+      "prompt": "Is {{Company Name}} a [YOUR CRITERIA]?",
+      "output_type": "Boolean",
+      "output_config": {
+        "schema": "{\n  \"primary_industry\": \"...\",\n  \"sub_industry\": \"...\",\n  \"confidence\": 1-10,\n  \"reason\": \"short explanation based on explicit signals\"\n} ",
+        "confidence": false,
+        "scale": "0-10"
+      }
     }
   }
 }
