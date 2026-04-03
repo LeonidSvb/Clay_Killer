@@ -90,16 +90,31 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
     st.markdown("**Output**")
 
-    # Preview table (first 10 ok rows)
+    # Preview table — all ok rows, scrollable
     ok_results = [r for r in results if r["ok"] and r.get("data")]
     if ok_results:
         preview_rows = []
-        for r in ok_results[:10]:
+        for r in ok_results:
             row_data = {"row": r["idx"]}
             row_data.update({k: v for k, v in r["data"].items() if k != "raw"})
             preview_rows.append(row_data)
         preview_df = pd.DataFrame(preview_rows)
-        st.dataframe(preview_df, hide_index=True, use_container_width=True)
+        # Narrow column config for short-value columns (boolean, score, confidence)
+        col_cfg = {}
+        for col in preview_df.columns:
+            if col in ("row", "confidence"):
+                col_cfg[col] = st.column_config.NumberColumn(col, width="small")
+            elif col in ("result",):
+                col_cfg[col] = st.column_config.Column(col, width="small")
+            elif col in ("score",):
+                col_cfg[col] = st.column_config.NumberColumn(col, width="small")
+        st.dataframe(
+            preview_df,
+            hide_index=True,
+            use_container_width=True,
+            height=min(400, 36 + len(preview_df) * 35),
+            column_config=col_cfg if col_cfg else None,
+        )
 
     # Run summary stats
     _render_run_summary(results, elapsed)
@@ -176,6 +191,8 @@ def _render_output_section(df: pd.DataFrame) -> None:
             st.session_state.last_save_map = rename_map  # remember for next run
             st.session_state.run_results = None
             st.session_state.run_elapsed = 0.0
+            # Reset visible_cols so new columns are included in main table
+            st.session_state.visible_cols = []
             st.rerun()
 
     with s2:

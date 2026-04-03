@@ -169,7 +169,7 @@ async def _call_llm_batch(
                 resp = await client.post(
                     "https://openrouter.ai/api/v1/chat/completions",
                     json=payload,
-                    timeout=90.0,
+                    timeout=30.0,
                 )
                 if resp.status_code != 200:
                     return {"idx": idx, "data": {}, "ok": False,
