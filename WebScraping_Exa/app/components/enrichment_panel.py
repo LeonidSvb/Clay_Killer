@@ -250,17 +250,18 @@ def _render_run_section(df: pd.DataFrame, filtered_df: pd.DataFrame, prompt_text
     st.caption(f"{row_count:,} rows selected")
 
     if st.button("Run", type="primary", use_container_width=True, key="btn_run"):
-        _do_run(df, row_indices, prompt_text)
+        _do_run(df, row_indices, prompt_text, st.session_state.get("panel_output_type", "Extract"))
 
 
-def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_text: str | None) -> None:
-    input_cols = st.session_state.get("panel_input_cols", [])
+def _do_run(
+    df: pd.DataFrame,
+    row_indices: list[int],
+    prompt_text: str | None,
+    output_type: str = "Extract",
+) -> None:
     concurrency = st.session_state.get("llm_concurrency", st.session_state.get("default_concurrency", 50))
     api_key = st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
 
-    if not input_cols:
-        st.error("Select at least one input column.")
-        return
     if not api_key:
         st.error("OpenRouter API key not set. Go to Settings tab.")
         return
@@ -275,13 +276,13 @@ def _do_run(df: pd.DataFrame, row_indices: list[int], prompt_text: str | None) -
     def worker() -> None:
         res = run_llm_enrichment(
             df=df,
-            input_columns=input_cols,
             prompt_text=prompt_text,
             row_indices=row_indices,
             concurrency=concurrency,
             progress_queue=progress_queue,
             stop_event=stop_event,
             api_key=api_key,
+            output_type=output_type,
         )
         results_holder.extend(res)
 
@@ -341,7 +342,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     st.markdown("### Enrichment")
 
-    # Type selector (only LLM for now)
+    # Type selector
     enrichment_type = st.selectbox(
         "Type",
         ["LLM Extraction"],
@@ -349,24 +350,16 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         label_visibility="collapsed",
     )
 
-    # -- INPUT --
-    st.markdown("**Input columns**")
-    all_cols = list(df.columns)
-    current_input = st.session_state.get("panel_input_cols", [])
-    valid_input = [c for c in current_input if c in all_cols]
-
-    selected_input = st.multiselect(
-        "input_cols",
-        options=all_cols,
-        default=valid_input,
-        key="panel_input_cols_widget",
+    # Output type (LLM only)
+    output_type = st.selectbox(
+        "Output type",
+        ["Boolean", "Score 0-10", "Extract", "Full profile"],
+        key="panel_output_type",
         label_visibility="collapsed",
     )
-    st.session_state.panel_input_cols = selected_input
 
     # -- CONFIG --
-    st.markdown("**Prompt**")
-    prompt_text = render_prompt_editor(df)
+    prompt_text = render_prompt_editor(df, output_type)
 
     st.markdown("---")
 

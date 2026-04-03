@@ -1,158 +1,133 @@
 """
-app/components/prompt_editor.py — Prompt editor with always-editable textarea.
+app/components/prompt_editor.py — Side-by-side prompt editor with live preview.
 
-Flow:
-  - Dropdown loads a saved prompt into textarea (optional)
-  - Textarea is always editable — run without saving
-  - "Save as..." button asks for a name and saves
-  - Delete button removes a saved prompt
+Layout:
+  [Boolean] [Score 0-10] [Extract] [Full profile]   — template starters
+  ┌──────────────────────┬─────────────────────────┐
+  │ col chips (3/row)    │ Live preview — row 1     │
+  │ textarea (editable)  │ Variable inspector ✓/✗   │
+  │                      │ JSON suffix preview      │
+  └──────────────────────┴─────────────────────────┘
 """
 
 import re
-from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 
 from app.enrichments.llm import (
-    list_enrichment_prompts,
-    load_enrichment_prompt,
-    save_enrichment_prompt,
-    delete_enrichment_prompt,
     render_prompt_preview,
+    JSON_SUFFIXES,
 )
 
-_DEFAULT_TEMPLATE = (
-    'Analyze the company below and return structured JSON.\n\n'
-    'Company: {{Company Name}}\n'
-    'Website: {{Website}}\n\n'
-    'Return JSON: {"field": "value", "confidence": <0-10>}'
-)
+_STARTERS: dict[str, str] = {
+    "Boolean": "Is {{Company Name}} a [YOUR CRITERIA]?",
+    "Score": "How well does {{Company Name}} fit [YOUR CRITERIA]?\nRate from 0 to 10.",
+    "Extract": "Extract [WHAT] from {{Company Name}}.\n\nInfo: {{Website Summary}}",
+    "Profile": "Analyze {{Company Name}}.\n\nWebsite: {{Website}}\nInfo: {{Website Summary}}",
+}
+
+_DEFAULT_TEXT = "Is {{Company Name}} a [YOUR CRITERIA]?"
 
 
-def _sanitize_name(raw: str) -> str:
-    clean = re.sub(r'[^\w]', '_', raw.strip())
-    clean = re.sub(r'_+', '_', clean).strip('_')
-    return clean[:80]
+def _fill_pct(series: pd.Series) -> int:
+    total = len(series)
+    if total == 0:
+        return 0
+    empty = series.isna().sum() + (
+        series.astype(str).str.strip().isin(["", "nan", "None"])
+    ).sum()
+    return round((total - min(int(empty), total)) / total * 100)
 
 
-def render_prompt_editor(df: pd.DataFrame | None = None) -> str:
+def _find_preview_row(df: pd.DataFrame, referenced_cols: list[str]) -> pd.Series:
+    """Return first row where all referenced columns are non-empty."""
+    for i in range(min(len(df), 50)):
+        row = df.iloc[i]
+        if all(
+            str(row.get(c, "")).strip() not in ("", "nan", "None")
+            for c in referenced_cols
+            if c in df.columns
+        ):
+            return row
+    return df.iloc[0]
+
+
+def render_prompt_editor(df: pd.DataFrame | None = None, output_type: str = "Extract") -> str:
     """
-    Renders prompt editor UI.
-    Returns current prompt text (not a filename).
+    Renders side-by-side prompt editor.
+    Returns current prompt text.
     """
-    prompts = list_enrichment_prompts()
-
-    # Initialize textarea content on first load
+    # Initialize textarea on first load
     if "prompt_textarea" not in st.session_state:
-        if prompts:
-            template, _ = load_enrichment_prompt(prompts[0])
-            st.session_state.prompt_textarea = template
-            st.session_state._last_loaded_prompt = prompts[0]
-        else:
-            st.session_state.prompt_textarea = _DEFAULT_TEMPLATE
-            st.session_state._last_loaded_prompt = None
+        st.session_state.prompt_textarea = _DEFAULT_TEXT
 
-    # Row: Load dropdown + Delete button
-    c_dd, c_del = st.columns([5, 1])
+    # Template starter buttons
+    s_cols = st.columns(4)
+    for col_obj, (name, text) in zip(s_cols, _STARTERS.items()):
+        with col_obj:
+            if st.button(name, use_container_width=True, key=f"tpl_{name}"):
+                st.session_state.prompt_textarea = text
+                st.rerun()
 
-    with c_dd:
-        load_options = ["— select saved —"] + prompts
-        saved_sel = st.selectbox(
-            "load_prompt",
-            load_options,
-            key="prompt_load_select",
+    # Side-by-side
+    col_edit, col_preview = st.columns([1, 1], gap="small")
+
+    with col_edit:
+        # Column chips — compact, 3 per row
+        if df is not None and not df.empty:
+            cols = list(df.columns)
+            chips_per_row = 3
+            for row_start in range(0, len(cols), chips_per_row):
+                row_cols = cols[row_start: row_start + chips_per_row]
+                chip_containers = st.columns(len(row_cols))
+                for ci, col in enumerate(row_cols):
+                    with chip_containers[ci]:
+                        if st.button(
+                            col[:14],
+                            key=f"chip_{col}",
+                            use_container_width=True,
+                            help=col,
+                        ):
+                            current = st.session_state.get("prompt_textarea", "")
+                            st.session_state.prompt_textarea = current + " {{" + col + "}}"
+                            st.rerun()
+
+        # Always-editable textarea
+        st.text_area(
+            "prompt",
+            height=200,
+            key="prompt_textarea",
             label_visibility="collapsed",
+            placeholder="Write your question here. Use {{Column Name}} to insert data.",
         )
 
-    with c_del:
-        del_clicked = st.button("Del", use_container_width=True, key="btn_del_prompt")
+    with col_preview:
+        current_text = st.session_state.get("prompt_textarea", "")
+        found_cols = re.findall(r"\{\{(.+?)\}\}", current_text)
 
-    # Load selected prompt into textarea (on change)
-    if saved_sel != "— select saved —":
-        if saved_sel != st.session_state.get("_last_loaded_prompt"):
-            template, _ = load_enrichment_prompt(saved_sel)
-            st.session_state.prompt_textarea = template
-            st.session_state._last_loaded_prompt = saved_sel
-            st.rerun()
+        if df is not None and not df.empty:
+            preview_row = _find_preview_row(df, found_cols)
 
-    # Delete dialog
-    if del_clicked:
-        if saved_sel == "— select saved —":
-            st.warning("Select a prompt to delete.")
+            # Live preview of rendered prompt
+            rendered = render_prompt_preview(current_text, df, preview_row)
+            st.code(rendered, language=None)
+
+            # JSON suffix preview (greyed out)
+            suffix_preview = JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+            st.caption(f"+ auto-appended: `{suffix_preview.strip()}`")
+
+            # Variable inspector
+            if found_cols:
+                for col_ref in found_cols:
+                    if col_ref in df.columns:
+                        pct = _fill_pct(df[col_ref])
+                        val = str(preview_row.get(col_ref, ""))
+                        display = val[:50] if val not in ("nan", "None", "") else "(empty in this row)"
+                        st.caption(f"✓ {col_ref} — {display} · {pct}% filled")
+                    else:
+                        st.markdown(f":red[✗ `{col_ref}` — column not found]")
         else:
-            st.session_state.show_delete_prompt = True
+            st.caption("Load a CSV to see live preview")
 
-    if st.session_state.get("show_delete_prompt") and saved_sel != "— select saved —":
-        st.warning(f"Delete '{saved_sel}'? This cannot be undone.")
-        confirm = st.text_input("Type 'delete' to confirm:", key="delete_confirm")
-        dc1, dc2 = st.columns(2)
-        with dc1:
-            if st.button("Confirm", use_container_width=True, key="btn_del_confirm") and confirm == "delete":
-                delete_enrichment_prompt(saved_sel)
-                st.session_state.show_delete_prompt = False
-                st.session_state._last_loaded_prompt = None
-                st.session_state.prompt_textarea = _DEFAULT_TEMPLATE
-                st.rerun()
-        with dc2:
-            if st.button("Cancel", use_container_width=True, key="btn_del_cancel"):
-                st.session_state.show_delete_prompt = False
-                st.rerun()
-
-    # Always-editable textarea
-    st.text_area(
-        "prompt_body",
-        height=180,
-        key="prompt_textarea",
-        label_visibility="collapsed",
-    )
-
-    # Column chips
-    if df is not None and not df.empty:
-        st.caption("Insert column:")
-        cols = list(df.columns)
-        chips_per_row = 4
-        for row_start in range(0, len(cols), chips_per_row):
-            row_cols = cols[row_start: row_start + chips_per_row]
-            chip_containers = st.columns(len(row_cols))
-            for ci, col in enumerate(row_cols):
-                with chip_containers[ci]:
-                    if st.button(col, key=f"chip_{col}", use_container_width=True):
-                        current = st.session_state.get("prompt_textarea", "")
-                        st.session_state.prompt_textarea = current + "{{" + col + "}}"
-                        st.rerun()
-
-    # Save as...
-    if st.button("Save as...", key="btn_save_as"):
-        st.session_state.show_save_as = not st.session_state.get("show_save_as", False)
-
-    if st.session_state.get("show_save_as"):
-        save_name_raw = st.text_input(
-            "Prompt name:",
-            key="save_as_name_input",
-            placeholder="my_icp_filter",
-        )
-        sa1, sa2 = st.columns(2)
-        with sa1:
-            if st.button("Save", type="primary", use_container_width=True, key="btn_save_as_confirm"):
-                if save_name_raw.strip():
-                    clean = _sanitize_name(save_name_raw)
-                    save_enrichment_prompt(clean, st.session_state.get("prompt_textarea", ""))
-                    st.session_state._last_loaded_prompt = clean
-                    st.session_state.show_save_as = False
-                    st.success(f"Saved as '{clean}'")
-                    st.rerun()
-                else:
-                    st.error("Enter a name.")
-        with sa2:
-            if st.button("Cancel", use_container_width=True, key="btn_save_as_cancel"):
-                st.session_state.show_save_as = False
-                st.rerun()
-
-    # Preview (row 1)
-    if df is not None and not df.empty:
-        with st.expander("Preview (row 1)", expanded=False):
-            preview = render_prompt_preview(st.session_state.get("prompt_textarea", ""), df)
-            st.code(preview, language=None)
-
-    return st.session_state.get("prompt_textarea", "")
+    return current_text

@@ -68,41 +68,56 @@ def delete_enrichment_prompt(name: str) -> bool:
     return False
 
 
+# ── JSON output suffixes by type ───────────────────────────────────────────────
+
+JSON_SUFFIXES: dict[str, str] = {
+    "Boolean": (
+        '\n\nReturn JSON only: '
+        '{"result": true, "confidence": 8, "reasoning": "one sentence"}'
+    ),
+    "Score 0-10": (
+        '\n\nReturn JSON only: '
+        '{"score": 7, "confidence": 8, "reasoning": "one sentence"}'
+    ),
+    "Extract": (
+        '\n\nReturn JSON only: '
+        '{"value": "extracted text", "confidence": 8}'
+    ),
+    "Full profile": (
+        '\n\nReturn JSON only: '
+        '{"summary": "2-3 sentences", "industry": "primary industry", '
+        '"target_market": "who they sell to", "confidence": 8}'
+    ),
+}
+
+
 # ── Row rendering ──────────────────────────────────────────────────────────────
 
 def render_prompt_for_row(
     template: str,
     row: pd.Series,
-    input_columns: list[str],
-    is_column_style: bool,
+    output_type: str = "Extract",
 ) -> str:
-    if is_column_style:
-        filled = template
-        for col in row.index:
-            val = str(row.get(col, "")).strip()
-            if val in ("nan", "None"):
-                val = ""
-            filled = filled.replace("{{" + col + "}}", val)
-        return filled
-    else:
-        # Legacy: concatenate input_columns as text
-        parts = []
-        for col in input_columns:
-            val = str(row.get(col, "")).strip()
-            if val and val not in ("nan", "None"):
-                parts.append(f"{col}: {val}")
-        text = "\n".join(parts)
-        try:
-            return template.format(text=text)
-        except KeyError:
-            return template
+    filled = template
+    for col in row.index:
+        val = str(row.get(col, "")).strip()
+        if val in ("nan", "None"):
+            val = ""
+        filled = filled.replace("{{" + col + "}}", val)
+    filled += JSON_SUFFIXES.get(output_type, JSON_SUFFIXES["Extract"])
+    return filled
 
 
-def render_prompt_preview(template: str, df: pd.DataFrame) -> str:
-    """Fill template with values from first row — for prompt editor preview."""
+def render_prompt_preview(
+    template: str,
+    df: pd.DataFrame,
+    row: pd.Series | None = None,
+) -> str:
+    """Fill template with values from given row (defaults to first row)."""
     if df is None or df.empty:
         return template
-    row = df.iloc[0]
+    if row is None:
+        row = df.iloc[0]
     filled = template
     for col in df.columns:
         val = str(row.get(col, "")).strip()
@@ -198,26 +213,24 @@ async def _call_llm_batch(
 
 def run_llm_enrichment(
     df: pd.DataFrame,
-    input_columns: list[str],
     prompt_text: str,
     row_indices: list[int],
     concurrency: int,
     progress_queue: queue.Queue,
     stop_event: threading.Event,
     api_key: str = "",
+    output_type: str = "Extract",
 ) -> list[dict]:
     """
     Runs LLM enrichment synchronously (call inside threading.Thread).
     Returns list of {"idx": int, "data": dict, "ok": bool, "error": str|None}.
     """
-    is_column_style = "{text}" not in prompt_text
-    template = prompt_text
     key = api_key or os.getenv("OPENROUTER_API_KEY", "")
 
     items = []
     for idx in row_indices:
         row = df.iloc[idx]
-        rendered = render_prompt_for_row(template, row, input_columns, is_column_style)
+        rendered = render_prompt_for_row(prompt_text, row, output_type)
         items.append({"idx": idx, "rendered_prompt": rendered})
 
     return asyncio.run(_call_llm_batch(
