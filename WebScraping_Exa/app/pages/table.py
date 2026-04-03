@@ -1,6 +1,5 @@
 import re
 import streamlit as st
-import streamlit.components.v1 as components
 import pandas as pd
 from app.components.file_browser import render_file_browser
 from app.components.enrichment_panel import render_enrichment_panel
@@ -32,7 +31,6 @@ def render_table() -> None:
     _render_toolbar(df)
     filtered_df = _apply_filters(df)
     _render_row_count(df, filtered_df)
-    _render_fill_remaining_bar(df)
     _render_col_manager(df)
     visible_cols = _get_visible_cols(filtered_df)
     _render_dataframe(filtered_df, visible_cols)
@@ -46,6 +44,7 @@ def render_table() -> None:
 
     st.divider()
     render_enrichment_panel(filtered_df)
+    _render_last_run_stats(df)
     render_plusvibe_push(filtered_df)
 
 
@@ -56,47 +55,11 @@ def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
         st.caption(f"{len(df):,} rows")
 
 
-def _render_fill_remaining_bar(df: pd.DataFrame) -> None:
-    """For each generated column with empty rows — show a button to fill them."""
-    new_cols = [c for c in st.session_state.get("new_cols", []) if c in df.columns]
-    if not new_cols:
-        return
-
-    cols_with_empty: list[tuple[str, int]] = []
-    for col in new_cols:
-        empty = df[col].apply(
-            lambda v: str(v).strip() in ("", "nan", "None")
-        ).sum()
-        if empty > 0:
-            cols_with_empty.append((col, int(empty)))
-
-    if not cols_with_empty:
-        return
-
-    btn_cols = st.columns(min(len(cols_with_empty), 4))
-    for i, (col, n_empty) in enumerate(cols_with_empty):
-        with btn_cols[i % 4]:
-            if st.button(
-                f"{col} — fill {n_empty:,} empty",
-                key=f"fill_remaining_{col}",
-                use_container_width=True,
-            ):
-                st.session_state.panel_prefill_fill_col = col
-                st.session_state.panel_autorun = True
-                components.html(
-                    "<script>window.parent.document.querySelector('.main').scrollTop = 999999;</script>",
-                    height=0,
-                )
-                st.rerun()
-
-
 def _render_col_manager(df: pd.DataFrame) -> None:
-    """Delete buttons + stats for generated columns."""
+    """Delete buttons for generated columns."""
     new_cols = [c for c in st.session_state.get("new_cols", []) if c in df.columns]
     if not new_cols:
         return
-
-    last_run_col = st.session_state.get("_last_run_col", "")
 
     st.caption("Generated columns:")
     btn_cols = st.columns(min(len(new_cols), 6))
@@ -107,20 +70,40 @@ def _render_col_manager(df: pd.DataFrame) -> None:
                 st.session_state.df.drop(columns=[col], inplace=True)
                 st.session_state.new_cols = [c for c in st.session_state.new_cols if c != col]
                 st.session_state.visible_cols = []
-                if st.session_state.get("_last_run_col") == col:
-                    st.session_state.pop("_last_run_col", None)
+                last_run = st.session_state.get("_last_run_cols", [])
+                if col in last_run:
+                    st.session_state["_last_run_cols"] = [c for c in last_run if c != col]
                 source = st.session_state.get("source_file")
-                if source:
+                if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
                     try:
                         st.session_state.df.to_csv(source, index=False)
                     except Exception:
                         pass
                 st.rerun()
 
-    for col in new_cols:
-        is_last = col == last_run_col
-        with st.expander(f"Stats: {col}", expanded=is_last):
-            render_col_stats(df, col)
+
+def _render_last_run_stats(df: pd.DataFrame) -> None:
+    """Show stats for columns from the last enrichment run. Dismissable."""
+    last_run_cols = [
+        c for c in st.session_state.get("_last_run_cols", [])
+        if c in df.columns
+    ]
+    if not last_run_cols:
+        return
+
+    st.divider()
+    hdr, dismiss_col = st.columns([6, 1])
+    with hdr:
+        st.markdown(f"**Stats — last run** ({', '.join(last_run_cols)})")
+    with dismiss_col:
+        if st.button("× Close", key="_btn_close_stats", use_container_width=True):
+            st.session_state["_last_run_cols"] = []
+            st.rerun()
+
+    for col in last_run_cols:
+        if len(last_run_cols) > 1:
+            st.markdown(f"**{col}**")
+        render_col_stats(df, col)
 
 
 def _render_toolbar(df: pd.DataFrame) -> None:

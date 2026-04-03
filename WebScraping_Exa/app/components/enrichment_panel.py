@@ -282,23 +282,23 @@ def _render_output_section(df: pd.DataFrame) -> None:
             existing_new = st.session_state.get("new_cols", [])
             st.session_state.new_cols = list(set(existing_new + new_col_names))
             st.session_state.last_save_map = rename_map
-            if new_col_names:
-                st.session_state["_last_run_col"] = new_col_names[0]
+            st.session_state["_last_run_cols"] = new_col_names
             st.session_state.run_results = None
             st.session_state.run_elapsed = 0.0
             st.session_state.visible_cols = []
+
+            # Always save to CSV if source is a real file
+            source = st.session_state.get("source_file")
+            if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
+                try:
+                    st.session_state.df.to_csv(source, index=False)
+                except Exception as e:
+                    st.warning(f"CSV save failed: {e}")
 
             workspace_id = st.session_state.get("workspace_id")
             if workspace_id:
                 _save_results_to_db(workspace_id, results, rename_map)
                 _log_inline_task(workspace_id, results, rename_map)
-            else:
-                source = st.session_state.get("source_file")
-                if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
-                    try:
-                        st.session_state.df.to_csv(source, index=False)
-                    except Exception as e:
-                        st.warning(f"Auto-save failed: {e}")
             st.rerun()
 
     with s2:
