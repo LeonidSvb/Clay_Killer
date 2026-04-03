@@ -40,7 +40,30 @@ def render_file_browser() -> None:
     with c_upload_btn:
         show_upload = st.toggle("Upload", value=False, label_visibility="collapsed")
 
-    # ── Dropdown выбора файла ──────────────────────────────────────────────────
+    # ── Переключатель источника ────────────────────────────────────────────────
+    source_mode = st.radio(
+        "Load from",
+        ["Folder", "Database"],
+        horizontal=True,
+        key="fb_source_mode",
+        label_visibility="collapsed",
+    )
+
+    if source_mode == "Folder":
+        _render_folder_section(folder)
+    else:
+        _render_db_section()
+
+    # ── Upload ─────────────────────────────────────────────────────────────────
+    if show_upload:
+        _render_upload(folder)
+
+
+# ---------------------------------------------------------------------------
+# Folder source
+# ---------------------------------------------------------------------------
+
+def _render_folder_section(folder: str) -> None:
     if folder and Path(folder).exists():
         csv_files = sorted(
             Path(folder).glob("*.csv"),
@@ -50,9 +73,7 @@ def render_file_browser() -> None:
 
         if csv_files:
             options = [str(f) for f in csv_files]
-            labels = [f.name for f in csv_files]
 
-            # Определяем текущий выбранный индекс
             current_source = st.session_state.get("source_file", "")
             try:
                 current_idx = options.index(current_source)
@@ -75,6 +96,7 @@ def render_file_browser() -> None:
                     "Opened" if already_open else "Open",
                     disabled=already_open,
                     use_container_width=True,
+                    key="open_file_btn",
                 ):
                     _open_file(selected_path)
         else:
@@ -85,10 +107,80 @@ def render_file_browser() -> None:
         else:
             st.info("Set working folder in Settings.")
 
-    # ── Upload ─────────────────────────────────────────────────────────────────
-    if show_upload:
-        _render_upload(folder)
 
+# ---------------------------------------------------------------------------
+# Database source
+# ---------------------------------------------------------------------------
+
+def _render_db_section() -> None:
+    try:
+        from core.db import get_workspaces, get_workspace_leads, is_connected
+    except ImportError:
+        st.error("core.db not available")
+        return
+
+    if not is_connected():
+        st.warning("Not connected to database. Check DATABASE_URL in Settings.")
+        return
+
+    workspaces = get_workspaces()
+    if not workspaces:
+        st.info("No workspaces yet. Import a CSV in the Database tab first.")
+        return
+
+    def ws_label(ws: dict) -> str:
+        rows = ws["total_rows"] or "?"
+        date = ws["created_at"].strftime("%m-%d")
+        return f"{ws['name']}  ({rows} rows, {date})"
+
+    c_select, c_open = st.columns([5, 1])
+    with c_select:
+        selected_ws = st.selectbox(
+            "db_workspace_select",
+            workspaces,
+            format_func=ws_label,
+            label_visibility="collapsed",
+        )
+    with c_open:
+        current = st.session_state.get("source_file", "")
+        already_open = selected_ws is not None and current == f"[DB] {selected_ws['name']}"
+        if st.button(
+            "Opened" if already_open else "Open",
+            disabled=already_open or selected_ws is None,
+            use_container_width=True,
+            key="open_db_btn",
+        ):
+            with st.spinner("Loading from database..."):
+                leads = get_workspace_leads(selected_ws["id"])
+            _open_from_db(selected_ws, leads)
+
+
+def _open_from_db(workspace: dict, leads: list) -> None:
+    if not leads:
+        st.warning("No leads in this workspace.")
+        return
+
+    rows = []
+    for lead in leads:
+        row = {k: v for k, v in lead.items() if k not in ("enrichment_data", "wl_id")}
+        enrichment = lead.get("enrichment_data") or {}
+        if isinstance(enrichment, dict):
+            row.update(enrichment)
+        rows.append(row)
+
+    df = pd.DataFrame(rows)
+    st.session_state.df = df
+    st.session_state.source_file = f"[DB] {workspace['name']}"
+    st.session_state.new_cols = []
+    st.session_state.run_results = None
+    st.session_state.visible_cols = list(df.columns)
+    st.session_state.filters = []
+    st.rerun()
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
 
 def _label_with_rows(f: Path) -> str:
     """Метка для selectbox: имя + кол-во строк."""

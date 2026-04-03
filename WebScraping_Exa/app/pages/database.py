@@ -19,6 +19,7 @@ from core.db import (
     workspace_exists,
     import_csv_to_db,
     delete_workspace,
+    rename_workspace,
 )
 
 
@@ -162,7 +163,7 @@ def _render_workspaces():
         return
 
     for ws in workspaces:
-        col1, col2 = st.columns([5, 1])
+        col1, col2, col3 = st.columns([5, 1, 1])
         with col1:
             created = ws["created_at"].strftime("%Y-%m-%d %H:%M")
             rows_label = f"{ws['total_rows']} rows" if ws["total_rows"] else "? rows"
@@ -173,8 +174,29 @@ def _render_workspaces():
             if ws["file_name"]:
                 st.caption(ws["file_name"])
         with col2:
+            if st.button("Rename", key=f"ren_ws_{ws['id']}"):
+                st.session_state[f"renaming_{ws['id']}"] = True
+        with col3:
             if st.button("Delete", key=f"del_ws_{ws['id']}"):
                 st.session_state[f"confirm_del_{ws['id']}"] = True
+
+        if st.session_state.get(f"renaming_{ws['id']}"):
+            new_name = st.text_input(
+                "New name",
+                value=ws["name"],
+                key=f"rename_input_{ws['id']}",
+            )
+            r1, r2 = st.columns(2)
+            with r1:
+                if st.button("Save", key=f"save_ren_{ws['id']}", type="primary"):
+                    if new_name.strip():
+                        rename_workspace(ws["id"], new_name.strip())
+                    del st.session_state[f"renaming_{ws['id']}"]
+                    st.rerun()
+            with r2:
+                if st.button("Cancel", key=f"cancel_ren_{ws['id']}"):
+                    del st.session_state[f"renaming_{ws['id']}"]
+                    st.rerun()
 
         if st.session_state.get(f"confirm_del_{ws['id']}"):
             st.warning(

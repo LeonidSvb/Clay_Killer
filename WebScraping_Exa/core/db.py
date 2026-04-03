@@ -216,6 +216,23 @@ def import_csv_to_db(
         conn.close()
 
 
+def rename_workspace(workspace_id: int, new_name: str) -> bool:
+    """Rename a workspace."""
+    conn = get_connection()
+    if not conn:
+        return False
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "UPDATE workspaces SET name = %s WHERE id = %s",
+                    (new_name, workspace_id)
+                )
+                return cur.rowcount == 1
+    finally:
+        conn.close()
+
+
 def delete_workspace(workspace_id: int) -> bool:
     """Delete a workspace and its workspace_leads (cascade). Does NOT touch leads_master."""
     conn = get_connection()
