@@ -37,7 +37,7 @@ def get_connection():
     if not url:
         return None
     try:
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(url, options="-c search_path=enrichment,public")
         return conn
     except Exception as e:
         logger.warning("DB connection failed: %s", e)
