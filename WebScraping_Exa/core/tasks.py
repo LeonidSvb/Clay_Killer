@@ -14,11 +14,12 @@ except ImportError:
     psycopg2 = None
 
 
-def create_task(workspace_id: int, payload: dict, total: int = 0, task_type: str = "enrichment") -> Optional[int]:
+def create_task(workspace_id: int, payload: dict, total: int = 0) -> Optional[int]:
     from core.db import get_connection
     conn = get_connection()
     if not conn:
         return None
+    task_type = payload.get("enrichment_type", "enrichment")
     try:
         with conn:
             with conn.cursor() as cur:

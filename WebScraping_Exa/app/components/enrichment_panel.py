@@ -427,7 +427,7 @@ def _queue_llm_task(
             "concurrency": st.session_state.get("llm_concurrency", 50),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
-        task_id = create_task(workspace_id, payload, total, task_type="llm_extraction")
+        task_id = create_task(workspace_id, payload, total)
         if task_id:
             st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
             _log.info(f"Queued LLM task {task_id} workspace={workspace_id} rows={total}")
@@ -453,7 +453,7 @@ def _queue_mx_task(
             "concurrency": st.session_state.get("mx_concurrency", 60),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
-        task_id = create_task(workspace_id, payload, total, task_type="mx_check")
+        task_id = create_task(workspace_id, payload, total)
         if task_id:
             st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
             _log.info(f"Queued MX task {task_id} workspace={workspace_id} rows={total}")
@@ -715,7 +715,7 @@ def _queue_exa_task(
             "concurrency": st.session_state.get("exa_concurrency", 50),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
-        task_id = create_task(workspace_id, payload, total, task_type="exa_scraping")
+        task_id = create_task(workspace_id, payload, total)
         if task_id:
             st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
             _log.info(f"Queued Exa task {task_id} workspace={workspace_id} rows={total}")
