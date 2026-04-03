@@ -81,9 +81,8 @@ def _run_llm(task_id: int, workspace_id: int, leads: list, payload: dict) -> Non
                 progress_queue=pq,
                 stop_event=se,
                 api_key=os.getenv("OPENROUTER_API_KEY", ""),
-                output_type=payload.get("output_type", "Extract"),
-                include_reasoning=payload.get("include_reasoning", False),
-                include_guardrail=payload.get("include_guardrail", False),
+                output_type=payload.get("output_type", "Text"),
+                output_config=payload.get("output_config"),
             )
         ),
         daemon=True,

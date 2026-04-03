@@ -44,6 +44,11 @@ for _k, _v in _DEFAULTS.items():
     if _k not in st.session_state:
         st.session_state[_k] = _v
 
+st.markdown(
+    "<style>[data-testid='stSidebar']{display:none}[data-testid='collapsedControl']{display:none}</style>",
+    unsafe_allow_html=True,
+)
+
 tab_table, tab_database, tab_settings = st.tabs(["Table", "Database", "Settings"])
 
 with tab_table:
