@@ -40,7 +40,7 @@ from app.enrichments.mx import run_mx_enrichment
 from app.utils.logger import get_logger
 from core.errors import split_into_output_and_error, collect_output_keys
 
-_EXA_QUERY_PATH = Path(__file__).parent.parent.parent / "prompts" / "exa_summary_query.txt"
+from core import prompts_store as _prompts_store
 
 _log = get_logger()
 
@@ -368,18 +368,17 @@ def _render_run_section_llm(
     df: pd.DataFrame,
     filtered_df: pd.DataFrame,
     prompt_text: str | None,
-    include_reasoning: bool = False,
-    include_guardrail: bool = False,
+    output_type: str = "Text",
+    output_config: dict | None = None,
 ) -> None:
     st.markdown("**Run**")
     autorun = st.session_state.pop("panel_autorun", False)
     row_indices = _get_row_indices(df, filtered_df)
     running = st.session_state.get("run_in_progress", False)
-    output_type = st.session_state.get("panel_output_type", "Extract")
     workspace_id = st.session_state.get("workspace_id")
 
     if autorun and not running:
-        _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
+        _do_run_llm(df, row_indices, prompt_text, output_type, output_config)
         return
 
     can_queue = bool(workspace_id)
@@ -391,19 +390,19 @@ def _render_run_section_llm(
                 "Running..." if running else "Run (inline)",
                 use_container_width=True, key="btn_run", disabled=running,
             ):
-                _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
+                _do_run_llm(df, row_indices, prompt_text, output_type, output_config)
         with c2:
             output_col = st.session_state.get("last_save_map", {})
             output_col_name = list(output_col.values())[0] if output_col else "result"
             if st.button("Queue (background)", type="primary", use_container_width=True, key="btn_queue_llm", disabled=running):
                 _queue_llm_task(workspace_id, df, row_indices, prompt_text, output_type,
-                                include_reasoning, include_guardrail, output_col_name)
+                                output_config, output_col_name)
     else:
         if st.button(
             "Running..." if running else "Run",
             type="primary", use_container_width=True, key="btn_run", disabled=running,
         ):
-            _do_run_llm(df, row_indices, prompt_text, output_type, include_reasoning, include_guardrail)
+            _do_run_llm(df, row_indices, prompt_text, output_type, output_config)
 
 
 def _render_run_section_mx(df: pd.DataFrame, filtered_df: pd.DataFrame, email_col: str) -> None:
@@ -444,8 +443,7 @@ def _queue_llm_task(
     row_indices: list,
     prompt_text: str,
     output_type: str,
-    include_reasoning: bool,
-    include_guardrail: bool,
+    output_config: dict | None,
     output_col: str,
 ) -> None:
     try:
@@ -455,9 +453,8 @@ def _queue_llm_task(
             "enrichment_type": "llm",
             "prompt_text": prompt_text,
             "output_type": output_type,
+            "output_config": output_config or {},
             "output_col": output_col,
-            "include_reasoning": include_reasoning,
-            "include_guardrail": include_guardrail,
             "concurrency": st.session_state.get("llm_concurrency", 50),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
@@ -642,9 +639,8 @@ def _do_run_llm(
     df: pd.DataFrame,
     row_indices: list[int],
     prompt_text: str | None,
-    output_type: str = "Extract",
-    include_reasoning: bool = False,
-    include_guardrail: bool = False,
+    output_type: str = "Text",
+    output_config: dict | None = None,
 ) -> None:
     if st.session_state.get("run_in_progress"):
         return
@@ -658,7 +654,6 @@ def _do_run_llm(
         st.error("Prompt is empty.")
         return
 
-    # Save prompt vars and run params for output preview / rerun
     import re as _re
     st.session_state["run_prompt_cols"] = _re.findall(r"\{\{(.+?)\}\}", prompt_text)
     st.session_state["run_row_indices"] = row_indices
@@ -671,8 +666,7 @@ def _do_run_llm(
         return run_llm_enrichment(
             df=df, prompt_text=prompt_text, row_indices=row_indices,
             concurrency=concurrency, progress_queue=pq, stop_event=se,
-            api_key=api_key, output_type=output_type,
-            include_reasoning=include_reasoning, include_guardrail=include_guardrail,
+            api_key=api_key, output_type=output_type, output_config=output_config,
         )
 
     _start_run_thread(worker_fn)
@@ -849,29 +843,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- CONFIG (type-specific) --
     if enrichment_type == "LLM Extraction":
-        ot_col, r_col, g_col = st.columns([3, 2, 2])
-        with ot_col:
-            output_type = st.selectbox(
-                "Output type",
-                ["Boolean", "Score 0-10", "Extract", "Full profile"],
-                key="panel_output_type",
-                label_visibility="collapsed",
-            )
-        with r_col:
-            include_reasoning = st.checkbox(
-                "Include reasoning",
-                value=st.session_state.get("include_reasoning", False),
-                key="include_reasoning",
-                disabled=(output_type != "Extract"),
-                help="Add reasoning field to Extract output",
-            )
-        with g_col:
-            include_guardrail = st.checkbox(
-                "Flag insufficient data",
-                key="include_guardrail",
-                help='LLM returns "INSUFFICIENT_DATA" when info is not enough',
-            )
-        prompt_text = render_prompt_editor(df, output_type)
+        prompt_text, output_type, output_config = render_prompt_editor(df)
 
     elif enrichment_type == "MX Check":
         email_cols = [c for c in df.columns if "email" in c.lower() or "mail" in c.lower()]
@@ -919,10 +891,8 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                 else DEFAULT_EXA_QUERY
             )
             if "exa_query_text" not in st.session_state:
-                if _EXA_QUERY_PATH.exists():
-                    st.session_state.exa_query_text = _EXA_QUERY_PATH.read_text(encoding="utf-8")
-                else:
-                    st.session_state.exa_query_text = default_q
+                saved_q = _prompts_store.get_exa_query()
+                st.session_state.exa_query_text = saved_q or default_q
 
             qcap, qsave = st.columns([5, 1])
             with qcap:
@@ -932,8 +902,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                 st.caption(label)
             with qsave:
                 if st.button("Save", key="_btn_save_exa_query", use_container_width=True):
-                    _EXA_QUERY_PATH.parent.mkdir(parents=True, exist_ok=True)
-                    _EXA_QUERY_PATH.write_text(st.session_state.exa_query_text, encoding="utf-8")
+                    _prompts_store.set_exa_query(st.session_state.exa_query_text)
                     st.toast("Query saved")
 
             st.text_area("Exa query", height=150, key="exa_query_text",
@@ -978,7 +947,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     # -- RUN --
     if enrichment_type == "LLM Extraction":
-        _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning, include_guardrail)
+        _render_run_section_llm(df, filtered_df, prompt_text, output_type, output_config)
     elif enrichment_type == "MX Check":
         _render_run_section_mx(df, filtered_df, email_col)
     else:
@@ -989,9 +958,8 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         from core import ui_state
         enr: dict = {
             "type": enrichment_type,
-            "output_type": st.session_state.get("panel_output_type", "Extract"),
-            "include_reasoning": st.session_state.get("include_reasoning", False),
-            "include_guardrail": st.session_state.get("include_guardrail", False),
+            "output_type": st.session_state.get("panel_output_type", "Text"),
+            "output_config": st.session_state.get("panel_output_config", {}),
             "email_col": st.session_state.get("mx_email_col", ""),
             "url_col": st.session_state.get("exa_url_col", ""),
             "exa_mode": st.session_state.get("exa_mode", "summary"),

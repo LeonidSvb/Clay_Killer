@@ -59,10 +59,8 @@ def load_prompt(name: str) -> str:
 
 
 def load_system_context() -> str:
-    path = PROMPTS_DIR / "system_context.txt"
-    if not path.exists():
-        return "Always respond with valid JSON only."
-    return path.read_text(encoding="utf-8").strip()
+    from core.prompts_store import get_system_context
+    return get_system_context()
 
 
 def build_messages(prompt_name: str, text: str) -> list[dict]:

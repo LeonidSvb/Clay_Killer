@@ -2,14 +2,7 @@
 app/enrichments/llm.py — LLM enrichment adapter for Streamlit.
 
 Wraps core/llm.py async logic in threading.Thread + queue.Queue.
-
-Prompt locations:
-  - prompts/enrichment/  → Streamlit enrichment prompts (shown in panel)
-  - prompts/             → CLI-only prompts (not shown in panel)
-
-Prompt style detection (by content, not path):
-  - has {{col}} and no {text}  → column style: replace {{col}} per row
-  - has {text}                 → legacy style: concatenate input_columns → format(text=)
+All prompts stored in prompts.json (project root) via core.prompts_store.
 """
 
 import asyncio
@@ -17,67 +10,44 @@ import os
 import queue
 import threading
 import time
-from pathlib import Path
 
 import httpx
 import pandas as pd
 
 from core.llm import parse_json_response, load_system_context
 from core.errors import normalize_http_error, normalize_exception
+from core import prompts_store
 
-PROMPTS_DIR = Path(__file__).parent.parent.parent / "prompts"
-ENRICHMENT_PROMPTS_DIR = PROMPTS_DIR / "enrichment"
 DEFAULT_MODEL = "openai/gpt-oss-120b"
 
 
 # ── Prompt helpers ─────────────────────────────────────────────────────────────
 
 def list_enrichment_prompts() -> list[str]:
-    """Only returns prompts from prompts/enrichment/ — panel-specific."""
-    if not ENRICHMENT_PROMPTS_DIR.exists():
-        return []
-    return sorted(p.stem for p in ENRICHMENT_PROMPTS_DIR.glob("*.txt"))
+    return prompts_store.list_prompts()
 
 
-def load_enrichment_prompt(name: str) -> tuple[str, bool, str]:
-    """
-    Returns (template_text, is_column_style, default_output_col).
-    Detection is content-based:
-      - has {text}            → legacy style: concatenate input_columns → format(text=)
-      - no {text}, has {{..}} → column style: replace {{col}} per row
-      - neither               → legacy style (concatenate as fallback)
-    Parses `# output: ColName` lines from template and strips them before returning.
-    """
-    path = ENRICHMENT_PROMPTS_DIR / f"{name}.txt"
-    if not path.exists():
-        raise FileNotFoundError(f"Prompt not found in prompts/enrichment/: {name}")
-    raw = path.read_text(encoding="utf-8")
-
-    # Parse and strip `# output: ColName` metadata lines
-    output_col = ""
-    clean_lines = []
-    for line in raw.splitlines():
-        if line.startswith("# output:"):
-            output_col = line[len("# output:"):].strip()
-        else:
-            clean_lines.append(line)
-    template = "\n".join(clean_lines).rstrip("\n") + "\n"
-
+def load_enrichment_prompt(name: str) -> tuple[str, bool, str, str, dict]:
+    """Returns (template_text, is_column_style, default_output_col, output_type, output_config)."""
+    entry = prompts_store.get_prompt(name)
+    template = entry.get("prompt", "")
+    output_type = entry.get("output_type", "Text")
+    output_config = entry.get("output_config", {})
     is_column_style = "{text}" not in template
-    return template, is_column_style, output_col
+    return template, is_column_style, "", output_type, output_config
 
 
-def save_enrichment_prompt(name: str, content: str) -> None:
-    ENRICHMENT_PROMPTS_DIR.mkdir(parents=True, exist_ok=True)
-    (ENRICHMENT_PROMPTS_DIR / f"{name}.txt").write_text(content, encoding="utf-8")
+def save_enrichment_prompt(
+    name: str,
+    content: str,
+    output_type: str = "Text",
+    output_config: dict | None = None,
+) -> None:
+    prompts_store.set_prompt(name, content, output_type or "Text", output_config)
 
 
 def delete_enrichment_prompt(name: str) -> bool:
-    path = ENRICHMENT_PROMPTS_DIR / f"{name}.txt"
-    if path.exists():
-        path.unlink()
-        return True
-    return False
+    return prompts_store.delete_prompt(name)
 
 
 # ── JSON output suffixes by type ───────────────────────────────────────────────
@@ -131,10 +101,33 @@ def get_json_suffix(
     return base
 
 
+def get_json_suffix_v2(output_type: str, output_config: dict | None = None) -> str:
+    """New-style suffix generator using output_config dict."""
+    cfg = output_config or {}
+    if output_type == "Text":
+        return '\n\nReturn JSON only: {"value": "your answer here"}'
+    elif output_type == "Boolean":
+        if cfg.get("confidence", True):
+            return '\n\nReturn JSON only: {"result": true, "confidence": <1-10 based on available data>}'
+        return '\n\nReturn JSON only: {"result": true}'
+    elif output_type == "Score":
+        scale = cfg.get("scale", "0-10")
+        if cfg.get("confidence", True):
+            return f'\n\nReturn JSON only: {{"score": <{scale}>, "confidence": <1-10 based on available data>}}'
+        return f'\n\nReturn JSON only: {{"score": <{scale}>}}'
+    elif output_type == "Structured":
+        schema = cfg.get("schema", '{"value": "string"}').strip()
+        return f'\n\nReturn JSON only: {schema}'
+    # Legacy fallback
+    return get_json_suffix(output_type)
+
+
 def render_prompt_for_row(
     template: str,
     row: pd.Series,
-    output_type: str = "Extract",
+    output_type: str = "Text",
+    output_config: dict | None = None,
+    # legacy params kept for backward compat
     include_reasoning: bool = False,
     include_guardrail: bool = False,
 ) -> str:
@@ -144,7 +137,10 @@ def render_prompt_for_row(
         if val in ("nan", "None"):
             val = ""
         filled = filled.replace("{{" + col + "}}", val)
-    filled += get_json_suffix(output_type, include_reasoning, include_guardrail)
+    if output_config is not None:
+        filled += get_json_suffix_v2(output_type, output_config)
+    else:
+        filled += get_json_suffix(output_type, include_reasoning, include_guardrail)
     return filled
 
 
@@ -268,7 +264,9 @@ def run_llm_enrichment(
     progress_queue: queue.Queue,
     stop_event: threading.Event,
     api_key: str = "",
-    output_type: str = "Extract",
+    output_type: str = "Text",
+    output_config: dict | None = None,
+    # legacy params kept for backward compat
     include_reasoning: bool = False,
     include_guardrail: bool = False,
 ) -> list[dict]:
@@ -281,7 +279,9 @@ def run_llm_enrichment(
     items = []
     for idx in row_indices:
         row = df.iloc[idx]
-        rendered = render_prompt_for_row(prompt_text, row, output_type, include_reasoning, include_guardrail)
+        rendered = render_prompt_for_row(
+            prompt_text, row, output_type, output_config, include_reasoning, include_guardrail
+        )
         items.append({"idx": idx, "rendered_prompt": rendered})
 
     return asyncio.run(_call_llm_batch(
