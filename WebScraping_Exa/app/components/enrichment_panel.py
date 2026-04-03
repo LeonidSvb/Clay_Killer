@@ -28,7 +28,13 @@ import pandas as pd
 import streamlit as st
 
 from app.components.prompt_editor import render_prompt_editor
-from app.enrichments.exa import run_exa_enrichment, DEFAULT_EXA_QUERY
+from app.enrichments.exa import (
+    run_exa_enrichment, MODES as EXA_MODES,
+    DEFAULT_QUERY as DEFAULT_EXA_QUERY,
+    DEFAULT_HIGHLIGHTS_QUERY,
+    DEFAULT_STRUCTURED_SCHEMA,
+    OUTPUT_COL as EXA_OUTPUT_COL,
+)
 from app.enrichments.llm import run_llm_enrichment
 from app.enrichments.mx import run_mx_enrichment
 from app.utils.logger import get_logger
@@ -558,7 +564,8 @@ def _poll_and_render_progress() -> None:
         if run_type == "mx":
             _log_and_store_mx(results, elapsed)
         elif run_type == "exa":
-            _log_and_store_exa(results, elapsed)
+            skipped = st.session_state.pop("_exa_skipped_count", 0)
+            _log_and_store_exa(results, skipped, elapsed)
         else:
             _log_and_store_llm(results, elapsed)
 
@@ -620,21 +627,28 @@ def _log_and_store_mx(results: list[dict], elapsed: float) -> None:
     st.session_state.run_elapsed = elapsed
 
 
-def _log_and_store_exa(results: list[dict], elapsed: float) -> None:
+def _log_and_store_exa(results: list[dict], skipped: int, elapsed: float) -> None:
     row_indices = st.session_state.get("run_row_indices", [])
     ok = sum(1 for r in results if r["ok"])
-    _log.info(f"Exa run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    _log.info(
+        f"Exa run done | rows={len(row_indices)} processed={len(results)} "
+        f"skipped={skipped} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s"
+    )
     for r in results:
         if not r["ok"] and r.get("error"):
             _log.error(f"Exa row {r['idx']} | {r['error']}")
-    # Populate error markers so failed rows show up in preview and can be saved
+    # Determine output col name for this mode
+    mode = st.session_state.get("run_exa_mode", "summary")
+    out_col = EXA_OUTPUT_COL.get(mode) or "Website Summary"
+    # Populate error markers so failed rows appear in preview and can be saved
     for r in results:
         if not r["ok"]:
             err = r.get("error") or "error"
-            r["data"] = {"Website Summary": f"[{err}]"}
+            r["data"] = {out_col: f"[{err}]"}
     st.session_state.run_in_progress = False
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
+    st.session_state["run_exa_skipped"] = skipped
 
 
 def _do_run_llm(
@@ -709,7 +723,7 @@ def _do_run_exa(
     df: pd.DataFrame,
     row_indices: list[int],
     url_col: str,
-    query: str,
+    cfg: dict,
 ) -> None:
     if st.session_state.get("run_in_progress"):
         return
@@ -722,18 +736,21 @@ def _do_run_exa(
     st.session_state["run_row_indices"] = row_indices
     st.session_state["run_type"] = "exa"
     st.session_state["run_exa_url_col"] = url_col
-    st.session_state["run_exa_query"] = query
+    st.session_state["run_exa_cfg"] = cfg
+    st.session_state["run_exa_mode"] = cfg.get("mode", "summary")
     st.session_state["run_prompt_cols"] = [url_col]
 
     st.session_state.run_in_progress = True
-    _log.info(f"Exa run started | rows={len(row_indices)} url_col={url_col} concurrency={concurrency}")
+    _log.info(f"Exa run started | mode={cfg.get('mode')} rows={len(row_indices)} url_col={url_col}")
 
     def worker_fn(pq, se):
-        return run_exa_enrichment(
+        results, skipped = run_exa_enrichment(
             df=df, url_col=url_col, row_indices=row_indices,
-            query=query, concurrency=concurrency,
+            cfg=cfg, concurrency=concurrency,
             progress_queue=pq, stop_event=se, api_key=api_key,
         )
+        st.session_state["_exa_skipped_count"] = skipped
+        return results
 
     _start_run_thread(worker_fn)
     st.rerun()
@@ -744,23 +761,24 @@ def _queue_exa_task(
     df: pd.DataFrame,
     row_indices: list,
     url_col: str,
-    query: str,
+    cfg: dict,
 ) -> None:
     try:
         from core.tasks import create_task
+        from app.enrichments.exa import OUTPUT_COL as EXA_OUTPUT_COL
         total = len(row_indices)
         payload = {
             "enrichment_type": "exa",
             "url_col": url_col,
-            "query": query,
-            "output_col": "Website Summary",
+            "cfg": cfg,
+            "output_col": EXA_OUTPUT_COL.get(cfg.get("mode", "summary"), "Website Summary"),
             "concurrency": st.session_state.get("exa_concurrency", 50),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
         task_id = create_task(workspace_id, payload, total)
         if task_id:
             st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
-            _log.info(f"Queued Exa task {task_id} workspace={workspace_id} rows={total}")
+            _log.info(f"Queued Exa task {task_id} workspace={workspace_id} rows={total} mode={cfg.get('mode')}")
         else:
             st.error("Failed to create task. Check DB connection.")
     except Exception as e:
@@ -771,7 +789,7 @@ def _render_run_section_exa(
     df: pd.DataFrame,
     filtered_df: pd.DataFrame,
     url_col: str,
-    query: str,
+    cfg: dict,
 ) -> None:
     st.markdown("**Run**")
     autorun = st.session_state.pop("panel_autorun", False)
@@ -780,7 +798,7 @@ def _render_run_section_exa(
     workspace_id = st.session_state.get("workspace_id")
 
     if autorun and not running:
-        _do_run_exa(df, row_indices, url_col, query)
+        _do_run_exa(df, row_indices, url_col, cfg)
         return
 
     can_queue = workspace_id and st.session_state.get("row_mode") in ("All", "Fill missing", "Filtered")
@@ -792,17 +810,17 @@ def _render_run_section_exa(
                 "Running..." if running else "Run (inline)",
                 use_container_width=True, key="btn_run", disabled=running,
             ):
-                _do_run_exa(df, row_indices, url_col, query)
+                _do_run_exa(df, row_indices, url_col, cfg)
         with c2:
             if st.button("Queue (background)", type="primary", use_container_width=True,
                          key="btn_queue_exa", disabled=running):
-                _queue_exa_task(workspace_id, df, row_indices, url_col, query)
+                _queue_exa_task(workspace_id, df, row_indices, url_col, cfg)
     else:
         if st.button(
             "Running..." if running else "Run",
             type="primary", use_container_width=True, key="btn_run", disabled=running,
         ):
-            _do_run_exa(df, row_indices, url_col, query)
+            _do_run_exa(df, row_indices, url_col, cfg)
 
 
 # ── Main panel ─────────────────────────────────────────────────────────────────
@@ -826,7 +844,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             _do_run_exa(
                 df, _ri,
                 st.session_state.get("run_exa_url_col", ""),
-                st.session_state.get("run_exa_query", DEFAULT_EXA_QUERY),
+                st.session_state.get("run_exa_cfg", {"mode": "summary", "query": DEFAULT_EXA_QUERY}),
             )
         else:
             _do_run_llm(
@@ -895,37 +913,99 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                     if any(k in c.lower() for k in ("website", "url", "domain", "site"))]
         all_cols = list(df.columns)
         default_url_options = url_cols if url_cols else all_cols
-        url_col = st.selectbox("URL column", options=default_url_options, key="exa_url_col")
-        st.caption("Fetches website content summary from Exa AI. Requires Exa API key in Settings.")
 
-        # Exa query editor
-        if "exa_query_text" not in st.session_state:
-            if _EXA_QUERY_PATH.exists():
-                st.session_state.exa_query_text = _EXA_QUERY_PATH.read_text(encoding="utf-8")
-            else:
-                st.session_state.exa_query_text = DEFAULT_EXA_QUERY
+        url_col_idx, mode_col = st.columns([3, 2])
+        with url_col_idx:
+            url_col = st.selectbox("URL column", options=default_url_options, key="exa_url_col",
+                                   label_visibility="collapsed")
+        with mode_col:
+            exa_mode = st.selectbox(
+                "Mode",
+                options=list(EXA_MODES.keys()),
+                format_func=lambda k: EXA_MODES[k],
+                key="exa_mode",
+                label_visibility="collapsed",
+            )
 
-        qcap, qsave = st.columns([5, 1])
-        with qcap:
-            st.caption("Exa summary query — instructs how to summarize the website")
-        with qsave:
-            if st.button("Save", key="_btn_save_exa_query", use_container_width=True):
-                _EXA_QUERY_PATH.parent.mkdir(parents=True, exist_ok=True)
-                _EXA_QUERY_PATH.write_text(st.session_state.exa_query_text, encoding="utf-8")
-                st.toast("Exa query saved")
+        # Count empty URLs in current selection to warn user
+        empty_url_count = df[url_col].apply(
+            lambda v: not str(v).strip() or str(v).strip() in ("nan", "None")
+        ).sum()
+        if empty_url_count:
+            st.caption(f"{empty_url_count} rows with empty URL will be auto-skipped.")
 
-        st.text_area(
-            "Exa query",
-            height=180,
-            key="exa_query_text",
-            label_visibility="collapsed",
-        )
-        exa_query = st.session_state.get("exa_query_text", DEFAULT_EXA_QUERY)
+        # Mode-specific config
+        exa_cfg: dict = {"mode": exa_mode, "max_age_hours": 24}
+
+        if exa_mode in ("summary", "highlights", "structured"):
+            default_q = (
+                DEFAULT_HIGHLIGHTS_QUERY if exa_mode == "highlights"
+                else DEFAULT_EXA_QUERY
+            )
+            if "exa_query_text" not in st.session_state:
+                if _EXA_QUERY_PATH.exists():
+                    st.session_state.exa_query_text = _EXA_QUERY_PATH.read_text(encoding="utf-8")
+                else:
+                    st.session_state.exa_query_text = default_q
+
+            qcap, qsave = st.columns([5, 1])
+            with qcap:
+                label = "Summary query" if exa_mode == "summary" else (
+                    "Highlights query" if exa_mode == "highlights" else "Structured summary query"
+                )
+                st.caption(label)
+            with qsave:
+                if st.button("Save", key="_btn_save_exa_query", use_container_width=True):
+                    _EXA_QUERY_PATH.parent.mkdir(parents=True, exist_ok=True)
+                    _EXA_QUERY_PATH.write_text(st.session_state.exa_query_text, encoding="utf-8")
+                    st.toast("Query saved")
+
+            st.text_area("Exa query", height=150, key="exa_query_text",
+                         label_visibility="collapsed")
+            exa_cfg["query"] = st.session_state.get("exa_query_text", default_q)
+
+            if exa_mode == "structured":
+                import json as _json
+                st.caption("JSON Schema — defines output fields")
+                schema_str = st.text_area(
+                    "Schema", height=120,
+                    value=_json.dumps(DEFAULT_STRUCTURED_SCHEMA, indent=2),
+                    key="exa_schema_text",
+                    label_visibility="collapsed",
+                )
+                try:
+                    exa_cfg["schema"] = _json.loads(schema_str)
+                except Exception:
+                    st.warning("Invalid JSON schema — using default.")
+                    exa_cfg["schema"] = DEFAULT_STRUCTURED_SCHEMA
+
+            if exa_mode == "highlights":
+                exa_cfg["max_chars"] = st.slider(
+                    "Max chars per highlight", 500, 5000, 1500, 250, key="exa_hl_chars",
+                    label_visibility="collapsed",
+                )
+
+        else:  # text mode
+            c1, c2 = st.columns(2)
+            with c1:
+                exa_cfg["max_chars"] = st.slider(
+                    "Max characters", 1000, 20000, 5000, 500, key="exa_text_chars",
+                )
+            with c2:
+                exa_cfg["verbosity"] = st.selectbox(
+                    "Verbosity", ["compact", "standard", "full"],
+                    index=1, key="exa_text_verbosity",
+                )
+            st.caption("Raw text will be saved to 'Website Text' — run LLM enrichment on it afterwards.")
 
     st.markdown("---")
 
     # -- OUTPUT (if results exist) --
     if st.session_state.get("run_results") is not None:
+        # Show skipped count for Exa runs
+        skipped = st.session_state.get("run_exa_skipped", 0)
+        if skipped and st.session_state.get("run_type") == "exa":
+            st.caption(f"{skipped} rows skipped (empty URL)")
         _render_output_section(df)
     else:
         # -- RUN --
@@ -934,4 +1014,4 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         elif enrichment_type == "MX Check":
             _render_run_section_mx(df, filtered_df, email_col)
         else:
-            _render_run_section_exa(df, filtered_df, url_col, exa_query)
+            _render_run_section_exa(df, filtered_df, url_col, exa_cfg)
