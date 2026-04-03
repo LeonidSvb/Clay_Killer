@@ -147,27 +147,33 @@ def _render_output_section(df: pd.DataFrame) -> None:
 
     st.markdown("**Output**")
 
-    # Preview table — source cols + output cols, scrollable
-    ok_results = [r for r in results if r["ok"] and r.get("data")]
-    if ok_results:
-        prompt_cols = st.session_state.get("run_prompt_cols", [])
-        df_full: pd.DataFrame | None = st.session_state.get("df")
+    ok = sum(1 for r in results if r["ok"])
+    st.caption(
+        f"Completed in {elapsed:.1f}s | {len(results)} processed | "
+        f"ok: {ok} | errors: {len(results) - ok}"
+    )
 
+    # Preview table — input cols on left, output cols on right, all rows including errors
+    prompt_cols = st.session_state.get("run_prompt_cols", [])
+    df_full: pd.DataFrame | None = st.session_state.get("df")
+
+    display_results = [r for r in results if r.get("data")]
+    if display_results:
         preview_rows = []
-        for r in ok_results:
+        for r in display_results:
             row_data = {}
-            # Source columns used in prompt
-            if df_full is not None and prompt_cols:
+            # Left: input columns used in this enrichment
+            if df_full is not None:
                 for pc in prompt_cols:
                     if pc in df_full.columns:
                         val = df_full.at[r["idx"], pc]
-                        row_data[pc] = str(val)[:60] if str(val) not in ("nan", "None") else ""
+                        row_data[pc] = str(val)[:80] if str(val) not in ("nan", "None") else ""
+            # Right: output columns
             row_data.update({k: v for k, v in r["data"].items() if k != "raw"})
             preview_rows.append(row_data)
 
         preview_df = pd.DataFrame(preview_rows)
 
-        # Column config: small width for short-value cols, center via Styler
         _SMALL_COLS = {"confidence", "score", "result", "mx_provider"}
         col_cfg = {}
         center_cols = []
@@ -191,15 +197,12 @@ def _render_output_section(df: pd.DataFrame) -> None:
             column_config=col_cfg if col_cfg else None,
         )
 
-    # Run summary stats
-    _render_run_summary(results, elapsed)
-
     st.markdown("---")
 
-    # Collect all output keys from successful results
+    # Collect all output keys (from all rows, including error rows)
     all_keys: set[str] = set()
     for r in results:
-        if r["ok"] and r.get("data"):
+        if r.get("data"):
             all_keys.update(r["data"].keys())
     all_keys.discard("raw")
 
@@ -585,6 +588,12 @@ def _log_and_store_llm(results: list[dict], elapsed: float) -> None:
             _log.error(f"LLM row {r['idx']} | {r['error']}")
         elif r.get("elapsed", 0) > 15:
             _log.warning(f"LLM slow row {r['idx']} | elapsed={r['elapsed']:.1f}s")
+    # Populate error markers for failed rows using keys from successful rows
+    ok_keys = {k for r in results if r["ok"] and r.get("data") for k in r["data"] if k != "raw"}
+    for r in results:
+        if not r["ok"]:
+            err = r.get("error") or "error"
+            r["data"] = {k: f"[{err}]" for k in ok_keys} if ok_keys else {"result": f"[{err}]"}
     st.session_state.run_in_progress = False
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
@@ -598,13 +607,14 @@ def _log_and_store_mx(results: list[dict], elapsed: float) -> None:
         if not r["ok"] and r.get("error"):
             _log.error(f"MX row {r['idx']} | {r['error']}")
     for r in results:
+        err = r.get("error") or "error"
         if r["ok"]:
             r["data"] = {
                 "mx_provider": r.get("mx_provider", ""),
                 "mx_real": r.get("mx_real", ""),
             }
         else:
-            r["data"] = {}
+            r["data"] = {"mx_provider": f"[{err}]", "mx_real": ""}
     st.session_state.run_in_progress = False
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
@@ -617,6 +627,11 @@ def _log_and_store_exa(results: list[dict], elapsed: float) -> None:
     for r in results:
         if not r["ok"] and r.get("error"):
             _log.error(f"Exa row {r['idx']} | {r['error']}")
+    # Populate error markers so failed rows show up in preview and can be saved
+    for r in results:
+        if not r["ok"]:
+            err = r.get("error") or "error"
+            r["data"] = {"Website Summary": f"[{err}]"}
     st.session_state.run_in_progress = False
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
@@ -675,6 +690,7 @@ def _do_run_mx(
     st.session_state["run_row_indices"] = row_indices
     st.session_state["run_type"] = "mx"
     st.session_state["run_email_col_stored"] = email_col
+    st.session_state["run_prompt_cols"] = [email_col]
 
     st.session_state.run_in_progress = True
     _log.info(f"MX run started | rows={len(row_indices)} email_col={email_col} concurrency={concurrency}")
@@ -707,6 +723,7 @@ def _do_run_exa(
     st.session_state["run_type"] = "exa"
     st.session_state["run_exa_url_col"] = url_col
     st.session_state["run_exa_query"] = query
+    st.session_state["run_prompt_cols"] = [url_col]
 
     st.session_state.run_in_progress = True
     _log.info(f"Exa run started | rows={len(row_indices)} url_col={url_col} concurrency={concurrency}")

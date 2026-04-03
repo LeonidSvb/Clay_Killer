@@ -84,10 +84,11 @@ def _render_prompt_library() -> None:
         )
 
         if selected != "— select saved prompt —" and selected != st.session_state.get("_loaded_prompt_name"):
-            text, _ = load_enrichment_prompt(selected)
+            text, _, default_output_col = load_enrichment_prompt(selected)
             st.session_state.prompt_textarea = text
             st.session_state["_loaded_prompt_name"] = selected
             st.session_state["_loaded_prompt_text"] = text
+            st.session_state["prompt_default_output_col"] = default_output_col
             st.session_state.pop("_confirm_delete", None)
             st.rerun()
 

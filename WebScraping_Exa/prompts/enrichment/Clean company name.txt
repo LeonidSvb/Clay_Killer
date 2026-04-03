@@ -1,3 +1,4 @@
+# output: Clean Company
 Normalize the company name to the core brand employees actually use in casual conversation.
 
 Rules:

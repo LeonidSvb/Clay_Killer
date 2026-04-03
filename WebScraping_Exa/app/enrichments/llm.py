@@ -38,21 +38,32 @@ def list_enrichment_prompts() -> list[str]:
     return sorted(p.stem for p in ENRICHMENT_PROMPTS_DIR.glob("*.txt"))
 
 
-def load_enrichment_prompt(name: str) -> tuple[str, bool]:
+def load_enrichment_prompt(name: str) -> tuple[str, bool, str]:
     """
-    Returns (template_text, is_column_style).
+    Returns (template_text, is_column_style, default_output_col).
     Detection is content-based:
       - has {text}            → legacy style: concatenate input_columns → format(text=)
       - no {text}, has {{..}} → column style: replace {{col}} per row
       - neither               → legacy style (concatenate as fallback)
+    Parses `# output: ColName` lines from template and strips them before returning.
     """
     path = ENRICHMENT_PROMPTS_DIR / f"{name}.txt"
     if not path.exists():
         raise FileNotFoundError(f"Prompt not found in prompts/enrichment/: {name}")
-    template = path.read_text(encoding="utf-8")
-    # If template uses {text} placeholder → legacy concatenation mode
+    raw = path.read_text(encoding="utf-8")
+
+    # Parse and strip `# output: ColName` metadata lines
+    output_col = ""
+    clean_lines = []
+    for line in raw.splitlines():
+        if line.startswith("# output:"):
+            output_col = line[len("# output:"):].strip()
+        else:
+            clean_lines.append(line)
+    template = "\n".join(clean_lines).rstrip("\n") + "\n"
+
     is_column_style = "{text}" not in template
-    return template, is_column_style
+    return template, is_column_style, output_col
 
 
 def save_enrichment_prompt(name: str, content: str) -> None:
