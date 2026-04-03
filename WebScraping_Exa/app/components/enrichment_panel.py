@@ -258,11 +258,10 @@ def _render_output_section(df: pd.DataFrame) -> None:
             else:
                 col_selections[key] = None
 
-    # Rerun / Save / Discard
+    # Edit params / Save / Discard
     r_col, s1, s2 = st.columns(3)
     with r_col:
-        if st.button("Rerun", use_container_width=True, key="_btn_rerun"):
-            st.session_state["panel_rerun"] = True
+        if st.button("Edit params", use_container_width=True, key="_btn_rerun"):
             st.session_state["run_results"] = None
             st.session_state["run_elapsed"] = 0.0
             st.rerun()
@@ -636,7 +635,7 @@ def _log_and_store_exa(results: list[dict], skipped: int, elapsed: float) -> Non
     )
     for r in results:
         if not r["ok"] and r.get("error"):
-            _log.error(f"Exa row {r['idx']} | {r['error']}")
+            _log.error(f"Exa row {r['idx']} | url={r.get('url', '')} | {r['error']}")
     # Determine output col name for this mode
     mode = st.session_state.get("run_exa_mode", "summary")
     out_col = EXA_OUTPUT_COL.get(mode) or "Website Summary"
@@ -833,34 +832,23 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     if filtered_df is None:
         filtered_df = df
 
-    # Handle rerun request (triggered from Rerun button in output section)
-    if st.session_state.get("panel_rerun") and not st.session_state.get("run_in_progress"):
-        st.session_state.pop("panel_rerun", None)
-        _ri = st.session_state.get("run_row_indices", [])
-        _rt = st.session_state.get("run_type")
-        if _rt == "mx":
-            _do_run_mx(df, _ri, st.session_state.get("run_email_col_stored", ""))
-        elif _rt == "exa":
-            _do_run_exa(
-                df, _ri,
-                st.session_state.get("run_exa_url_col", ""),
-                st.session_state.get("run_exa_cfg", {"mode": "summary", "query": DEFAULT_EXA_QUERY}),
-            )
-        else:
-            _do_run_llm(
-                df, _ri,
-                st.session_state.get("prompt_textarea", ""),
-                st.session_state.get("panel_output_type", "Extract"),
-                st.session_state.get("include_reasoning", False),
-                st.session_state.get("include_guardrail", False),
-            )
-        return
-
     st.markdown("### Enrichment")
 
     # If run in progress — show progress + Stop, skip the rest of the panel
     if st.session_state.get("run_in_progress"):
         _poll_and_render_progress()
+        return
+
+    # If results exist — show only output section (no config shown to avoid type mismatch)
+    if st.session_state.get("run_results") is not None:
+        _rt = st.session_state.get("run_type", "llm")
+        _type_label = {"llm": "LLM Extraction", "mx": "MX Check", "exa": "Exa Summary"}.get(_rt, _rt)
+        skipped = st.session_state.get("run_exa_skipped", 0)
+        if skipped and _rt == "exa":
+            st.caption(f"{_type_label} | {skipped} rows skipped (empty URL)")
+        else:
+            st.caption(_type_label)
+        _render_output_section(df)
         return
 
     # Type selector
@@ -1000,18 +988,10 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
 
     st.markdown("---")
 
-    # -- OUTPUT (if results exist) --
-    if st.session_state.get("run_results") is not None:
-        # Show skipped count for Exa runs
-        skipped = st.session_state.get("run_exa_skipped", 0)
-        if skipped and st.session_state.get("run_type") == "exa":
-            st.caption(f"{skipped} rows skipped (empty URL)")
-        _render_output_section(df)
+    # -- RUN --
+    if enrichment_type == "LLM Extraction":
+        _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning, include_guardrail)
+    elif enrichment_type == "MX Check":
+        _render_run_section_mx(df, filtered_df, email_col)
     else:
-        # -- RUN --
-        if enrichment_type == "LLM Extraction":
-            _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning, include_guardrail)
-        elif enrichment_type == "MX Check":
-            _render_run_section_mx(df, filtered_df, email_col)
-        else:
-            _render_run_section_exa(df, filtered_df, url_col, exa_cfg)
+        _render_run_section_exa(df, filtered_df, url_col, exa_cfg)

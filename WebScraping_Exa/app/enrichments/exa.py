@@ -144,11 +144,11 @@ async def _fetch_one(
     mode = cfg.get("mode", "summary")
 
     if stop_event.is_set():
-        return {"idx": idx, "data": {}, "ok": False, "error": "stopped", "elapsed": 0.0}
+        return {"idx": idx, "url": url, "data": {}, "ok": False, "error": "stopped", "elapsed": 0.0}
 
     # Auto-skip empty / clearly invalid URLs
     if not url or url in ("nan", "None", "http://", "https://"):
-        return {"idx": idx, "data": {}, "ok": False, "error": "empty_url", "elapsed": 0.0}
+        return {"idx": idx, "url": url, "data": {}, "ok": False, "error": "empty_url", "elapsed": 0.0}
 
     t0 = time.time()
     async with sem:
@@ -163,30 +163,30 @@ async def _fetch_one(
                 elapsed = time.time() - t0
                 if resp.status != 200:
                     err_body = await resp.text()
-                    return {"idx": idx, "data": {}, "ok": False,
+                    return {"idx": idx, "url": url, "data": {}, "ok": False,
                             "error": f"HTTP_{resp.status}: {err_body[:60]}", "elapsed": elapsed}
 
-                data     = await resp.json()
+                data        = await resp.json()
                 exa_results = data.get("results", [])
 
                 if not exa_results:
-                    return {"idx": idx, "data": {}, "ok": False,
+                    return {"idx": idx, "url": url, "data": {}, "ok": False,
                             "error": "no_result", "elapsed": elapsed}
 
                 output = extract_output(exa_results[0], mode)
 
                 if not output:
-                    return {"idx": idx, "data": {}, "ok": False,
+                    return {"idx": idx, "url": url, "data": {}, "ok": False,
                             "error": "empty_content", "elapsed": elapsed}
 
-                return {"idx": idx, "data": output, "ok": True,
+                return {"idx": idx, "url": url, "data": output, "ok": True,
                         "error": None, "elapsed": elapsed}
 
         except asyncio.TimeoutError:
-            return {"idx": idx, "data": {}, "ok": False,
+            return {"idx": idx, "url": url, "data": {}, "ok": False,
                     "error": "timeout", "elapsed": time.time() - t0}
         except Exception as e:
-            return {"idx": idx, "data": {}, "ok": False,
+            return {"idx": idx, "url": url, "data": {}, "ok": False,
                     "error": str(e)[:100], "elapsed": time.time() - t0}
 
 

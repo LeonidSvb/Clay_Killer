@@ -168,6 +168,67 @@ def _run_mx(task_id: int, workspace_id: int, leads: list, payload: dict) -> None
     log.info(f"Task {task_id} MX done: {ok}/{len(results_holder)} ok, {errors} errors")
 
 
+# ---------------------------------------------------------------------------
+# Exa enrichment
+# ---------------------------------------------------------------------------
+
+def _run_exa(task_id: int, workspace_id: int, leads: list, payload: dict) -> None:
+    from app.enrichments.exa import run_exa_enrichment
+    from core.tasks import update_task_progress, complete_task
+
+    df = _leads_to_df(leads)
+    row_indices = _get_row_indices(leads, payload)
+    cfg = payload.get("cfg", {"mode": "summary"})
+    output_col = payload.get("output_col", "Website Summary")
+
+    pq: queue.Queue = queue.Queue()
+    se = threading.Event()
+    results_holder: list = []
+    skipped_holder: list = [0]
+
+    def _worker():
+        results, skipped = run_exa_enrichment(
+            df=df,
+            url_col=payload.get("url_col", "Company Website"),
+            row_indices=row_indices,
+            cfg=cfg,
+            concurrency=payload.get("concurrency", 50),
+            progress_queue=pq,
+            stop_event=se,
+            api_key=os.getenv("EXA_API_KEY", ""),
+        )
+        results_holder.extend(results)
+        skipped_holder[0] = skipped
+
+    thread = threading.Thread(target=_worker, daemon=True)
+    thread.start()
+
+    last_saved = 0
+    while thread.is_alive():
+        _drain_queue(pq)
+        count = len(results_holder)
+        if count - last_saved >= BATCH_SAVE_SIZE:
+            _save_batch(workspace_id, leads, results_holder[last_saved:count], output_col)
+            last_saved = count
+            errors = sum(1 for r in results_holder[:count] if not r["ok"])
+            update_task_progress(task_id, count, errors)
+        time.sleep(0.5)
+
+    thread.join()
+
+    if last_saved < len(results_holder):
+        _save_batch(workspace_id, leads, results_holder[last_saved:], output_col)
+
+    ok = sum(1 for r in results_holder if r["ok"])
+    errors = len(results_holder) - ok
+    update_task_progress(task_id, len(results_holder), errors)
+    complete_task(task_id)
+    log.info(
+        f"Task {task_id} Exa done: {ok}/{len(results_holder)} ok, "
+        f"{errors} errors, {skipped_holder[0]} skipped (empty URL)"
+    )
+
+
 def _normalize_mx(results: list) -> list:
     out = []
     for r in results:
@@ -248,6 +309,8 @@ def process_task(task: dict) -> None:
 
     if enrichment_type == "mx":
         _run_mx(task_id, workspace_id, leads, payload)
+    elif enrichment_type == "exa":
+        _run_exa(task_id, workspace_id, leads, payload)
     else:
         _run_llm(task_id, workspace_id, leads, payload)
 
