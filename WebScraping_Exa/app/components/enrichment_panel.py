@@ -277,7 +277,11 @@ def _render_output_section(df: pd.DataFrame) -> None:
                 idx = result["idx"]
                 for src_key, dst_name in rename_map.items():
                     if src_key in result["data"]:
-                        st.session_state.df.at[idx, dst_name] = result["data"][src_key]
+                        val = result["data"][src_key]
+                        if isinstance(val, (list, dict)):
+                            import json as _json
+                            val = _json.dumps(val, ensure_ascii=False)
+                        st.session_state.df.at[idx, dst_name] = val
 
             existing_new = st.session_state.get("new_cols", [])
             st.session_state.new_cols = list(set(existing_new + new_col_names))
