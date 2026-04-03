@@ -14,7 +14,7 @@ except ImportError:
     psycopg2 = None
 
 
-def create_task(workspace_id: int, payload: dict, total: int = 0) -> Optional[int]:
+def create_task(workspace_id: int, payload: dict, total: int = 0, task_type: str = "enrichment") -> Optional[int]:
     from core.db import get_connection
     conn = get_connection()
     if not conn:
@@ -24,11 +24,11 @@ def create_task(workspace_id: int, payload: dict, total: int = 0) -> Optional[in
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO tasks (workspace_id, payload, total)
-                    VALUES (%s, %s, %s)
+                    INSERT INTO tasks (workspace_id, type, payload, total)
+                    VALUES (%s, %s, %s, %s)
                     RETURNING id
                     """,
-                    (workspace_id, psycopg2.extras.Json(payload), total)
+                    (workspace_id, task_type, psycopg2.extras.Json(payload), total)
                 )
                 return cur.fetchone()[0]
     finally:

@@ -22,14 +22,18 @@ import queue
 import threading
 import time
 from collections import Counter
+from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 
 from app.components.prompt_editor import render_prompt_editor
+from app.enrichments.exa import run_exa_enrichment, DEFAULT_EXA_QUERY
 from app.enrichments.llm import run_llm_enrichment
 from app.enrichments.mx import run_mx_enrichment
 from app.utils.logger import get_logger
+
+_EXA_QUERY_PATH = Path(__file__).parent.parent.parent / "prompts" / "exa_summary_query.txt"
 
 _log = get_logger()
 
@@ -201,6 +205,9 @@ def _render_output_section(df: pd.DataFrame) -> None:
     def _default_rename(key: str) -> str:
         if last_save_map and key in last_save_map:
             return last_save_map[key]
+        prompt_default = st.session_state.get("prompt_default_output_col", "")
+        if prompt_default and key == "value":
+            return prompt_default
         return key
 
     # Column include + rename UI
@@ -420,7 +427,7 @@ def _queue_llm_task(
             "concurrency": st.session_state.get("llm_concurrency", 50),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
-        task_id = create_task(workspace_id, payload, total)
+        task_id = create_task(workspace_id, payload, total, task_type="llm_extraction")
         if task_id:
             st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
             _log.info(f"Queued LLM task {task_id} workspace={workspace_id} rows={total}")
@@ -446,7 +453,7 @@ def _queue_mx_task(
             "concurrency": st.session_state.get("mx_concurrency", 60),
             "filter_empty": st.session_state.get("row_mode") == "Fill missing",
         }
-        task_id = create_task(workspace_id, payload, total)
+        task_id = create_task(workspace_id, payload, total, task_type="mx_check")
         if task_id:
             st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
             _log.info(f"Queued MX task {task_id} workspace={workspace_id} rows={total}")
@@ -519,8 +526,11 @@ def _poll_and_render_progress() -> None:
         elapsed = time.time() - t0
         results = list(holder)
 
-        if st.session_state.get("run_type") == "mx":
+        run_type = st.session_state.get("run_type")
+        if run_type == "mx":
             _log_and_store_mx(results, elapsed)
+        elif run_type == "exa":
+            _log_and_store_exa(results, elapsed)
         else:
             _log_and_store_llm(results, elapsed)
 
@@ -570,6 +580,18 @@ def _log_and_store_mx(results: list[dict], elapsed: float) -> None:
             }
         else:
             r["data"] = {}
+    st.session_state.run_in_progress = False
+    st.session_state.run_results = results
+    st.session_state.run_elapsed = elapsed
+
+
+def _log_and_store_exa(results: list[dict], elapsed: float) -> None:
+    row_indices = st.session_state.get("run_row_indices", [])
+    ok = sum(1 for r in results if r["ok"])
+    _log.info(f"Exa run done | rows={len(row_indices)} ok={ok} errors={len(results)-ok} elapsed={elapsed:.1f}s")
+    for r in results:
+        if not r["ok"] and r.get("error"):
+            _log.error(f"Exa row {r['idx']} | {r['error']}")
     st.session_state.run_in_progress = False
     st.session_state.run_results = results
     st.session_state.run_elapsed = elapsed
@@ -642,6 +664,103 @@ def _do_run_mx(
     st.rerun()
 
 
+def _do_run_exa(
+    df: pd.DataFrame,
+    row_indices: list[int],
+    url_col: str,
+    query: str,
+) -> None:
+    if st.session_state.get("run_in_progress"):
+        return
+    api_key = st.session_state.get("exa_key", "") or os.getenv("EXA_API_KEY", "")
+    if not api_key:
+        st.error("Exa API key not set. Go to Settings tab.")
+        return
+    concurrency = st.session_state.get("exa_concurrency", 50)
+
+    st.session_state["run_row_indices"] = row_indices
+    st.session_state["run_type"] = "exa"
+    st.session_state["run_exa_url_col"] = url_col
+    st.session_state["run_exa_query"] = query
+
+    st.session_state.run_in_progress = True
+    _log.info(f"Exa run started | rows={len(row_indices)} url_col={url_col} concurrency={concurrency}")
+
+    def worker_fn(pq, se):
+        return run_exa_enrichment(
+            df=df, url_col=url_col, row_indices=row_indices,
+            query=query, concurrency=concurrency,
+            progress_queue=pq, stop_event=se, api_key=api_key,
+        )
+
+    _start_run_thread(worker_fn)
+    st.rerun()
+
+
+def _queue_exa_task(
+    workspace_id: int,
+    df: pd.DataFrame,
+    row_indices: list,
+    url_col: str,
+    query: str,
+) -> None:
+    try:
+        from core.tasks import create_task
+        total = len(row_indices)
+        payload = {
+            "enrichment_type": "exa",
+            "url_col": url_col,
+            "query": query,
+            "output_col": "Website Summary",
+            "concurrency": st.session_state.get("exa_concurrency", 50),
+            "filter_empty": st.session_state.get("row_mode") == "Fill missing",
+        }
+        task_id = create_task(workspace_id, payload, total, task_type="exa_scraping")
+        if task_id:
+            st.success(f"Task #{task_id} queued — {total:,} rows. Worker will process in background.")
+            _log.info(f"Queued Exa task {task_id} workspace={workspace_id} rows={total}")
+        else:
+            st.error("Failed to create task. Check DB connection.")
+    except Exception as e:
+        st.error(f"Queue failed: {e}")
+
+
+def _render_run_section_exa(
+    df: pd.DataFrame,
+    filtered_df: pd.DataFrame,
+    url_col: str,
+    query: str,
+) -> None:
+    st.markdown("**Run**")
+    autorun = st.session_state.pop("panel_autorun", False)
+    row_indices = _get_row_indices(df, filtered_df)
+    running = st.session_state.get("run_in_progress", False)
+    workspace_id = st.session_state.get("workspace_id")
+
+    if autorun and not running:
+        _do_run_exa(df, row_indices, url_col, query)
+        return
+
+    if workspace_id:
+        c1, c2 = st.columns(2)
+        with c1:
+            if st.button(
+                "Running..." if running else "Run (inline)",
+                use_container_width=True, key="btn_run", disabled=running,
+            ):
+                _do_run_exa(df, row_indices, url_col, query)
+        with c2:
+            if st.button("Queue (background)", type="primary", use_container_width=True,
+                         key="btn_queue_exa", disabled=running):
+                _queue_exa_task(workspace_id, df, row_indices, url_col, query)
+    else:
+        if st.button(
+            "Running..." if running else "Run",
+            type="primary", use_container_width=True, key="btn_run", disabled=running,
+        ):
+            _do_run_exa(df, row_indices, url_col, query)
+
+
 # ── Main panel ─────────────────────────────────────────────────────────────────
 
 def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
@@ -656,8 +775,15 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     if st.session_state.get("panel_rerun") and not st.session_state.get("run_in_progress"):
         st.session_state.pop("panel_rerun", None)
         _ri = st.session_state.get("run_row_indices", [])
-        if st.session_state.get("run_type") == "mx":
+        _rt = st.session_state.get("run_type")
+        if _rt == "mx":
             _do_run_mx(df, _ri, st.session_state.get("run_email_col_stored", ""))
+        elif _rt == "exa":
+            _do_run_exa(
+                df, _ri,
+                st.session_state.get("run_exa_url_col", ""),
+                st.session_state.get("run_exa_query", DEFAULT_EXA_QUERY),
+            )
         else:
             _do_run_llm(
                 df, _ri,
@@ -678,7 +804,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     # Type selector
     enrichment_type = st.selectbox(
         "Type",
-        ["LLM Extraction", "MX Check"],
+        ["LLM Extraction", "MX Check", "Exa Summary"],
         key="panel_enrichment_type",
         label_visibility="collapsed",
     )
@@ -709,7 +835,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             )
         prompt_text = render_prompt_editor(df, output_type)
 
-    else:  # MX Check
+    elif enrichment_type == "MX Check":
         email_cols = [c for c in df.columns if "email" in c.lower() or "mail" in c.lower()]
         all_cols = list(df.columns)
         default_options = email_cols if email_cols else all_cols
@@ -720,6 +846,38 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         )
         st.caption("Looks up MX records via DNS and classifies the email provider (Google, Microsoft, Zoho, etc.)")
 
+    else:  # Exa Summary
+        url_cols = [c for c in df.columns
+                    if any(k in c.lower() for k in ("website", "url", "domain", "site"))]
+        all_cols = list(df.columns)
+        default_url_options = url_cols if url_cols else all_cols
+        url_col = st.selectbox("URL column", options=default_url_options, key="exa_url_col")
+        st.caption("Fetches website content summary from Exa AI. Requires Exa API key in Settings.")
+
+        # Exa query editor
+        if "exa_query_text" not in st.session_state:
+            if _EXA_QUERY_PATH.exists():
+                st.session_state.exa_query_text = _EXA_QUERY_PATH.read_text(encoding="utf-8")
+            else:
+                st.session_state.exa_query_text = DEFAULT_EXA_QUERY
+
+        qcap, qsave = st.columns([5, 1])
+        with qcap:
+            st.caption("Exa summary query — instructs how to summarize the website")
+        with qsave:
+            if st.button("Save", key="_btn_save_exa_query", use_container_width=True):
+                _EXA_QUERY_PATH.parent.mkdir(parents=True, exist_ok=True)
+                _EXA_QUERY_PATH.write_text(st.session_state.exa_query_text, encoding="utf-8")
+                st.toast("Exa query saved")
+
+        st.text_area(
+            "Exa query",
+            height=180,
+            key="exa_query_text",
+            label_visibility="collapsed",
+        )
+        exa_query = st.session_state.get("exa_query_text", DEFAULT_EXA_QUERY)
+
     st.markdown("---")
 
     # -- OUTPUT (if results exist) --
@@ -729,5 +887,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         # -- RUN --
         if enrichment_type == "LLM Extraction":
             _render_run_section_llm(df, filtered_df, prompt_text, include_reasoning, include_guardrail)
-        else:
+        elif enrichment_type == "MX Check":
             _render_run_section_mx(df, filtered_df, email_col)
+        else:
+            _render_run_section_exa(df, filtered_df, url_col, exa_query)
