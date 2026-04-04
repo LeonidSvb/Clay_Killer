@@ -1,0 +1,126 @@
+CAMPAIGN PLAYBOOK — RECRUIT OUTREACH
+================================================================================
+Last updated: 2026-04-04
+
+FILES IN THIS FOLDER:
+
+  EU (941 leads):
+    eu_ab_test_20260404.csv      — USE THIS — both variants in one file
+    eu_A_dealflow_20260404.csv   — variant A only (backup)
+    eu_C_softcta_20260404.csv    — variant C only (backup)
+
+  US (1634 leads):
+    us_ab_test_20260404.csv      — USE THIS — both variants in one file
+    us_A_dealflow_20260404.csv   — variant A only (backup)
+    us_B_lowercase_20260404.csv  — variant B only (backup)
+
+SOURCE:
+  EU: _Europe+ recruit - 4500_All.csv (non-microsoft, all countries)
+  US: _US+ recruit 10-100 - 7200 GM.csv
+      filtered: non-microsoft only, minus 575 already sent via Plusvibe
+================================================================================
+
+
+SUBJECT LINE (same for all variants)
+--------------------------------------
+intro for {{company_name}}?
+
+  - company_name column in CSV
+  - keep question mark
+  - no capitals
+
+
+================================================================================
+STEP 1 — INITIAL EMAIL
+================================================================================
+
+VARIANT A — deal flow CTA
+--------------------------
+Subject: intro for {{company_name}}?
+
+your name came up on my end,
+
+{{icebreaker}}
+
+can plug you into the deal flow if you want
+
+
+VARIANT C — soft CTA
+----------------------
+Subject: intro for {{company_name}}?
+
+your name came up on my end,
+
+{{icebreaker}}
+
+worth intro'ing you?
+
+
+VARIABLES:
+  {{company_name}}   → company_name column
+  {{icebreaker}}     → icebreaker column (same line for both variants)
+  OR use full email columns directly:
+  email_a_dealflow   → full email variant A (ready to paste)
+  email_c_softcta    → full email variant C (ready to paste)
+
+CAPITALIZATION — VARIANT A:
+  HR, IT, CEO, COO, CFO, CTO, VP, GM, SaaS, ML, AI → UPPERCASE
+  everything else → lowercase
+  first_name → keep original capitalisation (e.g. "Victor" not "victor")
+
+CAPITALIZATION — VARIANT B (US only, lowercase test):
+  everything lowercase including hr, ceo, saas, vp, gm, it, ml, ai
+  first_name → lowercase too
+
+
+================================================================================
+STEP 2 — BREAK-UP (send day +2, no reply)
+================================================================================
+
+Subject: intro for {{company_name}}?  ← same thread, no new subject
+
+hey {{first_name}}, looks like the search side isn't a priority right now
+at {{clean_company}} — makes sense, good luck with it
+
+VARIABLES:
+  {{first_name}}     → first_name column
+  {{clean_company}}  → clean_company column
+
+
+================================================================================
+USEFUL COLUMNS FOR CALL PREP (when they reply)
+================================================================================
+
+  linkedin_url           → contact's LinkedIn profile
+  company_linkedin_url   → company LinkedIn page
+  headline               → their current title/role
+  primary_service        → what type of recruiting they do
+  sub_industry           → their niche
+  matrix_pain            → the pain point used in outreach (context for call)
+  country                → their market
+
+
+================================================================================
+A/B TEST — WHAT WE'RE TESTING
+================================================================================
+
+EU TEST (941 leads):
+  Variant A  →  "can plug you into the deal flow if you want"
+  Variant C  →  "worth intro'ing you?"
+  Hypothesis: softer CTA converts better in EU market
+  File: eu_ab_test_20260404.csv  columns: email_a_dealflow / email_c_softcta
+
+US TEST (1634 leads):
+  Variant A  →  normal capitalisation (HR, CEO, SaaS etc uppercase)
+  Variant B  →  fully lowercase (hr, ceo, saas, vp, gm, it, ml, ai)
+  Hypothesis: lowercase feels less templated, higher reply rate
+  File: us_ab_test_20260404.csv  columns: email_a_dealflow / email_b_lowercase
+
+
+================================================================================
+ERRORS TO WATCH
+================================================================================
+
+  ~4-9 rows per run have API errors (custom_personalisation starts with ERROR)
+  → filter these out before uploading to sending tool
+  → or re-run: py icebreakers_round_robin/run_icebreaker.py --variant A --sample 5
