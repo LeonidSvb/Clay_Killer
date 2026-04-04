@@ -81,7 +81,10 @@ def parse_json_response(raw: str) -> dict:
 
     # попробовать напрямую
     try:
-        return json.loads(cleaned)
+        result = json.loads(cleaned)
+        if isinstance(result, list):
+            return {"items": result}
+        return result
     except Exception:
         pass
 

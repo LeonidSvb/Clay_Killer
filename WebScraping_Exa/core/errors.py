@@ -114,7 +114,7 @@ def split_into_output_and_error(
         r2 = dict(r)
         error_col = f"{output_col} Error"
 
-        if r["ok"] and r.get("data"):
+        if r["ok"] and r.get("data") and isinstance(r["data"], dict):
             # Success: keep data as-is, ensure no error col
             r2["data"] = {k: v for k, v in r["data"].items()}
         elif r.get("error"):
@@ -134,7 +134,7 @@ def collect_output_keys(results: list[dict]) -> set[str]:
     """All data keys across all results, excluding internal fields."""
     keys: set[str] = set()
     for r in results:
-        if r.get("data"):
+        if r.get("data") and isinstance(r["data"], dict):
             keys.update(r["data"].keys())
     keys.discard("raw")
     return keys
