@@ -1,0 +1,12 @@
+VARIANT C — Soft CTA
+HYPOTHESIS: softer close converts better in EU market
+PAIN_FIELD: pain
+MARKET: EU (~471 leads)
+---
+hey {{first_name}},
+
+your name came up on my end,
+
+{{custom_personalisation}}
+
+worth intro'ing you?

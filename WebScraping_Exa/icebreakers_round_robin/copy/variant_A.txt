@@ -1,0 +1,12 @@
+VARIANT A — Control (deal flow CTA)
+HYPOTHESIS: proven winner format, baseline for all tests
+PAIN_FIELD: pain
+MARKET: US (~580 leads)
+---
+hey {{first_name}},
+
+your name came up on my end,
+
+{{custom_personalisation}}
+
+can plug you into the deal flow if you want

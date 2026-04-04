@@ -1,0 +1,12 @@
+VARIANT E — Consequence pain + soft close
+HYPOTHESIS: implication framing works better for senior ICP
+PAIN_FIELD: pain_consequence
+MARKET: US or EU senior ICP
+---
+hey {{first_name}},
+
+your name came up on my end,
+
+{{custom_personalisation}}
+
+thought you two should connect

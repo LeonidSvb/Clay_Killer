@@ -1,0 +1,84 @@
+You are writing one cold email opener line for a recruiting agency.
+You must fill two slots and return ONLY the final sentence. Nothing else.
+
+SPINE TEMPLATE:
+figured i'd reach out - i talk to a lot of [dreamICP] and they keep saying they [pain]
+
+SLOTS TO FILL:
+[dreamICP] = a specific plural group of people in operator language (max 5-6 words)
+[pain]     = how they naturally complain (8-12 words, lowercase, no punctuation at end)
+
+BASE VALUES (from our ICP matrix — use as foundation, adjust only if signals support it):
+dreamICP_base: {{dreamICP_base}}
+pain_base:     {{pain_base}}
+
+COMPANY CONTEXT (use to fine-tune wording slightly):
+Company:          {{company_name}}
+Country:          {{country}}
+client_profile:   {{client_profile}}
+detected_signals: {{detected_signals}}
+
+---
+
+LANGUAGE RULES — dreamICP:
+
+TONE FALLBACK: when unsure → "{title} in {industry}" e.g. "HR leaders in pharma" / "founders in SaaS"
+
+COMPRESSION: prefer shortest version that keeps meaning
+  "founders at scaling SaaS startups" → "SaaS founders scaling"
+  "HR directors at hospital systems"  → "HR in hospitals"
+
+STAGE: use action not series label
+  BAD:  "Series B and C SaaS companies"
+  GOOD: "SaaS founders scaling" / "startups post-PMF" / "teams in growth mode"
+
+ONE TITLE: max one title or one natural pair ("founders and operators" is fine)
+  BAD: "founders, COOs and VPs of Engineering"
+
+SPEAK LIKE THE ICP, NOT ABOUT THE ICP:
+  BAD:  "HR leaders at pharma companies who struggle with..."
+  GOOD: "HR in pharma keeps running into..."
+
+REALISM: must sound like something the ICP would say about themselves
+  If it sounds like a pitch deck → rewrite it
+
+---
+
+LANGUAGE RULES — pain:
+
+[pain] MUST be a grammatically correct verb phrase following "they keep saying they ___"
+  GOOD: "can't fill roles without burning 3-4 months"
+  GOOD: "keep losing candidates late-stage"
+  GOOD: "always have a thin bench when a req opens"
+  BAD:  "finding a GM" / "talent shortages" / "search is slow" ← not verb phrases
+
+PAIN-LANGUAGE ALIGNMENT: ICP and pain must use the same language layer
+  ICP "people leaders at SaaS shops" → pain "pipeline is thin and offer-to-close keeps slipping"
+  NOT "people leaders at SaaS shops" → pain "struggling to find candidates" (too generic)
+
+USE INSIDER PAIN VOCAB WHEN RELEVANT:
+  thin bench / stalled pipeline / dragging search / drop-off / no-shows
+  recycling the same profiles / losing candidates late-stage / open reqs / time-to-fill
+
+---
+
+STRICT RULES:
+
+- Output ONE sentence. No explanation, no prefix, no quotes.
+- Spine EXACTLY: "figured i'd reach out - i talk to a lot of [dreamICP] and they keep saying they [pain]"
+- fully lowercase — EXCEPT acronyms: CEO, COO, CFO, CTO, VP, HR, IT, AI, GM stay UPPERCASE always
+- hyphen (-) not em dash (—)
+- numbers as digits: "3-4 months" not "three to four months"
+- Use contractions: "can't" not "cannot"
+- [dreamICP] must NEVER contain a specific city, region, or country name — country-level context is max allowed
+- If country is UK: may reference NHS or UK talent pool context in [pain] only
+- If client_profile is vc_growth/vc_early: pain can reference speed or burn
+- NEVER invent facts not in detected_signals
+- No punctuation at end
+
+FORBIDDEN WORDS — never use:
+  decision-makers, stakeholders, leaders, leading companies, innovative, end-to-end,
+  high-growth companies, best-in-class, top-tier, cutting-edge, optimize, leverage,
+  solutions, streamline, synergy, scalable, robust, holistic, world-class
+
+OUTPUT: just the one line. starts with "figured i'd reach out"

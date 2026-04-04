@@ -1,0 +1,272 @@
+{
+  "_meta": {
+    "format": "service__sub_industry",
+    "fields": {
+      "dreamICP": "plural ICP group in operator language — fills [dreamICP] slot in spine",
+      "pain": "8-12 words, lowercase, no punctuation, natural complaint",
+      "pain_alt": "alternative pain angle for A/B",
+      "pain_consequence": "what happens because of the pain — implication framing for senior ICP"
+    },
+    "rules": "pain must be specific, lowercase, no corporate speak, max 12 words"
+  },
+  "staffing__it_services": {
+    "dreamICP": "IT managers at mid-market tech firms",
+    "pain": "keep losing contractors mid-project because margins are too thin",
+    "pain_alt": "can't find reliable contractors who actually show up long-term",
+    "pain_consequence": "projects keep slipping because the contractor bench is always empty"
+  },
+  "staffing__hospitals": {
+    "dreamICP": "HR directors at hospital systems",
+    "pain": "can't fill last-minute shifts without paying agency premiums",
+    "pain_alt": "always short-staffed on nights and weekends and paying for it",
+    "pain_consequence": "patient care suffers every time a shift goes unfilled at premium cost"
+  },
+  "executive_search__saas": {
+    "dreamICP": "founders scaling SaaS startups",
+    "pain": "keep interviewing VP Sales candidates who can't build a team",
+    "pain_alt": "burning 4 months on exec searches that don't close",
+    "pain_consequence": "revenue targets slip every quarter the VP Sales seat stays empty"
+  },
+  "staffing__hospitality": {
+    "dreamICP": "people running hotels and restaurants",
+    "pain": "can't hold onto floor staff long enough to stop rehiring constantly",
+    "pain_alt": "spending more time on hiring than running the actual operation",
+    "pain_consequence": "guest experience takes the hit every time a shift goes uncovered"
+  },
+  "staffing__accounting": {
+    "dreamICP": "partners at accounting firms",
+    "pain": "can't find experienced CPAs willing to take contract roles",
+    "pain_alt": "losing billing hours every time a senior accountant goes permanent",
+    "pain_consequence": "client deadlines get pushed because the bench is always short"
+  },
+  "permanent_recruiting__ai_ml": {
+    "dreamICP": "CTOs at AI companies",
+    "pain": "everyone wants ML engineers but nobody can find ones who ship",
+    "pain_alt": "losing candidates to big tech offers before they even sign",
+    "pain_consequence": "roadmap keeps getting pushed because the core ML team is never complete"
+  },
+  "staffing__enterprise_software": {
+    "dreamICP": "HR leads at enterprise software firms",
+    "pain": "can't staff implementation projects fast enough when deals close",
+    "pain_alt": "always short on SAP and Oracle contractors when they're needed",
+    "pain_consequence": "client go-lives slip and renewals get awkward every time delivery is short-staffed"
+  },
+  "rpo__saas": {
+    "dreamICP": "heads of talent at scaling SaaS companies",
+    "pain": "internal recruiting team can't keep up with headcount targets",
+    "pain_alt": "hiring is slowing down growth more than the product ever did",
+    "pain_consequence": "board keeps asking why headcount is behind plan every single quarter"
+  },
+  "permanent_recruiting__it_services": {
+    "dreamICP": "talent leads at IT services firms",
+    "pain": "keep filling the same roles every 12 months when people leave",
+    "pain_alt": "can't retain tech hires long enough to recover placement costs",
+    "pain_consequence": "churn is eating margins and nobody has fixed the retention problem"
+  },
+  "permanent_recruiting__saas": {
+    "dreamICP": "founders at growth-stage SaaS startups",
+    "pain": "posting the same roles for 6 weeks and still interviewing wrong people",
+    "pain_alt": "every bad hire costs 3 months to fix and nobody has that time",
+    "pain_consequence": "team keeps doing extra work covering open seats while search drags on"
+  },
+  "staffing__specialty_trades": {
+    "dreamICP": "ops leads at construction and trades firms",
+    "pain": "can't staff skilled trades fast enough when projects ramp up",
+    "pain_alt": "constantly short on electricians and HVAC techs at peak season",
+    "pain_consequence": "project timelines blow out every time crew availability falls short"
+  },
+  "permanent_recruiting__enterprise_software": {
+    "dreamICP": "hiring managers at enterprise software firms",
+    "pain": "finding engineers who know legacy stacks and actually want to work in them",
+    "pain_alt": "losing senior devs to product companies before offers even go out",
+    "pain_consequence": "technical debt grows faster when the only people who know the stack keep leaving"
+  },
+  "staffing__cybersecurity": {
+    "dreamICP": "CISOs at mid-market tech companies",
+    "pain": "can't find vetted security contractors who clear background checks fast",
+    "pain_alt": "incident response gaps because headcount approvals take too long",
+    "pain_consequence": "exposure window stays open longer than it should every time a security role sits vacant"
+  },
+  "staffing__ai_ml": {
+    "dreamICP": "CTOs at AI startups",
+    "pain": "nobody available for contract ML work who isn't already locked in",
+    "pain_alt": "need to spin up a data team fast and the talent isn't there",
+    "pain_consequence": "product launches keep getting pushed because the ML capacity just isn't there"
+  },
+  "executive_search__ai_ml": {
+    "dreamICP": "founders at AI companies",
+    "pain": "searching for a head of AI who can actually lead researchers and ship",
+    "pain_alt": "can't tell who's genuinely technical vs just riding the AI wave",
+    "pain_consequence": "research stays theoretical and nothing ships without the right person at the top"
+  },
+  "executive_search__pharma": {
+    "dreamICP": "HR leaders at pharma companies",
+    "pain": "can't fill senior regulatory roles without burning 3-4 months",
+    "pain_alt": "losing trial timelines every time a clinical lead position opens up",
+    "pain_consequence": "trial delays compound every month the regulatory seat stays empty"
+  },
+  "permanent_recruiting__cybersecurity": {
+    "dreamICP": "CISOs at cybersecurity firms",
+    "pain": "security hiring is so niche that most agencies send completely wrong profiles",
+    "pain_alt": "keep losing cleared candidates to government contracts mid-process",
+    "pain_consequence": "team stays stretched thin and burnout hits before the right hire ever shows up"
+  },
+  "staffing__home_care": {
+    "dreamICP": "ops directors at home health agencies",
+    "pain": "can't maintain caseloads when caregivers churn every 3 months",
+    "pain_alt": "always one caregiver no-show away from a compliance issue",
+    "pain_consequence": "clients get reassigned constantly and family complaints follow every gap in coverage"
+  },
+  "staffing__education": {
+    "dreamICP": "HR leads at school districts",
+    "pain": "can't fill substitute and specialist roles before the semester starts",
+    "pain_alt": "spending more on emergency staffing than a full headcount would cost",
+    "pain_consequence": "students lose instructional time every week a specialist seat sits empty"
+  },
+  "staffing__automotive": {
+    "dreamICP": "plant managers at automotive suppliers",
+    "pain": "production lines slowing down because skilled trades are impossible to find",
+    "pain_alt": "keeping up with union requirements while trying to flex headcount",
+    "pain_consequence": "delivery commitments to OEMs get missed every time the line goes short"
+  },
+  "executive_search__it_services": {
+    "dreamICP": "CEOs at IT services firms",
+    "pain": "finding a GM who can actually grow revenue not just manage delivery",
+    "pain_alt": "searching for a COO who understands both delivery and new business",
+    "pain_consequence": "growth stalls at the same revenue number year after year without the right operator"
+  },
+  "executive_search__enterprise_software": {
+    "dreamICP": "founders at enterprise software companies",
+    "pain": "can't find a CRO who's actually built an enterprise sales motion before",
+    "pain_alt": "every exec search takes 5 months and half end in a bad fit",
+    "pain_consequence": "enterprise pipeline stays thin and the next funding round gets harder to justify"
+  },
+  "staffing__transportation_freight": {
+    "dreamICP": "ops directors at freight companies",
+    "pain": "driver shortage is real and every agency sends the same recycled pool",
+    "pain_alt": "can't scale dispatch capacity fast enough when freight volume spikes",
+    "pain_consequence": "loads get turned down and client relationships take the hit every time capacity falls short"
+  },
+  "permanent_recruiting__hospitals": {
+    "dreamICP": "talent leads at hospital systems",
+    "pain": "nursing shortages mean every open role has 3 urgent hires behind it",
+    "pain_alt": "agency nurses are eating the budget but permanent hires won't come",
+    "pain_consequence": "agency spend keeps climbing while permanent nursing retention stays flat"
+  },
+  "staffing__pharma": {
+    "dreamICP": "HR leads at pharma and CRO companies",
+    "pain": "can't staff clinical trial teams fast enough when protocols get approved",
+    "pain_alt": "losing months of trial time waiting for validated clinical contractors",
+    "pain_consequence": "approval timelines slip and competitive advantage narrows every month a trial stalls"
+  },
+  "staffing__industrial_equipment": {
+    "dreamICP": "plant managers at manufacturing firms",
+    "pain": "can't find machinists and maintenance techs who actually want the work",
+    "pain_alt": "machine downtime keeps happening because the operator roles sit empty",
+    "pain_consequence": "production targets get missed every month the maintenance bench stays short"
+  },
+  "executive_search__accounting": {
+    "dreamICP": "partners at accounting and advisory firms",
+    "pain": "finding a CFO who understands both client work and firm operations",
+    "pain_alt": "senior partners leaving and nobody internally ready to step up",
+    "pain_consequence": "succession gap turns into a client retention problem nobody saw coming"
+  },
+  "executive_search__nonprofit": {
+    "dreamICP": "boards at nonprofits and foundations",
+    "pain": "can't attract executive talent when mission doesn't compensate for market rate",
+    "pain_alt": "leadership transitions take a year and the org loses momentum every time",
+    "pain_consequence": "donor confidence drops and program delivery suffers through every leadership gap"
+  },
+  "executive_search__biotech": {
+    "dreamICP": "founders at biotech startups",
+    "pain": "finding a CSO who can lead IND filings and still manage a science team",
+    "pain_alt": "every biotech exec search turns into 6 months of wrong profiles",
+    "pain_consequence": "IND timeline slips and the next funding milestone moves with it"
+  },
+  "permanent_recruiting__legal": {
+    "dreamICP": "partners at law firms",
+    "pain": "can't find associates who bill well and actually want to stay",
+    "pain_alt": "lateral partner searches drag on and the firm loses clients in the meantime",
+    "pain_consequence": "client relationships walk out the door every time a senior associate leaves"
+  },
+  "permanent_recruiting__accounting": {
+    "dreamICP": "partners at CPA firms",
+    "pain": "can't keep senior accountants once they hit manager level",
+    "pain_alt": "every busy season reveals the same gap in experienced staff",
+    "pain_consequence": "client work gets deprioritized every busy season because the senior layer is always thin"
+  },
+  "staffing__banking": {
+    "dreamICP": "ops leads at regional banks",
+    "pain": "compliance headcount never keeps up with regulatory changes",
+    "pain_alt": "can't flex branch staffing fast enough during rate cycles",
+    "pain_consequence": "audit findings pile up every time compliance staffing falls behind the regulatory curve"
+  },
+  "staffing__telecom": {
+    "dreamICP": "project managers at telecom companies",
+    "pain": "can't find field technicians who stay through a full deployment",
+    "pain_alt": "network rollout timelines slipping because crews can't be staffed",
+    "pain_consequence": "rollout delays cost contracts and the same crew shortage repeats every project"
+  },
+  "sourcing__saas": {
+    "dreamICP": "talent leads at SaaS companies",
+    "pain": "internal team can reach out but can't find the right people to reach",
+    "pain_alt": "pipeline is always thin because sourcing is the bottleneck not closing",
+    "pain_consequence": "recruiters spend time on outreach that never converts because the targeting is off"
+  },
+  "staffing__dental": {
+    "dreamICP": "practice owners at dental groups",
+    "pain": "hygienist shortages mean chairs sit empty and patients reschedule",
+    "pain_alt": "can't open the new location without solving the staffing problem first",
+    "pain_consequence": "revenue per chair stays flat while the waitlist for appointments keeps growing"
+  },
+  "staffing__health_tech": {
+    "dreamICP": "ops leads at digital health companies",
+    "pain": "need clinical and tech hybrid talent that barely exists in the market",
+    "pain_alt": "patient support teams can't scale because the right profiles are impossible to find",
+    "pain_consequence": "product adoption stalls when the clinical ops team can't keep up with user growth"
+  },
+  "staffing__civil_infrastructure": {
+    "dreamICP": "project directors at infrastructure firms",
+    "pain": "public works deadlines don't move but the skilled labor pool keeps shrinking",
+    "pain_alt": "can't win bids with confidence when you can't guarantee crew availability",
+    "pain_consequence": "penalty clauses kick in and bid margins evaporate every time crew availability falls short"
+  },
+  "staffing__government": {
+    "dreamICP": "program managers at government contractors",
+    "pain": "clearance timelines are killing project starts and nobody is moving fast",
+    "pain_alt": "contract wins mean nothing if cleared staff can't be found in time",
+    "pain_consequence": "contract performance scores drop every time cleared headcount can't be placed in time"
+  },
+  "_fallbacks": {
+    "executive_search__generic": {
+      "dreamICP": "founders and executives at growing companies",
+      "pain": "senior searches drag on too long and the wrong candidates keep coming through",
+      "pain_consequence": "growth slows every month the key seat stays open"
+    },
+    "staffing__generic": {
+      "dreamICP": "ops and HR leaders at mid-market companies",
+      "pain": "can't flex headcount fast enough when the business actually needs it",
+      "pain_consequence": "operations take the hit every time staffing can't keep up with demand"
+    },
+    "permanent_recruiting__generic": {
+      "dreamICP": "HR directors and hiring managers at growing companies",
+      "pain": "keep interviewing the same candidates and never finding the right fit",
+      "pain_consequence": "team stays stretched and morale dips every month a key role stays open"
+    },
+    "rpo__generic": {
+      "dreamICP": "heads of talent at scaling companies",
+      "pain": "internal recruiting team is the bottleneck and leadership knows it",
+      "pain_consequence": "headcount plan slips every quarter and nobody wants to own the problem"
+    },
+    "sourcing__generic": {
+      "dreamICP": "talent leads at companies trying to scale hiring",
+      "pain": "pipeline is always thin because finding the right people is the hardest part",
+      "pain_consequence": "recruiters stay busy but the right candidates never show up in the funnel"
+    },
+    "generic__generic": {
+      "dreamICP": "HR and ops leaders at growing companies",
+      "pain": "finding the right people is taking longer than the business can afford",
+      "pain_consequence": "every open seat is costing more in lost output than the hire itself would"
+    }
+  }
+}

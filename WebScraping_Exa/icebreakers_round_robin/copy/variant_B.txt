@@ -1,0 +1,12 @@
+VARIANT B — Lowercase test
+HYPOTHESIS: full lowercase feels like personal message not campaign
+PAIN_FIELD: pain
+MARKET: US (~577 leads)
+---
+hey {{first_name}},
+
+your name came up on my end,
+
+{{custom_personalisation}}
+
+can plug you into the deal flow if you want

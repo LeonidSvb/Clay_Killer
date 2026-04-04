@@ -139,8 +139,12 @@ async def extract_all(
         return {
             "_idx":             i,
             "_run":             run_id,
+            "_first_name":      row.get("FIRST NAME") or row.get("First Name", ""),
+            "_last_name":       row.get("Last Name (99%)") or row.get("Last Name", ""),
             "_company_name":    row.get("COMPANY NAME") or row.get("Company Name", ""),
-            "_company_website": row.get("Company Website (100%)") or row.get("Company Website", ""),
+            "_company_website": row.get("Company Website (100%)") or row.get("Company Website", "") or row.get("domain", ""),
+            "_country":         row.get("Country", "") or row.get("country", ""),
+            "_email":           row.get("Email (100%)") or row.get("Email", ""),
             "_old_icebreaker":  row.get("PERSONALISATION", ""),
             "_t_extract_s":     round(elapsed, 2),
             "_model":           model_key,

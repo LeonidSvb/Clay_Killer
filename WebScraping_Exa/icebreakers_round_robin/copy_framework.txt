@@ -1,0 +1,270 @@
+SSM COPY FRAMEWORK — LINGO ENGINE
+================================================================================
+Last updated: 2026-04-04
+Purpose: Controls language quality across matrix, prompts, and copy variants.
+This is the SINGLE SOURCE OF TRUTH for how we write.
+================================================================================
+
+
+CORE PHILOSOPHY
+---------------
+Position as CONNECTOR — plugged into market flow, not a vendor pitching.
+Never switch energy across the sequence. Same posture opener to close.
+Calm. Minimal. In-control. Offering access — not needing anything.
+
+SPEAK LIKE THE ICP, NOT ABOUT THE ICP:
+  BAD:  "HR leaders at pharma companies struggle with..."
+  GOOD: "HR in pharma keeps running into..."
+
+
+================================================================================
+THE SPINES
+================================================================================
+
+SPINE A (primary — proven)
+  Format: "figured i'd reach out - i talk to a lot of [dreamICP] and they keep saying they [pain]"
+  Example: "figured i'd reach out - i talk to a lot of hr leaders in pharma and they keep saying they can't fill regulatory roles without burning 3-4 months"
+
+SPINE B (company-specific — Noticed opener)
+  Format: "Noticed [company] helps [job_titles] at [company_type] — I know a few who [pain_description]."
+  Example: "Noticed Summit Capital helps CEOs at mid-market manufacturing firms — I know a few who can't find buyers when they're ready to exit."
+
+OPENER ROTATION (swap this line only, keep spine identical):
+  1. (none — start direct with spine)
+  2. "your name came up on my end,"
+  3. "saw some movement on my side —"
+  4. "been curating a few matches this week —"
+  5. "got a signal that fits you —"
+
+CTA OPTIONS:
+  "can plug you into the deal flow if you want"   ← high status, connector frame
+  "worth intro'ing you?"                           ← soft, low pressure
+  "thought you two should connect"                 ← pure intro, no ask
+
+
+================================================================================
+LINGO ENGINE — HOW TO WRITE dreamICP
+================================================================================
+
+TONE FALLBACK (when unsure, default to this):
+  "{title} at {industry}"
+  Examples: "HR leaders in pharma" / "operators in logistics" / "founders in SaaS"
+
+COMPRESSION RULE:
+  Prefer shortest version that keeps meaning.
+  "founders at scaling SaaS startups" → "SaaS founders scaling"
+  "HR directors at hospital systems" → "HR in hospitals"
+  "ops leads at construction firms" → "operators in construction"
+
+NO OVER-SPECIFICITY:
+  BAD:  "Series B fintech companies in Europe with 50-200 employees"
+  GOOD: "fintech teams scaling in Europe"
+
+ONE TITLE RULE:
+  Max one title OR one natural pair. Never stack three.
+  OK:  "founders and operators" / "CEOs and GPs"
+  BAD: "founders, COOs and VPs of Engineering"
+
+STAGE RULE — use action not series:
+  BAD:  "Series B and C SaaS companies"
+  GOOD: "SaaS founders scaling" / "startups post-PMF"
+  BAD:  "high-growth companies" (too marketing)
+  GOOD: "teams growing fast" / "companies in growth mode"
+
+REALISM RULE:
+  Must sound like something the ICP would say about themselves.
+  If it sounds like a pitch deck or website — rewrite it.
+  TEST: would a founder say this to another founder at a dinner? If no → rewrite.
+
+
+================================================================================
+LINGO LIBRARY — INSIDER VOCABULARY
+================================================================================
+
+STAGE / GROWTH
+  scaling          → aggressively hiring, growing fast
+  growth-stage     → post-PMF, roughly Series B zone
+  early-stage      → still finding PMF, seed/A
+  post-PMF         → found product-market fit (very insider)
+  pre-IPO          → preparing for public listing
+  founder-led      → CEO still runs it, no hired operator yet
+  operator-run     → operator put in by investor
+  bootstrapped     → no VC, own money
+  just raised      → recently closed a round
+  on the runway    → X months of cash left
+  portco           → PE portfolio company (very insider)
+  platform hire    → hire across the whole portfolio
+
+COMPANY WORDS (casual alternatives to "company")
+  shop             → small firm ("a 10-person shop")
+  boutique         → niche firm (legal, exec search, consulting)
+  house            → larger structured firm ("a staffing house")
+  outfit           → scrappy team ("a lean outfit")
+  org              → internal word for company
+  team             → most casual, universal
+  group            → neutral
+  business         → simple fallback
+  platform         → PE/SaaS context
+
+PEOPLE / TITLES (keep these — they're fine)
+  founder          → keep
+  operator         → COO/GM execution type
+  builder          → technical founder
+  exec             → C-level in general
+  people leader    → CHRO/VP People (modern language)
+  hiring manager   → the actual decision maker
+  GP               → general partner (VC/PE)
+  LP               → limited partner
+
+PAIN VOCABULARY — USE THESE WORDS
+  thin bench       → not enough candidates ready
+  stalled pipeline → process slowed or stopped
+  dragging search  → taking way too long
+  missed hires     → lost candidates who accepted elsewhere
+  bad hires        → wrong person in the seat
+  drop-off         → candidates going dark mid-process
+  no-shows         → didn't show up
+  recycling profiles → sending same people over and over
+  losing candidates late-stage → they disappear after offer
+  open reqs        → open job requisitions
+  req load         → how many open roles per recruiter
+  time-to-fill     → days from open to hire
+  offer-to-close   → offer stage to signed
+  fill rate        → % of roles successfully closed
+  burn             → burning time or money on bad process
+
+VC/STARTUP ECOSYSTEM
+  runway           → months of cash remaining
+  burn rate        → monthly spend
+  ARR              → annual recurring revenue
+  GTM              → go-to-market
+  PLG              → product-led growth
+  rev ops          → revenue operations
+  dry powder       → uninvested capital (PE/VC)
+  headcount plan   → annual hiring plan
+  100-day plan     → post-acquisition plan (PE)
+
+HEALTHCARE
+  census           → patient load = staffing demand signal
+  PRN              → as-needed (most expensive option)
+  locum            → temp physician
+  agency nurse     → temp nurse (very expensive)
+  credentialing    → license verification (takes weeks)
+  float pool       → internal flexible staff pool
+  travel nurse     → agency nurse from another market
+  JCAHO            → accreditation body (compliance pressure)
+
+FINANCE / PE
+  deal flow        → pipeline of opportunities ← USE THIS
+  carry            → carried interest (GP compensation)
+  vintage          → fund year
+  add-on           → bolt-on acquisition
+  platform         → primary portfolio company
+
+STAFFING / RECRUITING INSIDER
+  direct hire      → permanent placement
+  temp-to-perm     → contract with conversion option
+  retained         → client pays upfront
+  contingency      → fee only on success
+  spread           → margin between bill rate and pay rate
+  backfill         → replacing someone who left
+
+CONSTRUCTION / TRADES
+  GC               → general contractor
+  sub              → subcontractor
+  prevailing wage  → regulated rate on government projects
+  certified payroll → compliance for government contracts
+  union / non-union → key distinction
+  per diem         → daily allowance for travel workers
+
+MANUFACTURING
+  OEM              → original equipment manufacturer
+  Tier 1 / Tier 2  → automotive supply chain levels
+  JIT              → just-in-time production
+  the line         → production line
+  skilled trades   → qualified blue-collar workers
+
+
+================================================================================
+ANTI-PATTERNS — NEVER USE THESE
+================================================================================
+
+FORBIDDEN WORDS / PHRASES:
+  decision-makers        → sounds like a sales robot
+  stakeholders           → corporate speak
+  leaders                → too vague
+  leading companies      → marketing fluff
+  innovative firms       → meaningless
+  end-to-end solutions   → buzzword
+  high-growth companies  → overused, sounds like pitch deck
+  best-in-class          → nobody talks like this
+  top-tier               → same
+  cutting-edge           → same
+  optimize               → banned
+  leverage               → banned
+  solutions              → banned
+  streamline             → banned
+  platform               → ok in PE context only, not as generic word
+  synergy                → never
+  scalable               → overused
+  robust                 → meaningless
+  holistic               → meaningless
+  world-class            → meaningless
+
+FORBIDDEN STRUCTURES:
+  "struggling to find candidates" → too generic
+  "growing their business"        → too generic
+  "increasing revenue"            → too generic
+  Series B and C companies        → use stage language instead
+  "companies of all sizes"        → useless
+  50-200 employees                → too specific/robotic
+
+
+================================================================================
+PAIN-LANGUAGE ALIGNMENT RULE
+================================================================================
+
+ICP language and pain language must belong to the SAME language layer.
+If ICP uses insider language → pain must also use insider terms.
+
+ALIGNED:
+  ICP:   "people leaders at SaaS shops"
+  PAIN:  "pipeline is thin and offer-to-close keeps slipping"
+
+NOT ALIGNED:
+  ICP:   "people leaders at SaaS shops"
+  PAIN:  "struggling to find candidates"  ← too generic for this ICP language
+
+ALIGNED:
+  ICP:   "GPs at growth equity firms"
+  PAIN:  "portcos keep losing senior hires to higher comp at public cos"
+
+NOT ALIGNED:
+  ICP:   "GPs at growth equity firms"
+  PAIN:  "can't find good people"
+
+
+================================================================================
+FOLLOW-UPS (the only two you ever need)
+================================================================================
+  FU #1: "Hey {{firstName}}, worth intro'ing you?"
+  FU #2: "Hey {{firstName}}, maybe this isn't something you're interested in — wishing you the best."
+
+Never break the connector frame in follow-ups.
+High-status people don't chase. Connectors don't need replies.
+
+
+================================================================================
+HOW THIS MAPS TO OUR PIPELINE
+================================================================================
+
+  [dreamICP]            ← matrix.json per (service, sub_industry)
+                           written using this lingo engine
+  [pain]                ← matrix.json, aligned to dreamICP language layer
+  [custom_personalisation] ← icebreaker_prompt_final.txt generates the line
+                              using matrix as base + detected_signals from extraction
+  [copy template]       ← copy/variant_X.txt wraps everything
+  [sender/iPhone]       ← added in sending tool (Instantly/Smartlead)
+
+MATRIX KEY: service__sub_industry
+FALLBACK:   (service, sub_industry) → (service, generic) → generic__generic

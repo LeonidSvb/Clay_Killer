@@ -1,0 +1,10 @@
+VARIANT D — Company-specific opener
+HYPOTHESIS: naming their company increases relevance
+PAIN_FIELD: pain
+MARKET: EU (~470 leads)
+---
+hey {{first_name}},
+
+{{custom_personalisation}}
+
+worth intro'ing you?
