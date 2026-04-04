@@ -249,6 +249,7 @@ def row_to_company(row: dict) -> dict:
           clean(row.get("website_summary")))
 
     raw_mx = (clean(row.get("mx_provider")) or
+              clean(row.get("mx_provider_doh")) or   # canada logistic format
               clean(row.get("Provider")) or
               clean(row.get("_mx_provider")))
 
@@ -328,16 +329,23 @@ def _infer_country(row: dict) -> str | None:
 
 def _infer_validation(row: dict) -> str | None:
     """Infer validation from available signals."""
-    # EU 4500 has 'Status Email' field
+    # canada logistic: Valid column = good/bad
+    valid_col = clean(row.get("Valid") or row.get("valid"))
+    if valid_col:
+        v = valid_col.lower()
+        if v == "good":    return "valid"
+        if v == "bad":     return "invalid"
+
+    # EU/AUS/Canada recruit: Status Email
     status = clean(row.get("Status Email") or row.get("status_email"))
     if status:
         s = status.lower()
-        if "valid" in s:    return "valid"
-        if "catch" in s:    return "catch_all"
-        if "risky" in s:    return "risky"
-        if "invalid" in s:  return "invalid"
+        if "valid" in s:   return "valid"
+        if "catch" in s:   return "catch_all"
+        if "risky" in s:   return "risky"
+        if "invalid" in s: return "invalid"
 
-    # has website summary = was scraped = apollo validated
+    # has website summary = apollo-scraped = effectively validated
     ws = clean(row.get("Website summary") or row.get("Website Summary"))
     if ws:
         return "valid"
@@ -346,11 +354,11 @@ def _infer_validation(row: dict) -> str | None:
 
 
 def _infer_validation_service(row: dict) -> str | None:
-    status = clean(row.get("Status Email") or row.get("status_email"))
-    if status:
+    if clean(row.get("Valid") or row.get("valid")):
         return "apollo"
-    ws = clean(row.get("Website summary") or row.get("Website Summary"))
-    if ws:
+    if clean(row.get("Status Email") or row.get("status_email")):
+        return "apollo"
+    if clean(row.get("Website summary") or row.get("Website Summary")):
         return "apollo"
     return None
 
@@ -368,10 +376,13 @@ SOURCES = [
     (DATA_DIR / "US recruit 10-100  - all_leads (1).csv",                   "recruit",  "utf-8"),
     (DATA_DIR / "canada_usable_296.csv",                                    "recruit",  "utf-8"),
     (DATA_DIR / "Canada+ - logistic 10-100 - 500_G+Ot (1).csv",            "logistic", "latin-1"),
-    # --- new ---
+    # --- new recruit ---
     (DOWNLOADS / "_US+ recruit 10-100  - 10500_initial_list.csv",           "recruit",  "utf-8-sig"),
     (DOWNLOADS / "Australia+  recruit 10-100  - aus_email (1).csv",         "recruit",  "utf-8-sig"),
     (DOWNLOADS / "Canada+  recruit 10-100  - canada_ms.csv",                "recruit",  "utf-8-sig"),
+    # --- logistic ---
+    (DOWNLOADS / "leads_mx (2).csv",                                        "logistic", "utf-8-sig"),
+    (DOWNLOADS / "canada - logistic - valid_1700_mx.csv",                   "logistic", "utf-8-sig"),
 ]
 
 # Mailso validation result → our status
