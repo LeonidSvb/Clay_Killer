@@ -1,0 +1,61 @@
+{
+  "accuracy": 0.5,
+  "industry_accuracy": 0.5,
+  "sub_accuracy": 0.75,
+  "detectable_count": 8,
+  "correct": 4,
+  "failures": [
+    {
+      "idx": 2,
+      "company_name": "Advisors",
+      "ground_truth_industry": "other",
+      "ground_truth_sub": "nonprofit",
+      "got_industry": "multi_industry",
+      "got_sub": "null",
+      "detection_reason": "The description explicitly states the firm specializes in recruiting for associations, certification boards, foundations, nonprofits, and social enterprises, and mentions a focus on mission‑driven organizations. This clearly places the firm in the 'other' category with a sub‑industry of 'nonprofit'.",
+      "extracted_reasoning": "The firm’s core offering is executive search for nonprofit and association leaders, indicating executive_search as the primary service with retained fees. Industry signals point to nonprofits (mapped to 'other') and healthcare, with no single sector dominating, so multi_industry is used and healthcare is listed as a secondary industry. The niche focus on mission‑driven nonprofits gives a high specificity, and the client base spans various sizes, leading to a mixed company type. The firm operates across the United States, so geography is national.",
+      "extracted_signals": "associations, certification boards, foundations, nonprofits, social enterprises, mission‑driven organizations, healthcare sector, education sector, United States geography",
+      "industry_correct": false,
+      "sub_industry_correct": false
+    },
+    {
+      "idx": 9,
+      "company_name": "Carlson",
+      "ground_truth_industry": "finance",
+      "ground_truth_sub": "insurance",
+      "got_industry": "multi_industry",
+      "got_sub": "insurance",
+      "detection_reason": "The summary explicitly states the firm’s ideal clients are in \"finance, insurance, and construction\" and focuses on executive/C‑level roles. Finance (including insurance) is the dominant sector, allowing a clear primary industry assignment.",
+      "extracted_reasoning": "The firm is described as an executive search firm targeting finance (including insurance) and construction, giving equal weighted signals for both industries, which triggers the multi_industry rule. The primary service is clearly executive search, typically retained. Client focus on senior leadership suggests enterprise‑level clients.",
+      "extracted_signals": "explicit mention of finance sector, insurance sub‑sector, and construction sector; focus on C‑level and senior management executive placements; no product or technology signals; no geographic or size signals.",
+      "industry_correct": false,
+      "sub_industry_correct": true
+    },
+    {
+      "idx": 10,
+      "company_name": "IveSearch",
+      "ground_truth_industry": "multi_industry",
+      "ground_truth_sub": null,
+      "got_industry": "retail",
+      "got_sub": "consumer_goods",
+      "detection_reason": "The description explicitly states that Ives & Associates recruits within Consumer Packaged Goods (CPG), Retail, Financial Services, and Pharmaceutical industries, covering distinct sectors (retail, finance, and healthcare) with no single dominant focus, indicating a multi‑industry service model.",
+      "extracted_reasoning": "The firm repeatedly cites CPG and Retail as core sectors, giving retail the highest weighted industry score, with finance and healthcare as secondary signals. The explicit mention of Consumer Packaged Goods maps to the retail sub‑industry consumer_goods. Executive search is the clear primary service, and the mix of client sizes leads to a 'mixed' company type.",
+      "extracted_signals": "Executive recruitment for mid‑senior level roles; serves Consumer Packaged Goods (CPG), Retail, Financial Services, Pharmaceutical industries; mentions Marketing, Sales, HR, Operations, Engineering, Supply Chain/Logistics, Legal, Accounting/Finance; conducts both contingency and retained searches; national U.S. presence.",
+      "industry_correct": false,
+      "sub_industry_correct": true
+    },
+    {
+      "idx": 14,
+      "company_name": "Slate",
+      "ground_truth_industry": "finance",
+      "ground_truth_sub": "banking",
+      "got_industry": "MISSING",
+      "got_sub": "MISSING",
+      "detection_reason": "The summary explicitly states the firm \"specializes in placing diverse financial services executives\" and lists target client types: banks, insurance firms, wealth management companies, and private equity firms. These are clear signals of a finance focus. Although the description also mentions \"Industrial firms,\" the dominant and repeatedly emphasized sector is financial services, making the primary industry determinable.",
+      "extracted_reasoning": "",
+      "extracted_signals": "",
+      "industry_correct": false,
+      "sub_industry_correct": false
+    }
+  ]
+}

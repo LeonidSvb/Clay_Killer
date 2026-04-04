@@ -1,0 +1,35 @@
+{
+  "accuracy": 0.75,
+  "industry_accuracy": 0.75,
+  "sub_accuracy": 0.875,
+  "detectable_count": 8,
+  "correct": 6,
+  "failures": [
+    {
+      "idx": 5,
+      "company_name": "Cynergists",
+      "ground_truth_industry": "information_technology",
+      "ground_truth_sub": "ai_ml",
+      "got_industry": "multi_industry",
+      "got_sub": "automotive",
+      "detection_reason": "The description repeatedly emphasizes AI agents, automation, and workflow management, which are core information technology services. The company’s product is an AI‑driven platform (AI agents) and the language aligns with AI/ML solutions. Although client logos span sports, automotive, and real estate, the service itself is technology‑focused, making the primary industry clear.",
+      "extracted_reasoning": "The text describes AI automation and virtual assistant services, not recruiting, so service is unknown. Industry signals are spread across sports, automotive, and real estate with no dominant sector, leading to a multi_industry label and manufacturing as the first secondary industry (automotive sub‑industry). Client base ranges from solopreneurs to larger firms, so company type is mixed.",
+      "extracted_signals": "mentions AI agents for revenue, operations, internal workflows; serves sports organizations (NFL, NBA), automotive sector, real estate sector; also offers virtual assistants for solopreneurs and larger businesses; no geographic limits stated.",
+      "industry_correct": false,
+      "sub_industry_correct": false
+    },
+    {
+      "idx": 9,
+      "company_name": "Carlson",
+      "ground_truth_industry": "finance",
+      "ground_truth_sub": "insurance",
+      "got_industry": "multi_industry",
+      "got_sub": "insurance",
+      "detection_reason": "The summary explicitly states the firm’s ideal clients are in \"finance, insurance, and construction\" and focuses on executive/C‑level roles. Finance (including insurance) is the dominant sector, allowing a clear primary industry assignment.",
+      "extracted_reasoning": "The description highlights executive search for finance, insurance, and construction, giving clear industry signals but no single dominant sector, leading to a multi_industry classification. The retained model is typical for executive search, and the mention of insurance allows a specific sub_industry. Client size is not defined, so a mixed type is chosen.",
+      "extracted_signals": "The firm explicitly mentions serving finance, insurance, and construction sectors. It focuses on executive and C‑level roles (CEOs, senior management). No geographic or size cues are provided.",
+      "industry_correct": false,
+      "sub_industry_correct": true
+    }
+  ]
+}

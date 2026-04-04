@@ -1,0 +1,284 @@
+[
+  {
+    "_idx": 0,
+    "primary_service": "staffing",
+    "secondary_services": [
+      "sourcing"
+    ],
+    "business_model": "contract",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "The description mentions serving US‑based entrepreneurs and small‑to‑medium sized businesses across various sectors, but provides no explicit industry focus (e.g., healthcare, finance, IT). No client logos, case studies, or sector‑specific terminology are present.",
+    "specificity": "low",
+    "company_type": "smb",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 8,
+    "reasoning": "The company offers virtual assistant staffing and sourcing for US entrepreneurs, with no dominant industry signals, leading to a multi‑industry classification. The focus on SMB clients and US‑wide service informs the client type and geography."
+  },
+  {
+    "_idx": 1,
+    "primary_service": "staffing",
+    "secondary_services": [
+      "sourcing",
+      "rpo"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "information_technology",
+      "other"
+    ],
+    "sub_industry": "it_services",
+    "detected_signals": "Mentions serving staffing agencies, providing full‑time virtual assistants for admin and operations tasks, focus on scaling agency operations, no explicit client industry, references to generic business growth and administrative support across sectors.",
+    "specificity": "medium",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 7,
+    "reasoning": "The text centers on delivering virtual assistants and operational blueprints to staffing agencies, indicating a staffing/sourcing service. No single client industry dominates, so multi_industry is chosen with IT and other as secondary hints. Client type spans various agency sizes, leading to a mixed classification."
+  },
+  {
+    "_idx": 2,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "retained",
+    "primary_industry": "other",
+    "secondary_industries": [
+      "healthcare",
+      "other"
+    ],
+    "sub_industry": "nonprofit",
+    "detected_signals": "focus on associations, certification boards, foundations, nonprofits, social enterprises; mentions healthcare and education sectors; mission‑driven organizations; US‑wide client base; budget range $2.5M‑$240M; executive search and consulting services; Washington D.C. location.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The firm explicitly markets executive search for associations, foundations, nonprofits and social enterprises, which places it in the 'other' industry with a clear nonprofit sub‑industry. Guarantees and retained fee model indicate a retained executive search model. Client signals span nonprofit and mission‑driven sectors, with occasional healthcare and education mentions, leading to secondary industries of healthcare and other. Client sizes vary, so 'mixed' is appropriate. No VC focus, and service is US‑wide."
+  },
+  {
+    "_idx": 3,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "other",
+    "secondary_industries": [],
+    "sub_industry": "nonprofit",
+    "detected_signals": "focus on associations, certification boards, foundations, nonprofits, social enterprises, mission‑driven organizations; mentions CEO and executive director placements; budgets $2.5M‑$240M; based in Washington D.C.; serves United States; offers executive search and consulting; 100% retention for association CEOs; unconditional replacement guarantee.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The firm explicitly markets executive search for associations, foundations, nonprofits and social enterprises, a clear niche within the 'other' industry category. The repeated emphasis on nonprofit leadership roles and mission‑driven clients makes this the dominant industry, leading to a high specificity rating. Client types range from small to large mission‑driven orgs, so 'mixed' is appropriate."
+  },
+  {
+    "_idx": 4,
+    "primary_service": "permanent_recruiting",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "other",
+    "secondary_industries": [
+      "healthcare"
+    ],
+    "sub_industry": "real_estate_services",
+    "detected_signals": "recruits and trains talent for Real Estate agents; mentions systematic screening applicable to healthcare; offers business consulting and a la carte services; no geographic or client size specifics.",
+    "specificity": "high",
+    "company_type": "smb",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 7,
+    "reasoning": "The text repeatedly emphasizes recruiting and training for Real Estate agents, making real estate the dominant industry signal, mapped to the 'real_estate_services' sub‑industry under 'other'. Healthcare is only a peripheral mention, so it is listed as secondary. No pricing or contract details are given, leading to a 'not_specified' business model. The focus on individual agents suggests SMB clients."
+  },
+  {
+    "_idx": 5,
+    "primary_service": "unknown",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "manufacturing",
+      "other"
+    ],
+    "sub_industry": "automotive",
+    "detected_signals": "mentions AI agents for revenue, operations, internal workflows; serves sports organizations (NFL, NBA), automotive sector, real estate sector; also offers virtual assistants for solopreneurs and larger businesses; no geographic limits stated.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "global",
+    "confidence": 6,
+    "reasoning": "The text describes AI automation and virtual assistant services, not recruiting, so service is unknown. Industry signals are spread across sports, automotive, and real estate with no dominant sector, leading to a multi_industry label and manufacturing as the first secondary industry (automotive sub‑industry). Client base ranges from solopreneurs to larger firms, so company type is mixed."
+  },
+  {
+    "_idx": 6,
+    "primary_service": "staffing",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "The text repeatedly mentions \"virtual workers\", \"virtual assistance\", and \"dedicated personnel\" but provides no explicit industry references, client logos, or sector‑specific terminology. No geographic or size cues are given.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 6,
+    "reasoning": "The company markets generic virtual staffing services without naming any industry, client size, or region, leading to a multi‑industry classification with low specificity. The lack of pricing or contract details results in a not_specified business model."
+  },
+  {
+    "_idx": 7,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting"
+    ],
+    "business_model": "retained",
+    "primary_industry": "other",
+    "secondary_industries": [],
+    "sub_industry": "nonprofit",
+    "detected_signals": "Serves family offices, foundations, nonprofits, impact investing firms, universities, and environmental NGOs. Specific client examples: Charles Stewart Mott Foundation, University of Virginia, Aspen Institute, Energy Foundation, Regenerative Social Finance, World Resources Institute, Kenneth Rainin Foundation, Bears Ears Partnership, Sierra Club Foundation. Mentions impact investing, strategic planning, leadership development.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 8,
+    "reasoning": "The firm explicitly offers executive search (primary service) and places CEOs (permanent recruiting). Executive search is typically retained, and the client list is dominated by foundations, nonprofits, and educational institutions, fitting the 'other' industry with a nonprofit sub‑industry. No single traditional industry dominates, so 'other' is appropriate. Client types vary across large foundations and universities, leading to a mixed company type."
+  },
+  {
+    "_idx": 8,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting",
+      "staffing"
+    ],
+    "business_model": "retained",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "No industry-specific signals; the text only mentions generic executive search capabilities, Fortune 500 experience, and a focus on C‑suite roles without naming particular sectors.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 7,
+    "reasoning": "The firm explicitly offers retained executive search for C‑suite positions, indicating executive_search as the primary service and a retained model. No industry cues are present, so a multi_industry classification is used. Client size is not defined, leading to a mixed type, and geography is unspecified."
+  },
+  {
+    "_idx": 9,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting"
+    ],
+    "business_model": "retained",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "finance",
+      "construction"
+    ],
+    "sub_industry": "insurance",
+    "detected_signals": "The firm explicitly mentions serving finance, insurance, and construction sectors. It focuses on executive and C‑level roles (CEOs, senior management). No geographic or size cues are provided.",
+    "specificity": "medium",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 8,
+    "reasoning": "The description highlights executive search for finance, insurance, and construction, giving clear industry signals but no single dominant sector, leading to a multi_industry classification. The retained model is typical for executive search, and the mention of insurance allows a specific sub_industry. Client size is not defined, so a mixed type is chosen."
+  },
+  {
+    "_idx": 10,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "contingency",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "healthcare",
+      "finance",
+      "retail"
+    ],
+    "sub_industry": "pharma",
+    "detected_signals": "mentions recruiting for executive and senior roles in Marketing, Sales, HR, Operations, Engineering, Supply Chain/Logistics, Legal, Accounting/Finance; industry focus includes Consumer Packaged Goods (CPG), Retail, Financial Services, Pharmaceutical; references to logistics and supply chain, legal and accounting functions; operates nationally with a job board of 6,000+ listings.",
+    "specificity": "medium",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 8,
+    "reasoning": "The firm explicitly markets executive_search services and states it conducts both contingency and retained searches, indicating a clear business model. Industry signals are spread across healthcare (pharma), finance, and retail without a dominant sector, leading to a multi_industry classification with pharma as the sub‑industry for the first secondary industry. Client size is not defined, suggesting a mixed client base, and the national scope is evident from the nationwide job platform."
+  },
+  {
+    "_idx": 11,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "staffing",
+      "permanent_recruiting"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "mentions executive search and C‑level talent, operates as a staffing agency, serves clients from small startups to global enterprises, no specific industry or sector references, no geographic limits stated beyond being based in Santa Rosa, CA.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 7,
+    "reasoning": "The text highlights executive search and staffing services without naming any particular industry, indicating a multi‑industry focus. No pricing or engagement model is disclosed, so business model is not specified. Client base spans startups to large enterprises, leading to a mixed company type. Geographic scope is unclear beyond a US base, so national is the safest label."
+  },
+  {
+    "_idx": 12,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "other"
+    ],
+    "sub_industry": null,
+    "detected_signals": "The description mentions serving clients across various industries nationwide with a strong presence in Chicago, but provides no explicit or implicit industry focus (e.g., healthcare, finance, tech). No client logos, role types, or sector‑specific terminology are given.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 7,
+    "reasoning": "ETS markets itself as a generic executive and professional recruiting firm with retained and contingency options, without highlighting any particular industry. The lack of sector‑specific language leads to a multi‑industry classification, and the client base appears to span multiple company sizes, resulting in a mixed client type."
+  },
+  {
+    "_idx": 13,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "retained",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "The text mentions international executive search and board consulting, serving clients across Asia Pacific, Europe, Middle East, Africa, and the Americas. No specific industry (e.g., healthcare, finance, IT) is referenced; the language is generic and emphasizes leadership and board talent for \"world's leading and emerging companies\".",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "global",
+    "confidence": 7,
+    "reasoning": "The firm explicitly offers executive search and board consulting, which points to the executive_search service and a retained model. No dominant industry signals appear, so multi_industry is appropriate. Geographic coverage is worldwide, and client language is generic, leading to low specificity and a mixed client size classification."
+  },
+  {
+    "_idx": 14,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting",
+      "sourcing"
+    ],
+    "business_model": "retained",
+    "primary_industry": "finance",
+    "secondary_industries": [
+      "manufacturing"
+    ],
+    "sub_industry": "banking",
+    "detected_signals": "focus on financial services executives, mentions banks, insurance firms, wealth management companies, private equity firms; also serves industrial firms in the U.S. Heartland; targets smaller market cities across the United States; emphasizes diversity, equity, and inclusion consulting; offers retained executive search and ongoing talent acquisition.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The firm explicitly states it specializes in executive search for financial services (banks, insurance, wealth management, private equity) and also mentions industrial firms, making finance the dominant industry. The retained model and focus on smaller U.S. markets give a clear niche, leading to high specificity. Client types span both financial and industrial sectors, so 'mixed' best captures the variety."
+  }
+]

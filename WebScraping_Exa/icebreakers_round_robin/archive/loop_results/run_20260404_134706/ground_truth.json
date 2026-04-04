@@ -1,0 +1,167 @@
+[
+  {
+    "_idx": 0,
+    "_company_name": "Rhino Julie",
+    "_company_website": "http://www.rhinosquad.org",
+    "detectable": false,
+    "detection_reason": "The description only mentions providing virtual assistants to US entrepreneurs and small‑to‑medium businesses without specifying any particular sector (e.g., healthcare, finance, IT). There are no explicit industry references, client logos, role types, or niche positioning that would allow a human analyst to infer a dominant primary industry.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 1,
+    "_company_name": "Virtdrop",
+    "_company_website": "http://www.virtdrop.com",
+    "detectable": false,
+    "detection_reason": "The text only describes Virtdrop's service of providing virtual assistants to staffing agencies and businesses in general, without mentioning any specific client industry, role types, or sector-specific terminology. There are no explicit or implicit signals pointing to a dominant industry such as healthcare, IT, finance, etc., and the service appears industry‑agnostic.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 8
+  },
+  {
+    "_idx": 2,
+    "_company_name": "Advisors",
+    "_company_website": "http://www.staffingadvisors.com",
+    "detectable": true,
+    "detection_reason": "The description explicitly states the firm specializes in recruiting for associations, certification boards, foundations, nonprofits, and social enterprises, and mentions a focus on mission‑driven organizations. This clearly places the firm in the 'other' category with a sub‑industry of 'nonprofit'.",
+    "correct_primary_industry": "other",
+    "correct_sub_industry": "nonprofit",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 8
+  },
+  {
+    "_idx": 3,
+    "_company_name": "Advisors",
+    "_company_website": "http://www.staffingadvisors.com",
+    "detectable": true,
+    "detection_reason": "The company explicitly states it specializes in recruiting for associations, certification boards, foundations, nonprofits, and social enterprises, clearly indicating a focus on the nonprofit sector.",
+    "correct_primary_industry": "other",
+    "correct_sub_industry": "nonprofit",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 4,
+    "_company_name": "Ciprani",
+    "_company_website": "http://www.cipraniconsulting.com",
+    "detectable": true,
+    "detection_reason": "The company description explicitly states that Ciprani Consulting recruits and trains talent within the Real Estate industry, indicating a clear focus on real‑estate services.",
+    "correct_primary_industry": "other",
+    "correct_sub_industry": "real_estate_services",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 5,
+    "_company_name": "Cynergists",
+    "_company_website": "http://www.cynergists.com",
+    "detectable": true,
+    "detection_reason": "The description repeatedly emphasizes AI agents, automation, and workflow management, which are core information technology services. The company’s product is an AI‑driven platform (AI agents) and the language aligns with AI/ML solutions. Although client logos span sports, automotive, and real estate, the service itself is technology‑focused, making the primary industry clear.",
+    "correct_primary_industry": "information_technology",
+    "correct_sub_industry": "ai_ml",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 8
+  },
+  {
+    "_idx": 6,
+    "_company_name": "Mamba VP",
+    "_company_website": "http://www.mambavp.com",
+    "detectable": false,
+    "detection_reason": "The description only mentions providing generic virtual workers to businesses without specifying any industry focus, client types, role categories, or sector-specific terminology. No explicit or implicit signals point to a dominant industry, so a reasonable analyst cannot determine a primary industry.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 7,
+    "_company_name": "OE Consulting",
+    "_company_website": "http://www.oeconsulting.com",
+    "detectable": true,
+    "detection_reason": "The description repeatedly references foundations, nonprofits, and impact‑investing firms (e.g., Charles Stewart Mott Foundation, Aspen Institute, Sierra Club Foundation). These are explicitly nonprofit/impact organizations, with no mention of sectors like healthcare, IT, finance, manufacturing, etc. Thus a human analyst can confidently assign the primary industry to the 'other' category, sub‑industry 'nonprofit'.",
+    "correct_primary_industry": "other",
+    "correct_sub_industry": "nonprofit",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 8
+  },
+  {
+    "_idx": 8,
+    "_company_name": "Titan Talent",
+    "_company_website": "http://www.titantalentpartners.com",
+    "detectable": false,
+    "detection_reason": "The company description only mentions executive search for C‑suite roles and does not specify any target industries, client logos, or sector‑specific terminology. There are no explicit or implicit signals indicating a dominant industry focus.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 9,
+    "_company_name": "Carlson",
+    "_company_website": "http://www.carlsongroupllc.com",
+    "detectable": true,
+    "detection_reason": "The summary explicitly states the firm’s ideal clients are in \"finance, insurance, and construction\" and focuses on executive/C‑level roles. Finance (including insurance) is the dominant sector, allowing a clear primary industry assignment.",
+    "correct_primary_industry": "finance",
+    "correct_sub_industry": "insurance",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 8
+  },
+  {
+    "_idx": 10,
+    "_company_name": "IveSearch",
+    "_company_website": "http://www.ivesearch.com",
+    "detectable": true,
+    "detection_reason": "The description explicitly states that Ives & Associates recruits within Consumer Packaged Goods (CPG), Retail, Financial Services, and Pharmaceutical industries, covering distinct sectors (retail, finance, and healthcare) with no single dominant focus, indicating a multi‑industry service model.",
+    "correct_primary_industry": "multi_industry",
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 11,
+    "_company_name": "NextOne",
+    "_company_website": "http://www.nextonestaffing.com",
+    "detectable": false,
+    "detection_reason": "The description states that Next One Staffing targets companies across various industries and does not specify any particular sector, role type, client logos, or domain-specific terminology. There are no explicit mentions (e.g., \"we serve healthcare clients\") nor implicit signals (e.g., recruiting for specific job families) that would allow a reasonable analyst to infer a dominant primary industry.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 12,
+    "_company_name": "Excel Talent",
+    "_company_website": "http://www.exceltalentsolutions.com",
+    "detectable": false,
+    "detection_reason": "The company description provides no explicit mention of the industries it serves, nor any implicit signals such as specific role types, client logos, or domain‑specific terminology that would indicate a primary focus. The text describes a generic, multi‑industry executive and professional recruiting service without highlighting a dominant sector.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 2
+  },
+  {
+    "_idx": 13,
+    "_company_name": "Gerard Daniels",
+    "_company_website": "http://www.gerard-daniels.com",
+    "detectable": false,
+    "detection_reason": "The description only states that Gerard Daniels is an international executive search and board consulting firm serving a broad range of industries and does not mention any specific sector, role types, client logos, or niche terminology that would point to a dominant primary industry.",
+    "correct_primary_industry": null,
+    "correct_sub_industry": null,
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  },
+  {
+    "_idx": 14,
+    "_company_name": "Slate",
+    "_company_website": "http://www.joinslate.com",
+    "detectable": true,
+    "detection_reason": "The summary explicitly states the firm \"specializes in placing diverse financial services executives\" and lists target client types: banks, insurance firms, wealth management companies, and private equity firms. These are clear signals of a finance focus. Although the description also mentions \"Industrial firms,\" the dominant and repeatedly emphasized sector is financial services, making the primary industry determinable.",
+    "correct_primary_industry": "finance",
+    "correct_sub_industry": "banking",
+    "correct_secondary_industries": [],
+    "ground_truth_confidence": 9
+  }
+]

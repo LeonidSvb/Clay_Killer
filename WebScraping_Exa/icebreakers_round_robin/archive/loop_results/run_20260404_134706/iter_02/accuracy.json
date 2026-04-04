@@ -1,0 +1,35 @@
+{
+  "accuracy": 0.75,
+  "industry_accuracy": 0.75,
+  "sub_accuracy": 0.75,
+  "detectable_count": 8,
+  "correct": 6,
+  "failures": [
+    {
+      "idx": 5,
+      "company_name": "Cynergists",
+      "ground_truth_industry": "information_technology",
+      "ground_truth_sub": "ai_ml",
+      "got_industry": "multi_industry",
+      "got_sub": "automotive",
+      "detection_reason": "The description repeatedly emphasizes AI agents, automation, and workflow management, which are core information technology services. The company’s product is an AI‑driven platform (AI agents) and the language aligns with AI/ML solutions. Although client logos span sports, automotive, and real estate, the service itself is technology‑focused, making the primary industry clear.",
+      "extracted_reasoning": "The description includes a clear staffing offering (virtual assistants), making staffing the primary service. Industry signals are scattered across sports, automotive, and real estate with no dominant sector, leading to a multi_industry classification and automotive as the sub‑industry for the strongest secondary signal. Client size is varied, so the client type is mixed.",
+      "extracted_signals": "mentions serving sports organizations (NFL, NBA), automotive sector, real estate sector; offers AI agents for revenue, operations, workflows; provides virtual assistants as a staffing solution; no geographic constraints stated.",
+      "industry_correct": false,
+      "sub_industry_correct": false
+    },
+    {
+      "idx": 14,
+      "company_name": "Slate",
+      "ground_truth_industry": "finance",
+      "ground_truth_sub": "banking",
+      "got_industry": "MISSING",
+      "got_sub": "MISSING",
+      "detection_reason": "The summary explicitly states the firm \"specializes in placing diverse financial services executives\" and lists target client types: banks, insurance firms, wealth management companies, and private equity firms. These are clear signals of a finance focus. Although the description also mentions \"Industrial firms,\" the dominant and repeatedly emphasized sector is financial services, making the primary industry determinable.",
+      "extracted_reasoning": "",
+      "extracted_signals": "",
+      "industry_correct": false,
+      "sub_industry_correct": false
+    }
+  ]
+}

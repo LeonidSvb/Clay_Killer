@@ -1,0 +1,259 @@
+[
+  {
+    "_idx": 0,
+    "primary_service": "staffing",
+    "secondary_services": [
+      "sourcing"
+    ],
+    "business_model": "contract",
+    "primary_industry": "other",
+    "secondary_industries": [],
+    "sub_industry": "virtual_assistants",
+    "detected_signals": "connects Filipino virtual assistants with US entrepreneurs; offers virtual assistant services for any computer‑based task; targets US small to medium‑sized business owners; mentions cost and time savings; emphasizes onboarding, training, and task management; operates from the Philippines for US clients.",
+    "specificity": "high",
+    "company_type": "smb",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The description centers on providing virtual assistants (a staffing service) to US entrepreneurs, indicating a clear niche in remote admin support. No explicit industry sector is mentioned, so the default industry is 'other' with sub‑industry 'virtual_assistants'. The service model is ongoing assistant placement, fitting a contract staffing model. Clients are described as small‑to‑medium businesses, leading to an SMB client type and national US geography."
+  },
+  {
+    "_idx": 1,
+    "primary_service": "staffing",
+    "secondary_services": [
+      "sourcing",
+      "permanent_recruiting"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "other",
+    "secondary_industries": [],
+    "sub_industry": "virtual_assistants",
+    "detected_signals": "mentions staffing agencies, virtual assistants, admin and operations tasks, sourcing and vetting VAs, placement of full‑time VAs, focus on scaling agency operations.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 8,
+    "reasoning": "The description centers on providing and placing full‑time virtual assistants for staffing agencies, indicating a staffing service with strong sourcing components. No explicit industry focus is given, so the recruiter is classified under the generic 'other' category, with the sub‑industry 'virtual_assistants'. Client type is mixed because agency sizes are not defined, and geography is unspecified."
+  },
+  {
+    "_idx": 2,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "retained",
+    "primary_industry": "other",
+    "secondary_industries": [
+      "healthcare"
+    ],
+    "sub_industry": "nonprofit",
+    "detected_signals": "focus on associations, certification boards, foundations, nonprofits, social enterprises; explicit mention of healthcare and education sectors; mission‑driven organizations; US‑wide service area; budgets ranging $2.5M‑$240M; Washington D.C. location.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The description centers on executive search for nonprofit and association clients, indicating executive_search as the core service with a retained model. Industry signals point primarily to the nonprofit/association space (mapped to 'other') with a secondary explicit healthcare signal. Client types span various sizes, leading to a mixed classification, and the firm serves the United States broadly."
+  },
+  {
+    "_idx": 3,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "other",
+    "secondary_industries": [],
+    "sub_industry": "nonprofit",
+    "detected_signals": "associations, certification boards, foundations, nonprofits, social enterprises, mission‑driven organizations, US focus, budgets $2.5M‑$240M, executive CEO placements, nonprofit executive director hires",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The description repeatedly emphasizes executive search for associations, foundations, nonprofits and social enterprises, clearly pointing to the 'other' industry with a nonprofit sub‑industry. No other sector signals appear, so multi_industry is not used. The niche focus is explicit, yielding high specificity."
+  },
+  {
+    "_idx": 4,
+    "primary_service": "permanent_recruiting",
+    "secondary_services": [
+      "sourcing"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "other",
+    "secondary_industries": [
+      "healthcare"
+    ],
+    "sub_industry": "real_estate_services",
+    "detected_signals": "recruiting, business consulting, a la carte services, systematic screening processes, mentions of healthcare and employment sectors, explicit focus on recruiting and training talent for the Real Estate industry, lack of client size or geography details.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 7,
+    "reasoning": "The firm repeatedly emphasizes recruiting and training for the Real Estate sector, making that the dominant industry signal (mapped to 'other' > 'real_estate_services'). It also references healthcare screening, giving a secondary industry. Recruiting is the core offering, with sourcing as a clear ancillary service. No pricing or contract model is described, so business model is not_specified."
+  },
+  {
+    "_idx": 5,
+    "primary_service": "unknown",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "information_technology",
+    "secondary_industries": [],
+    "sub_industry": "ai_ml",
+    "detected_signals": "Designs, deploys, and manages AI agents for revenue, operations, and internal workflows; product domain is AI/automation (information technology). Serves sports organizations (NFL, NBA), automotive sector, and real estate sector. No geographic constraints mentioned.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 8,
+    "reasoning": "The core offering is AI agent development and deployment, a clear information technology product, outweighing the explicit sector mentions (sports, automotive, real estate). Hence primary_industry = information_technology with sub_industry ai_ml. No recruiting service is described, so service = unknown. Client base spans multiple sizes, leading to a mixed company_type."
+  },
+  {
+    "_idx": 6,
+    "primary_service": "staffing",
+    "secondary_services": [
+      "sourcing"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "unknown",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "Mentions virtual workers and connecting businesses with dedicated personnel, but no explicit industry, sector, or client type signals; generic language about serving businesses across various industries.",
+    "specificity": "low",
+    "company_type": "unknown",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 6,
+    "reasoning": "The description focuses on providing virtual staff without naming any industry or client size, leading to a staffing primary service and unknown industry. Lack of explicit signals results in low specificity and unknown client type."
+  },
+  {
+    "_idx": 7,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "retained",
+    "primary_industry": "other",
+    "secondary_industries": [],
+    "sub_industry": "nonprofit",
+    "detected_signals": "family offices, foundations, nonprofits, impact investing firms, University of Virginia, Aspen Institute, Energy Foundation, World Resources Institute, Sierra Club Foundation, Charles Stewart Mott Foundation, Regenerative Social Finance, Bears Ears Partnership",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 8,
+    "reasoning": "The firm repeatedly mentions executive search for foundations, nonprofits, and impact‑focused organizations, which points to the 'other' industry with a nonprofit sub‑industry. Executive search is a retained service, and the client base spans various organization sizes, leading to a mixed client type. No geography or pricing model is disclosed."
+  },
+  {
+    "_idx": 8,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "staffing"
+    ],
+    "business_model": "retained",
+    "primary_industry": "unknown",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "Executive search focus, C‑suite and director‑level placements, retained and contained search models, diversity and volume recruitment, mentions of Fortune 500 experience, but no explicit sector or industry references.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 7,
+    "reasoning": "The description centers on executive search services (retained) with no sector‑specific language, so the industry is classified as unknown. The firm’s core offering is executive search, with volume recruitment hinting at staffing as a secondary service. Client size is not defined, leading to a mixed classification. Geography and industry signals are absent, resulting in low specificity."
+  },
+  {
+    "_idx": 9,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "retained",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "finance",
+      "construction"
+    ],
+    "sub_industry": "insurance",
+    "detected_signals": "explicit mention of finance sector, insurance sub‑sector, and construction sector as target markets for executive and C‑level searches; focus on senior leadership roles across these industries.",
+    "specificity": "medium",
+    "company_type": "enterprise",
+    "company_stage": "not_applicable",
+    "geography": "unknown",
+    "confidence": 8,
+    "reasoning": "The firm describes itself as an executive search firm (primary service) with a retained fee model. It explicitly targets finance (including insurance) and construction, giving multiple strong industry signals, so a multi_industry classification is used. The first secondary industry (finance) maps to the insurance sub‑industry. The focus on C‑level placements suggests enterprise‑level clients."
+  },
+  {
+    "_idx": 10,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting"
+    ],
+    "business_model": "retained",
+    "primary_industry": "multi_industry",
+    "secondary_industries": [
+      "finance",
+      "retail"
+    ],
+    "sub_industry": null,
+    "detected_signals": "Executive recruitment for mid‑senior level roles; serves Consumer Packaged Goods (CPG), Retail, Financial Services, Pharmaceutical industries; functional expertise in Marketing, Sales, Human Resources, Operations, Engineering, Supply Chain/Logistics, Legal, Accounting/Finance; mentions national reach and job listing platform with 6,000+ jobs.",
+    "specificity": "high",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 9,
+    "reasoning": "The firm repeatedly emphasizes executive search across multiple distinct sectors (finance, retail/CPG, pharma), with no single sector dominating, triggering a multi‑industry classification. Their core offering is executive search, performed on a retained basis, and they also place permanent executives. Client size is not defined, indicating a mixed portfolio, and they operate nationwide."
+  },
+  {
+    "_idx": 11,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "staffing",
+      "permanent_recruiting"
+    ],
+    "business_model": "not_specified",
+    "primary_industry": "unknown",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "Executive search and staffing agency based in Santa Rosa, CA; offers executive search, C‑level talent placement, and staffing/recruiting services; serves clients from small startups to global enterprises; mentions no specific industry sectors; emphasizes ethical practices (BBB accreditation) and award recognitions; no explicit geographic limitation beyond being US‑based.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "global",
+    "confidence": 8,
+    "reasoning": "The description highlights executive search as the core offering, with staffing and permanent recruiting as additional services. No industry or sector is specified, leading to an 'unknown' industry classification. Client size ranges from startups to global enterprises, so the client type is mixed, and the mention of serving global enterprises suggests a global geographic focus."
+  },
+  {
+    "_idx": 12,
+    "primary_service": "executive_search",
+    "secondary_services": [
+      "permanent_recruiting"
+    ],
+    "business_model": "retained",
+    "primary_industry": "unknown",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "The firm describes itself as providing executive and professional recruiting services to clients across various industries nationwide, with no explicit sector focus. Mentions of retained, contingency, and container services are present, but no industry‑specific language or client logos are given.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "national",
+    "confidence": 7,
+    "reasoning": "The description emphasizes executive search as the core offering, with a secondary focus on permanent professional placements, leading to the service classification. No sector‑specific signals appear, so the industry is marked unknown. Geographic language indicates a nationwide reach, and the lack of client‑size detail suggests a mixed client base."
+  },
+  {
+    "_idx": 13,
+    "primary_service": "executive_search",
+    "secondary_services": [],
+    "business_model": "not_specified",
+    "primary_industry": "unknown",
+    "secondary_industries": [],
+    "sub_industry": null,
+    "detected_signals": "International executive search and board consulting firm; mentions executive‑level placements across Asia Pacific, Europe, Middle East, Africa, and the Americas; serves various industries and sectors without naming specific ones; emphasizes board and leadership talent, human trust, and global presence.",
+    "specificity": "low",
+    "company_type": "mixed",
+    "company_stage": "not_applicable",
+    "geography": "global",
+    "confidence": 7,
+    "reasoning": "The firm explicitly offers executive search (primary service) and board consulting, but no other recruiting services are mentioned. No industry is named, only a generic statement of serving many sectors, leading to an 'unknown' industry classification. The global footprint across multiple continents justifies a 'global' geography. Client size is not defined, but references to leading and emerging companies suggest a mixed client base."
+  },
+  {
+    "_idx": 14,
+    "raw": "**1️⃣ Why the original prompt often fell back to `multi_industry`**\n\n| Symptom | Root cause in the prompt |\n|---------|--------------------------|\n| **Too many “multi‑industry” outputs** | The hierarchy gives *product/technology* signals the highest weight, but the rule *“only use `multi_industry` when there are at least two distinct strong signals of comparable weight”* is vague. When a description mentions several client‑type sectors (e.g., “banks, insurance, private‑equity”) the model treats each as a separate strong signal, so it defaults to `multi_industry` instead of picking the clearly‑stated sector. |\n| **Missing obvious primary sector** | The prompt does not give a clear tie‑breaker when *explicit industry statements* coexist with *product/domain* signals. The model therefore treats the product signal as “higher” even though the text explicitly says “we specialize in financial services”. |\n| **Unclear “comparable weight”** | No quantitative or qualitative threshold is defined, so any two sector mentions (even if one is a headline and the other a single example) are interpreted as “comparable”, pushing the decision toward `multi_industry`. |\n| **Over‑reliance on “client logos / case‑study sectors”** | The hierarchy places client‑logo evidence below explicit statements, but the prompt never tells the model to *ignore* logo evidence when an explicit sector statement already exists. This again inflates the count of “strong signals”. |\n| **No fallback rule when a single sector dominates** | When one sector appears more frequently or is described as the firm’s “core focus”, the prompt does not instruct the model to treat that as decisive. |\n\n---\n\n**2️⃣ Patterns in the failures**\n\n1. **Conservative weighting** – the model is instructed to give the highest priority to product‑domain signals, even when the text’s *primary business* is an industry‑specific service (executive search for finance).  \n2. **Ambiguous tie‑breaking** – “comparable weight” is not quantified, leading to frequent ties and a default to `multi_industry`.  \n3. **Missing “dominance” rule** – no explicit instruction to pick the sector that is *explicitly* called out as the firm’s specialization.  \n4. **Over‑counting minor mentions** – every industry word is treated as a strong signal, regardless of context (e.g., “we also serve manufacturing clients” in a single sentence).  \n\n---\n\n**3️⃣ Revised prompt sections (only the parts that need fixing)**  \n\nBelow are the edited sections. All other sections remain unchanged.\n\n---\n\n### **SECTION 3 — INDUSTRY (re‑written)**  \n\n**Step 3a – Signal scan**  \n1. **Explicit industry statement** – any sentence that says *“we specialize in …”, “our focus is …”, “we serve … clients”, or “our core market is …”*.  \n2. **Product/technology domain** – description of a proprietary platform, SaaS, AI, etc. that maps directly to an industry.  \n3. **Client logos / case‑study sectors** – mention of specific client names or case‑study titles.  \n4. **Generic terminology** – “all industries”, “various sectors”, etc.\n\n**Step 3b – Dominance assessment**  \n1. **If an explicit industry statement exists, it **overrides** any product‑domain or logo signals** – the sector named in that statement becomes the *primary industry* **regardless of other signals**.  \n2. If **no explicit statement** is present, use the hierarchy (product > explicit > logo > generic).  \n3. **Tie‑breaker rule:**  \n   * Count the number of occurrences of each industry signal.  \n   * The industry with the **highest count** wins.  \n   * If two industries have the **exact same count** *and* both are explicit statements, then set `primary_industry = \"multi_industry\"` and list the two as `secondary_industries`.  \n   * Minor mentions (e.g., a single logo) are ignored when another industry appears in an explicit statement or has a higher count.  \n\n**Step 3c – Classification**  \n- `primary_industry` = one of the allowed values.  \n- `secondary_industries` = up to 2 other industries **only** when `primary_industry` is `\"multi_industry\"` (as defined above).  \n- Use `multi_industry` **only** in the tie‑breaker situation described; otherwise always pick a single primary industry.\n\n---\n\n### **SECTION 4 — SUB‑INDUSTRY (minor clarification)**  \n\n- If `primary_industry` is **not** `multi_industry`, select the most specific sub‑industry that appears **anywhere** in the text (explicit statement, case study, or role description).  \n- If only a broad industry is mentioned (e.g., “financial services”) and no sub‑industry term appears, set `sub_industry = null`.  \n- When `primary_industry = \"multi_industry\"` and you have `secondary_industries`, attempt a sub‑industry **only for the first secondary industry**; otherwise leave `sub_industry = null`.\n\n---\n\n### **SECTION 5 – DETECTED SIGNALS (added guidance)**  \n\n- List **every** industry‑related word or phrase, even if it is later ignored by the dominance rules.  \n- Example format: `\"explicit: finance (banks, insurance, wealth‑management); product: SaaS platform for risk analytics; logo: XYZ Bank; generic: serves all sectors\"`.\n\n---\n\n### **SECTION 6 – SPECIFICITY (expanded definition)**  \n\n- **high** – the text contains an explicit industry statement *and* at least one matching sub‑industry term.  \n- **medium** – the industry is clear from explicit statements but no sub‑industry is given, or the industry is inferred from product/domain with strong evidence.  \n- **low** – only generic language or scattered mentions without a clear dominant sector.\n\n---\n\n### **SECTION 7 – CLIENT COMPANY TYPE (clarified)**  \n\n- If the description mentions “small‑market cities”, “mid‑size firms”, or gives employee ranges, map to **smb** or **mid_market** accordingly.  \n- When multiple sizes are described, use **mixed**.  \n\n---\n\n### **SECTION 9 – GEOGRAPHY (added nuance)**  \n\n- If the text says “U.S. Heartland” *and* also lists specific states or metros, treat it as **regional** → `local`.  \n- If only “United States” or “U.S.” is mentioned without further detail, treat as **national**.  \n\n---\n\n**4️⃣ Why these changes fix the problem**\n\n* The new **Step 3b** gives an unambiguous rule that an explicit industry statement always wins, preventing the model from defaulting to `multi_industry` when the firm clearly says “we specialize in financial services”.  \n* The **tie‑breaker** quantifies “comparable weight”, so only truly equal counts trigger `multi_industry`.  \n* Minor logo mentions are now ignored when a stronger explicit sector exists, reducing noise.  \n* Clarifications in Sub‑Industry, Specificity, and Geography ensure the model can still fill those fields even when the industry is forced to a single value.  \n\nWith these revisions the classifier will select a single, well‑justified primary industry in the majority of cases, using `multi_industry` only when the source text genuinely presents two equally‑strong sectors.",
+    "parse_error": true
+  }
+]

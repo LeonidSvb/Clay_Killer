@@ -1,0 +1,35 @@
+{
+  "accuracy": 0.75,
+  "industry_accuracy": 0.75,
+  "sub_accuracy": 0.875,
+  "detectable_count": 8,
+  "correct": 6,
+  "failures": [
+    {
+      "idx": 5,
+      "company_name": "Cynergists",
+      "ground_truth_industry": "information_technology",
+      "ground_truth_sub": "ai_ml",
+      "got_industry": "multi_industry",
+      "got_sub": "automotive",
+      "detection_reason": "The description repeatedly emphasizes AI agents, automation, and workflow management, which are core information technology services. The company’s product is an AI‑driven platform (AI agents) and the language aligns with AI/ML solutions. Although client logos span sports, automotive, and real estate, the service itself is technology‑focused, making the primary industry clear.",
+      "extracted_reasoning": "The description lists multiple client sectors (sports, automotive, real estate) with no dominant signal, leading to a multi_industry classification. Sub‑industry is derived from the automotive signal under manufacturing. Lack of size or region details results in mixed client type and global geography.",
+      "extracted_signals": "mentions serving sports organizations (NFL, NBA), automotive sector, and real estate sector; no explicit focus on a single industry; geographic scope not limited.",
+      "industry_correct": false,
+      "sub_industry_correct": false
+    },
+    {
+      "idx": 9,
+      "company_name": "Carlson",
+      "ground_truth_industry": "finance",
+      "ground_truth_sub": "insurance",
+      "got_industry": "multi_industry",
+      "got_sub": "insurance",
+      "detection_reason": "The summary explicitly states the firm’s ideal clients are in \"finance, insurance, and construction\" and focuses on executive/C‑level roles. Finance (including insurance) is the dominant sector, allowing a clear primary industry assignment.",
+      "extracted_reasoning": "The firm describes itself as an executive search firm, which points to the executive_search service and a retained fee model. It explicitly calls out finance, insurance, and construction as target sectors, giving multiple strong industry signals, so a multi_industry classification is appropriate with finance and construction as secondary industries. The sub‑industry is derived from the insurance signal within finance.",
+      "extracted_signals": "explicit mentions of finance, insurance, and construction sectors; focus on C‑level and senior executive roles; language about strategic partner and high‑touch executive searches.",
+      "industry_correct": false,
+      "sub_industry_correct": true
+    }
+  ]
+}

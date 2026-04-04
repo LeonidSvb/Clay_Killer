@@ -1,0 +1,100 @@
+ICEBREAKERS ROUND ROBIN — PROJECT STATUS
+Updated: 2026-04-04
+================================================================================
+
+ЦЕЛЬ
+----
+Заменить 6-prompt Clay workflow на 2-prompt pipeline:
+  1. extraction_prompt_final.txt  →  JSONL (классификация компании)
+  2. Матрица шаблонов             →  CSV (готовые icebreakers)
+
+Матрица пока НЕ ПОСТРОЕНА — это следующий шаг.
+
+================================================================================
+ФИНАЛЬНЫЕ ФАЙЛЫ (использовать эти)
+================================================================================
+
+ПРОМПТ ЭКСТРАКЦИИ:
+  extraction_prompt_final.txt
+  → Версия от 2026-04-04. Финальная. Не трогать без причины.
+  → Что внутри: service, business_model, industry (с chain-of-thought),
+    sub_industry, detected_signals, extractability, specificity,
+    company_type, client_profile (16 значений), company_stage, geography,
+    confidence, reasoning (1 предложение)
+
+ТАКСОНОМИЯ:
+  taxonomy.json
+  → Все allowed values для всех полей
+  → client_profile: 16 кодов (vc_early, smb_trades, mid_market_pe, etc.)
+  → fallback_chain описан в конце файла
+
+СКРИПТЫ:
+  run_extraction.py       — читает CSV → LLM → сохраняет JSONL в extractions/
+  run_pipeline.py         — полный pipeline (extraction + icebreaker)
+  compare_services.py     — сравнение старого vs нового services prompt
+  run_extraction_loop.py  — agentic QA loop (для оптимизации промпта, не для prod)
+
+РЕЗУЛЬТАТЫ:
+  extractions/            — JSONL файлы per run
+  icebreakers/            — CSV файлы с icebreakers
+  extraction_100leads.csv — 100 лидов, все поля, удобно смотреть
+
+INPUT CSV:
+  C:\Users\79818\Downloads\_US+ recruit 10-100  - COPY#2 (2).csv  (~542 строки)
+
+================================================================================
+ЧТО ТЕСТИРОВАЛИ И ЧТО РЕШИЛИ
+================================================================================
+
+1. AGENTIC LOOP (run_extraction_loop.py)
+   Результат: iter_01 = 75% accuracy (лучший), iter 6-7 деградировал до 0%
+   Причина: prompt engineer overcorrects на edge cases
+   Решение: взяли iter_01 как финальный, loop больше не гоняем
+   Практический потолок: ~75% — проблема в данных, не в промпте
+
+2. VARIANCE TEST (--runs 3 на 17 multi_industry строках)
+   Результат: 15/17 строк стабильны across runs
+   Вывод: проблема НЕ стохастическая — температура тут не поможет
+   Решение: не гонять больше runs, идти в матрицу
+
+3. SERVICE COMPARISON (compare_services.py)
+   Результат: 89% agreement старый focused prompt vs новый combined
+   Вывод: service classification надёжная
+   Данные: 84% лидов = executive_search → service почти не дифференцирует
+
+4. A/B ТЕСТ ChatGPT suggestions
+   Решение: НЕ тестируем — улучшения мелкие, вкатили напрямую в промпт
+   Что добавили: иерархия сигналов, правило "2+ упоминаний = dominant",
+                 поле extractability, typed detected_signals, reasoning=1 sentence
+
+================================================================================
+СЛЕДУЮЩИЙ ШАГ — ПОСТРОИТЬ МАТРИЦУ
+================================================================================
+
+Ключ матрицы: (service, sub_industry, client_profile)
+Fallback:     (service, sub_industry) → (service, primary_industry)
+              → (service, secondary_industry) → (service, generic) → (generic, generic)
+
+Топ sub_industries из 100 лидов (по приоритету):
+  pharma × 7
+  saas × 7
+  biotech × 6
+  ai_ml × 6
+  nonprofit × 5
+  banking × 3
+  accounting × 3
+  investment_banking × 3
+
+Формат матрицы: JSON или Python dict
+  ключ: "(service)_(sub_industry)_(client_profile)"
+  значение: список из 3 вариантов icebreaker hook (выбирать рандомно или round-robin)
+
+После матрицы: запустить полный pipeline на 542 лидах через run_pipeline.py
+
+================================================================================
+API / МОДЕЛЬ
+================================================================================
+
+OpenRouter API key: в ../.env  (OPENROUTER_API_KEY)
+Модель: openai/gpt-oss-120b
+Параметры: temperature=0.1, provider={sort: "throughput"}, concurrency=10

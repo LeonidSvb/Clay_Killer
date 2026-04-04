@@ -1,0 +1,201 @@
+{
+  "_meta": {
+    "purpose": "Sub-industry taxonomy for recruitment/staffing icebreaker matrix",
+    "usage": "LLM picks sub_industry from this list. Code does direct lookup in matrix.",
+    "note": "Values are snake_case keys. Labels are human-readable for prompt injection."
+  },
+
+  "industries": {
+    "healthcare": {
+      "label": "Healthcare",
+      "sub_industries": {
+        "hospitals":         "Hospital systems and large health networks",
+        "pharma":            "Pharmaceutical companies (R&D, clinical, commercial)",
+        "biotech":           "Biotech startups and scaleups",
+        "medical_devices":   "Medical device and medtech companies",
+        "private_clinics":   "Outpatient, specialty clinics, urgent care",
+        "home_care":         "Home health, assisted living, senior care",
+        "dental":            "Dental practices and DSOs",
+        "mental_health":     "Behavioral health, therapy, rehab centers",
+        "health_tech":       "Digital health and health IT companies"
+      }
+    },
+
+    "information_technology": {
+      "label": "Information Technology",
+      "sub_industries": {
+        "saas":              "Software-as-a-Service product companies",
+        "cybersecurity":     "Cybersecurity firms and managed security services",
+        "ai_ml":             "AI, machine learning, data science companies",
+        "enterprise_software": "ERP, CRM, infrastructure software vendors",
+        "dev_agencies":      "Software development agencies and consultancies",
+        "it_services":       "Managed IT services, IT staffing, tech consulting",
+        "ecommerce_tech":    "Technology platforms for ecommerce and retail",
+        "telecom":           "Telecommunications and network infrastructure",
+        "gaming":            "Video game development and publishing"
+      }
+    },
+
+    "finance": {
+      "label": "Finance",
+      "sub_industries": {
+        "banking":           "Commercial and retail banking",
+        "investment_banking": "Investment banking, M&A advisory",
+        "private_equity":    "Private equity and alternative investments",
+        "venture_capital":   "Venture capital firms",
+        "accounting":        "CPA firms, audit and tax advisory",
+        "insurance":         "Insurance carriers and brokers",
+        "wealth_management": "Wealth management and financial advisory",
+        "fintech":           "Financial technology companies",
+        "real_estate_finance": "Real estate investment, REITs, mortgage"
+      }
+    },
+
+    "manufacturing": {
+      "label": "Manufacturing",
+      "sub_industries": {
+        "automotive":        "Automotive OEMs, Tier 1/2 suppliers",
+        "aerospace_defense": "Aerospace, defense contractors",
+        "food_beverage":     "Food and beverage production",
+        "industrial_equipment": "Heavy machinery, industrial equipment",
+        "chemicals":         "Chemical manufacturing and processing",
+        "electronics_manufacturing": "Electronics, semiconductors, PCB",
+        "packaging":         "Packaging and container manufacturing",
+        "textile_apparel":   "Textile mills and apparel manufacturing"
+      }
+    },
+
+    "construction": {
+      "label": "Construction",
+      "sub_industries": {
+        "commercial_construction": "Office buildings, retail, industrial builds",
+        "residential_construction": "Homebuilders, residential developers",
+        "civil_infrastructure": "Roads, bridges, utilities, public works",
+        "specialty_trades":  "Electrical, plumbing, HVAC, mechanical",
+        "real_estate_development": "Real estate developers and property managers"
+      }
+    },
+
+    "logistics": {
+      "label": "Logistics",
+      "sub_industries": {
+        "warehousing_distribution": "Warehousing, fulfillment, distribution centers",
+        "transportation_freight": "Trucking, freight, cargo carriers",
+        "supply_chain_management": "Supply chain consulting and 3PL management",
+        "last_mile_delivery": "Last-mile and courier delivery services",
+        "maritime_aviation":  "Shipping, ports, aviation logistics"
+      }
+    },
+
+    "retail": {
+      "label": "Retail",
+      "sub_industries": {
+        "ecommerce":         "Online retail and DTC brands",
+        "consumer_goods":    "CPG brands and FMCG companies",
+        "grocery_food_retail": "Grocery chains and food retail",
+        "fashion_apparel":   "Fashion brands and apparel retailers",
+        "luxury_retail":     "Luxury goods and premium retail"
+      }
+    },
+
+    "other": {
+      "label": "Other / Emerging",
+      "sub_industries": {
+        "legal":             "Law firms and legal services",
+        "education":         "K-12, universities, EdTech",
+        "hospitality":       "Hotels, restaurants, event venues",
+        "energy_oil_gas":    "Oil and gas, energy sector",
+        "renewables":        "Solar, wind, clean energy",
+        "real_estate_services": "Property management and brokerage",
+        "nonprofit":         "Nonprofits and associations",
+        "government":        "Public sector and government agencies",
+        "virtual_assistants": "VA placement and remote staffing for SMBs"
+      }
+    },
+
+    "multi_industry": {
+      "label": "Multi-Industry (no clear niche)",
+      "sub_industries": {}
+    },
+
+    "unknown": {
+      "label": "Unknown",
+      "sub_industries": {}
+    }
+  },
+
+  "services": {
+    "staffing":            "Temporary, contract, and high-volume workforce",
+    "permanent_recruiting": "Full-time placement and contingency search",
+    "executive_search":    "C-level, VP, and senior leadership hiring",
+    "rpo":                 "Recruitment Process Outsourcing (embedded recruiters)",
+    "sourcing":            "Candidate sourcing and pipeline research only",
+    "unknown":             "Service type unclear"
+  },
+
+  "business_models": {
+    "retained":      "Client pays upfront fee; used mostly in executive search",
+    "contingency":   "Fee paid only on successful placement",
+    "contract":      "Ongoing staffing contracts with client companies",
+    "not_specified": "Business model not clearly stated"
+  },
+
+  "company_type": {
+    "_note": "High-level type of CLIENT companies the recruiter serves. Use client_profile for precise routing.",
+    "smb":        "Small/mid-size PRIVATE businesses, 10-250 employees (family-owned, regional, independent — not VC-backed)",
+    "mid_market": "Mid-size companies, 250-1000 employees, often PE-backed or private growth stage",
+    "enterprise":  "Large corporations, 1000+ employees, Fortune 500, publicly traded",
+    "vc_backed":  "VC-backed or investor-funded high-growth companies (tech, biotech, fintech) — use client_profile to refine",
+    "mixed":       "Clearly serves multiple company types",
+    "unknown":     "No clear signal"
+  },
+
+  "client_profile": {
+    "_note": "Coded compound descriptor — primary routing key for matrix lookup. More specific than company_type.",
+    "_routing": "matrix.get((service, sub_industry, client_profile)) → matrix.get((service, sub_industry, company_type)) → matrix.get((service, company_type))",
+    "vc_early":          "Seed or Series A, still finding PMF, lean team",
+    "vc_growth":         "Series B/C, scaling fast, hiring urgently",
+    "vc_late_ipo":       "Series D+, pre-IPO or recently public, board pressure on every hire",
+    "vc_established":    "Mature VC-backed, no clear stage signal",
+    "smb_trades":        "Contractors, HVAC, plumbing, electrical, construction trades",
+    "smb_professional":  "Accounting firms, law firms, consultancies, agencies",
+    "smb_healthcare":    "Private clinics, dental practices, boutique medical offices",
+    "smb_tech":          "Small tech companies, bootstrapped (no VC)",
+    "smb_general":       "General small business, no clear vertical",
+    "mid_market_pe":     "PE-backed portfolio company, operator mindset",
+    "mid_market_private":"Organic growth, owner-operated at scale",
+    "enterprise_public": "Publicly traded, Fortune 500",
+    "enterprise_private":"Large private, family-owned at scale",
+    "nonprofit_small":   "Small nonprofits, community orgs, local foundations",
+    "nonprofit_large":   "National nonprofits, large associations, major foundations",
+    "mixed_types":       "Genuinely serves multiple distinct company profiles",
+    "unknown_type":      "No clear signal"
+  },
+
+  "company_stage": {
+    "_note": "Only relevant when client_profile starts with vc_. For all others use not_applicable.",
+    "seed":          "Pre-seed or seed stage, typically <$5M raised",
+    "series_a_b":    "Series A or B, product-market fit, scaling team",
+    "series_c_plus": "Series C+, aggressive scaling",
+    "pre_ipo":       "Preparing for public listing, IPO imminent",
+    "post_ipo":      "Recently went public (within ~2 years)",
+    "established":   "Mature VC-backed, stage unclear or not relevant",
+    "not_applicable": "client_profile does not start with vc_"
+  },
+
+  "geography": {
+    "_note": "Geographic scope of the recruiting firm's placements. Default assumption = national (US) if unknown",
+    "local":    "Specific US region, state, or metro area (e.g. Texas, NYC, Southeast)",
+    "national": "US-wide, no geographic restriction",
+    "global":   "International placements, works across countries",
+    "unknown":  "Not specified — treat as national for fallback purposes"
+  },
+
+  "fallback_chain": [
+    "(service, sub_industry)        -- most specific",
+    "(service, primary_industry)    -- if primary != multi_industry",
+    "(service, secondary_industry)  -- if primary == multi_industry, try first secondary",
+    "(service, generic)             -- service-only fallback",
+    "(generic, generic)             -- universal last resort"
+  ]
+}
