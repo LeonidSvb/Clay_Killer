@@ -35,7 +35,7 @@ from app.enrichments.exa import (
     DEFAULT_STRUCTURED_SCHEMA,
     OUTPUT_COL as EXA_OUTPUT_COL,
 )
-from app.enrichments.llm import run_llm_enrichment
+from app.enrichments.llm import run_llm_enrichment, DEFAULT_MODEL as LLM_DEFAULT_MODEL, LLM_MODELS
 from app.enrichments.mx import run_mx_enrichment
 from app.utils.logger import get_logger
 from core.errors import split_into_output_and_error, collect_output_keys
@@ -259,57 +259,118 @@ def _render_output_section(df: pd.DataFrame) -> None:
             else:
                 col_selections[key] = None
 
+    import json as _json
+
+    dedup_col = st.session_state.get("run_dedup_col")
+    df_full_ref: pd.DataFrame | None = st.session_state.get("df")
+
+    def _count_propagate_rows(rename_map: dict) -> int:
+        if not dedup_col or df_full_ref is None or dedup_col not in df_full_ref.columns:
+            return 0
+        url_vals: set[str] = set()
+        for r in results:
+            if r.get("data") and r.get("ok"):
+                url_val = str(df_full_ref.at[r["idx"], dedup_col]).strip()
+                if url_val and url_val not in ("nan", "None"):
+                    url_vals.add(url_val)
+        return int(df_full_ref[dedup_col].astype(str).isin(url_vals).sum())
+
+    def _do_save(rename_map: dict, new_col_names: list[str]) -> None:
+        for result in results:
+            if not result.get("data"):
+                continue
+            idx = result["idx"]
+            for src_key, dst_name in rename_map.items():
+                if src_key in result["data"]:
+                    val = result["data"][src_key]
+                    if isinstance(val, (list, dict)):
+                        val = _json.dumps(val, ensure_ascii=False)
+                    st.session_state.df.at[idx, dst_name] = val
+
+        existing_new = st.session_state.get("new_cols", [])
+        st.session_state.new_cols = list(set(existing_new + new_col_names))
+        st.session_state.last_save_map = rename_map
+        st.session_state["_last_run_cols"] = new_col_names
+        st.session_state.run_results = None
+        st.session_state.run_elapsed = 0.0
+        st.session_state.visible_cols = []
+        st.session_state.pop("run_dedup_col", None)
+
+        source = st.session_state.get("source_file")
+        if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
+            try:
+                st.session_state.df.to_csv(source, index=False)
+            except Exception as e:
+                st.warning(f"CSV save failed: {e}")
+
+        workspace_id = st.session_state.get("workspace_id")
+        if workspace_id:
+            _save_results_to_db(workspace_id, results, rename_map)
+            _log_inline_task(workspace_id, results, rename_map)
+
+    def _do_propagate(rename_map: dict) -> int:
+        if not dedup_col or df_full_ref is None or dedup_col not in df_full_ref.columns:
+            return 0
+        url_to_data: dict[str, dict] = {}
+        for r in results:
+            if not r.get("data") or not r.get("ok"):
+                continue
+            url_val = str(df_full_ref.at[r["idx"], dedup_col]).strip()
+            if url_val and url_val not in ("nan", "None"):
+                url_to_data[url_val] = {
+                    dst: r["data"][src]
+                    for src, dst in rename_map.items()
+                    if src in r["data"]
+                }
+        propagated = 0
+        for row_idx in range(len(st.session_state.df)):
+            url_val = str(st.session_state.df.at[row_idx, dedup_col]).strip()
+            if url_val in url_to_data:
+                for col_name, val in url_to_data[url_val].items():
+                    if isinstance(val, (list, dict)):
+                        val = _json.dumps(val, ensure_ascii=False)
+                    st.session_state.df.at[row_idx, col_name] = val
+                propagated += 1
+        return propagated
+
     # Edit params / Save / Discard
-    r_col, s1, s2 = st.columns(3)
-    with r_col:
-        if st.button("Edit params", use_container_width=True, key="_btn_rerun"):
-            st.session_state["run_results"] = None
-            st.session_state["run_elapsed"] = 0.0
-            st.rerun()
-    with s1:
-        if st.button("Save to table", type="primary", use_container_width=True):
-            rename_map = {k: v for k, v in col_selections.items() if v is not None}
-            new_col_names = list(rename_map.values())
-
-            for result in results:
-                if not result.get("data"):
-                    continue
-                idx = result["idx"]
-                for src_key, dst_name in rename_map.items():
-                    if src_key in result["data"]:
-                        val = result["data"][src_key]
-                        if isinstance(val, (list, dict)):
-                            import json as _json
-                            val = _json.dumps(val, ensure_ascii=False)
-                        st.session_state.df.at[idx, dst_name] = val
-
-            existing_new = st.session_state.get("new_cols", [])
-            st.session_state.new_cols = list(set(existing_new + new_col_names))
-            st.session_state.last_save_map = rename_map
-            st.session_state["_last_run_cols"] = new_col_names
-            st.session_state.run_results = None
-            st.session_state.run_elapsed = 0.0
-            st.session_state.visible_cols = []
-
-            # Always save to CSV if source is a real file
-            source = st.session_state.get("source_file")
-            if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
-                try:
-                    st.session_state.df.to_csv(source, index=False)
-                except Exception as e:
-                    st.warning(f"CSV save failed: {e}")
-
-            workspace_id = st.session_state.get("workspace_id")
-            if workspace_id:
-                _save_results_to_db(workspace_id, results, rename_map)
-                _log_inline_task(workspace_id, results, rename_map)
-            st.rerun()
-
-    with s2:
-        if st.button("Discard", use_container_width=True):
-            st.session_state.run_results = None
-            st.session_state.run_elapsed = 0.0
-            st.rerun()
+    if dedup_col:
+        propagate_total = _count_propagate_rows({k: v for k, v in col_selections.items() if v})
+        r_col, s1, s2 = st.columns(3)
+        with r_col:
+            if st.button("Edit params", use_container_width=True, key="_btn_rerun"):
+                st.session_state["run_results"] = None
+                st.session_state["run_elapsed"] = 0.0
+                st.rerun()
+        with s1:
+            save_label = f"Save + Propagate ({propagate_total} rows)"
+            if st.button(save_label, type="primary", use_container_width=True):
+                rename_map = {k: v for k, v in col_selections.items() if v is not None}
+                _do_propagate(rename_map)
+                _do_save(rename_map, list(rename_map.values()))
+                st.rerun()
+        with s2:
+            if st.button("Discard", use_container_width=True):
+                st.session_state.run_results = None
+                st.session_state.run_elapsed = 0.0
+                st.rerun()
+    else:
+        r_col, s1, s2 = st.columns(3)
+        with r_col:
+            if st.button("Edit params", use_container_width=True, key="_btn_rerun"):
+                st.session_state["run_results"] = None
+                st.session_state["run_elapsed"] = 0.0
+                st.rerun()
+        with s1:
+            if st.button("Save to table", type="primary", use_container_width=True):
+                rename_map = {k: v for k, v in col_selections.items() if v is not None}
+                _do_save(rename_map, list(rename_map.values()))
+                st.rerun()
+        with s2:
+            if st.button("Discard", use_container_width=True):
+                st.session_state.run_results = None
+                st.session_state.run_elapsed = 0.0
+                st.rerun()
 
 
 # ── Run section ────────────────────────────────────────────────────────────────
@@ -656,14 +717,16 @@ def _do_run_llm(
     st.session_state["run_row_indices"] = row_indices
     st.session_state["run_type"] = "llm"
 
+    model = st.session_state.get("llm_model", LLM_DEFAULT_MODEL)
     st.session_state.run_in_progress = True
-    _log.info(f"LLM run started | rows={len(row_indices)} concurrency={concurrency}")
+    st.session_state["run_dedup_col"] = None
+    _log.info(f"LLM run started | rows={len(row_indices)} concurrency={concurrency} model={model}")
 
     def worker_fn(pq, se):
         return run_llm_enrichment(
             df=df, prompt_text=prompt_text, row_indices=row_indices,
             concurrency=concurrency, progress_queue=pq, stop_event=se,
-            api_key=api_key,
+            api_key=api_key, model=model,
         )
 
     _start_run_thread(worker_fn)
@@ -702,6 +765,7 @@ def _do_run_exa(
     row_indices: list[int],
     url_col: str,
     cfg: dict,
+    dedup_col: str | None = None,
 ) -> None:
     if st.session_state.get("run_in_progress"):
         return
@@ -717,6 +781,7 @@ def _do_run_exa(
     st.session_state["run_exa_cfg"] = cfg
     st.session_state["run_exa_mode"] = cfg.get("mode", "summary")
     st.session_state["run_prompt_cols"] = [url_col]
+    st.session_state["run_dedup_col"] = dedup_col
 
     st.session_state.run_in_progress = True
     _log.info(f"Exa run started | mode={cfg.get('mode')} rows={len(row_indices)} url_col={url_col}")
@@ -775,8 +840,27 @@ def _render_run_section_exa(
     running = st.session_state.get("run_in_progress", False)
     workspace_id = st.session_state.get("workspace_id")
 
+    dedup_urls = st.session_state.get("exa_dedup_urls", True)
+    dedup_col: str | None = None
+    if dedup_urls and url_col:
+        seen: set[str] = set()
+        deduped: list[int] = []
+        for idx in row_indices:
+            url_val = str(df.iloc[idx].get(url_col, "")).strip()
+            if url_val and url_val not in ("nan", "None") and url_val not in seen:
+                seen.add(url_val)
+                deduped.append(idx)
+        skipped_dedup = len(row_indices) - len(deduped)
+        row_indices = deduped
+        dedup_col = url_col
+        if skipped_dedup:
+            st.caption(
+                f"Deduped: {len(row_indices)} unique URLs "
+                f"({skipped_dedup} duplicate rows — will be filled via Propagate after save)"
+            )
+
     if autorun and not running:
-        _do_run_exa(df, row_indices, url_col, cfg)
+        _do_run_exa(df, row_indices, url_col, cfg, dedup_col=dedup_col)
         return
 
     can_queue = bool(workspace_id)
@@ -788,7 +872,7 @@ def _render_run_section_exa(
                 "Running..." if running else "Run (inline)",
                 use_container_width=True, key="btn_run", disabled=running,
             ):
-                _do_run_exa(df, row_indices, url_col, cfg)
+                _do_run_exa(df, row_indices, url_col, cfg, dedup_col=dedup_col)
         with c2:
             if st.button("Queue (background)", type="primary", use_container_width=True,
                          key="btn_queue_exa", disabled=running):
@@ -798,7 +882,7 @@ def _render_run_section_exa(
             "Running..." if running else "Run",
             type="primary", use_container_width=True, key="btn_run", disabled=running,
         ):
-            _do_run_exa(df, row_indices, url_col, cfg)
+            _do_run_exa(df, row_indices, url_col, cfg, dedup_col=dedup_col)
 
 
 # ── Main panel ─────────────────────────────────────────────────────────────────
@@ -842,6 +926,16 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     if enrichment_type == "LLM Extraction":
         prompt_text = render_prompt_editor(df)
 
+        saved_model = st.session_state.get("llm_model", LLM_DEFAULT_MODEL)
+        model_idx = LLM_MODELS.index(saved_model) if saved_model in LLM_MODELS else 0
+        llm_model = st.selectbox(
+            "Model",
+            options=LLM_MODELS,
+            index=model_idx,
+            key="llm_model_select",
+        )
+        st.session_state["llm_model"] = llm_model
+
     elif enrichment_type == "MX Check":
         email_cols = [c for c in df.columns if "email" in c.lower() or "mail" in c.lower()]
         all_cols = list(df.columns)
@@ -878,6 +972,12 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         ).sum()
         if empty_url_count:
             st.caption(f"{empty_url_count} rows with empty URL will be auto-skipped.")
+
+        st.checkbox(
+            "Deduplicate by URL — run once per unique website, then propagate to all rows",
+            value=st.session_state.get("exa_dedup_urls", True),
+            key="exa_dedup_urls",
+        )
 
         # Mode-specific config
         exa_cfg: dict = {"mode": exa_mode, "max_age_hours": 24}

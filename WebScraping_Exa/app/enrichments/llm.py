@@ -20,6 +20,14 @@ from core import prompts_store
 
 DEFAULT_MODEL = "openai/gpt-oss-120b"
 
+LLM_MODELS = [
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "deepseek/deepseek-chat",
+    "meta-llama/llama-3.3-70b-instruct",
+    "google/gemini-flash-1.5-8b",
+]
+
 
 # ── Prompt helpers ─────────────────────────────────────────────────────────────
 
@@ -167,6 +175,7 @@ async def _call_llm_batch(
     api_key: str,
     progress_queue: queue.Queue,
     stop_event: threading.Event,
+    model: str = DEFAULT_MODEL,
 ) -> list[dict]:
     """
     items: [{"idx": int, "rendered_prompt": str}, ...]
@@ -186,7 +195,7 @@ async def _call_llm_batch(
         idx = item["idx"]
         rendered = item["rendered_prompt"]
         payload = {
-            "model": DEFAULT_MODEL,
+            "model": model,
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": rendered},
@@ -260,6 +269,7 @@ def run_llm_enrichment(
     progress_queue: queue.Queue,
     stop_event: threading.Event,
     api_key: str = "",
+    model: str = DEFAULT_MODEL,
     # legacy params — accepted but ignored
     output_type: str = "Text",
     output_config: dict | None = None,
@@ -284,4 +294,5 @@ def run_llm_enrichment(
         api_key=key,
         progress_queue=progress_queue,
         stop_event=stop_event,
+        model=model,
     ))

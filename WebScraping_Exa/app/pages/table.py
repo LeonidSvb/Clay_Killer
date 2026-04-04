@@ -16,8 +16,8 @@ def _fill_pct(series: pd.Series) -> int:
     total = len(series)
     if total == 0:
         return 0
-    empty = series.isna().sum() + (series.astype(str).str.strip().isin(["", "nan", "None"])).sum()
-    return round((total - min(int(empty), total)) / total * 100)
+    empty = (series.isna() | series.astype(str).str.strip().isin(["", "nan", "None"])).sum()
+    return round((total - int(empty)) / total * 100)
 
 
 def render_table() -> None:
@@ -32,7 +32,6 @@ def render_table() -> None:
     _render_delete_confirm(df)
     filtered_df = _apply_filters(df)
     _render_row_count(df, filtered_df)
-    _render_col_manager(df)
     visible_cols = _get_visible_cols(filtered_df)
     _render_dataframe(filtered_df, visible_cols)
 
@@ -55,32 +54,6 @@ def _render_row_count(df: pd.DataFrame, filtered_df: pd.DataFrame) -> None:
     else:
         st.caption(f"{len(df):,} rows")
 
-
-def _render_col_manager(df: pd.DataFrame) -> None:
-    """Delete buttons for generated columns."""
-    new_cols = [c for c in st.session_state.get("new_cols", []) if c in df.columns]
-    if not new_cols:
-        return
-
-    st.caption("Generated columns:")
-    btn_cols = st.columns(min(len(new_cols), 6))
-    for i, col in enumerate(new_cols):
-        with btn_cols[i % 6]:
-            if st.button(f"{col} ✕", key=f"del_col_{col}", use_container_width=True,
-                         help=f"Delete column '{col}'"):
-                st.session_state.df.drop(columns=[col], inplace=True)
-                st.session_state.new_cols = [c for c in st.session_state.new_cols if c != col]
-                st.session_state.visible_cols = []
-                last_run = st.session_state.get("_last_run_cols", [])
-                if col in last_run:
-                    st.session_state["_last_run_cols"] = [c for c in last_run if c != col]
-                source = st.session_state.get("source_file")
-                if source and not source.startswith("[PV]") and not source.startswith("[DB]"):
-                    try:
-                        st.session_state.df.to_csv(source, index=False)
-                    except Exception:
-                        pass
-                st.rerun()
 
 
 def _render_last_run_stats(df: pd.DataFrame) -> None:
