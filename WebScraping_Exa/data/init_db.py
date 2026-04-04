@@ -204,6 +204,7 @@ def upsert_lead(cur: sqlite3.Cursor, email: str, data: dict):
 
 _MX_NORM = {
     "google workspace": "google",
+    "google_workspace": "google",
     "google":           "google",
     "google.com":       "google",
     "microsoft 365":    "microsoft",
@@ -356,15 +357,30 @@ def _infer_validation_service(row: dict) -> str | None:
 
 # ── import sources ────────────────────────────────────────────────────────────
 
+DOWNLOADS = Path.home() / "Downloads"
+
 SOURCES = [
     # (file_path, vertical, encoding)
-    (DATA_DIR / "_Europe+ recruit - 4500_All.csv",         "recruit",  "utf-8"),
-    (DATA_DIR / "us_recruit_clean_1634.csv",                "recruit",  "utf-8"),
-    (DATA_DIR / "us_enriched_500.csv",                      "recruit",  "utf-8-sig"),
-    (DATA_DIR / "US recruit 10-100  - all_leads (1).csv",   "recruit",  "utf-8"),
-    (DATA_DIR / "canada_usable_296.csv",                    "recruit",  "utf-8"),
-    (DATA_DIR / "Canada+ - logistic 10-100 - 500_G+Ot (1).csv", "logistic", "latin-1"),
+    # --- existing ---
+    (DATA_DIR / "_Europe+ recruit - 4500_All.csv",                          "recruit",  "utf-8"),
+    (DATA_DIR / "us_recruit_clean_1634.csv",                                "recruit",  "utf-8"),
+    (DATA_DIR / "us_enriched_500.csv",                                      "recruit",  "utf-8-sig"),
+    (DATA_DIR / "US recruit 10-100  - all_leads (1).csv",                   "recruit",  "utf-8"),
+    (DATA_DIR / "canada_usable_296.csv",                                    "recruit",  "utf-8"),
+    (DATA_DIR / "Canada+ - logistic 10-100 - 500_G+Ot (1).csv",            "logistic", "latin-1"),
+    # --- new ---
+    (DOWNLOADS / "_US+ recruit 10-100  - 10500_initial_list.csv",           "recruit",  "utf-8-sig"),
+    (DOWNLOADS / "Australia+  recruit 10-100  - aus_email (1).csv",         "recruit",  "utf-8-sig"),
+    (DOWNLOADS / "Canada+  recruit 10-100  - canada_ms.csv",                "recruit",  "utf-8-sig"),
 ]
+
+# Mailso validation result → our status
+_MAILSO_MAP = {
+    "deliverable":   "valid",
+    "undeliverable": "invalid",
+    "risky":         "risky",
+    "unknown":       "unknown",
+}
 
 
 def import_csv(con: sqlite3.Connection, path: Path, vertical: str, encoding: str):
@@ -396,6 +412,72 @@ def import_csv(con: sqlite3.Connection, path: Path, vertical: str, encoding: str
     con.commit()
     print(f"  {path.name}: {lead_count} leads, {co_count} companies")
     return lead_count, co_count
+
+
+def import_mailso(con: sqlite3.Connection):
+    """Import Mailso validation results — update email_validation_status per lead."""
+    path = DOWNLOADS / "_US+ recruit 10-100  - all_mailso.csv"
+    if not path.exists():
+        print(f"  SKIP mailso (not found): {path.name}")
+        return
+
+    rows = list(csv.DictReader(open(path, encoding="utf-8-sig")))
+    cur = con.cursor()
+    updated = 0
+    inserted = 0
+
+    for row in rows:
+        email = clean(row.get("Email") or row.get("email"))
+        if not email or "@" not in email:
+            continue
+
+        result  = clean(row.get("Result", ""))
+        status  = _MAILSO_MAP.get((result or "").lower(), "unknown")
+        domain_raw = clean(row.get("Domain") or row.get("domain"))
+        domain  = domain_raw.lower().strip() if domain_raw else None
+        mx_raw  = clean(row.get("MxRecord") or row.get("Provider"))
+        mx      = normalize_mx(mx_raw)
+        score   = clean(row.get("Score"))
+        catch   = row.get("IsvNocatchall", "").strip().upper()
+        catchall_val = 0 if catch == "TRUE" else (1 if catch == "FALSE" else None)
+
+        # update lead if exists
+        cur.execute("SELECT email FROM leads WHERE email = ?", (email,))
+        if cur.fetchone():
+            cur.execute("""
+                UPDATE leads SET
+                    email_validation_status  = COALESCE(email_validation_status, ?),
+                    email_validation_service = COALESCE(email_validation_service, 'mailso'),
+                    email_validated_at       = COALESCE(email_validated_at, datetime('now')),
+                    email_catchall           = COALESCE(email_catchall, ?)
+                WHERE email = ?
+            """, (status, catchall_val, email))
+            updated += 1
+        else:
+            # lead not in DB yet — insert minimal record + link to company
+            cur.execute("""
+                INSERT OR IGNORE INTO leads
+                    (email, domain, email_validation_status, email_validation_service,
+                     email_validated_at, email_catchall, lead_vertical, source_file)
+                VALUES (?, ?, ?, 'mailso', datetime('now'), ?, 'recruit', 'mailso')
+            """, (email, domain, status, catchall_val))
+            inserted += 1
+
+        # update company mx if missing
+        if domain and mx:
+            cur.execute("""
+                UPDATE companies SET
+                    mx_provider  = COALESCE(mx_provider, ?),
+                    mx_checked_at = COALESCE(mx_checked_at, datetime('now'))
+                WHERE domain = ?
+            """, (mx, domain))
+
+    con.commit()
+    valid   = sum(1 for r in rows if r.get("Result","").lower() == "deliverable")
+    invalid = sum(1 for r in rows if r.get("Result","").lower() == "undeliverable")
+    risky   = sum(1 for r in rows if r.get("Result","").lower() == "risky")
+    print(f"  Mailso: {len(rows)} rows | valid={valid} invalid={invalid} risky={risky}")
+    print(f"    updated={updated} leads, inserted={inserted} new leads")
 
 
 def import_campaign_extractions(con: sqlite3.Connection):
@@ -511,6 +593,9 @@ def main():
         for path, vertical, enc in SOURCES:
             l, _ = import_csv(con, path, vertical, enc)
             total_leads += l
+
+        print("\nImporting Mailso validation...")
+        import_mailso(con)
 
         print("\nImporting campaign extraction results...")
         import_campaign_extractions(con)
