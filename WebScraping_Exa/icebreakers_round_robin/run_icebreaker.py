@@ -158,11 +158,12 @@ _ACRONYM_RE = [
     (re.compile(r'\bml\b'),   "ML"),
 ]
 
-def postprocess(line: str) -> str:
+def postprocess(line: str, uppercase_acronyms: bool = True) -> str:
     for pattern, replacement in _CONCAT_FIXES:
         line = pattern.sub(replacement, line)
-    for pattern, replacement in _ACRONYM_RE:
-        line = pattern.sub(replacement, line)
+    if uppercase_acronyms:
+        for pattern, replacement in _ACRONYM_RE:
+            line = pattern.sub(replacement, line)
     # collapse any double spaces introduced by fixes
     line = re.sub(r'  +', ' ', line).strip()
     return line
@@ -239,7 +240,8 @@ async def generate_all(
         prompt      = build_icebreaker_prompt(row, entry, pain, variant_meta)
         custom, elapsed = await call_llm(client, sem, prompt)
         if not custom.startswith("ERROR"):
-            custom = postprocess(custom)
+            is_lowercase_variant = variant_meta.get("HYPOTHESIS", "").startswith("full lowercase")
+            custom = postprocess(custom, uppercase_acronyms=not is_lowercase_variant)
 
         first_name = row.get("_first_name", "") or ""
         full_email = assemble_email(copy_template, custom, first_name, sender_name, variant_meta)

@@ -213,6 +213,12 @@
     "pain_alt": "pipeline is always thin because sourcing is the bottleneck not closing",
     "pain_consequence": "recruiters spend time on outreach that never converts because the targeting is off"
   },
+  "executive_search__luxury_retail": {
+    "dreamICP": "brand directors and GMs in luxury retail",
+    "pain": "keep running searches for commercial talent that drag on 4-5 months",
+    "pain_alt": "can't find execs who understand both brand and P&L without burning months",
+    "pain_consequence": "revenue targets slip every season the commercial leadership seat stays empty"
+  },
   "staffing__dental": {
     "dreamICP": "practice owners at dental groups",
     "pain": "hygienist shortages mean chairs sit empty and patients reschedule",
