@@ -361,7 +361,7 @@ async def run_icebreakers(
             "linkedin_url":     row.get("_linkedin", ""),
             "company_linkedin_url": row.get("_company_linkedin", ""),
             "company_name":     row.get("_company_name", ""),
-            "clean_company":    row.get("_company_name", ""),
+            "clean_company":    row.get("_clean_company") or row.get("_company_name", ""),
             "country":          row.get("_country", "Canada"),
             "state":            row.get("_state", ""),
             "headline":         row.get("_headline", ""),
