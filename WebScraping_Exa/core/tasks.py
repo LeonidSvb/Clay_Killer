@@ -140,6 +140,33 @@ def get_workspace_tasks(workspace_id: int) -> list:
         conn.close()
 
 
+def reset_stale_tasks(older_than_minutes: int = 30) -> int:
+    """
+    On worker startup: reset tasks stuck in 'processing' back to 'pending'.
+    Happens when the worker or DB crashes mid-run.
+    Returns number of tasks reset.
+    """
+    from core.db import get_connection
+    conn = get_connection()
+    if not conn:
+        return 0
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE tasks
+                    SET status = 'pending', started_at = NULL
+                    WHERE status = 'processing'
+                      AND started_at < NOW() - INTERVAL '%s minutes'
+                    """,
+                    (older_than_minutes,)
+                )
+                return cur.rowcount
+    finally:
+        conn.close()
+
+
 def get_active_tasks() -> list:
     """All pending or processing tasks across all workspaces."""
     from core.db import get_connection

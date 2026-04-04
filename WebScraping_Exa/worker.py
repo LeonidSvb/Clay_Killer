@@ -363,6 +363,13 @@ def process_task(task: dict) -> None:
 
 def main() -> None:
     log.info("Worker started. Waiting for tasks...")
+    try:
+        from core.tasks import reset_stale_tasks
+        reset = reset_stale_tasks(older_than_minutes=30)
+        if reset:
+            log.info(f"Startup recovery: reset {reset} stale 'processing' task(s) back to 'pending'")
+    except Exception as e:
+        log.warning(f"Startup recovery failed (non-critical): {e}")
     while True:
         try:
             from core.tasks import claim_task, fail_task
