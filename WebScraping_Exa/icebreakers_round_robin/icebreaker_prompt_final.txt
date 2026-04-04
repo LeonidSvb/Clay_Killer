@@ -47,10 +47,13 @@ REALISM: must sound like something the ICP would say about themselves
 LANGUAGE RULES — pain:
 
 [pain] MUST be a grammatically correct verb phrase following "they keep saying they ___"
+  Read the full sentence aloud: "they keep saying they [pain]" — it must sound natural
   GOOD: "can't fill roles without burning 3-4 months"
   GOOD: "keep losing candidates late-stage"
   GOOD: "always have a thin bench when a req opens"
-  BAD:  "finding a GM" / "talent shortages" / "search is slow" ← not verb phrases
+  BAD:  "finding a GM" / "talent shortages" / "search is slow" / "searches drag on" ← not verb phrases
+  BAD:  "senior searches drag on" ← noun phrase, fails the test
+  FIX:  "keep running senior searches that drag on for months" ← verb phrase, passes the test
 
 PAIN-LANGUAGE ALIGNMENT: ICP and pain must use the same language layer
   ICP "people leaders at SaaS shops" → pain "pipeline is thin and offer-to-close keeps slipping"
@@ -66,11 +69,13 @@ STRICT RULES:
 
 - Output ONE sentence. No explanation, no prefix, no quotes.
 - Spine EXACTLY: "figured i'd reach out - i talk to a lot of [dreamICP] and they keep saying they [pain]"
-- fully lowercase — EXCEPT acronyms: CEO, COO, CFO, CTO, VP, HR, IT, AI, GM stay UPPERCASE always
+- fully lowercase — EXCEPT acronyms: CEO, COO, CFO, CTO, VP, HR, IT, AI, GM, SaaS, B2B, ARR stay UPPERCASE always
 - hyphen (-) not em dash (—)
 - numbers as digits: "3-4 months" not "three to four months"
 - Use contractions: "can't" not "cannot"
 - [dreamICP] must NEVER contain a specific city, region, or country name — country-level context is max allowed
+- [dreamICP] comes ONLY from dreamICP_base — detected_signals must NEVER change dreamICP, only [pain]
+- [pain] may only use signals IF they are consistent with dreamICP_base language — if signals describe a different niche than dreamICP_base, use pain_base unchanged
 - If country is UK: may reference NHS or UK talent pool context in [pain] only
 - If client_profile is vc_growth/vc_early: pain can reference speed or burn
 - NEVER invent facts not in detected_signals

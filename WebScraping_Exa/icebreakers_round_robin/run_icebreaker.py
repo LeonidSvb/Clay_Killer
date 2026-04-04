@@ -20,6 +20,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+import re
 import httpx
 from dotenv import load_dotenv
 
@@ -124,6 +125,49 @@ def build_icebreaker_prompt(row: dict, matrix_entry: dict, pain: str, variant_me
     return p
 
 
+# ── post-process icebreaker line ──────────────────────────────────────────────
+
+_CONCAT_FIXES = [
+    # model artifact: words stuck together
+    (re.compile(r"saying they", re.I), "saying they"),  # no-op anchor
+    (re.compile(r"sayingthey"),       "saying they"),
+    (re.compile(r"i'dreach"),         "i'd reach"),
+    (re.compile(r"reach ?out(?=[^a-z])"), "reach out"),
+    (re.compile(r"\bof founders\b"),  "of founders"),  # anchor
+    (re.compile(r"\boffounders\b"),   "of founders"),
+    (re.compile(r"background ?checks"), "background checks"),
+    (re.compile(r"backgroundcheck"),  "background checks"),
+    (re.compile(r"dealing witha\b"),  "dealing with a"),
+    (re.compile(r"andthey\b"),        "and they"),
+    (re.compile(r"inthey\b"),         "in they"),
+    (re.compile(r"\bVP sales\b"),     "VP Sales"),
+]
+
+_ACRONYM_RE = [
+    # ensure these are uppercase regardless of model output
+    (re.compile(r'\bhr\b'),   "HR"),
+    (re.compile(r'\bvp\b'),   "VP"),
+    (re.compile(r'\bceo\b'),  "CEO"),
+    (re.compile(r'\bcoo\b'),  "COO"),
+    (re.compile(r'\bcfo\b'),  "CFO"),
+    (re.compile(r'\bcto\b'),  "CTO"),
+    (re.compile(r'\bgm\b'),   "GM"),
+    (re.compile(r'\bit\b(?= (services|manager|lead|team|director|staffing|firms|company|companies|consulting))'), "IT"),
+    (re.compile(r'\bai\b(?= (companies|startups|firm|sector|industry|cto|space|tools|models))'), "AI"),
+    (re.compile(r'\bsaas\b'), "SaaS"),
+    (re.compile(r'\bml\b'),   "ML"),
+]
+
+def postprocess(line: str) -> str:
+    for pattern, replacement in _CONCAT_FIXES:
+        line = pattern.sub(replacement, line)
+    for pattern, replacement in _ACRONYM_RE:
+        line = pattern.sub(replacement, line)
+    # collapse any double spaces introduced by fixes
+    line = re.sub(r'  +', ' ', line).strip()
+    return line
+
+
 # ── assemble full email ────────────────────────────────────────────────────────
 
 def assemble_email(
@@ -194,6 +238,8 @@ async def generate_all(
 
         prompt      = build_icebreaker_prompt(row, entry, pain, variant_meta)
         custom, elapsed = await call_llm(client, sem, prompt)
+        if not custom.startswith("ERROR"):
+            custom = postprocess(custom)
 
         first_name = row.get("_first_name", "") or ""
         full_email = assemble_email(copy_template, custom, first_name, sender_name, variant_meta)
