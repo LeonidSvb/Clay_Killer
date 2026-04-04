@@ -218,6 +218,7 @@ async def _run_exa_batch(
     concurrency: int,
     progress_queue: queue.Queue,
     stop_event: threading.Event,
+    result_queue: queue.Queue | None = None,
 ) -> list[dict]:
     sem     = asyncio.Semaphore(concurrency)
     results: list[dict] = []
@@ -236,6 +237,8 @@ async def _run_exa_batch(
                 break
             result = await coro
             results.append(result)
+            if result_queue is not None:
+                result_queue.put_nowait(result)
             done    = len(results)
             elapsed = time.time() - t0
             speed   = done / elapsed if elapsed > 0 else 0
@@ -260,6 +263,7 @@ def run_exa_enrichment(
     progress_queue: queue.Queue,
     stop_event: threading.Event,
     api_key: str = "",
+    result_queue: queue.Queue | None = None,
 ) -> tuple[list[dict], int]:
     """
     Runs Exa enrichment synchronously (call inside threading.Thread).
@@ -284,5 +288,6 @@ def run_exa_enrichment(
         concurrency=concurrency,
         progress_queue=progress_queue,
         stop_event=stop_event,
+        result_queue=result_queue,
     ))
     return results, skipped

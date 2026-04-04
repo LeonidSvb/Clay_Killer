@@ -171,6 +171,17 @@ def _run_mx(task_id: int, workspace_id: int, leads: list, payload: dict) -> None
 # Exa enrichment
 # ---------------------------------------------------------------------------
 
+EXA_SAVE_EVERY = 20
+
+
+def _drain_result_queue(result_q: queue.Queue, results_holder: list) -> None:
+    try:
+        while True:
+            results_holder.append(result_q.get_nowait())
+    except queue.Empty:
+        pass
+
+
 def _run_exa(task_id: int, workspace_id: int, leads: list, payload: dict) -> None:
     from app.enrichments.exa import run_exa_enrichment
     from core.tasks import update_task_progress, complete_task
@@ -181,12 +192,12 @@ def _run_exa(task_id: int, workspace_id: int, leads: list, payload: dict) -> Non
     output_col = payload.get("output_col", "Website Summary")
 
     pq: queue.Queue = queue.Queue()
+    result_q: queue.Queue = queue.Queue()
     se = threading.Event()
-    results_holder: list = []
     skipped_holder: list = [0]
 
     def _worker():
-        results, skipped = run_exa_enrichment(
+        _, skipped = run_exa_enrichment(
             df=df,
             url_col=payload.get("url_col", "Company Website"),
             row_indices=row_indices,
@@ -195,25 +206,32 @@ def _run_exa(task_id: int, workspace_id: int, leads: list, payload: dict) -> Non
             progress_queue=pq,
             stop_event=se,
             api_key=os.getenv("EXA_API_KEY", ""),
+            result_queue=result_q,
         )
-        results_holder.extend(results)
         skipped_holder[0] = skipped
 
     thread = threading.Thread(target=_worker, daemon=True)
     thread.start()
 
+    results_holder: list = []
     last_saved = 0
+
     while thread.is_alive():
         _drain_queue(pq)
+        _drain_result_queue(result_q, results_holder)
         count = len(results_holder)
-        if count - last_saved >= BATCH_SAVE_SIZE:
+        if count - last_saved >= EXA_SAVE_EVERY:
             _save_batch(workspace_id, leads, results_holder[last_saved:count], output_col)
             last_saved = count
             errors = sum(1 for r in results_holder[:count] if not r["ok"])
             update_task_progress(task_id, count, errors)
+            log.info(f"Task {task_id} Exa progress: {count} processed, {errors} errors")
         time.sleep(0.5)
 
     thread.join()
+
+    # drain anything that arrived between last poll and thread end
+    _drain_result_queue(result_q, results_holder)
 
     if last_saved < len(results_holder):
         _save_batch(workspace_id, leads, results_holder[last_saved:], output_col)
