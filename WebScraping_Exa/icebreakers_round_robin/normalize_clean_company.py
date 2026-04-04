@@ -37,9 +37,10 @@ DB_PATH = Path(__file__).parent.parent / "data" / "leads.db"
 SYSTEM_PROMPT = """Normalize the company name to the core brand employees actually use in casual conversation.
 
 Rules:
-* Maximum 2 words
-* Keep the most distinctive part of the name
-* Remove generic terms like: Recruitment, Staffing, Ltd, Inc, LLC, Group, Services, Global, International
+* 1-2 words maximum
+* If the name is already clean and distinctive — a single compound word, an acronym, or a 2-word brand with no generic terms — return it exactly as-is
+* Remove generic terms only when they are not part of the core brand: Recruitment, Staffing, Ltd, Inc, LLC, Group, Services, Global, International, Consulting, Solutions, Partners, Associates
+* Never invent abbreviations — only use an acronym if the company itself uses it
 * Preserve original capitalization
 * Prefer the name employees would casually say to friends
 
