@@ -14,18 +14,26 @@ Structure:
       }
     }
   }
+
+Firecrawl extraction schemas live in a separate fc_schemas.json:
+  {
+    "Schema Name": {
+      "prompt": "...",
+      "schema": { ... }
+    }
+  }
 """
 
 import json
 from pathlib import Path
 
-PROMPTS_JSON = Path(__file__).parent.parent / "prompts.json"
+PROMPTS_JSON    = Path(__file__).parent.parent / "prompts.json"
+FC_SCHEMAS_JSON = Path(__file__).parent.parent / "fc_schemas.json"
 
 _DEFAULTS: dict = {
     "system_context": "Always respond with valid JSON only. No markdown, no explanation.",
     "exa_query": "",
     "prompts": {},
-    "fc_schemas": {},
 }
 
 
@@ -42,6 +50,8 @@ def load() -> dict:
 
 
 def save(data: dict) -> None:
+    # Never write fc_schemas into prompts.json
+    data.pop("fc_schemas", None)
     PROMPTS_JSON.write_text(
         json.dumps(data, indent=2, ensure_ascii=False),
         encoding="utf-8",
@@ -98,27 +108,43 @@ def delete_prompt(name: str) -> bool:
     return False
 
 
-# ── Firecrawl schema store ─────────────────────────────────────────────────────
+# ── Firecrawl schema store (fc_schemas.json) ──────────────────────────────────
+
+def _load_fc_schemas() -> dict:
+    if not FC_SCHEMAS_JSON.exists():
+        return {}
+    try:
+        return json.loads(FC_SCHEMAS_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_fc_schemas(schemas: dict) -> None:
+    FC_SCHEMAS_JSON.write_text(
+        json.dumps(schemas, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
 
 def list_fc_schemas() -> list[str]:
-    return sorted(load().get("fc_schemas", {}).keys())
+    return list(_load_fc_schemas().keys())
 
 
 def get_fc_schema(name: str) -> dict:
     """Returns {"prompt": str, "schema": dict}."""
-    return load().get("fc_schemas", {}).get(name, {})
+    return _load_fc_schemas().get(name, {})
 
 
 def set_fc_schema(name: str, prompt: str, schema: dict) -> None:
-    data = load()
-    data.setdefault("fc_schemas", {})[name] = {"prompt": prompt, "schema": schema}
-    save(data)
+    schemas = _load_fc_schemas()
+    schemas[name] = {"prompt": prompt, "schema": schema}
+    _save_fc_schemas(schemas)
 
 
 def delete_fc_schema(name: str) -> bool:
-    data = load()
-    if name in data.get("fc_schemas", {}):
-        del data["fc_schemas"][name]
-        save(data)
+    schemas = _load_fc_schemas()
+    if name in schemas:
+        del schemas[name]
+        _save_fc_schemas(schemas)
         return True
     return False

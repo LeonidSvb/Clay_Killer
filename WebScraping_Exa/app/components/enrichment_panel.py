@@ -39,7 +39,6 @@ from app.enrichments.firecrawl import (
     run_firecrawl_enrichment,
     DEFAULT_JSON_PROMPT,
     DEFAULT_JSON_SCHEMA,
-    BUILTIN_SCHEMAS as FC_BUILTIN_SCHEMAS,
     _load_keys as _fc_load_keys,
 )
 from app.enrichments.llm import run_llm_enrichment, DEFAULT_MODEL as LLM_DEFAULT_MODEL, LLM_MODELS
@@ -1194,32 +1193,23 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         if fc_fmt_json:
             st.caption("JSON Extract")
 
-            # ── Schema picker: built-ins + saved ──────────────────────────────
-            saved_names   = _prompts_store.list_fc_schemas()
-            builtin_names = list(FC_BUILTIN_SCHEMAS.keys())
-            all_schema_options = [""] + builtin_names + (
-                ["─────────"] + saved_names if saved_names else []
-            )
-
+            # ── Schema picker (reads from fc_schemas.json) ─────────────────
+            schema_names = _prompts_store.list_fc_schemas()
             c_sel, c_del = st.columns([4, 1])
             with c_sel:
                 sel_schema = st.selectbox(
-                    "Schema preset", all_schema_options,
+                    "Schema preset", [""] + schema_names,
                     key="fc_schema_select", label_visibility="collapsed",
                 )
             with c_del:
-                is_saved = sel_schema in saved_names
-                if is_saved and st.button("Del", key="_btn_fc_del_schema"):
+                if sel_schema and st.button("Del", key="_btn_fc_del_schema"):
                     _prompts_store.delete_fc_schema(sel_schema)
                     st.session_state.pop("fc_schema_select", None)
                     st.rerun()
 
             # Load selected schema into editor
-            if sel_schema and sel_schema != "─────────" and sel_schema != st.session_state.get("_fc_last_loaded"):
-                if sel_schema in FC_BUILTIN_SCHEMAS:
-                    entry = FC_BUILTIN_SCHEMAS[sel_schema]
-                else:
-                    entry = _prompts_store.get_fc_schema(sel_schema)
+            if sel_schema and sel_schema != st.session_state.get("_fc_last_loaded"):
+                entry = _prompts_store.get_fc_schema(sel_schema)
                 if entry:
                     st.session_state["fc_json_prompt_text"] = entry.get("prompt", "")
                     st.session_state["fc_schema_text"] = _json.dumps(entry.get("schema", {}), indent=2)

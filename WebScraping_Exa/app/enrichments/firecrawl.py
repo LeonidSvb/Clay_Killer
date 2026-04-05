@@ -61,68 +61,6 @@ DEFAULT_JSON_SCHEMA: dict = {
     },
 }
 
-# Built-in schema presets (always available in the UI dropdown)
-BUILTIN_SCHEMAS: dict[str, dict] = {
-    "Contact Info": {
-        "prompt": (
-            "Extract all contact information from this page: email addresses, phone numbers, "
-            "postal code, contact person names, physical address, and company name."
-        ),
-        "schema": DEFAULT_JSON_SCHEMA,
-    },
-    "Company Info": {
-        "prompt": (
-            "Extract company profile information: company name, industry, description, "
-            "year founded, number of employees, headquarters location, and website."
-        ),
-        "schema": {
-            "type": "object",
-            "properties": {
-                "company_name":   {"type": "string"},
-                "industry":       {"type": "string"},
-                "description":    {"type": "string"},
-                "founded_year":   {"type": "string"},
-                "employee_count": {"type": "string"},
-                "headquarters":   {"type": "string"},
-                "website":        {"type": "string"},
-            },
-        },
-    },
-    "Social Links": {
-        "prompt": (
-            "Extract all social media profile links and handles from this page: "
-            "LinkedIn, Twitter/X, Facebook, Instagram, YouTube, TikTok."
-        ),
-        "schema": {
-            "type": "object",
-            "properties": {
-                "linkedin":   {"type": "string"},
-                "twitter":    {"type": "string"},
-                "facebook":   {"type": "string"},
-                "instagram":  {"type": "string"},
-                "youtube":    {"type": "string"},
-                "tiktok":     {"type": "string"},
-            },
-        },
-    },
-    "Pricing": {
-        "prompt": (
-            "Extract pricing information: plan names, prices, billing periods, "
-            "currency, and any free trial or freemium options."
-        ),
-        "schema": {
-            "type": "object",
-            "properties": {
-                "plans":         {"type": "array", "items": {"type": "string"}},
-                "price_range":   {"type": "string"},
-                "currency":      {"type": "string"},
-                "billing":       {"type": "string"},
-                "has_free_tier": {"type": "string"},
-            },
-        },
-    },
-}
-
 LLM_EXTRACT_SYSTEM = (
     "You are a structured data extraction assistant. "
     "Extract information from the provided webpage content and return ONLY a valid JSON object. "
