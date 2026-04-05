@@ -1,10 +1,19 @@
 import streamlit as st
 import pandas as pd
 import csv
+import json
 from pathlib import Path
 from datetime import datetime
 
 from core import ui_state
+from app.components.filter_builder import render_filter_builder
+
+_MASTER_BROWSER_STATE_KEY = "browser:master"
+_MASTER_PRESETS_PATH = Path(__file__).resolve().parents[2] / "master_browser_presets.json"
+_MASTER_DEFAULT_PREVIEW = [
+    "email", "first_name", "last_name", "company_name", "company_website",
+    "title", "country", "employees_count", "industry", "website_summary",
+]
 
 
 def _count_rows(path: Path) -> int:
@@ -18,6 +27,30 @@ def _count_rows(path: Path) -> int:
                 return sum(1 for _ in csv.reader(fh)) - 1
         except Exception:
             return -1
+
+
+def _fill_pct(series: pd.Series) -> int:
+    total = len(series)
+    if total == 0:
+        return 0
+    empty = (series.isna() | series.astype(str).str.strip().isin(["", "nan", "None", "null"])).sum()
+    return round((total - int(empty)) / total * 100)
+
+
+def _load_master_presets() -> dict:
+    if not _MASTER_PRESETS_PATH.exists():
+        return {}
+    try:
+        return json.loads(_MASTER_PRESETS_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_master_presets(presets: dict) -> None:
+    _MASTER_PRESETS_PATH.write_text(
+        json.dumps(presets, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
 
 def render_file_browser() -> None:
@@ -40,7 +73,9 @@ def render_file_browser() -> None:
         if st.button("↺ Refresh", use_container_width=True):
             st.rerun()
     with c_upload_btn:
-        show_upload = st.toggle("Upload", value=False, label_visibility="collapsed")
+        if st.button("+ Upload", use_container_width=True, key="btn_toggle_upload"):
+            st.session_state["_show_upload"] = not st.session_state.get("_show_upload", False)
+        show_upload = st.session_state.get("_show_upload", False)
 
     # ── Переключатель источника ────────────────────────────────────────────────
     source_mode = st.radio(
@@ -165,9 +200,21 @@ def _render_db_section() -> None:
         st.warning("Not connected to database. Check DATABASE_URL in Settings.")
         return
 
+    view = st.radio(
+        "db_view",
+        ["Import batches", "All leads (master)"],
+        horizontal=True,
+        key="fb_db_view",
+        label_visibility="collapsed",
+    )
+
+    if view == "All leads (master)":
+        _render_master_section()
+        return
+
     workspaces = get_workspaces()
     if not workspaces:
-        st.info("No workspaces yet. Import a CSV in the Database tab first.")
+        st.info("No import batches yet. Import a CSV in the Import & Tasks tab first.")
         return
 
     def ws_label(ws: dict) -> str:
@@ -195,6 +242,173 @@ def _render_db_section() -> None:
             with st.spinner("Loading from database..."):
                 leads = get_workspace_leads(selected_ws["id"])
             _open_from_db(selected_ws, leads)
+
+
+def _render_master_section() -> None:
+    from core.db import (
+        get_master_browser_count,
+        get_master_browser_field_options,
+        get_master_browser_fields,
+        get_master_browser_rows,
+    )
+
+    fields = get_master_browser_fields()
+    if not fields:
+        st.info("Master browser is unavailable until leads_master is reachable.")
+        return
+
+    field_map = {field["key"]: field for field in fields}
+    _ensure_master_browser_state(fields)
+
+    presets = _load_master_presets()
+    c_preset, c_save, c_delete = st.columns([3, 1, 1])
+    preset_names = [""] + sorted(presets.keys())
+    with c_preset:
+        selected_preset = st.selectbox(
+            "preset",
+            preset_names,
+            key="fb_master_preset_select",
+            format_func=lambda name: "Load preset" if not name else name,
+            label_visibility="collapsed",
+        )
+        if selected_preset and st.session_state.get("fb_master_last_applied_preset") != selected_preset:
+            _apply_master_browser_preset(presets[selected_preset], fields)
+    with c_save:
+        if st.button("Save preset", use_container_width=True, key="fb_master_save_preset_btn"):
+            st.session_state["fb_master_show_preset_name"] = not st.session_state.get("fb_master_show_preset_name", False)
+    with c_delete:
+        if st.button(
+            "Delete preset",
+            use_container_width=True,
+            disabled=not selected_preset,
+            key="fb_master_delete_preset_btn",
+        ):
+            presets.pop(selected_preset, None)
+            _save_master_presets(presets)
+            st.session_state["fb_master_preset_select"] = ""
+            st.session_state["fb_master_last_applied_preset"] = ""
+            st.rerun()
+
+    if st.session_state.get("fb_master_show_preset_name"):
+        c_name, c_confirm = st.columns([4, 1])
+        with c_name:
+            preset_name = st.text_input("Preset name", key="fb_master_preset_name")
+        with c_confirm:
+            if st.button("Save", use_container_width=True, key="fb_master_preset_confirm_btn") and preset_name.strip():
+                presets[preset_name.strip()] = {
+                    "filters": st.session_state.get("fb_master_filters", []),
+                }
+                _save_master_presets(presets)
+                st.session_state["fb_master_show_preset_name"] = False
+                st.session_state.pop("fb_master_preset_name", None)
+                st.session_state["fb_master_preset_select"] = preset_name.strip()
+                st.session_state["fb_master_last_applied_preset"] = preset_name.strip()
+                st.rerun()
+
+    filters = _render_master_filter_builder(fields, get_master_browser_field_options)
+    _save_master_browser_state()
+
+    preview_field_keys = _master_preview_field_keys(fields, filters)
+
+    total = get_master_browser_count([])
+    matching = get_master_browser_count(filters)
+    preview_rows, selected_meta = get_master_browser_rows(filters=filters, selected_fields=preview_field_keys, limit=10)
+
+    c_info, c_preview, c_open, c_reset = st.columns([4, 1, 1, 1])
+    with c_info:
+        st.caption(f"matching {matching:,} of {total:,} leads")
+    with c_preview:
+        preview_clicked = st.button("Preview 10", use_container_width=True, disabled=matching == 0, key="fb_master_preview_btn")
+    with c_open:
+        if st.button(f"Load {matching:,}", use_container_width=True, disabled=matching == 0, key="open_master_btn"):
+            with st.spinner(f"Loading {matching:,} leads from master..."):
+                rows, selected_meta = get_master_browser_rows(filters=filters, selected_fields=preview_field_keys, limit=100000)
+            _open_from_master(rows, [field["label"] for field in selected_meta])
+    with c_reset:
+        if st.button("Reset", use_container_width=True, key="fb_master_reset_btn"):
+            _reset_master_browser(fields)
+
+    if matching == 0:
+        st.caption("No rows match current filters.")
+        return
+
+    preview_df = pd.DataFrame(preview_rows)
+    if not preview_df.empty:
+        rename_map = {col: f"{col} ({_fill_pct(preview_df[col])}%)" for col in preview_df.columns}
+        st.dataframe(
+            preview_df.rename(columns=rename_map),
+            hide_index=True,
+            use_container_width=True,
+            height=240,
+        )
+
+
+def _ensure_master_browser_state(fields: list[dict]) -> None:
+    field_keys = {field["key"] for field in fields}
+    if "fb_master_state_loaded" not in st.session_state:
+        saved = ui_state.load_named_state(_MASTER_BROWSER_STATE_KEY)
+        st.session_state["fb_master_filters"] = [
+            filter_row
+            for filter_row in saved.get("filters", [])
+            if filter_row.get("field") in field_keys
+        ]
+        st.session_state["fb_master_state_loaded"] = True
+        st.session_state.setdefault("fb_master_show_preset_name", False)
+        st.session_state.setdefault("fb_master_last_applied_preset", "")
+        return
+
+    st.session_state["fb_master_filters"] = [
+        filter_row
+        for filter_row in st.session_state.get("fb_master_filters", [])
+        if filter_row.get("field") in field_keys
+    ]
+
+
+def _save_master_browser_state() -> None:
+    ui_state.save_named_state(
+        _MASTER_BROWSER_STATE_KEY,
+        {
+            "filters": st.session_state.get("fb_master_filters", []),
+        },
+    )
+
+
+def _apply_master_browser_preset(preset: dict, fields: list[dict]) -> None:
+    field_keys = {field["key"] for field in fields}
+    st.session_state["fb_master_filters"] = [
+        filter_row
+        for filter_row in preset.get("filters", [])
+        if filter_row.get("field") in field_keys
+    ]
+    st.session_state["fb_master_last_applied_preset"] = st.session_state.get("fb_master_preset_select", "")
+    _save_master_browser_state()
+    st.rerun()
+
+
+def _reset_master_browser(fields: list[dict]) -> None:
+    st.session_state["fb_master_filters"] = []
+    st.session_state["fb_master_preset_select"] = ""
+    st.session_state["fb_master_last_applied_preset"] = ""
+    _save_master_browser_state()
+    st.rerun()
+
+def _master_preview_field_keys(fields: list[dict], filters: list[dict]) -> list[str]:
+    defaults = [field["key"] for field in fields if field["label"] in _MASTER_DEFAULT_PREVIEW] or [
+        field["key"] for field in fields[:10]
+    ]
+    active_filter_fields = [filter_row["field"] for filter_row in filters if filter_row.get("field")]
+    ordered = defaults + [field for field in active_filter_fields if field not in defaults]
+    return ordered
+
+
+def _render_master_filter_builder(fields: list[dict], get_field_options) -> list[dict]:
+    return render_filter_builder(
+        state_key="fb_master_filters",
+        fields=fields,
+        key_prefix="fb_master",
+        get_field_options=get_field_options,
+        caption="Master DB filters",
+    )
 
 
 def _render_plusvibe_section() -> None:
@@ -271,6 +485,22 @@ def _render_plusvibe_section() -> None:
             with st.spinner("Loading from PlusVibe DB..."):
                 leads = get_plusvibe_leads(selected["id"], selected_statuses)
             _open_from_plusvibe(selected, leads)
+
+
+def _open_from_master(leads: list, visible_cols: list[str] | None = None) -> None:
+    if not leads:
+        st.warning("No leads in leads_master.")
+        return
+
+    df = pd.DataFrame(leads)
+    st.session_state.df = df
+    st.session_state.source_file = "[MASTER]"
+    st.session_state.workspace_id = None
+    st.session_state.new_cols = []
+    st.session_state.run_results = None
+    st.session_state.visible_cols = visible_cols or list(df.columns)
+    st.session_state.filters = []
+    st.rerun()
 
 
 def _open_from_plusvibe(campaign: dict, leads: list) -> None:
@@ -388,5 +618,6 @@ def _render_upload(folder: str = "") -> None:
         st.session_state.run_results = None
         st.session_state.visible_cols = list(df.columns)
         st.session_state.filters = []
+        st.session_state["_show_upload"] = False
         _restore_ui_state(df, path, None)
         st.rerun()

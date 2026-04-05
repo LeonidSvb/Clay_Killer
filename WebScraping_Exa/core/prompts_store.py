@@ -25,6 +25,7 @@ _DEFAULTS: dict = {
     "system_context": "Always respond with valid JSON only. No markdown, no explanation.",
     "exa_query": "",
     "prompts": {},
+    "fc_schemas": {},
 }
 
 
@@ -92,6 +93,32 @@ def delete_prompt(name: str) -> bool:
     data = load()
     if name in data["prompts"]:
         del data["prompts"][name]
+        save(data)
+        return True
+    return False
+
+
+# ── Firecrawl schema store ─────────────────────────────────────────────────────
+
+def list_fc_schemas() -> list[str]:
+    return sorted(load().get("fc_schemas", {}).keys())
+
+
+def get_fc_schema(name: str) -> dict:
+    """Returns {"prompt": str, "schema": dict}."""
+    return load().get("fc_schemas", {}).get(name, {})
+
+
+def set_fc_schema(name: str, prompt: str, schema: dict) -> None:
+    data = load()
+    data.setdefault("fc_schemas", {})[name] = {"prompt": prompt, "schema": schema}
+    save(data)
+
+
+def delete_fc_schema(name: str) -> bool:
+    data = load()
+    if name in data.get("fc_schemas", {}):
+        del data["fc_schemas"][name]
         save(data)
         return True
     return False

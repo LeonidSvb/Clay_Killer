@@ -35,6 +35,12 @@ from app.enrichments.exa import (
     DEFAULT_STRUCTURED_SCHEMA,
     OUTPUT_COL as EXA_OUTPUT_COL,
 )
+from app.enrichments.firecrawl import (
+    run_firecrawl_enrichment,
+    DEFAULT_JSON_PROMPT,
+    DEFAULT_JSON_SCHEMA,
+    _load_keys as _fc_load_keys,
+)
 from app.enrichments.llm import run_llm_enrichment, DEFAULT_MODEL as LLM_DEFAULT_MODEL, LLM_MODELS
 from app.enrichments.mx import run_mx_enrichment
 from app.utils.logger import get_logger
@@ -283,7 +289,9 @@ def _render_output_section(df: pd.DataFrame) -> None:
             for src_key, dst_name in rename_map.items():
                 if src_key in result["data"]:
                     val = result["data"][src_key]
-                    if isinstance(val, (list, dict)):
+                    if isinstance(val, list):
+                        val = ", ".join(str(i) for i in val if i is not None and str(i).strip())
+                    elif isinstance(val, dict):
                         val = _json.dumps(val, ensure_ascii=False)
                     st.session_state.df.at[idx, dst_name] = val
 
@@ -327,7 +335,9 @@ def _render_output_section(df: pd.DataFrame) -> None:
             url_val = str(st.session_state.df.at[row_idx, dedup_col]).strip()
             if url_val in url_to_data:
                 for col_name, val in url_to_data[url_val].items():
-                    if isinstance(val, (list, dict)):
+                    if isinstance(val, list):
+                        val = ", ".join(str(i) for i in val if i is not None and str(i).strip())
+                    elif isinstance(val, dict):
                         val = _json.dumps(val, ensure_ascii=False)
                     st.session_state.df.at[row_idx, col_name] = val
                 propagated += 1
@@ -516,7 +526,8 @@ def _queue_llm_task(
             "prompt_text": prompt_text,
             "output_col": output_col,
             "concurrency": st.session_state.get("llm_concurrency", 50),
-            "filter_empty": st.session_state.get("row_mode") == "Fill missing",
+            "selected_emails": _selected_emails_from_rows(df, row_indices),
+            "selection_mode": st.session_state.get("row_mode", "All"),
         }
         task_id = create_task(workspace_id, payload, total)
         if task_id:
@@ -542,7 +553,8 @@ def _queue_mx_task(
             "email_col": email_col,
             "output_col": "mx_provider",
             "concurrency": st.session_state.get("mx_concurrency", 60),
-            "filter_empty": st.session_state.get("row_mode") == "Fill missing",
+            "selected_emails": _selected_emails_from_rows(df, row_indices),
+            "selection_mode": st.session_state.get("row_mode", "All"),
         }
         task_id = create_task(workspace_id, payload, total)
         if task_id:
@@ -572,6 +584,22 @@ def _start_run_thread(worker_fn) -> None:
     st.session_state["_results_holder"] = holder
     st.session_state["_run_t0"] = time.time()
     st.session_state["_run_last_upd"] = {}
+
+
+def _selected_emails_from_rows(df: pd.DataFrame, row_indices: list[int]) -> list[str]:
+    if "email" not in df.columns:
+        return []
+    selected: list[str] = []
+    seen: set[str] = set()
+    for idx in row_indices:
+        try:
+            email = str(df.iloc[idx].get("email", "")).strip()
+        except Exception:
+            continue
+        if email and email not in ("nan", "None") and email.lower() not in seen:
+            seen.add(email.lower())
+            selected.append(email)
+    return selected
 
 
 def _poll_and_render_progress() -> None:
@@ -626,6 +654,11 @@ def _poll_and_render_progress() -> None:
             mode    = st.session_state.get("run_exa_mode", "summary")
             out_col = EXA_OUTPUT_COL.get(mode) or "Website Summary"
             _log_and_store("exa", results, elapsed, output_col=out_col, skipped=skipped)
+        elif run_type == "firecrawl":
+            skipped = st.session_state.pop("_fc_skipped_count", 0)
+            ok_keys = collect_output_keys(results)
+            out_col = next(iter(ok_keys), "fc_result")
+            _log_and_store("firecrawl", results, elapsed, output_col=out_col, skipped=skipped)
         else:
             # LLM: determine output_col from last run context
             ok_keys = collect_output_keys(results)
@@ -814,9 +847,10 @@ def _queue_exa_task(
             "enrichment_type": "exa",
             "url_col": url_col,
             "cfg": cfg,
-            "output_col": EXA_OUTPUT_COL.get(cfg.get("mode", "summary"), "Website Summary"),
+            "output_col": EXA_OUTPUT_COL.get(cfg.get("mode", "summary")) or "Website Summary",
             "concurrency": st.session_state.get("exa_concurrency", 50),
-            "filter_empty": st.session_state.get("row_mode") == "Fill missing",
+            "selected_emails": _selected_emails_from_rows(df, row_indices),
+            "selection_mode": st.session_state.get("row_mode", "All"),
         }
         task_id = create_task(workspace_id, payload, total)
         if task_id:
@@ -826,6 +860,88 @@ def _queue_exa_task(
             st.error("Failed to create task. Check DB connection.")
     except Exception as e:
         st.error(f"Queue failed: {e}")
+
+
+def _do_run_firecrawl(
+    df: pd.DataFrame,
+    row_indices: list[int],
+    url_col: str,
+    cfg: dict,
+    dedup_col: str | None = None,
+) -> None:
+    if st.session_state.get("run_in_progress"):
+        return
+
+    keys = _fc_load_keys()
+    if not keys:
+        st.error("No Firecrawl keys configured. Set FIRECRAWL_KEY_1 in .env")
+        return
+
+    concurrency = len(keys) * 5  # 3 keys → 15 parallel in-flight requests
+
+    st.session_state["run_row_indices"] = row_indices
+    st.session_state["run_type"] = "firecrawl"
+    st.session_state["run_fc_url_col"] = url_col
+    st.session_state["run_fc_cfg"] = cfg
+    st.session_state["run_prompt_cols"] = [url_col]
+    st.session_state["run_dedup_col"] = dedup_col
+
+    st.session_state.run_in_progress = True
+    _log.info(f"Firecrawl run started | formats={cfg.get('formats')} rows={len(row_indices)} url_col={url_col}")
+
+    def worker_fn(pq, se):
+        results, skipped = run_firecrawl_enrichment(
+            df=df, url_col=url_col, row_indices=row_indices,
+            cfg=cfg, concurrency=concurrency,
+            progress_queue=pq, stop_event=se,
+            keys=keys,
+        )
+        st.session_state["_fc_skipped_count"] = skipped
+        return results
+
+    _start_run_thread(worker_fn)
+    st.rerun()
+
+
+def _render_run_section_firecrawl(
+    df: pd.DataFrame,
+    filtered_df: pd.DataFrame,
+    url_col: str,
+    cfg: dict,
+) -> None:
+    st.markdown("**Run**")
+    autorun = st.session_state.pop("panel_autorun", False)
+    row_indices = _get_row_indices(df, filtered_df)
+    running = st.session_state.get("run_in_progress", False)
+
+    dedup_urls = st.session_state.get("fc_dedup_urls", True)
+    dedup_col: str | None = None
+    if dedup_urls and url_col:
+        seen: set[str] = set()
+        deduped: list[int] = []
+        for idx in row_indices:
+            url_val = str(df.iloc[idx].get(url_col, "")).strip()
+            if url_val and url_val not in ("nan", "None") and url_val not in seen:
+                seen.add(url_val)
+                deduped.append(idx)
+        skipped_dedup = len(row_indices) - len(deduped)
+        row_indices = deduped
+        dedup_col = url_col
+        if skipped_dedup:
+            st.caption(
+                f"Deduped: {len(row_indices)} unique URLs "
+                f"({skipped_dedup} duplicate rows — will be filled via Propagate after save)"
+            )
+
+    if autorun and not running:
+        _do_run_firecrawl(df, row_indices, url_col, cfg, dedup_col=dedup_col)
+        return
+
+    if st.button(
+        "Running..." if running else "Run",
+        type="primary", use_container_width=True, key="btn_run", disabled=running,
+    ):
+        _do_run_firecrawl(df, row_indices, url_col, cfg, dedup_col=dedup_col)
 
 
 def _render_run_section_exa(
@@ -905,7 +1021,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     # If results exist — show only output section (no config shown to avoid type mismatch)
     if st.session_state.get("run_results") is not None:
         _rt = st.session_state.get("run_type", "llm")
-        _type_label = {"llm": "LLM Extraction", "mx": "MX Check", "exa": "Exa Summary"}.get(_rt, _rt)
+        _type_label = {"llm": "LLM Extraction", "mx": "MX Check", "exa": "Exa Summary", "firecrawl": "Firecrawl"}.get(_rt, _rt)
         skipped = st.session_state.get("run_exa_skipped", 0)
         if skipped and _rt == "exa":
             st.caption(f"{_type_label} | {skipped} rows skipped (empty URL)")
@@ -917,7 +1033,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
     # Type selector
     enrichment_type = st.selectbox(
         "Type",
-        ["LLM Extraction", "MX Check", "Exa Summary"],
+        ["LLM Extraction", "MX Check", "Exa Summary", "Firecrawl"],
         key="panel_enrichment_type",
         label_visibility="collapsed",
     )
@@ -947,7 +1063,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         )
         st.caption("Looks up MX records via DNS and classifies the email provider (Google, Microsoft, Zoho, etc.)")
 
-    else:  # Exa Summary
+    elif enrichment_type == "Exa Summary":
         url_cols = [c for c in df.columns
                     if any(k in c.lower() for k in ("website", "url", "domain", "site"))]
         all_cols = list(df.columns)
@@ -1040,6 +1156,133 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                 )
             st.caption("Raw text will be saved to 'Website Text' — run LLM enrichment on it afterwards.")
 
+    elif enrichment_type == "Firecrawl":
+        import json as _json
+
+        url_cols = [c for c in df.columns if any(k in c.lower() for k in ("website", "url", "domain", "site"))]
+        all_cols = list(df.columns)
+        default_url_options = url_cols if url_cols else all_cols
+        fc_url_col = st.selectbox("URL column", options=default_url_options, key="fc_url_col",
+                                   label_visibility="collapsed")
+
+        st.checkbox(
+            "Deduplicate by URL — run once per unique website, then propagate to all rows",
+            value=st.session_state.get("fc_dedup_urls", True),
+            key="fc_dedup_urls",
+        )
+
+        # Formats
+        st.caption("Formats")
+        c1, c2 = st.columns(2)
+        with c1:
+            fc_fmt_markdown = st.checkbox("Markdown", value=True, key="fc_fmt_markdown")
+        with c2:
+            fc_fmt_json = st.checkbox("JSON Extract", value=True, key="fc_fmt_json")
+
+        fc_formats = []
+        if fc_fmt_markdown:
+            fc_formats.append("markdown")
+        if fc_fmt_json:
+            fc_formats.append("json")
+        if not fc_formats:
+            st.warning("Select at least one format.")
+            fc_formats = ["markdown"]
+
+        fc_cfg: dict = {"formats": fc_formats, "only_main_content": False}
+
+        if fc_fmt_json:
+            st.caption("JSON Extract")
+
+            # Saved schema picker
+            schema_names = _prompts_store.list_fc_schemas()
+            if schema_names:
+                c_sel, c_del = st.columns([4, 1])
+                with c_sel:
+                    sel_schema = st.selectbox(
+                        "Load schema", [""] + schema_names,
+                        key="fc_schema_select", label_visibility="collapsed",
+                    )
+                with c_del:
+                    if sel_schema and st.button("Del", key="_btn_fc_del_schema"):
+                        _prompts_store.delete_fc_schema(sel_schema)
+                        st.session_state.pop("fc_schema_select", None)
+                        st.rerun()
+                if sel_schema and sel_schema != st.session_state.get("_fc_last_loaded"):
+                    loaded = _prompts_store.get_fc_schema(sel_schema)
+                    if loaded:
+                        st.session_state["fc_json_prompt_text"] = loaded.get("prompt", "")
+                        st.session_state["fc_schema_text"] = _json.dumps(
+                            loaded.get("schema", {}), indent=2
+                        )
+                        st.session_state["_fc_last_loaded"] = sel_schema
+                        st.rerun()
+
+            # Prompt
+            fc_json_prompt = st.text_area(
+                "Extraction prompt", height=80,
+                value=st.session_state.get("fc_json_prompt_text", DEFAULT_JSON_PROMPT),
+                key="fc_json_prompt_text",
+                label_visibility="collapsed",
+                placeholder="Describe what to extract...",
+            )
+
+            # Schema editor header
+            schema_default_str = _json.dumps(DEFAULT_JSON_SCHEMA, indent=2)
+            c_slabel, c_save = st.columns([5, 1])
+            with c_slabel:
+                st.caption("JSON Schema")
+            with c_save:
+                if st.button("Save", key="_btn_fc_save_schema"):
+                    st.session_state["_fc_show_save_input"] = True
+
+            if st.session_state.get("_fc_show_save_input"):
+                sn_col, sn_ok = st.columns([3, 1])
+                with sn_col:
+                    schema_save_name = st.text_input(
+                        "Schema name", key="_fc_save_schema_name",
+                        label_visibility="collapsed", placeholder="my schema",
+                    )
+                with sn_ok:
+                    if st.button("OK", key="_btn_fc_save_ok"):
+                        name = st.session_state.get("_fc_save_schema_name", "").strip()
+                        if name:
+                            try:
+                                schema_obj = _json.loads(
+                                    st.session_state.get("fc_schema_text", schema_default_str)
+                                )
+                                _prompts_store.set_fc_schema(
+                                    name, st.session_state.get("fc_json_prompt_text", DEFAULT_JSON_PROMPT), schema_obj
+                                )
+                                st.session_state["_fc_show_save_input"] = False
+                                st.toast(f"Schema '{name}' saved")
+                                st.rerun()
+                            except _json.JSONDecodeError:
+                                st.warning("Invalid JSON — fix schema before saving.")
+
+            fc_schema_text = st.text_area(
+                "Schema", height=180,
+                value=st.session_state.get("fc_schema_text", schema_default_str),
+                key="fc_schema_text",
+                label_visibility="collapsed",
+            )
+            try:
+                schema_obj = _json.loads(fc_schema_text)
+                fc_cfg["json_schema"] = schema_obj
+            except _json.JSONDecodeError:
+                st.warning("Invalid JSON schema — using default.")
+                fc_cfg["json_schema"] = DEFAULT_JSON_SCHEMA
+            fc_cfg["json_prompt"] = fc_json_prompt
+
+            # Output column mode
+            json_split_opt = st.radio(
+                "JSON output",
+                ["Split into columns", "Single column (fc_json)"],
+                key="fc_json_split",
+                horizontal=True,
+                label_visibility="collapsed",
+            )
+            fc_cfg["json_split"] = (json_split_opt == "Split into columns")
+
     st.markdown("---")
 
     # -- RUN --
@@ -1047,6 +1290,8 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         _render_run_section_llm(df, filtered_df, prompt_text)
     elif enrichment_type == "MX Check":
         _render_run_section_mx(df, filtered_df, email_col)
+    elif enrichment_type == "Firecrawl":
+        _render_run_section_firecrawl(df, filtered_df, fc_url_col, fc_cfg)
     else:
         _render_run_section_exa(df, filtered_df, url_col, exa_cfg)
 
@@ -1059,6 +1304,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             "url_col": st.session_state.get("exa_url_col", ""),
             "exa_mode": st.session_state.get("exa_mode", "summary"),
             "prompt_text": st.session_state.get("prompt_textarea", ""),
+            "fc_url_col": st.session_state.get("fc_url_col", ""),
         }
         ui_state.save_source(
             ui_state.get_key(source, st.session_state.get("workspace_id")),
