@@ -113,9 +113,25 @@ def _build_payload(url: str, cfg: dict) -> dict:
         "timeout": 30000,
     }
 
+    # max_age: how old cached content can be (milliseconds). 0 = always fresh.
+    max_age = cfg.get("max_age", 0)
+    if max_age:
+        payload["maxAge"] = max_age
+
+    # PDF parser
+    if cfg.get("parse_pdf"):
+        payload["parsers"] = ["pdf"]
+
     api_formats = []
     if "markdown" in formats:
         api_formats.append("markdown")
+    if "summary" in formats:
+        api_formats.append("summary")
+    if "links" in formats:
+        api_formats.append("links")
+    if "html" in formats:
+        api_formats.append("html")
+
     # When llm_extract=True we only need markdown — skip Firecrawl's own extraction
     if "json" in formats and not cfg.get("llm_extract"):
         api_formats.append("extract")
@@ -161,6 +177,31 @@ def _extract_output(data: dict, cfg: dict) -> dict:
         md = data.get("markdown") or ""
         if md:
             out["fc_markdown"] = md
+
+    if "summary" in formats:
+        summary = data.get("summary") or ""
+        if summary:
+            out["fc_summary"] = summary
+
+    if "links" in formats:
+        links = data.get("links") or []
+        if links:
+            # API returns list of {url, text} dicts or plain strings
+            urls = []
+            for lnk in links:
+                if isinstance(lnk, dict):
+                    u = lnk.get("url") or lnk.get("href") or ""
+                else:
+                    u = str(lnk)
+                if u and u.startswith("http"):
+                    urls.append(u)
+            if urls:
+                out["fc_links"] = ", ".join(urls)
+
+    if "html" in formats:
+        html = data.get("html") or ""
+        if html:
+            out["fc_html"] = html
 
     if "json" in formats and not cfg.get("llm_extract"):
         extracted = data.get("extract") or {}

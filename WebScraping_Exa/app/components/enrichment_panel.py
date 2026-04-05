@@ -1172,24 +1172,46 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         )
 
         # Formats
-        st.caption("Formats")
-        c1, c2 = st.columns(2)
-        with c1:
-            fc_fmt_markdown = st.checkbox("Markdown", value=True, key="fc_fmt_markdown")
-        with c2:
-            fc_fmt_json = st.checkbox("JSON Extract", value=True, key="fc_fmt_json")
-
-        fc_formats = []
-        if fc_fmt_markdown:
-            fc_formats.append("markdown")
-        if fc_fmt_json:
-            fc_formats.append("json")
+        _FC_FORMAT_LABELS = {
+            "markdown": "Markdown",
+            "summary":  "Summary",
+            "links":    "Links",
+            "json":     "JSON Extract",
+            "html":     "HTML",
+        }
+        fc_formats: list[str] = st.multiselect(
+            "Formats",
+            options=list(_FC_FORMAT_LABELS.keys()),
+            default=st.session_state.get("fc_formats_sel", ["markdown", "json"]),
+            format_func=lambda x: _FC_FORMAT_LABELS.get(x, x),
+            key="fc_formats_sel",
+            label_visibility="collapsed",
+        )
         if not fc_formats:
             st.warning("Select at least one format.")
             fc_formats = ["markdown"]
 
-        fc_cfg: dict = {"formats": fc_formats, "only_main_content": False}
+        # Options row: only_main_content | parse_pdf | max_age
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            only_main = st.checkbox("Main content only", value=False, key="fc_only_main")
+        with c2:
+            parse_pdf = st.checkbox("Parse PDFs", value=False, key="fc_parse_pdf")
+        with c3:
+            max_age_h = st.selectbox(
+                "Cache max age", [0, 1, 6, 12, 24, 48, 72],
+                format_func=lambda h: "Always fresh" if h == 0 else f"{h}h cache",
+                key="fc_max_age_h", label_visibility="collapsed",
+            )
 
+        fc_cfg: dict = {
+            "formats": fc_formats,
+            "only_main_content": only_main,
+            "max_age": max_age_h * 3_600_000 if max_age_h else 0,
+            "parse_pdf": parse_pdf,
+        }
+
+        fc_fmt_json = "json" in fc_formats
         if fc_fmt_json:
             st.caption("JSON Extract")
 
