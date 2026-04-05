@@ -1308,7 +1308,6 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             fc_cfg["llm_extract"] = engine.startswith("LLM")
 
             if fc_cfg["llm_extract"]:
-                from app.enrichments.llm import LLM_MODELS, DEFAULT_MODEL as LLM_DEFAULT_MODEL
                 saved_model = st.session_state.get("fc_llm_model", LLM_DEFAULT_MODEL)
                 model_idx = LLM_MODELS.index(saved_model) if saved_model in LLM_MODELS else 0
                 fc_llm_model = st.selectbox(
@@ -1345,7 +1344,6 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             fc_cfg["llm_summary"] = sum_engine.startswith("LLM")
 
             if fc_cfg["llm_summary"]:
-                from app.enrichments.llm import LLM_MODELS, DEFAULT_MODEL as LLM_DEFAULT_MODEL
                 fc_cfg["summary_prompt"] = st.text_area(
                     "Summary prompt", height=60,
                     value=st.session_state.get("fc_summary_prompt_text",
