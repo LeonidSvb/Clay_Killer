@@ -23,9 +23,12 @@ DEFAULT_MODEL = "openai/gpt-oss-120b"
 LLM_MODELS = [
     "openai/gpt-oss-120b",
     "openai/gpt-oss-20b",
+    "google/gemini-2.0-flash-001",
+    "google/gemini-2.5-pro-preview-03-25",
+    "anthropic/claude-haiku-4-5",
+    "anthropic/claude-sonnet-4-5",
     "deepseek/deepseek-chat",
     "meta-llama/llama-3.3-70b-instruct",
-    "google/gemini-flash-1.5-8b",
 ]
 
 
@@ -176,6 +179,7 @@ async def _call_llm_batch(
     progress_queue: queue.Queue,
     stop_event: threading.Event,
     model: str = DEFAULT_MODEL,
+    result_queue: queue.Queue | None = None,
 ) -> list[dict]:
     """
     items: [{"idx": int, "rendered_prompt": str}, ...]
@@ -242,6 +246,8 @@ async def _call_llm_batch(
                 break
             result = await coro
             results.append(result)
+            if result_queue is not None:
+                result_queue.put_nowait(result)
             done = len(results)
             elapsed = time.time() - t0
             speed = done / elapsed if elapsed > 0 else 0
@@ -270,6 +276,7 @@ def run_llm_enrichment(
     stop_event: threading.Event,
     api_key: str = "",
     model: str = DEFAULT_MODEL,
+    result_queue: queue.Queue | None = None,
     # legacy params — accepted but ignored
     output_type: str = "Text",
     output_config: dict | None = None,
@@ -295,4 +302,5 @@ def run_llm_enrichment(
         progress_queue=progress_queue,
         stop_event=stop_event,
         model=model,
+        result_queue=result_queue,
     ))
