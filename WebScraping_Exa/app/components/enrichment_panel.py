@@ -39,6 +39,7 @@ from app.enrichments.firecrawl import (
     run_firecrawl_enrichment,
     DEFAULT_JSON_PROMPT,
     DEFAULT_JSON_SCHEMA,
+    BUILTIN_SCHEMAS as FC_BUILTIN_SCHEMAS,
     _load_keys as _fc_load_keys,
 )
 from app.enrichments.llm import run_llm_enrichment, DEFAULT_MODEL as LLM_DEFAULT_MODEL, LLM_MODELS
@@ -1193,40 +1194,48 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
         if fc_fmt_json:
             st.caption("JSON Extract")
 
-            # Saved schema picker
-            schema_names = _prompts_store.list_fc_schemas()
-            if schema_names:
-                c_sel, c_del = st.columns([4, 1])
-                with c_sel:
-                    sel_schema = st.selectbox(
-                        "Load schema", [""] + schema_names,
-                        key="fc_schema_select", label_visibility="collapsed",
-                    )
-                with c_del:
-                    if sel_schema and st.button("Del", key="_btn_fc_del_schema"):
-                        _prompts_store.delete_fc_schema(sel_schema)
-                        st.session_state.pop("fc_schema_select", None)
-                        st.rerun()
-                if sel_schema and sel_schema != st.session_state.get("_fc_last_loaded"):
-                    loaded = _prompts_store.get_fc_schema(sel_schema)
-                    if loaded:
-                        st.session_state["fc_json_prompt_text"] = loaded.get("prompt", "")
-                        st.session_state["fc_schema_text"] = _json.dumps(
-                            loaded.get("schema", {}), indent=2
-                        )
-                        st.session_state["_fc_last_loaded"] = sel_schema
-                        st.rerun()
+            # ── Schema picker: built-ins + saved ──────────────────────────────
+            saved_names   = _prompts_store.list_fc_schemas()
+            builtin_names = list(FC_BUILTIN_SCHEMAS.keys())
+            all_schema_options = [""] + builtin_names + (
+                ["─────────"] + saved_names if saved_names else []
+            )
 
-            # Prompt
+            c_sel, c_del = st.columns([4, 1])
+            with c_sel:
+                sel_schema = st.selectbox(
+                    "Schema preset", all_schema_options,
+                    key="fc_schema_select", label_visibility="collapsed",
+                )
+            with c_del:
+                is_saved = sel_schema in saved_names
+                if is_saved and st.button("Del", key="_btn_fc_del_schema"):
+                    _prompts_store.delete_fc_schema(sel_schema)
+                    st.session_state.pop("fc_schema_select", None)
+                    st.rerun()
+
+            # Load selected schema into editor
+            if sel_schema and sel_schema != "─────────" and sel_schema != st.session_state.get("_fc_last_loaded"):
+                if sel_schema in FC_BUILTIN_SCHEMAS:
+                    entry = FC_BUILTIN_SCHEMAS[sel_schema]
+                else:
+                    entry = _prompts_store.get_fc_schema(sel_schema)
+                if entry:
+                    st.session_state["fc_json_prompt_text"] = entry.get("prompt", "")
+                    st.session_state["fc_schema_text"] = _json.dumps(entry.get("schema", {}), indent=2)
+                    st.session_state["_fc_last_loaded"] = sel_schema
+                    st.rerun()
+
+            # ── Prompt ────────────────────────────────────────────────────────
             fc_json_prompt = st.text_area(
-                "Extraction prompt", height=80,
+                "Extraction prompt", height=70,
                 value=st.session_state.get("fc_json_prompt_text", DEFAULT_JSON_PROMPT),
                 key="fc_json_prompt_text",
                 label_visibility="collapsed",
                 placeholder="Describe what to extract...",
             )
 
-            # Schema editor header
+            # ── Schema editor ─────────────────────────────────────────────────
             schema_default_str = _json.dumps(DEFAULT_JSON_SCHEMA, indent=2)
             c_slabel, c_save = st.columns([5, 1])
             with c_slabel:
@@ -1238,7 +1247,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             if st.session_state.get("_fc_show_save_input"):
                 sn_col, sn_ok = st.columns([3, 1])
                 with sn_col:
-                    schema_save_name = st.text_input(
+                    st.text_input(
                         "Schema name", key="_fc_save_schema_name",
                         label_visibility="collapsed", placeholder="my schema",
                     )
@@ -1251,7 +1260,9 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                                     st.session_state.get("fc_schema_text", schema_default_str)
                                 )
                                 _prompts_store.set_fc_schema(
-                                    name, st.session_state.get("fc_json_prompt_text", DEFAULT_JSON_PROMPT), schema_obj
+                                    name,
+                                    st.session_state.get("fc_json_prompt_text", DEFAULT_JSON_PROMPT),
+                                    schema_obj,
                                 )
                                 st.session_state["_fc_show_save_input"] = False
                                 st.toast(f"Schema '{name}' saved")
@@ -1260,7 +1271,7 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                                 st.warning("Invalid JSON — fix schema before saving.")
 
             fc_schema_text = st.text_area(
-                "Schema", height=180,
+                "Schema", height=160,
                 value=st.session_state.get("fc_schema_text", schema_default_str),
                 key="fc_schema_text",
                 label_visibility="collapsed",
@@ -1273,7 +1284,32 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
                 fc_cfg["json_schema"] = DEFAULT_JSON_SCHEMA
             fc_cfg["json_prompt"] = fc_json_prompt
 
-            # Output column mode
+            # ── Extract engine ─────────────────────────────────────────────────
+            st.caption("Extract engine")
+            engine = st.radio(
+                "Extract engine",
+                ["Firecrawl (5 credits/page)", "LLM via OpenRouter (1 credit/page)"],
+                key="fc_extract_engine",
+                horizontal=True,
+                label_visibility="collapsed",
+            )
+            fc_cfg["llm_extract"] = engine.startswith("LLM")
+
+            if fc_cfg["llm_extract"]:
+                from app.enrichments.llm import LLM_MODELS, DEFAULT_MODEL as LLM_DEFAULT_MODEL
+                saved_model = st.session_state.get("fc_llm_model", LLM_DEFAULT_MODEL)
+                model_idx = LLM_MODELS.index(saved_model) if saved_model in LLM_MODELS else 0
+                fc_llm_model = st.selectbox(
+                    "Model", options=LLM_MODELS, index=model_idx,
+                    key="fc_llm_model_select", label_visibility="collapsed",
+                )
+                st.session_state["fc_llm_model"] = fc_llm_model
+                fc_cfg["llm_model"] = fc_llm_model
+                fc_cfg["openrouter_key"] = (
+                    st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
+                )
+
+            # ── Output column mode ─────────────────────────────────────────────
             json_split_opt = st.radio(
                 "JSON output",
                 ["Split into columns", "Single column (fc_json)"],

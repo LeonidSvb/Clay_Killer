@@ -5,14 +5,21 @@ Formats (combinable, sent in one API call):
   markdown  — raw scraped markdown text       → fc_markdown
   json      — structured JSON extraction      → one col per schema key  OR  fc_json (single col)
 
+Extract modes (when "json" format is selected):
+  firecrawl — Firecrawl built-in LLM extraction (5 credits/call, high quality)
+  llm       — Firecrawl markdown (1 credit) + OpenRouter LLM (cheap, model of choice)
+
 Key rotation: round-robin across FIRECRAWL_KEY_1/2/3 (.env), 2 req/sec per key.
 
 cfg keys:
-  formats         list[str]   — subset of ["markdown", "json"]
-  json_prompt     str         — natural language extraction instruction
-  json_schema     dict        — JSON Schema object (properties at top level)
-  json_split      bool        — True = one col per key, False = fc_json single col
-  only_main_content bool      — strip nav/footer (default False for contact extraction)
+  formats           list[str]   — subset of ["markdown", "json"]
+  json_prompt       str         — natural language extraction instruction
+  json_schema       dict        — JSON Schema object (properties at top level)
+  json_split        bool        — True = one col per key, False = fc_json single col
+  only_main_content bool        — strip nav/footer (default False for contact extraction)
+  llm_extract       bool        — True = use LLM instead of Firecrawl extraction
+  llm_model         str         — OpenRouter model id (used when llm_extract=True)
+  openrouter_key    str         — OpenRouter API key (used when llm_extract=True)
 """
 
 import asyncio
@@ -31,6 +38,7 @@ from core.errors import (
     error_result, success_result,
     normalize_http_error, normalize_exception,
 )
+from core.llm import parse_json_response
 
 FC_BASE = "https://api.firecrawl.dev/v1"
 RATE_PER_KEY = 2.0
@@ -52,6 +60,76 @@ DEFAULT_JSON_SCHEMA: dict = {
         "company_name":  {"type": "string"},
     },
 }
+
+# Built-in schema presets (always available in the UI dropdown)
+BUILTIN_SCHEMAS: dict[str, dict] = {
+    "Contact Info": {
+        "prompt": (
+            "Extract all contact information from this page: email addresses, phone numbers, "
+            "postal code, contact person names, physical address, and company name."
+        ),
+        "schema": DEFAULT_JSON_SCHEMA,
+    },
+    "Company Info": {
+        "prompt": (
+            "Extract company profile information: company name, industry, description, "
+            "year founded, number of employees, headquarters location, and website."
+        ),
+        "schema": {
+            "type": "object",
+            "properties": {
+                "company_name":   {"type": "string"},
+                "industry":       {"type": "string"},
+                "description":    {"type": "string"},
+                "founded_year":   {"type": "string"},
+                "employee_count": {"type": "string"},
+                "headquarters":   {"type": "string"},
+                "website":        {"type": "string"},
+            },
+        },
+    },
+    "Social Links": {
+        "prompt": (
+            "Extract all social media profile links and handles from this page: "
+            "LinkedIn, Twitter/X, Facebook, Instagram, YouTube, TikTok."
+        ),
+        "schema": {
+            "type": "object",
+            "properties": {
+                "linkedin":   {"type": "string"},
+                "twitter":    {"type": "string"},
+                "facebook":   {"type": "string"},
+                "instagram":  {"type": "string"},
+                "youtube":    {"type": "string"},
+                "tiktok":     {"type": "string"},
+            },
+        },
+    },
+    "Pricing": {
+        "prompt": (
+            "Extract pricing information: plan names, prices, billing periods, "
+            "currency, and any free trial or freemium options."
+        ),
+        "schema": {
+            "type": "object",
+            "properties": {
+                "plans":         {"type": "array", "items": {"type": "string"}},
+                "price_range":   {"type": "string"},
+                "currency":      {"type": "string"},
+                "billing":       {"type": "string"},
+                "has_free_tier": {"type": "string"},
+            },
+        },
+    },
+}
+
+LLM_EXTRACT_SYSTEM = (
+    "You are a structured data extraction assistant. "
+    "Extract information from the provided webpage content and return ONLY a valid JSON object. "
+    "No markdown fences, no explanation — just the JSON."
+)
+
+LLM_MARKDOWN_LIMIT = 12000
 
 
 # ── Key pool ───────────────────────────────────────────────────────────────────
@@ -100,12 +178,17 @@ def _build_payload(url: str, cfg: dict) -> dict:
     api_formats = []
     if "markdown" in formats:
         api_formats.append("markdown")
-    if "json" in formats:
+    # When llm_extract=True we only need markdown — skip Firecrawl's own extraction
+    if "json" in formats and not cfg.get("llm_extract"):
         api_formats.append("extract")
         payload["extract"] = {
             "prompt": cfg.get("json_prompt", DEFAULT_JSON_PROMPT),
             "schema": cfg.get("json_schema", DEFAULT_JSON_SCHEMA),
         }
+
+    # LLM extract mode always needs markdown
+    if cfg.get("llm_extract") and "markdown" not in api_formats:
+        api_formats.append("markdown")
 
     payload["formats"] = api_formats
     return payload
@@ -113,9 +196,27 @@ def _build_payload(url: str, cfg: dict) -> dict:
 
 # ── Output extractor ───────────────────────────────────────────────────────────
 
+def _apply_split(extracted: dict, split: bool) -> dict:
+    """Convert an extracted dict to split columns or single fc_json column."""
+    out: dict = {}
+    if split:
+        for k, v in extracted.items():
+            if v is None:
+                continue
+            if isinstance(v, list):
+                out[k] = ", ".join(str(i) for i in v if i is not None and str(i).strip())
+            elif isinstance(v, dict):
+                out[k] = json.dumps(v, ensure_ascii=False)
+            else:
+                out[k] = v
+    else:
+        out["fc_json"] = json.dumps(extracted, ensure_ascii=False)
+    return out
+
+
 def _extract_output(data: dict, cfg: dict) -> dict:
-    formats  = cfg.get("formats", ["markdown"])
-    split    = cfg.get("json_split", True)
+    formats = cfg.get("formats", ["markdown"])
+    split   = cfg.get("json_split", True)
     out: dict = {}
 
     if "markdown" in formats:
@@ -123,23 +224,57 @@ def _extract_output(data: dict, cfg: dict) -> dict:
         if md:
             out["fc_markdown"] = md
 
-    if "json" in formats:
+    if "json" in formats and not cfg.get("llm_extract"):
         extracted = data.get("extract") or {}
         if extracted:
-            if split:
-                for k, v in extracted.items():
-                    if v is None:
-                        continue
-                    if isinstance(v, list):
-                        out[k] = ", ".join(str(i) for i in v if i is not None and str(i).strip())
-                    elif isinstance(v, dict):
-                        out[k] = json.dumps(v, ensure_ascii=False)
-                    else:
-                        out[k] = v
-            else:
-                out["fc_json"] = json.dumps(extracted, ensure_ascii=False)
+            out.update(_apply_split(extracted, split))
 
     return out
+
+
+# ── LLM extraction (markdown → OpenRouter) ─────────────────────────────────────
+
+async def _llm_extract(
+    markdown: str,
+    prompt: str,
+    schema: dict,
+    model: str,
+    api_key: str,
+    session: aiohttp.ClientSession,
+) -> dict:
+    """Send markdown to OpenRouter LLM, return extracted dict matching schema."""
+    schema_str = json.dumps(schema, ensure_ascii=False)
+    user_msg = (
+        f"{prompt}\n\n"
+        f"Return a JSON object matching this schema:\n{schema_str}\n\n"
+        f"Webpage content:\n{markdown[:LLM_MARKDOWN_LIMIT]}"
+    )
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": LLM_EXTRACT_SYSTEM},
+            {"role": "user",   "content": user_msg},
+        ],
+        "temperature": 0,
+        "provider": {"sort": "throughput"},
+    }
+    try:
+        async with session.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            json=payload,
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=aiohttp.ClientTimeout(total=30),
+        ) as resp:
+            if resp.status != 200:
+                return {}
+            data = await resp.json()
+            content = data["choices"][0]["message"]["content"]
+            return parse_json_response(content) or {}
+    except Exception:
+        return {}
 
 
 # ── Async fetcher ──────────────────────────────────────────────────────────────
@@ -191,6 +326,21 @@ async def _fetch_one(
                     return error_result(idx, f"fc_failed: {str(msg)[:60]}", elapsed, url=url)
 
                 output = _extract_output(raw_data, cfg)
+
+                # LLM extraction from markdown
+                if cfg.get("llm_extract") and "json" in cfg.get("formats", []):
+                    md = raw_data.get("markdown") or output.get("fc_markdown") or ""
+                    if md:
+                        llm_result = await _llm_extract(
+                            markdown=md,
+                            prompt=cfg.get("json_prompt", DEFAULT_JSON_PROMPT),
+                            schema=cfg.get("json_schema", DEFAULT_JSON_SCHEMA),
+                            model=cfg.get("llm_model", "google/gemini-2.0-flash-001"),
+                            api_key=cfg.get("openrouter_key", ""),
+                            session=session,
+                        )
+                        if llm_result:
+                            output.update(_apply_split(llm_result, cfg.get("json_split", True)))
 
                 if not output:
                     return error_result(idx, "api_empty_content", elapsed, url=url)
@@ -281,13 +431,11 @@ def run_firecrawl_enrichment(
             continue
         items.append({"idx": idx, "url": url})
 
-    actual_conc = concurrency
-
     results = asyncio.run(_run_batch(
         items=items,
         cfg=cfg,
         keys=resolved_keys,
-        concurrency=actual_conc,
+        concurrency=concurrency,
         progress_queue=progress_queue,
         stop_event=stop_event,
         result_queue=result_queue,
