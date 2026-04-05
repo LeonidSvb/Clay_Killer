@@ -125,7 +125,7 @@ def _build_payload(url: str, cfg: dict) -> dict:
     api_formats = []
     if "markdown" in formats:
         api_formats.append("markdown")
-    if "summary" in formats:
+    if "summary" in formats and not cfg.get("llm_summary"):
         api_formats.append("summary")
     if "links" in formats:
         api_formats.append("links")
@@ -212,6 +212,49 @@ def _extract_output(data: dict, cfg: dict) -> dict:
 
 
 # ── LLM extraction (markdown → OpenRouter) ─────────────────────────────────────
+
+LLM_SUMMARY_SYSTEM = (
+    "You are a concise business analyst. Summarize the webpage content in 3-5 sentences. "
+    "Focus on: what the company does, who they serve, key services or products. "
+    "Facts only, no marketing language. Return plain text, no JSON."
+)
+
+
+async def _llm_summarize(
+    markdown: str,
+    prompt: str,
+    model: str,
+    api_key: str,
+    session: aiohttp.ClientSession,
+) -> str:
+    """Send markdown to OpenRouter LLM, return plain-text summary."""
+    user_msg = f"{prompt}\n\nWebpage content:\n{markdown[:LLM_MARKDOWN_LIMIT]}"
+    payload = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": LLM_SUMMARY_SYSTEM},
+            {"role": "user",   "content": user_msg},
+        ],
+        "temperature": 0.2,
+        "provider": {"sort": "throughput"},
+    }
+    try:
+        async with session.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            json=payload,
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            timeout=aiohttp.ClientTimeout(total=30),
+        ) as resp:
+            if resp.status != 200:
+                return ""
+            data = await resp.json()
+            return (data["choices"][0]["message"]["content"] or "").strip()
+    except Exception:
+        return ""
+
 
 async def _llm_extract(
     markdown: str,
@@ -306,20 +349,32 @@ async def _fetch_one(
 
                 output = _extract_output(raw_data, cfg)
 
-                # LLM extraction from markdown
-                if cfg.get("llm_extract") and "json" in cfg.get("formats", []):
-                    md = raw_data.get("markdown") or output.get("fc_markdown") or ""
-                    if md:
-                        llm_result = await _llm_extract(
-                            markdown=md,
-                            prompt=cfg.get("json_prompt", DEFAULT_JSON_PROMPT),
-                            schema=cfg.get("json_schema", DEFAULT_JSON_SCHEMA),
-                            model=cfg.get("llm_model", "google/gemini-2.0-flash-001"),
-                            api_key=cfg.get("openrouter_key", ""),
-                            session=session,
-                        )
-                        if llm_result:
-                            output.update(_apply_split(llm_result, cfg.get("json_split", True)))
+                md = raw_data.get("markdown") or output.get("fc_markdown") or ""
+
+                # LLM JSON extraction from markdown
+                if cfg.get("llm_extract") and "json" in cfg.get("formats", []) and md:
+                    llm_result = await _llm_extract(
+                        markdown=md,
+                        prompt=cfg.get("json_prompt", DEFAULT_JSON_PROMPT),
+                        schema=cfg.get("json_schema", DEFAULT_JSON_SCHEMA),
+                        model=cfg.get("llm_model", "google/gemini-2.0-flash-001"),
+                        api_key=cfg.get("openrouter_key", ""),
+                        session=session,
+                    )
+                    if llm_result:
+                        output.update(_apply_split(llm_result, cfg.get("json_split", True)))
+
+                # LLM summary from markdown
+                if cfg.get("llm_summary") and "summary" in cfg.get("formats", []) and md:
+                    summary_text = await _llm_summarize(
+                        markdown=md,
+                        prompt=cfg.get("summary_prompt", "Summarize this webpage."),
+                        model=cfg.get("llm_model", "google/gemini-2.0-flash-001"),
+                        api_key=cfg.get("openrouter_key", ""),
+                        session=session,
+                    )
+                    if summary_text:
+                        output["fc_summary"] = summary_text
 
                 if not output:
                     return error_result(idx, "api_empty_content", elapsed, url=url)

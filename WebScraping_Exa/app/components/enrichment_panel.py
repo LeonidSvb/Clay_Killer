@@ -1331,6 +1331,47 @@ def render_enrichment_panel(filtered_df: pd.DataFrame | None = None) -> None:
             )
             fc_cfg["json_split"] = (json_split_opt == "Split into columns")
 
+        # ── Summary engine (shown when summary format selected) ───────────────
+        fc_fmt_summary = "summary" in fc_formats
+        if fc_fmt_summary:
+            st.caption("Summary engine")
+            sum_engine = st.radio(
+                "Summary engine",
+                ["Firecrawl (native)", "LLM via OpenRouter"],
+                key="fc_summary_engine",
+                horizontal=True,
+                label_visibility="collapsed",
+            )
+            fc_cfg["llm_summary"] = sum_engine.startswith("LLM")
+
+            if fc_cfg["llm_summary"]:
+                from app.enrichments.llm import LLM_MODELS, DEFAULT_MODEL as LLM_DEFAULT_MODEL
+                fc_cfg["summary_prompt"] = st.text_area(
+                    "Summary prompt", height=60,
+                    value=st.session_state.get("fc_summary_prompt_text",
+                        "Summarize what this company does, who they serve, and their key services. 3-5 sentences, facts only."),
+                    key="fc_summary_prompt_text",
+                    label_visibility="collapsed",
+                )
+                # Reuse model selector from JSON extract if already set, else show own
+                if not fc_fmt_json:
+                    saved_model = st.session_state.get("fc_llm_model", LLM_DEFAULT_MODEL)
+                    model_idx = LLM_MODELS.index(saved_model) if saved_model in LLM_MODELS else 0
+                    fc_sum_model = st.selectbox(
+                        "Model", options=LLM_MODELS, index=model_idx,
+                        key="fc_llm_model_select", label_visibility="collapsed",
+                    )
+                    st.session_state["fc_llm_model"] = fc_sum_model
+                    fc_cfg["llm_model"] = fc_sum_model
+                    fc_cfg["openrouter_key"] = (
+                        st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", "")
+                    )
+                else:
+                    # Already set by JSON extract engine block above
+                    fc_cfg.setdefault("llm_model", st.session_state.get("fc_llm_model", LLM_DEFAULT_MODEL))
+                    fc_cfg.setdefault("openrouter_key",
+                        st.session_state.get("openrouter_key", "") or os.getenv("OPENROUTER_API_KEY", ""))
+
     st.markdown("---")
 
     # -- RUN --
