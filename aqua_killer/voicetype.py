@@ -258,7 +258,7 @@ def _to_wav(audio: np.ndarray) -> bytes:
 
 def _transcribe(wav_bytes: bytes) -> str:
     resp = groq_client.audio.transcriptions.create(
-        model="whisper-large-v3-turbo",
+        model="whisper-large-v3",
         file=("audio.wav", wav_bytes, "audio/wav"),
         response_format="text",
     )
@@ -267,11 +267,8 @@ def _transcribe(wav_bytes: bytes) -> str:
 
 
 def _llm_cleanup(text: str) -> str:
-    user_prompt = config.get("default_prompt", "Fix punctuation. Return only the corrected text.")
+    user_prompt = read_text_file(USER_PROMPT_PATH)
     system_prompt = ""
-
-    if os.path.exists(USER_PROMPT_PATH):
-        user_prompt = read_text_file(USER_PROMPT_PATH)
     if os.path.exists(SYSTEM_PROMPT_PATH):
         system_prompt = read_text_file(SYSTEM_PROMPT_PATH)
 
@@ -365,10 +362,7 @@ class Overlay:
         win.geometry("700x520")
 
         txt = tk.Text(win, wrap=tk.WORD, font=("Consolas", 10), padx=6, pady=6)
-        try:
-            txt.insert("1.0", read_text_file(prompt_path))
-        except Exception as e:
-            log(f"ERROR loading prompt file {prompt_path}: {e}")
+        txt.insert("1.0", read_text_file(prompt_path))
         txt.pack(fill=tk.BOTH, expand=True, padx=8, pady=(8, 4))
         txt.focus_set()
 
