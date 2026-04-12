@@ -10,6 +10,8 @@ import io
 import threading
 import queue
 
+import ctypes
+from ctypes import wintypes
 import numpy as np
 import sounddevice as sd
 import pyperclip
@@ -18,6 +20,35 @@ from groq import Groq
 from PIL import Image, ImageDraw
 import pystray
 import tkinter as tk
+
+# ── Ctrl+V via SendInput (atomic, VK-codes, layout-independent) ───────────────
+_INPUT_KEYBOARD = 1
+_KEYEVENTF_KEYUP = 0x0002
+_VK_CONTROL = 0x11
+_VK_V = 0x56
+
+class _KBD(ctypes.Structure):
+    _fields_ = [('wVk', wintypes.WORD), ('wScan', wintypes.WORD),
+                ('dwFlags', wintypes.DWORD), ('time', wintypes.DWORD),
+                ('dwExtraInfo', ctypes.POINTER(ctypes.c_ulong))]
+
+class _INP_U(ctypes.Union):
+    _fields_ = [('ki', _KBD)]
+
+class _INP(ctypes.Structure):
+    _anonymous_ = ('_u',)
+    _fields_ = [('type', wintypes.DWORD), ('_u', _INP_U)]
+
+def _send_ctrl_v():
+    seq = (_INP * 4)(
+        _INP(type=_INPUT_KEYBOARD, ki=_KBD(wVk=_VK_CONTROL)),
+        _INP(type=_INPUT_KEYBOARD, ki=_KBD(wVk=_VK_V)),
+        _INP(type=_INPUT_KEYBOARD, ki=_KBD(wVk=_VK_V,      dwFlags=_KEYEVENTF_KEYUP)),
+        _INP(type=_INPUT_KEYBOARD, ki=_KBD(wVk=_VK_CONTROL, dwFlags=_KEYEVENTF_KEYUP)),
+    )
+    sent = ctypes.windll.user32.SendInput(4, seq, ctypes.sizeof(_INP))
+    if sent != 4:
+        log(f'SendInput: {sent}/4 sent — target window may be elevated (UIPI). Run as Administrator.')
 
 LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voicetype.log')
 
@@ -111,9 +142,11 @@ def _record_loop():
 
 
 def stop_and_process():
-    if get_state() != S.RECORDING:
-        return
-    set_state(S.PROCESSING)
+    with _state_lock:
+        global _state
+        if _state != S.RECORDING:
+            return
+        _state = S.PROCESSING
     _ui_queue.put(S.PROCESSING)
     threading.Thread(target=_process, daemon=True).start()
 
@@ -126,8 +159,8 @@ def _process():
         duration = len(frames) * 512 / SAMPLE_RATE
         log(f'audio frames={len(frames)} duration~{duration:.1f}s')
 
-        if not frames:
-            log('no frames captured, aborting')
+        if not frames or duration < 0.8:
+            log(f'too short ({duration:.1f}s), skipping')
             return
 
         audio = np.concatenate(frames, axis=0)
@@ -183,7 +216,7 @@ def _transcribe(wav_bytes: bytes) -> str:
 def _llm_cleanup(text: str) -> str:
     rule = config.get('default_prompt', 'Fix punctuation. Return only the corrected text.')
     resp = groq_client.chat.completions.create(
-        model='llama-3.1-8b-instant',
+        model='llama-3.3-70b-versatile',
         messages=[
             {'role': 'system', 'content': LLM_SYSTEM_PROMPT},
             {'role': 'user', 'content': f'Editing rule: {rule}\n\n<transcript>{text}</transcript>'}
@@ -196,27 +229,22 @@ def _llm_cleanup(text: str) -> str:
 
 # ── Injection ─────────────────────────────────────────────────────────────────
 
-_kbd = kb.Controller()
+_injecting = False
 
 
 def _inject(text: str):
-    old = ''
-    try:
-        old = pyperclip.paste()
-    except Exception:
-        pass
+    global _injecting
+    _injecting = True
     try:
         pyperclip.copy(text)
-        time.sleep(0.05)
-        with _kbd.pressed(kb.Key.ctrl):
-            _kbd.press('v')
-            _kbd.release('v')
-        time.sleep(0.1)
+        time.sleep(0.08)
+        _send_ctrl_v()
+        time.sleep(0.15)
+    except Exception as e:
+        log(f'inject error: {e}')
     finally:
-        try:
-            pyperclip.copy(old)
-        except Exception:
-            pass
+        _pressed.clear()
+        _injecting = False
 
 
 # ── Overlay ───────────────────────────────────────────────────────────────────
@@ -312,12 +340,8 @@ def start_tray():
 
 # ── Hotkeys ───────────────────────────────────────────────────────────────────
 
-# All keys that trigger hold-to-talk (right alt, altgr, right shift)
-_HOLD_KEYS = {kb.Key.alt_r, kb.Key.shift_r}
-try:
-    _HOLD_KEYS.add(kb.Key.alt_gr)
-except AttributeError:
-    pass
+# Right Shift only — Right Alt = AltGr on Windows, causes Ctrl+Alt side effects in apps
+_HOLD_KEYS = {kb.Key.shift_r}
 
 # Toggle: Ctrl (left) + Right Alt
 _CTRL_L = kb.Key.ctrl_l
@@ -326,6 +350,8 @@ _pressed = set()
 
 def _on_press(key):
     global _hold_active
+    if _injecting:
+        return
     _pressed.add(key)
 
     if key in _HOLD_KEYS:
@@ -349,6 +375,8 @@ def _on_press(key):
 
 def _on_release(key):
     global _hold_active
+    if _injecting:
+        return
     _pressed.discard(key)
 
     if _hold_active and key in _HOLD_KEYS:
