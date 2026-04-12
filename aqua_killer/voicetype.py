@@ -180,8 +180,15 @@ def _transcribe(wav_bytes: bytes) -> str:
     return text.strip()
 
 
+def _active_profile() -> dict:
+    profiles = config.get('profiles', {})
+    key = config.get('active_profile', 'default')
+    return profiles.get(key, {})
+
+
 def _llm_cleanup(text: str) -> str:
-    rule = config.get('default_prompt', 'Fix punctuation. Return only the corrected text.')
+    profile = _active_profile()
+    rule = profile.get('prompt', 'Fix punctuation. Return only the corrected text.')
     resp = groq_client.chat.completions.create(
         model='llama-3.1-8b-instant',
         messages=[
@@ -297,12 +304,37 @@ def _tray_quit(icon, item):
     os._exit(0)
 
 
+def _switch_profile(key):
+    config['active_profile'] = key
+    try:
+        with open(CONFIG_PATH, 'w', encoding='utf-8') as f:
+            json.dump(config, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        log(f'failed to save profile: {e}')
+    name = config.get('profiles', {}).get(key, {}).get('name', key)
+    log(f'profile switched to: {name}')
+
+
+def _build_profile_items():
+    items = []
+    for key, profile in config.get('profiles', {}).items():
+        k = key
+        items.append(pystray.MenuItem(
+            profile.get('name', key),
+            lambda icon, item, k=k: _switch_profile(k),
+            checked=lambda item, k=k: config.get('active_profile') == k,
+            radio=True
+        ))
+    return items
+
+
 def start_tray():
     icon = pystray.Icon(
         'VoiceType',
         _tray_icon(),
         'VoiceType',
         menu=pystray.Menu(
+            pystray.MenuItem('Profile', pystray.Menu(lambda: _build_profile_items())),
             pystray.MenuItem('Open config', _tray_open_config),
             pystray.MenuItem('Quit', _tray_quit),
         )
