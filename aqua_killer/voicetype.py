@@ -76,7 +76,9 @@ _state_lock = threading.Lock()
 _ui_queue = queue.Queue()
 _audio_frames = []
 _audio_lock = threading.Lock()
-_hold_active = False  # True when in hold-to-talk mode
+_hold_active = False    # True when in hold-to-talk mode (Ctrl+Space)
+_toggle_active = False  # True when in toggle mode (Ctrl+Shift+Space)
+_watchdog_timer = None
 
 
 def get_state():
@@ -91,6 +93,30 @@ def set_state(s):
 
 # ── Audio ─────────────────────────────────────────────────────────────────────
 
+def _start_watchdog():
+    global _watchdog_timer
+    _cancel_watchdog()
+    _watchdog_timer = threading.Timer(90.0, _watchdog_fire)
+    _watchdog_timer.daemon = True
+    _watchdog_timer.start()
+
+
+def _cancel_watchdog():
+    global _watchdog_timer
+    if _watchdog_timer is not None:
+        _watchdog_timer.cancel()
+        _watchdog_timer = None
+
+
+def _watchdog_fire():
+    global _hold_active, _toggle_active
+    log('watchdog: max recording time exceeded, stopping')
+    _hold_active = False
+    _toggle_active = False
+    if get_state() == S.RECORDING:
+        stop_and_process()
+
+
 def start_recording():
     global _audio_frames
     if get_state() != S.IDLE:
@@ -99,6 +125,7 @@ def start_recording():
     with _audio_lock:
         _audio_frames = []
     _ui_queue.put(S.RECORDING)
+    _start_watchdog()
     threading.Thread(target=_record_loop, daemon=True).start()
 
 
@@ -116,6 +143,7 @@ def _record_loop():
 def stop_and_process():
     if get_state() != S.RECORDING:
         return
+    _cancel_watchdog()
     set_state(S.PROCESSING)
     _ui_queue.put(S.PROCESSING)
     threading.Thread(target=_process, daemon=True).start()
@@ -340,27 +368,58 @@ def start_tray():
 
 
 # ── Hotkeys ───────────────────────────────────────────────────────────────────
-# Only Ctrl+Space: hold = record, release = send. Nothing else responds.
+# Ctrl+Space       — hold-to-talk: держи и говори, отпусти — отправит
+# Ctrl+Shift+Space — toggle: нажал — запись, любая клавиша — стоп
 
-_CTRL_KEYS = {kb.Key.ctrl_l, kb.Key.ctrl_r}
-_ctrl_held = False
+_CTRL_KEYS  = {kb.Key.ctrl_l, kb.Key.ctrl_r}
+_SHIFT_KEYS = {kb.Key.shift, kb.Key.shift_l, kb.Key.shift_r}
+_ctrl_held  = False
+_shift_held = False
 
 
 def _on_press(key):
-    global _hold_active, _ctrl_held
+    global _hold_active, _toggle_active, _ctrl_held, _shift_held
+
     if key in _CTRL_KEYS:
         _ctrl_held = True
         return
-    if key == kb.Key.space and _ctrl_held:
-        if get_state() == S.IDLE:
+    if key in _SHIFT_KEYS:
+        _shift_held = True
+        return
+
+    # Toggle mode: любая не-модификаторная клавиша останавливает запись
+    if _toggle_active:
+        if get_state() == S.RECORDING:
+            _toggle_active = False
+            stop_and_process()
+        return
+
+    if key == kb.Key.space and _ctrl_held and get_state() == S.IDLE:
+        if _shift_held:
+            _toggle_active = True
+            log('toggle recording started')
+            start_recording()
+        else:
             _hold_active = True
+            log('hold recording started')
             start_recording()
 
 
 def _on_release(key):
-    global _hold_active, _ctrl_held
+    global _hold_active, _ctrl_held, _shift_held
+
+    if key in _SHIFT_KEYS:
+        _shift_held = False
+        return
+
     if key in _CTRL_KEYS:
         _ctrl_held = False
+        # Баг-фикс: если отпустили Ctrl во время hold-to-talk — останавливаем
+        if _hold_active and get_state() == S.RECORDING:
+            _hold_active = False
+            stop_and_process()
+        return
+
     if _hold_active and key == kb.Key.space:
         if get_state() == S.RECORDING:
             _hold_active = False
