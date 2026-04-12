@@ -204,15 +204,18 @@ def _llm_cleanup(text: str) -> str:
 # ── Injection ─────────────────────────────────────────────────────────────────
 
 _kbd = kb.Controller()
+_injecting = False  # suppresses hotkey listener during Ctrl+V simulation
 
 
 def _inject(text: str):
+    global _injecting
     old = ''
     try:
         old = pyperclip.paste()
     except Exception:
         pass
     try:
+        _injecting = True
         pyperclip.copy(text)
         time.sleep(0.05)
         with _kbd.pressed(kb.Key.ctrl):
@@ -220,6 +223,8 @@ def _inject(text: str):
             _kbd.release('v')
         time.sleep(0.1)
     finally:
+        _injecting = False
+        _pressed.clear()  # reset any stale modifier state
         try:
             pyperclip.copy(old)
         except Exception:
@@ -315,26 +320,23 @@ def _switch_profile(key):
     log(f'profile switched to: {name}')
 
 
-def _build_profile_items():
-    items = []
-    for key, profile in config.get('profiles', {}).items():
-        k = key
-        items.append(pystray.MenuItem(
-            profile.get('name', key),
-            lambda icon, item, k=k: _switch_profile(k),
-            checked=lambda item, k=k: config.get('active_profile') == k,
-            radio=True
-        ))
-    return items
-
-
 def start_tray():
+    profile_items = [
+        pystray.MenuItem(
+            profile.get('name', key),
+            lambda icon, item, k=key: _switch_profile(k),
+            checked=lambda item, k=key: config.get('active_profile') == k,
+            radio=True
+        )
+        for key, profile in config.get('profiles', {}).items()
+    ]
+
     icon = pystray.Icon(
         'VoiceType',
         _tray_icon(),
         'VoiceType',
         menu=pystray.Menu(
-            pystray.MenuItem('Profile', pystray.Menu(lambda: _build_profile_items())),
+            pystray.MenuItem('Profile', pystray.Menu(*profile_items)),
             pystray.MenuItem('Open config', _tray_open_config),
             pystray.MenuItem('Quit', _tray_quit),
         )
@@ -358,6 +360,8 @@ _pressed = set()
 
 def _on_press(key):
     global _hold_active
+    if _injecting:
+        return
     _pressed.add(key)
 
     if key in _HOLD_KEYS:
@@ -381,6 +385,8 @@ def _on_press(key):
 
 def _on_release(key):
     global _hold_active
+    if _injecting:
+        return
     _pressed.discard(key)
 
     if _hold_active and key in _HOLD_KEYS:
