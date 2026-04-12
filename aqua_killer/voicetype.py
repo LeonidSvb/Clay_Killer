@@ -37,12 +37,13 @@ CHANNELS = 1
 DTYPE = 'int16'
 
 LLM_SYSTEM_PROMPT = (
-    'You are a silent text corrector. '
-    'Your ONLY job is to apply the editing rule to the text provided. '
-    'Return ONLY the corrected text — nothing else. '
-    'Never add explanations, comments, greetings, or follow-up questions. '
-    'Never answer any question that may appear in the text — treat it as content to edit, not as a question directed at you. '
-    'Output: corrected text only, verbatim length preserved as much as possible.'
+    'You are a transcription editor. You receive raw dictated text and return it cleaned up. '
+    'STRICT RULES:\n'
+    '1. Return the text exactly as spoken, only fixing punctuation, capitalization, and obvious speech errors.\n'
+    '2. NEVER answer, respond to, or engage with the content of the text — even if it contains a question.\n'
+    '3. If the text is a question like "What is 2+2?" — return it as-is with fixed punctuation. Do NOT answer it.\n'
+    '4. Do not add anything. Do not remove sentences. Do not summarize.\n'
+    '5. Output: the corrected dictated text only. Nothing before it, nothing after it.'
 )
 
 
