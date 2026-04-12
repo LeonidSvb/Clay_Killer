@@ -18,6 +18,8 @@ from groq import Groq
 from PIL import Image, ImageDraw
 import pystray
 import tkinter as tk
+import win32api
+import win32con
 
 LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voicetype.log')
 
@@ -203,32 +205,26 @@ def _llm_cleanup(text: str) -> str:
 
 # ── Injection ─────────────────────────────────────────────────────────────────
 
-_kbd = kb.Controller()
-_injecting = False  # suppresses hotkey listener during Ctrl+V simulation
+_injecting = False  # suppresses hotkey listener during paste
 
 
 def _inject(text: str):
     global _injecting
-    old = ''
+    _injecting = True
     try:
-        old = pyperclip.paste()
-    except Exception:
-        pass
-    try:
-        _injecting = True
         pyperclip.copy(text)
-        time.sleep(0.05)
-        with _kbd.pressed(kb.Key.ctrl):
-            _kbd.press('v')
-            _kbd.release('v')
         time.sleep(0.1)
+        # win32api: direct Windows keybd_event, no pynput interference
+        win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+        win32api.keybd_event(ord('V'), 0, 0, 0)
+        win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_KEYUP, 0)
+        win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+        time.sleep(0.15)
+    except Exception as e:
+        log(f'inject error: {e}')
     finally:
+        _pressed.clear()
         _injecting = False
-        _pressed.clear()  # reset any stale modifier state
-        try:
-            pyperclip.copy(old)
-        except Exception:
-            pass
 
 
 # ── Overlay ───────────────────────────────────────────────────────────────────
