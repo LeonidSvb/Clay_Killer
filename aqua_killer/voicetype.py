@@ -196,27 +196,18 @@ def _llm_cleanup(text: str) -> str:
 
 # ── Injection ─────────────────────────────────────────────────────────────────
 
-_kbd = kb.Controller()
+import win32api
+import win32con
 
 
 def _inject(text: str):
-    old = ''
-    try:
-        old = pyperclip.paste()
-    except Exception:
-        pass
-    try:
-        pyperclip.copy(text)
-        time.sleep(0.05)
-        with _kbd.pressed(kb.Key.ctrl):
-            _kbd.press('v')
-            _kbd.release('v')
-        time.sleep(0.1)
-    finally:
-        try:
-            pyperclip.copy(old)
-        except Exception:
-            pass
+    pyperclip.copy(text)
+    time.sleep(0.1)
+    win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+    win32api.keybd_event(0x56, 0, 0, 0)
+    win32api.keybd_event(0x56, 0, win32con.KEYEVENTF_KEYUP, 0)
+    win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+    time.sleep(0.1)
 
 
 # ── Overlay ───────────────────────────────────────────────────────────────────
