@@ -313,13 +313,11 @@ def start_tray():
 # ── Hotkeys ───────────────────────────────────────────────────────────────────
 
 _pressed = set()
-_CTRL = {kb.Key.ctrl_l, kb.Key.ctrl_r}
 _SHIFT = {kb.Key.shift_l, kb.Key.shift_r}
+_ALT_R = kb.Key.alt_r
 
 
 def _norm(key):
-    if key in _CTRL:
-        return 'ctrl'
     if key in _SHIFT:
         return 'shift'
     return key
@@ -330,20 +328,19 @@ def _on_press(key):
     norm = _norm(key)
     _pressed.add(norm)
 
-    if norm != kb.Key.space:
+    if key != _ALT_R:
         return
 
-    ctrl = 'ctrl' in _pressed
     shift = 'shift' in _pressed
 
-    if ctrl and not shift:
-        # hold-to-talk: Ctrl+Space
+    if not shift:
+        # hold-to-talk: Right Alt
         if get_state() == S.IDLE:
             _hold_active = True
             start_recording()
 
-    elif ctrl and shift:
-        # toggle: Ctrl+Shift+Space
+    else:
+        # toggle: Right Alt + Shift
         s = get_state()
         if s == S.IDLE:
             _hold_active = False
@@ -357,7 +354,7 @@ def _on_release(key):
     norm = _norm(key)
     _pressed.discard(norm)
 
-    if _hold_active and norm in ('ctrl', kb.Key.space):
+    if _hold_active and key == _ALT_R:
         if get_state() == S.RECORDING:
             _hold_active = False
             stop_and_process()
