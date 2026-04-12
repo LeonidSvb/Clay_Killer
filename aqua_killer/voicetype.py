@@ -203,7 +203,7 @@ def _to_wav(audio: np.ndarray) -> bytes:
 
 def _transcribe(wav_bytes: bytes) -> str:
     resp = groq_client.audio.transcriptions.create(
-        model='whisper-large-v3',
+        model='whisper-large-v3-turbo',
         file=('audio.wav', wav_bytes, 'audio/wav'),
         response_format='text'
     )
@@ -232,12 +232,19 @@ import win32con
 
 
 def _inject(text: str):
+    log(f'[INJ] start | hold_active={_hold_active} toggle_active={_toggle_active} ctrl_held={_ctrl_held} state={get_state()}')
     pyperclip.copy(text)
-    time.sleep(0.1)
+    log(f'[INJ] clipboard set, sleeping 400ms')
+    time.sleep(0.4)
+    log(f'[INJ] before CTRL down | ctrl_held={_ctrl_held}')
     win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+    log(f'[INJ] before V down')
     win32api.keybd_event(0x56, 0, 0, 0)
+    log(f'[INJ] before V up')
     win32api.keybd_event(0x56, 0, win32con.KEYEVENTF_KEYUP, 0)
+    log(f'[INJ] before CTRL up')
     win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+    log(f'[INJ] done | ctrl_held={_ctrl_held} hold_active={_hold_active}')
     time.sleep(0.1)
 
 
@@ -382,6 +389,7 @@ def _on_press(key):
 
     if key in _CTRL_KEYS:
         _ctrl_held = True
+        log(f'[KEY] CTRL press | state={get_state()} hold={_hold_active} toggle={_toggle_active}')
         return
     if key in _SHIFT_KEYS:
         _shift_held = True
@@ -390,6 +398,7 @@ def _on_press(key):
     # Toggle mode: любая не-модификаторная клавиша останавливает запись
     if _toggle_active:
         if get_state() == S.RECORDING:
+            log(f'[KEY] toggle stop by key={key}')
             _toggle_active = False
             stop_and_process()
         return
@@ -414,6 +423,7 @@ def _on_release(key):
 
     if key in _CTRL_KEYS:
         _ctrl_held = False
+        log(f'[KEY] CTRL release | state={get_state()} hold={_hold_active}')
         # Баг-фикс: если отпустили Ctrl во время hold-to-talk — останавливаем
         if _hold_active and get_state() == S.RECORDING:
             _hold_active = False
@@ -421,6 +431,7 @@ def _on_release(key):
         return
 
     if _hold_active and key == kb.Key.space:
+        log(f'[KEY] SPACE release | state={get_state()} hold={_hold_active}')
         if get_state() == S.RECORDING:
             _hold_active = False
             stop_and_process()
