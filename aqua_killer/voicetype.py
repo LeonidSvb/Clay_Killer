@@ -18,8 +18,6 @@ from groq import Groq
 from PIL import Image, ImageDraw
 import pystray
 import tkinter as tk
-import win32api
-import win32con
 
 LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voicetype.log')
 
@@ -182,15 +180,8 @@ def _transcribe(wav_bytes: bytes) -> str:
     return text.strip()
 
 
-def _active_profile() -> dict:
-    profiles = config.get('profiles', {})
-    key = config.get('active_profile', 'default')
-    return profiles.get(key, {})
-
-
 def _llm_cleanup(text: str) -> str:
-    profile = _active_profile()
-    rule = profile.get('prompt', 'Fix punctuation. Return only the corrected text.')
+    rule = config.get('default_prompt', 'Fix punctuation. Return only the corrected text.')
     resp = groq_client.chat.completions.create(
         model='llama-3.1-8b-instant',
         messages=[
@@ -205,26 +196,27 @@ def _llm_cleanup(text: str) -> str:
 
 # ── Injection ─────────────────────────────────────────────────────────────────
 
-_injecting = False  # suppresses hotkey listener during paste
+_kbd = kb.Controller()
 
 
 def _inject(text: str):
-    global _injecting
-    _injecting = True
+    old = ''
+    try:
+        old = pyperclip.paste()
+    except Exception:
+        pass
     try:
         pyperclip.copy(text)
+        time.sleep(0.05)
+        with _kbd.pressed(kb.Key.ctrl):
+            _kbd.press('v')
+            _kbd.release('v')
         time.sleep(0.1)
-        # win32api: direct Windows keybd_event, no pynput interference
-        win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
-        win32api.keybd_event(ord('V'), 0, 0, 0)
-        win32api.keybd_event(ord('V'), 0, win32con.KEYEVENTF_KEYUP, 0)
-        win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
-        time.sleep(0.15)
-    except Exception as e:
-        log(f'inject error: {e}')
     finally:
-        _pressed.clear()
-        _injecting = False
+        try:
+            pyperclip.copy(old)
+        except Exception:
+            pass
 
 
 # ── Overlay ───────────────────────────────────────────────────────────────────
@@ -305,34 +297,12 @@ def _tray_quit(icon, item):
     os._exit(0)
 
 
-def _switch_profile(key):
-    config['active_profile'] = key
-    try:
-        with open(CONFIG_PATH, 'w', encoding='utf-8') as f:
-            json.dump(config, f, ensure_ascii=False, indent=2)
-    except Exception as e:
-        log(f'failed to save profile: {e}')
-    name = config.get('profiles', {}).get(key, {}).get('name', key)
-    log(f'profile switched to: {name}')
-
-
 def start_tray():
-    profile_items = [
-        pystray.MenuItem(
-            profile.get('name', key),
-            lambda icon, item, k=key: _switch_profile(k),
-            checked=lambda item, k=key: config.get('active_profile') == k,
-            radio=True
-        )
-        for key, profile in config.get('profiles', {}).items()
-    ]
-
     icon = pystray.Icon(
         'VoiceType',
         _tray_icon(),
         'VoiceType',
         menu=pystray.Menu(
-            pystray.MenuItem('Profile', pystray.Menu(*profile_items)),
             pystray.MenuItem('Open config', _tray_open_config),
             pystray.MenuItem('Quit', _tray_quit),
         )
@@ -356,8 +326,6 @@ _pressed = set()
 
 def _on_press(key):
     global _hold_active
-    if _injecting:
-        return
     _pressed.add(key)
 
     if key in _HOLD_KEYS:
@@ -381,8 +349,6 @@ def _on_press(key):
 
 def _on_release(key):
     global _hold_active
-    if _injecting:
-        return
     _pressed.discard(key)
 
     if _hold_active and key in _HOLD_KEYS:

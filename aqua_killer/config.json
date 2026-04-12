@@ -2,15 +2,5 @@
   "groq_api_key": "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",
   "hotkey_hold": "right_alt or right_shift (hold)",
   "hotkey_toggle": "ctrl_left + right_alt or right_shift (press)",
-  "active_profile": "default",
-  "profiles": {
-    "default": {
-      "name": "Default (RU/EN)",
-      "prompt": "Fix punctuation and paragraph breaks. Preserve the original language. If the speech is mixed Russian and English, keep both languages as spoken and only clean obvious errors. Return only the final text, no explanations."
-    },
-    "indonesian": {
-      "name": "Indonesian casual",
-      "prompt": "Translate the text to informal Indonesian (bahasa gaul, Gen Z style). Use casual words: 'gw' (I), 'lo' (you), 'udah', 'yg', 'dgn', 'bgt', 'sih', 'deh', 'dong', 'kali', 'emang', 'aja', 'banget'. Write exactly like young Indonesians text each other: relaxed, short sentences, abbreviations, lowercase is fine. Return only the translated message, nothing else."
-    }
-  }
+  "default_prompt": "Fix punctuation and paragraph breaks. Preserve the original language. If the speech is mixed Russian and English, keep both languages as spoken and only clean obvious errors. Return only the final text, no explanations."
 }
