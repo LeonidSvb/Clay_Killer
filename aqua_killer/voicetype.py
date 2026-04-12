@@ -126,8 +126,8 @@ def _process():
         duration = len(frames) * 512 / SAMPLE_RATE
         log(f'audio frames={len(frames)} duration~{duration:.1f}s')
 
-        if not frames:
-            log('no frames captured, aborting')
+        if not frames or duration < 0.8:
+            log(f'too short ({duration:.1f}s), skipping')
             return
 
         audio = np.concatenate(frames, axis=0)
@@ -183,7 +183,7 @@ def _transcribe(wav_bytes: bytes) -> str:
 def _llm_cleanup(text: str) -> str:
     rule = config.get('default_prompt', 'Fix punctuation. Return only the corrected text.')
     resp = groq_client.chat.completions.create(
-        model='llama-3.1-8b-instant',
+        model='llama-3.3-70b-versatile',
         messages=[
             {'role': 'system', 'content': LLM_SYSTEM_PROMPT},
             {'role': 'user', 'content': f'Editing rule: {rule}\n\n<transcript>{text}</transcript>'}
@@ -302,53 +302,28 @@ def start_tray():
 
 
 # ── Hotkeys ───────────────────────────────────────────────────────────────────
+# Only Ctrl+Space: hold = record, release = send. Nothing else responds.
 
-_pressed = set()
-_CTRL = {kb.Key.ctrl_l, kb.Key.ctrl_r}
-_SHIFT = {kb.Key.shift_l, kb.Key.shift_r}
-
-
-def _norm(key):
-    if key in _CTRL:
-        return 'ctrl'
-    if key in _SHIFT:
-        return 'shift'
-    return key
+_CTRL_KEYS = {kb.Key.ctrl_l, kb.Key.ctrl_r}
+_ctrl_held = False
 
 
 def _on_press(key):
-    global _hold_active
-    norm = _norm(key)
-    _pressed.add(norm)
-
-    if norm != kb.Key.space:
+    global _hold_active, _ctrl_held
+    if key in _CTRL_KEYS:
+        _ctrl_held = True
         return
-
-    ctrl = 'ctrl' in _pressed
-    shift = 'shift' in _pressed
-
-    if ctrl and not shift:
-        # hold-to-talk: Ctrl+Space
+    if key == kb.Key.space and _ctrl_held:
         if get_state() == S.IDLE:
             _hold_active = True
             start_recording()
 
-    elif ctrl and shift:
-        # toggle: Ctrl+Shift+Space
-        s = get_state()
-        if s == S.IDLE:
-            _hold_active = False
-            start_recording()
-        elif s == S.RECORDING:
-            stop_and_process()
-
 
 def _on_release(key):
-    global _hold_active
-    norm = _norm(key)
-    _pressed.discard(norm)
-
-    if _hold_active and norm in ('ctrl', kb.Key.space):
+    global _hold_active, _ctrl_held
+    if key in _CTRL_KEYS:
+        _ctrl_held = False
+    if _hold_active and key == kb.Key.space:
         if get_state() == S.RECORDING:
             _hold_active = False
             stop_and_process()
