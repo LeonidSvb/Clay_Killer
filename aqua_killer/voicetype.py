@@ -18,6 +18,7 @@ from groq import Groq
 from PIL import Image, ImageDraw
 import pystray
 import tkinter as tk
+from dotenv import load_dotenv
 
 LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voicetype.log')
 
@@ -37,12 +38,14 @@ def log(msg: str):
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(SCRIPT_DIR, 'config.json')
 
+load_dotenv(os.path.join(SCRIPT_DIR, '.env'))
+
 def load_config():
     with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 config = load_config()
-groq_client = Groq(api_key=config['groq_api_key'])
+groq_client = Groq(api_key=os.environ['GROQ_API_KEY'])
 
 SAMPLE_RATE = 16000
 CHANNELS = 1
