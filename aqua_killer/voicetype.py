@@ -216,6 +216,7 @@ class Overlay:
         )
         self.label.pack(fill=tk.BOTH, expand=True)
 
+        self.root.withdraw()  # hidden until first hotkey press
         self.root.after(80, self._poll)
 
     def _poll(self):
@@ -231,12 +232,13 @@ class Overlay:
         if state == S.RECORDING:
             self.label.config(text='REC', fg='#ff2222', bg='#1a0000')
             self.root.configure(bg='#1a0000')
+            self.root.deiconify()
         elif state == S.PROCESSING:
             self.label.config(text='...', fg='#ffaa00', bg='#111111')
             self.root.configure(bg='#111111')
+            self.root.deiconify()
         else:
-            self.label.config(text='', fg='#555555', bg='#111111')
-            self.root.configure(bg='#111111')
+            self.root.withdraw()
 
     def run(self):
         self.root.mainloop()
