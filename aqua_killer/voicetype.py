@@ -246,10 +246,40 @@ class Overlay:
         try:
             while True:
                 msg = _ui_queue.get_nowait()
-                self._apply(msg)
+                if isinstance(msg, tuple) and msg[0] == 'open_editor':
+                    self._open_prompt_editor()
+                else:
+                    self._apply(msg)
         except queue.Empty:
             pass
         self.root.after(80, self._poll)
+
+    def _open_prompt_editor(self):
+        win = tk.Toplevel(self.root)
+        win.title('Edit Prompt')
+        win.attributes('-topmost', True)
+        win.resizable(True, True)
+        win.geometry('520x180')
+
+        txt = tk.Text(win, wrap=tk.WORD, font=('Consolas', 10), padx=6, pady=6)
+        txt.insert('1.0', config.get('default_prompt', ''))
+        txt.pack(fill=tk.BOTH, expand=True, padx=8, pady=(8, 4))
+        txt.focus_set()
+
+        def save():
+            new_prompt = txt.get('1.0', tk.END).strip()
+            config['default_prompt'] = new_prompt
+            try:
+                with open(CONFIG_PATH, 'w', encoding='utf-8') as f:
+                    json.dump(config, f, indent=2, ensure_ascii=False)
+                log(f'prompt updated: {repr(new_prompt[:60])}')
+            except Exception as e:
+                log(f'ERROR saving prompt: {e}')
+            win.destroy()
+
+        btn = tk.Button(win, text='Save', command=save, width=10)
+        btn.pack(pady=(0, 8))
+        win.bind('<Control-Return>', lambda e: save())
 
     def _apply(self, state: str):
         if state == S.RECORDING:
@@ -283,6 +313,10 @@ def _tray_open_config(icon, item):
     os.startfile(CONFIG_PATH)
 
 
+def _tray_edit_prompt(icon, item):
+    _ui_queue.put(('open_editor',))
+
+
 def _tray_quit(icon, item):
     icon.stop()
     os._exit(0)
@@ -294,6 +328,7 @@ def start_tray():
         _tray_icon(),
         'VoiceType',
         menu=pystray.Menu(
+            pystray.MenuItem('Edit prompt', _tray_edit_prompt),
             pystray.MenuItem('Open config', _tray_open_config),
             pystray.MenuItem('Quit', _tray_quit),
         )
