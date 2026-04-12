@@ -1,0 +1,8 @@
+groq
+numpy
+sounddevice
+pynput
+pyperclip
+pystray
+pillow
+pywin32

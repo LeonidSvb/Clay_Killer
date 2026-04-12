@@ -1,0 +1,6 @@
+{
+  "groq_api_key": "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",
+  "hotkey_hold": "ctrl+space",
+  "hotkey_toggle": "ctrl+shift+space",
+  "default_prompt": "Fix punctuation and paragraph breaks. Preserve the original language. If the speech is mixed Russian and English, keep both languages as spoken and only clean obvious errors. Return only the final text, no explanations."
+}
