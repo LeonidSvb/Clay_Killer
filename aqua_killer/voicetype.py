@@ -312,51 +312,49 @@ def start_tray():
 
 # ── Hotkeys ───────────────────────────────────────────────────────────────────
 
+# All keys that trigger hold-to-talk (right alt, altgr, right shift)
+_HOLD_KEYS = {kb.Key.alt_r, kb.Key.shift_r}
+try:
+    _HOLD_KEYS.add(kb.Key.alt_gr)
+except AttributeError:
+    pass
+
+# Toggle: Ctrl (left) + Right Alt
+_CTRL_L = kb.Key.ctrl_l
 _pressed = set()
-_SHIFT = {kb.Key.shift_l, kb.Key.shift_r}
-_ALT_R = kb.Key.alt_r
-
-
-def _norm(key):
-    if key in _SHIFT:
-        return 'shift'
-    return key
 
 
 def _on_press(key):
     global _hold_active
-    norm = _norm(key)
-    _pressed.add(norm)
+    _pressed.add(key)
 
-    if key != _ALT_R:
-        return
-
-    shift = 'shift' in _pressed
-
-    if not shift:
-        # hold-to-talk: Right Alt
-        if get_state() == S.IDLE:
-            _hold_active = True
-            start_recording()
-
-    else:
-        # toggle: Right Alt + Shift
-        s = get_state()
-        if s == S.IDLE:
-            _hold_active = False
-            start_recording()
-        elif s == S.RECORDING:
-            stop_and_process()
+    if key in _HOLD_KEYS:
+        if _CTRL_L in _pressed:
+            # toggle mode: Ctrl + hold-key
+            s = get_state()
+            if s == S.IDLE:
+                _hold_active = False
+                log(f'toggle start, key={key}')
+                start_recording()
+            elif s == S.RECORDING:
+                log(f'toggle stop, key={key}')
+                stop_and_process()
+        else:
+            # hold-to-talk
+            if get_state() == S.IDLE:
+                _hold_active = True
+                log(f'hold start, key={key}')
+                start_recording()
 
 
 def _on_release(key):
     global _hold_active
-    norm = _norm(key)
-    _pressed.discard(norm)
+    _pressed.discard(key)
 
-    if _hold_active and key == _ALT_R:
+    if _hold_active and key in _HOLD_KEYS:
         if get_state() == S.RECORDING:
             _hold_active = False
+            log(f'hold release, key={key}')
             stop_and_process()
 
 
