@@ -19,6 +19,18 @@ from PIL import Image, ImageDraw
 import pystray
 import tkinter as tk
 
+LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voicetype.log')
+
+def log(msg: str):
+    ts = time.strftime('%H:%M:%S')
+    line = f'[{ts}] {msg}'
+    print(line, file=sys.stderr)
+    try:
+        with open(LOG_PATH, 'a', encoding='utf-8') as f:
+            f.write(line + '\n')
+    except Exception:
+        pass
+
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
@@ -111,21 +123,38 @@ def _process():
         with _audio_lock:
             frames = list(_audio_frames)
 
+        duration = len(frames) * 512 / SAMPLE_RATE
+        log(f'audio frames={len(frames)} duration~{duration:.1f}s')
+
         if not frames:
+            log('no frames captured, aborting')
             return
 
         audio = np.concatenate(frames, axis=0)
         wav_bytes = _to_wav(audio)
+        log(f'wav size={len(wav_bytes)} bytes')
 
         transcript = _transcribe(wav_bytes)
+        log(f'whisper -> {repr(transcript)}')
+
         if not transcript:
+            log('empty transcript, aborting')
             return
 
         cleaned = _llm_cleanup(transcript)
+        log(f'llm -> {repr(cleaned)}')
+
+        if not cleaned:
+            log('empty llm output, aborting')
+            return
+
         _inject(cleaned)
+        log('injected ok')
 
     except Exception as e:
-        print(f'[VoiceType] error: {e}', file=sys.stderr)
+        log(f'ERROR: {e}')
+        import traceback
+        log(traceback.format_exc())
     finally:
         set_state(S.IDLE)
         _ui_queue.put(S.IDLE)
@@ -344,6 +373,8 @@ def start_listener():
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
+    log(f'VoiceType started, log={LOG_PATH}')
+    log(f'hotkey_hold={config.get("hotkey_hold")} hotkey_toggle={config.get("hotkey_toggle")}')
     threading.Thread(target=start_tray, daemon=True).start()
     start_listener()
     overlay = Overlay()
