@@ -20,9 +20,10 @@ NEXT
 ----
 [ ] classify.py - прогон постов через LLM (OpenRouter/Claude)
 [ ] leads output: имя + linkedin + текст сигнала + ссылка на пост
-[ ] Windows Task Scheduler: ежедневный запуск scraper.py в 8:00
-[ ] Обновление cookies: напоминание когда aws-waf-token протухнет (~7 дней)
-[ ] Решить куда выгружать лиды: Airtable / Google Sheets / просто JSON
+[ ] Windows Task Scheduler: ежедневный запуск scraper.py + plusvibe_sync.py в 8:00
+[ ] Обновление cookies: skool aws-waf-token протухает ~7 дней, plusvibe refreshToken ~90 дней
+[ ] Airtable sync: залить plusvibe_positive + skool leads в одну CRM таблицу
+[ ] plusvibe: получить полный текст письма через /inbox/threads/detail (сейчас только snippet)
 
 ИДЕИ ПОТОМ
 ----------
