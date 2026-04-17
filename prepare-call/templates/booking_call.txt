@@ -1,0 +1,80 @@
+PRE-DISCOVERY CALL SCRIPT — OLD-SCHOOL NICHES
+(logistics, packaging, manufacturing, distribution, trucking, etc.)
+================================================================
+Use case: prospect replied to outreach, gave number or said "ok"
+Goal: confirm relevance in 60 sec, close on 20-min Google Meet
+Key rule: this call is NOT the discovery — it's just booking the discovery
+
+
+--- LIVE CALL ---
+
+Hey [NAME], Leonid here — from the emails about [OUTREACH_TOPIC].
+
+[PAUSE — wait for "hey" / "yeah" / "uh-huh"]
+
+Good. So — I work with [ICP_DESCRIPTION],
+help them find the right [PARTNER_TYPE] when they need [SERVICE].
+
+Quick question — is that actually something you're looking to grow right now,
+[VALUE_PROP_QUESTION]?
+
+[PAUSE — wait for yes/no]
+
+[If yes:]
+
+Got it. A few things I want to walk you through on a quick call:
+- what kind of [ICP] I work with and what they're typically looking for
+- [SPECIFIC_2 — volume / size / lane / budget / timing]
+- how I vet [ICP] before I make any intro — so it's not a waste of your time
+
+Easier to do properly than over the phone right now.
+20 minutes max — [DAY_OPTION_1] or [DAY_OPTION_2], which works better?
+
+[PAUSE — wait for a day]
+
+Perfect. I'll send a Google Meet right after this.
+
+
+--- VOICEMAIL ---
+
+Hey [NAME], Leonid here — from the emails about [OUTREACH_TOPIC].
+
+Wanted to quickly check if [VALUE_PROP_STATEMENT] is something you're actively growing right now.
+
+I've got a few things I want to walk you through — easier on a quick call.
+Try you again tomorrow, or feel free to call me back at [YOUR_NUMBER].
+
+
+--- DAY OPTIONS LOGIC ---
+
+Monday    → "tomorrow or Wednesday"
+Tuesday   → "tomorrow or Thursday"
+Wednesday → "tomorrow or Friday"
+Thursday  → "tomorrow or Monday"
+Friday    → "tomorrow or Monday"
+Saturday  → "Monday or Tuesday"
+
+
+--- PLACEHOLDERS GUIDE ---
+
+[NAME]               - first name of prospect
+[OUTREACH_TOPIC]     - e.g. "the Midwest freight" / "the insurance intros"
+[ICP_DESCRIPTION]    - e.g. "mid-market manufacturers in Ohio and Michigan"
+[PARTNER_TYPE]       - e.g. "carriers" / "restoration companies" / "vendors"
+[SERVICE]            - e.g. "FTL capacity" / "contents restoration partners"
+[VALUE_PROP_QUESTION] - e.g. "getting more FTL freight from manufacturers"
+[SPECIFIC_2]         - most relevant second detail for this niche
+[ICP]                - short label for the leads you bring (shippers, manufacturers, etc.)
+[DAY_OPTION_1/2]     - use DAY OPTIONS LOGIC above based on current day
+[YOUR_NUMBER]        - your callback number
+
+
+--- RULES FOR THIS SCRIPT ---
+
+1. Pause after intro — let him recognize you before you pitch
+2. One yes/no question only — do not open freight/industry terminology
+3. "Easier to do on a quick call" — honest reason to book, not an excuse
+4. Never say "I have X shippers ready right now" unless you do — framing is "I work with / I monitor"
+5. Name 3 specifics after "got it" — makes the meeting feel concrete and worth 20 min
+6. Two day options, not open-ended "when works for you" — forces a decision
+7. Voicemail: no questions, leave intrigue, announce you'll call back
