@@ -1,0 +1,22 @@
+{
+  "community": "academy",
+  "group_id": "cb451085a9c34be997a5bce24ed7e842",
+  "cookies_file": "cookies.json",
+  "days_back": 3,
+  "output_dir": "data",
+  "request_delay": 1.0,
+  "sort": "newest",
+  "fetch_comments": true,
+  "fetch_comments_min_count": 1,
+  "categories": {
+    "eb8a9786440b421e86bac56c350ddf02": { "name": "General",    "scrape": true  },
+    "36d9869c083842efa4c08d96079c02b6": { "name": "Questions",  "scrape": true  },
+    "5381073741314d14b5844c02e5a8f85b": { "name": "Wins",       "scrape": true  },
+    "6b34c3cfd26443a6ad8ecc16428859fb": { "name": "Mindset",    "scrape": true  },
+    "b5a8499e0fcb4b06a7ec03141105f294": { "name": "Community",  "scrape": true  },
+    "9cec0f8bca5142b39795ba4ed126c35d": { "name": "Resources",  "scrape": true  },
+    "53828d99e9a74e0db6653ea0add8fda9": { "name": "Vlogs",      "scrape": true  },
+    "586de215e3fe4bae9277cd33c4ba239b": { "name": "Intros",     "scrape": true  },
+    "0064d2f2f45e47848be618007b0092d0": { "name": "Pinned",     "scrape": false }
+  }
+}

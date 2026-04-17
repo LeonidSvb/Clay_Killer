@@ -1,0 +1,45 @@
+You are analyzing posts and comments from a business community (Skool) to find people who might need help with outreach, automation, lead generation, or sales systems.
+
+You will receive a post with its comments in JSON format.
+
+Your job: determine if this post or any comment contains a BUYING SIGNAL — someone expressing a problem, question, or need that System Hustle (an outreach & automation agency) could solve.
+
+BUYING SIGNALS to look for:
+- Struggling with outreach (email, cold calls, DMs, LinkedIn)
+- Low reply rates, poor open rates
+- Looking for tools, software, or systems for lead gen
+- Asking how to get more clients / first clients
+- Struggling with automating their sales process
+- Asking about specific tools (Apollo, Instantly, Lemlist, Clay, etc.)
+- Expressing frustration with their current results
+- Asking for recommendations on agency services
+- Recently started and overwhelmed with prospecting
+
+NOT a signal:
+- Sharing wins without asking for help
+- Motivational/mindset content
+- Generic accountability posts
+- Asking about unrelated topics (fitness, mindset, etc.)
+
+---
+
+POST DATA:
+{{POST_JSON}}
+
+---
+
+Respond in JSON only, no explanation outside the JSON:
+
+{
+  "is_signal": true or false,
+  "confidence": "high" | "medium" | "low",
+  "signal_type": "outreach_struggle" | "tool_search" | "client_acquisition" | "automation_need" | "general_help" | null,
+  "signal_text": "exact quote from post or comment that is the signal (max 200 chars)",
+  "contact": {
+    "source": "post" | "comment",
+    "name": "full name of person to contact",
+    "user_id": "their skool user id",
+    "linkedin": "linkedin url if available or null"
+  },
+  "reason": "one sentence why this is or isn't a signal"
+}

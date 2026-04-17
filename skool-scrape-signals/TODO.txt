@@ -1,0 +1,31 @@
+SKOOL SIGNAL SCRAPER - TODO
+===========================
+
+DONE
+----
+[x] Scraper: посты + комменты из всех категорий
+[x] Фильтр по дате (days_back в config.json)
+[x] Сортировка newest (не newest-cm)
+[x] Дедупликация по post ID
+[x] config.json с настройками категорий и сортировки
+
+IN PROGRESS
+-----------
+[ ] LLM фильтрация: промпт classify_prompt.txt + скрипт classify.py
+    - принимает posts_YYYY-MM-DD.json
+    - на выходе leads_YYYY-MM-DD.json (только сигналы)
+    - поля: post_url, signal_text, contact_name, contact_linkedin, signal_type
+
+NEXT
+----
+[ ] classify.py - прогон постов через LLM (OpenRouter/Claude)
+[ ] leads output: имя + linkedin + текст сигнала + ссылка на пост
+[ ] Windows Task Scheduler: ежедневный запуск scraper.py в 8:00
+[ ] Обновление cookies: напоминание когда aws-waf-token протухнет (~7 дней)
+[ ] Решить куда выгружать лиды: Airtable / Google Sheets / просто JSON
+
+ИДЕИ ПОТОМ
+----------
+[ ] Мониторинг Intros - писать новым участникам сразу при входе
+[ ] Фильтр по автору - не контачить одного человека дважды
+[ ] Webhooks / уведомления в Telegram когда найден сигнал
