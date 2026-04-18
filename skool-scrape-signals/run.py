@@ -91,6 +91,7 @@ def run_pipeline():
             "signal_text": result.get("signal_text"),
             "reason": result.get("reason"),
             "contact": result.get("contact"),
+            "community": cfg.get("community"),
         }
         results.append(record)
         if is_signal:

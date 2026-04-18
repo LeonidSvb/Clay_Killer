@@ -33,8 +33,8 @@ def save_signals(signals):
             cur.execute("""
                 INSERT INTO skool_signals
                   (post_id, post_url, post_title, category, created_at,
-                   is_signal, confidence, signal_type, signal_text, reason, contact)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                   is_signal, confidence, signal_type, signal_text, reason, contact, community)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                 ON CONFLICT (post_id) DO NOTHING
             """, (
                 s['post_id'],
@@ -48,6 +48,7 @@ def save_signals(signals):
                 s.get('signal_text'),
                 s.get('reason'),
                 json.dumps(s.get('contact')) if s.get('contact') else None,
+                s.get('community'),
             ))
             saved += cur.rowcount
         except Exception as e:
