@@ -2,15 +2,15 @@ import os
 import json
 import urllib.request
 from dotenv import load_dotenv
-from db import get_unnotified_signals, mark_notified
+from db.client import get_unnotified_signals, mark_notified
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', 'upwork-pipeline', '.env'))
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '..', 'upwork-pipeline', '.env'))
 
 BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 CHAT_ID   = os.environ.get('TG_GROUP_ID', '')
 TOPIC_ID  = os.environ.get('TG_TOPIC_SKOOL', '')
 
-CONFIDENCE_EMOJI = {'high': 'HIGH', 'medium': 'MED'}
+CONFIDENCE_LABEL = {'high': 'HIGH', 'medium': 'MED'}
 
 
 def send_message(text):
@@ -33,7 +33,7 @@ def send_message(text):
 
 
 def format_signal(s):
-    conf = CONFIDENCE_EMOJI.get(s.get('confidence', ''), s.get('confidence', ''))
+    conf = CONFIDENCE_LABEL.get(s.get('confidence', ''), s.get('confidence', ''))
     contact = s.get('contact') or {}
     if isinstance(contact, str):
         try:

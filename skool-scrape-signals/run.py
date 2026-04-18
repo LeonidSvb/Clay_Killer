@@ -9,10 +9,10 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', 'upwork-pipeline', '.env'))
 
-import db
-import notify
-from scraper import load_config, load_cookies, make_headers, make_api_headers, scrape_category
-from classify import classify_post, load_prompt, build_post_payload
+from db.client import get_existing_post_ids, save_signals
+from notifications.telegram import notify_pending
+from pipeline.scraper import load_config, load_cookies, make_headers, make_api_headers, scrape_category
+from pipeline.classify import classify_post, load_prompt
 
 
 def run_pipeline():
@@ -50,13 +50,13 @@ def run_pipeline():
         return
 
     # Dedup against DB
-    existing_ids = db.get_existing_post_ids()
+    existing_ids = get_existing_post_ids()
     new_posts = [p for pid, p in all_posts.items() if pid not in existing_ids]
     print(f"[run] {len(new_posts)} new posts (skipping {len(all_posts) - len(new_posts)} already in DB)")
 
     if not new_posts:
         print("[run] All posts already processed")
-        notify.notify_pending()
+        notify_pending()
         return
 
     # Classify
@@ -99,11 +99,11 @@ def run_pipeline():
         time.sleep(0.5)
 
     # Save to DB
-    saved = db.save_signals(results)
+    saved = save_signals(results)
     print(f"[run] Saved {saved} records to DB | signals: {signal_count} | errors: {error_count}")
 
     # Notify
-    sent = notify.notify_pending()
+    sent = notify_pending()
     print(f"[run] Notified {sent} signals via Telegram")
 
 
