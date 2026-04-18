@@ -9,8 +9,7 @@ from pathlib import Path
 
 def _post_url(community, post_id, title):
     slug = re.sub(r'[^a-z0-9]+', '-', (title or '').lower()).strip('-')
-    short_id = post_id[:8] if post_id else ''
-    return f"https://www.skool.com/{community}/{slug}-{short_id}" if slug else f"https://www.skool.com/{community}?p={post_id}"
+    return f"https://www.skool.com/{community}/{slug}" if slug else f"https://www.skool.com/{community}?p={post_id}"
 
 
 def load_config():
