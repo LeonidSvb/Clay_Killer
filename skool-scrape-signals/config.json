@@ -1,8 +1,10 @@
 {
+  "openrouter_api_key": "",
+  "classify_model": "google/gemini-2.5-flash-lite",
   "community": "academy",
   "group_id": "cb451085a9c34be997a5bce24ed7e842",
   "cookies_file": "cookies.json",
-  "days_back": 3,
+  "hours_back": 15,
   "output_dir": "data",
   "request_delay": 1.0,
   "sort": "newest",

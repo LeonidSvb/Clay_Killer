@@ -203,13 +203,14 @@ def main():
     headers = make_headers(cookie_str)
     api_headers = make_api_headers(cookie_str)
 
-    cutoff_dt = datetime.now(timezone.utc) - timedelta(days=cfg["days_back"])
+    hours = cfg.get("hours_back", cfg.get("days_back", 1) * 24)
+    cutoff_dt = datetime.now(timezone.utc) - timedelta(hours=hours)
     today = datetime.now().strftime("%Y-%m-%d")
     output_path = Path(cfg["output_dir"]) / f"posts_{today}.json"
 
     print(f"Skool signal scraper")
     print(f"Community : {cfg['community']}")
-    print(f"Cutoff    : {cutoff_dt.strftime('%Y-%m-%d %H:%M')} UTC ({cfg['days_back']} days)")
+    print(f"Cutoff    : {cutoff_dt.strftime('%Y-%m-%d %H:%M')} UTC ({hours}h)")
     print(f"Comments  : {'yes (>=' + str(cfg.get('fetch_comments_min_count',1)) + ' comments)' if cfg.get('fetch_comments') else 'no'}")
     print(f"Output    : {output_path}")
 
