@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import urllib.request
 from dotenv import load_dotenv
 from db.client import get_unnotified_signals, mark_notified
@@ -72,8 +73,10 @@ def notify_pending():
             send_message(text)
             sent_ids.append(s['post_id'])
             print(f"  sent: {s.get('post_title', '')[:50]}")
+            time.sleep(1.5)
         except Exception as e:
             print(f"  error: {e}")
+            time.sleep(3)
 
     mark_notified(sent_ids)
     print(f'[notify] Done: {len(sent_ids)} sent')
