@@ -7,6 +7,12 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 
+def _post_url(community, post_id, title):
+    slug = re.sub(r'[^a-z0-9]+', '-', (title or '').lower()).strip('-')
+    short_id = post_id[:8] if post_id else ''
+    return f"https://www.skool.com/{community}/{slug}-{short_id}" if slug else f"https://www.skool.com/{community}?p={post_id}"
+
+
 def load_config():
     with open("config.json") as f:
         return json.load(f)
@@ -107,21 +113,23 @@ def fetch_comments(post_id, group_id, api_headers):
     return comments
 
 
-def parse_post(tree, category_name):
+def parse_post(tree, category_name, community=""):
     post = tree.get("post", tree)
     meta = post.get("metadata", {})
     user = post.get("user", {})
     user_meta = user.get("metadata", {})
+    post_id = post.get("id", "")
+    title = meta.get("title", "")
 
     return {
-        "id": post.get("id", ""),
+        "id": post_id,
         "category": category_name,
-        "title": meta.get("title", ""),
+        "title": title,
         "content": meta.get("content", "")[:500],
         "upvotes": meta.get("upvotes", 0),
         "comments_count": meta.get("comments", 0),
         "created_at": post.get("createdAt", ""),
-        "url": post.get("url") or post.get("slug") or "",
+        "url": _post_url(community, post_id, title),
         "author": {
             "name": f"{user.get('firstName', '')} {user.get('lastName', '')}".strip(),
             "id": user.get("id", ""),
@@ -167,7 +175,7 @@ def scrape_category(community, category_id, category_name, cutoff_dt, headers, a
                 continue
             seen_ids.add(post_id)
 
-            posts.append(parse_post(tree, category_name))
+            posts.append(parse_post(tree, category_name, cfg.get("community", "")))
             new_this_page += 1
 
         print(f"    page {page}: +{new_this_page} posts")
