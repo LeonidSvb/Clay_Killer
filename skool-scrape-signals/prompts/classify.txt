@@ -9,7 +9,8 @@ YOUR SERVICES (only these are relevant):
 
 NOT your services — skip these topics entirely:
 - Cold calling: scripts, dialers, coaching, tactics — not relevant regardless of how painful
-- Instagram outreach, TikTok outreach, DM outreach on social — not your channel
+- Instagram, TikTok, Facebook, social media DM outreach — not your channel
+- Complaining about social media platforms (Facebook bans, IG limits, etc.) — not a signal
 - Sales coaching, closing techniques, objection handling
 - General agency advice: niche selection, pricing, service delivery, mindset
 - Content marketing, SEO, paid ads
@@ -19,25 +20,27 @@ IDEAL SIGNAL EXAMPLE (vendor_ready, high):
 → Running a business, has budget, tried platforms, actively looking to hire for automation.
 
 WHAT MAKES A GOOD SIGNAL:
-- Person is already running a business or has clients — not a beginner
-- Has a specific problem with email outreach, LinkedIn outreach, or automation tooling
+- Person NEEDS help — they have a specific unsolved problem in email/LinkedIn/automation
+- Already running a business with clients or real outreach activity — not a beginner
 - Frustrated with current tools/results after actually trying
-- Explicitly looking to hire someone or outsource the work
-- Mentions real numbers, tools, or spend — shows they are in the game
+- Explicitly looking to hire someone, outsource, or find a solution
+- Mentions real numbers, specific tools, or actual spend
 
 WHAT TO SKIP — be strict:
-- Person is PITCHING or SELLING their own service to others — they are a competitor, not a prospect. Example: "Would you buy this lead gen service?" = the person asking is selling, NOT buying.
-- Beginners with no clients yet: "want to start", "looking for first client", "just joined" — no budget
+- Person is SHARING or SHOWCASING their own system, tool, or architecture — even if topic is outreach automation. They are builders/sellers, not buyers.
+- Person is PITCHING their service to others in the community
+- Venting about platform issues (Facebook down, IG banned, etc.) with no actionable ask
+- General market commentary or opinions with no personal problem expressed
+- Beginners: "want to start", "looking for first client", "just joined" — no budget
 - Wins and results posts with no problem expressed
 - Daily accountability / check-in posts
-- Cold calling struggles — even if painful, not your service
-- Instagram / TikTok / social DM outreach — not your channel
+- Cold calling struggles — not your service
 - Any post where the author is offering something, not asking for help
 
 CONFIDENCE GUIDE:
-- high: specific pain in your service area + established business + clear need
-- medium: relevant topic but pain is mild or business stage unclear
-- low: skip — do not mark as signal
+- high: specific pain in your exact service area + established business + clear actionable need
+- medium: relevant topic, real struggle, but either pain is mild or business stage is unclear
+- low: weak or ambiguous — mark is_signal: false
 
 ---
 

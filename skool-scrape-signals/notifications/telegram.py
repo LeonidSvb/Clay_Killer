@@ -12,16 +12,20 @@ CHAT_ID   = os.environ.get('TG_GROUP_ID', '')
 TOPIC_ID  = os.environ.get('TG_TOPIC_SKOOL', '')
 
 CONFIDENCE_LABEL = {'high': 'HIGH', 'medium': 'MED'}
+COMMUNITY_NAME = os.environ.get('SKOOL_COMMUNITY_NAME', 'Skool')
 
 
-def send_message(text):
-    body = json.dumps({
+def send_message(text, reply_markup=None):
+    payload = {
         'chat_id': CHAT_ID,
         'text': text,
         'parse_mode': 'HTML',
         'disable_web_page_preview': True,
         'message_thread_id': int(TOPIC_ID) if TOPIC_ID else None,
-    }).encode('utf-8')
+    }
+    if reply_markup:
+        payload['reply_markup'] = reply_markup
+    body = json.dumps(payload).encode('utf-8')
 
     req = urllib.request.Request(
         f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage',
@@ -34,7 +38,7 @@ def send_message(text):
 
 
 def format_signal(s):
-    conf = CONFIDENCE_LABEL.get(s.get('confidence', ''), s.get('confidence', ''))
+    conf = CONFIDENCE_LABEL.get(s.get('confidence', ''), s.get('confidence', '').upper())
     contact = s.get('contact') or {}
     if isinstance(contact, str):
         try:
@@ -42,21 +46,40 @@ def format_signal(s):
         except Exception:
             contact = {}
 
-    name     = contact.get('name', 'Unknown')
-    linkedin = contact.get('linkedin', '')
+    name        = contact.get('name', 'Unknown')
+    linkedin    = contact.get('linkedin', '')
     signal_type = (s.get('signal_type') or 'signal').replace('_', ' ').title()
+    intent      = (s.get('intent') or '').replace('_', ' ')
+    source      = contact.get('source', 'post')
+
+    name_part = name
+    if linkedin:
+        name_part = f'<a href="{linkedin}">{name}</a>'
+
+    post_link = ''
+    if s.get('post_url'):
+        post_link = f' | <a href="{s[\"post_url\"]}">Open post</a>'
 
     lines = [
-        f"[{conf}] {signal_type} — {s.get('category', '')}",
+        f"[{conf}] {signal_type} | {intent} | {COMMUNITY_NAME}",
         f"<b>{s.get('post_title') or 'No title'}</b>",
-        f"Contact: {name}" + (f' | <a href="{linkedin}">LinkedIn</a>' if linkedin else ''),
-        f'"{s.get("signal_text", "")[:200]}"',
-        f"Reason: {s.get('reason', '')}",
+        f"{name_part} ({source}){post_link}",
+        f"",
+        f'<i>"{s.get("signal_text", "")[:200]}"</i>',
+        f"",
+        f"Why: {s.get('reason', '')}",
     ]
-    if s.get('post_url'):
-        lines.append(f'<a href="{s["post_url"]}">Open post</a>')
 
     return '\n'.join(lines)
+
+
+def signal_keyboard(post_id):
+    return json.dumps({
+        'inline_keyboard': [[
+            {'text': 'Good lead', 'callback_data': f'sk:good:{post_id}'},
+            {'text': 'Not relevant', 'callback_data': f'sk:bad:{post_id}'},
+        ]]
+    })
 
 
 def notify_pending():
@@ -70,7 +93,8 @@ def notify_pending():
     for s in signals:
         try:
             text = format_signal(s)
-            send_message(text)
+            keyboard = signal_keyboard(s['post_id'])
+            send_message(text, reply_markup=keyboard)
             sent_ids.append(s['post_id'])
             print(f"  sent: {s.get('post_title', '')[:50]}")
             time.sleep(1.5)
