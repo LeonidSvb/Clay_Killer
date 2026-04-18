@@ -121,7 +121,7 @@ def parse_post(tree, category_name):
         "upvotes": meta.get("upvotes", 0),
         "comments_count": meta.get("comments", 0),
         "created_at": post.get("createdAt", ""),
-        "url": post.get("url", ""),
+        "url": post.get("url") or post.get("slug") or "",
         "author": {
             "name": f"{user.get('firstName', '')} {user.get('lastName', '')}".strip(),
             "id": user.get("id", ""),
