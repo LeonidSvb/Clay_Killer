@@ -17,3 +17,4 @@ Current server:
 - n8n URL: `http://152.53.194.162/n8n/`
 - Remote inventory: `/opt/apps/_inventory/SERVER_STACK.md`
 - Hostinger migration: completed from `hostinger-backup-2026-04-19.tar.gz`
+- Migrated project root on server: `/opt/apps/projects`

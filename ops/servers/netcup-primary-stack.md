@@ -33,6 +33,7 @@ Open ports:
 Deploy paths:
 - `/opt/apps`
 - `/opt/apps/_inventory`
+- `/opt/apps/projects`
 - `/opt/compose`
 - `/opt/compose/n8n`
 
@@ -49,6 +50,12 @@ Hostinger migration status:
 - restored host PostgreSQL databases: `icegen`, `leads`, `metabase`, `n8n`, `nocodb`, `outreach`
 - imported into n8n: `26` credentials
 - imported into n8n: `36` workflows
+
+Migrated local projects:
+- `/opt/apps/projects/PV-sync-hack-airtable` - git history preserved, head `f2f47d0`
+- `/opt/apps/projects/fanfic-gen` - git history preserved, head `223c693`
+- `/opt/apps/projects/tg-monitoring` - git history preserved, head `5472b9f`
+- `/opt/apps/projects/skool-scrape-signals` - files only, no local `.git` existed
 
 Notes:
 - SMTP intentionally left unused
