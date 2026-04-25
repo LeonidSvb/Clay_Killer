@@ -43,6 +43,13 @@ Active app stack:
 - nginx reverse proxy path: `/n8n/`
 - n8n public URL: `http://152.53.194.162/n8n/`
 
+Hostinger migration status:
+- backup source: `C:\Users\79818\Desktop\hostinger-backup-2026-04-19.tar.gz`
+- migration files on server: `/opt/migration/hostinger-2026-04-19`
+- restored host PostgreSQL databases: `icegen`, `leads`, `metabase`, `n8n`, `nocodb`, `outreach`
+- imported into n8n: `26` credentials
+- imported into n8n: `36` workflows
+
 Notes:
 - SMTP intentionally left unused
 - Reconnect SSH after group changes to use Docker without sudo
