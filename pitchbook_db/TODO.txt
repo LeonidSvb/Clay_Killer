@@ -1,0 +1,54 @@
+PITCHBOOK DATABASE — RESULTS & NEXT STEPS
+==========================================
+
+WHAT WAS DONE
+-------------
+1. Unpacked two PitchBook archives:
+   - June 2025 (june_2025/) — 343 CSV files, contact-level data, pre-filtered REV $5M+
+   - September 2025 (sep_2025/) — 33 XLSX files, company+contact data, mixed sectors
+
+2. Analyzed structure:
+   - June CSVs: obfuscated PitchBook column names (entity-hover, ellipsis etc.) — contacts
+   - Sep XLSX: clean columns (Company Name, Email, Revenue etc.) — companies with contacts
+   - Employee count column does NOT exist in any file — cannot filter by headcount
+
+3. Combined all files into one CSV (combine.py):
+   - Raw records:    2,226,296
+   - After dedup:      909,208  → all_leads.csv
+   - Skipped 2 files (corrupt/wrong format)
+
+4. Filtered for System Hustle cold outreach targets:
+   - Criteria: B2B sectors, email-first GTM, 1000+ potential clients, $10k+ ACV
+   - Result:    273,560 leads → target_leads.csv
+   - Top sectors: SaaS, Consulting B2B, Business Productivity Software,
+     Fintech, IT Consulting, Financial Software, Marketing Tech, AI/ML
+
+KEY FINDINGS
+------------
+- No employee count data in any source file (would need Apollo/Clearbit to enrich)
+- Revenue column exists only in Sep XLSX files (not in June CSVs, those are pre-filtered $5M+)
+- ~60% of raw records were duplicates across sector files (same person in SaaS + FinTech etc.)
+- Best performing sectors by volume: SaaS (56k), TMT (90k), Manufacturing (101k), Consulting (33k)
+
+OUTPUT FILES
+------------
+all_leads.csv     — 909,208 unique leads, all sectors
+target_leads.csv  — 273,560 leads, B2B outreach-ready sectors only
+combine.py        — script to rebuild from source if needed
+
+NEXT STEPS
+----------
+[ ] Filter target_leads.csv by title (CEO, Founder, VP Sales, Head of Growth, CMO)
+    to get only decision-makers — estimated 80-120k contacts
+
+[ ] Enrich with employee count via Apollo.io or Clearbit
+    to apply the <100 employees filter as originally planned
+
+[ ] Validate email quality — run through email verification tool
+    (ZeroBounce, NeverBounce, Millionverifier) before uploading to Instantly/Smartlead
+
+[ ] Upload to Instantly/Smartlead campaign:
+    - Segment by sector (SaaS separate from Consulting etc.)
+    - Test A/B subject lines per vertical
+
+[ ] Deduplicate against existing Plusvibe/Airtable leads to avoid overlaps
