@@ -1,0 +1,113 @@
+SERVER SETUP TODO
+=================
+Сервер: v2202604353458453766.hotsrv.de (152.53.194.162)
+Дата начала: 2026-04-29 | Последнее обновление: 2026-06-08
+
+
+COOLIFY MIGRATION [DONE — 2026-06-08]
+---------------------------------------
+Coolify (PaaS) + Traefik (reverse proxy) установлены и работают.
+nginx полностью отключён.
+
+[x] Coolify поднят на порту 8000
+[x] Traefik на портах 80/443 с Let's Encrypt через Cloudflare DNS Challenge
+[x] SSL сертификаты выданы для всех доменов (auto-renew)
+[x] n8n.pamelacoreypc.com -> Traefik -> n8n-app:5678
+[x] cockpit.pamelacoreypc.com -> Traefik -> outreach-cockpit:3002
+[x] uptime.pamelacoreypc.com -> Traefik -> uptime-kuma:3001
+[x] outreach-cockpit переведён с host network на bridge
+[x] nginx отключён (sudo systemctl disable nginx)
+[x] Все GitHub репозитории настроены (SSH auth с сервера)
+
+
+PHASE 1 — DOMAIN + HTTPS [DONE]
+---------------------------------
+[x] n8n переведён на домен n8n.pamelacoreypc.com
+[x] HTTPS через Traefik + Cloudflare DNS Challenge (Let's Encrypt)
+[x] Сертификат автообновляется — certbot больше не нужен
+[x] SSH-туннели для Supabase Studio и Coolify UI — см. access.md
+
+
+PHASE 2 — UPTIME KUMA [DONE]
+------------------------------
+[x] Uptime Kuma запущен, данные в docker volume
+[x] Публичный URL: https://uptime.pamelacoreypc.com/ (за Traefik)
+[x] Логин: leonid / UKuma#9x2mPw$srv
+
+[ ] Добавить мониторы в UI (вручную через браузер):
+    - n8n:           https://n8n.pamelacoreypc.com/ (HTTP keyword)
+    - cockpit:       https://cockpit.pamelacoreypc.com/ (HTTP)
+    - uptime self:   https://uptime.pamelacoreypc.com/ (HTTP)
+    - sync-data:     Heartbeat monitor (скрипт должен пинговать после каждого запуска)
+[ ] Настроить Telegram нотификации
+
+
+PHASE 3 — SUPABASE MINIMAL [DONE]
+-----------------------------------
+Контейнеры: db, auth, rest, meta, studio, kong
+Убраны: analytics, realtime, storage, edge-functions, imgproxy, vector, supavisor
+
+[x] Стек поднят, все 6 контейнеров healthy
+[x] Studio через SSH-туннель: порт 8001 (был 8000 — освобождён для Coolify)
+[x] Все credentials в netcup-primary.env
+
+
+PHASE 4 — МИГРАЦИЯ ДАННЫХ В SUPABASE [DONE]
+----------------------------------------------
+[x] outreach + enrichment схемы в Supabase PostgreSQL
+[x] sync-data переключён на self-hosted Supabase, cron */30 минут
+[x] PV-sync работает, логи: /opt/apps/projects/sync-data/sync.log
+[ ] Перенести icegen из shared-postgres в Supabase (опционально)
+
+
+PHASE 5 — BACKUP НА GOOGLE DRIVE [DONE]
+------------------------------------------
+[x] rclone установлен, gdrive: remote настроен
+[x] backup.sh написан: /opt/backups/backup.sh
+    - host-postgres (shared-postgres container, user: app_admin)
+    - supabase-postgres (127.0.0.1:5434)
+    - n8n-postgres (docker exec n8n-postgres)
+    - compose файлы (/opt/compose/ + outreach-cockpit)
+    - upload в gdrive:server-backups/
+    - удаление локальных файлов старше 7 дней
+[x] Cron: 0 3 * * * (ежедневно в 03:00)
+[x] Тест запущен и прошёл успешно (2026-06-08 11:40)
+    - host-postgres: 812K, supabase: 19MB, n8n: 172K — все на Google Drive
+
+
+PHASE 6 — СКРИПТЫ НА СЕРВЕРЕ [DONE]
+--------------------------------------
+[x] sync-data — работает, cron */30 мин + daily stats 01:00 + calcom */6h + revenue 12:00
+[x] tg-monitoring — daily-report.py в cron 06:00
+[x] skool-scrape-signals — run.py в cron 07:00 + daily_report.py в 08:00
+[x] PV-sync (Python) — отключён, заменён JS sync-data
+[ ] Добавить heartbeat мониторы в Uptime Kuma для скриптов
+
+
+PHASE 7 — METABASE (дашборды)
+------------------------------
+Metabase был запущен, но убит чтобы сэкономить RAM (занимал 1.7GB).
+Compose файл сохранён в /opt/compose/metabase/docker-compose.yml.
+
+[ ] Поднять когда реально понадобятся дашборды
+    Туннель: ssh -i ~/.ssh/id_ed25519_hostinger -L 3000:localhost:3000 leonid@152.53.194.162 -N
+    Данные хранятся в Supabase DB metabase schema
+
+
+ПОКА НЕ ТРОГАЕМ
+-----------------
+- NocoDB — база есть, сервис не поднят. Не нужен — Supabase Studio заменяет.
+- SMTP — intentionally unused
+- Облачный Supabase — позже отдельно
+
+
+EMAIL VERIFIER — NEXT STEPS
+-----------------------------
+Деплой: /opt/apps/email-verifier/ | GitHub: LeonidSvb/email-verifier
+Точность: precision 99%, recall 95% vs commercial etalon
+Запущен на порту 8090 (localhost), доступен из n8n контейнера через 172.20.0.1:8090
+
+[ ] Rate limiter по MX провайдеру (защита IP при 20k+/день)
+[ ] Bounce feedback loop — POST /bounce + SQLite кэш плохих доменов/email
+[ ] Persistent DNS cache (сейчас сбрасывается при рестарте контейнера)
+[ ] Google Workspace API verification (OAuth) — решит bucket unknown/no_connect
