@@ -1,7 +1,8 @@
-SERVER ACCESS
-=============
-Сервер: v2202604353458453766.hotsrv.de
-IP: 152.53.194.162
+SERVER ACCESS — netcup-primary
+================================
+Сервер: v2202604353458453766.hotsrv.de / 152.53.194.162
+OS: Debian 13 (trixie), ARM64, 8GB RAM, 256GB NVMe
+SSH ключ: %USERPROFILE%\.ssh\id_ed25519_hostinger | sudo пароль: netcup-primary.env → SERVER_ADMIN_PASSWORD
 
 
 SSH
@@ -11,16 +12,27 @@ ssh -i ~/.ssh/id_ed25519_hostinger leonid@152.53.194.162
 
 СЕРВИСЫ (основные публичные URL — за Traefik + Cloudflare)
 ------------------------
-n8n:           https://n8n.pamelacoreypc.com/
-Cockpit:       https://cockpit.pamelacoreypc.com/
-Uptime Kuma:   https://uptime.pamelacoreypc.com/
-Coolify:       https://coolify.pamelacoreypc.com/
+n8n:             https://n8n.pamelacoreypc.com/
+Cockpit:         https://cockpit.pamelacoreypc.com/
+Uptime Kuma:     https://uptime.pamelacoreypc.com/
+Coolify:         https://coolify.pamelacoreypc.com/
+Signal Tracker:  https://philippe.pamelacoreypc.com/   ← Next.js, systemd, port 3099
+Supabase API:    https://supabase.pamelacoreypc.com/   ← Traefik → Kong (8001)
 
 Примечание по маршрутизации:
   Traefik (coolify-proxy) слушает порты 80/443
-  SSL — Let's Encrypt через Cloudflare DNS Challenge (автообновление)
+  SSL — Let's Encrypt автоматически при первом запросе на новый домен
   Динамические конфиги: /data/coolify/proxy/dynamic/
   nginx — отключён и disabled (заменён Traefik)
+
+  ВАЖНО — host IP из Docker:
+  Traefik в сети coolify (gateway 10.0.2.1)
+  Хост-процессы доступны из Traefik как http://10.0.2.1:PORT (не localhost, не 152.53.194.162)
+  Docker-контейнеры в coolify-сети — по имени контейнера: http://container-name:PORT
+
+  UFW policy = DROP. Открытые порты: 22, 80, 443, 3001, 8000, 3000, 25, 3333
+  Порты только для Docker (10.0.0.0/8): 3099 (signal-tracker), 8001 (supabase)
+  Добавить порт для Docker: sudo ufw allow from 10.0.0.0/8 to any port PORT proto tcp
 
 
 СЕРВИСЫ (только через SSH-туннель)
@@ -58,6 +70,29 @@ nginx:           ОТКЛЮЧЁН (заменён Traefik)
 
 Email Verifier:  /opt/apps/email-verifier/
 Outreach Cockpit:/opt/apps/outreach-cockpit/
+Signal Tracker:  /opt/apps/signal-tracker/   ← Next.js standalone, systemd signal-tracker.service
+
+ЧЕКЛИСТ ДЕПЛОЯ НОВОГО Next.js САЙТА (10 минут)
+  1. npm run build (локально)
+  2. tar --exclude='.next/standalone/node_modules' -czf /tmp/app.tar.gz -C .next/standalone .
+     tar -czf /tmp/static.tar.gz -C .next static
+  3. scp /tmp/app.tar.gz /tmp/static.tar.gz leonid@152.53.194.162:/tmp/
+  4. ssh: mkdir /opt/apps/MYAPP && cd /opt/apps/MYAPP
+     tar -xzf /tmp/app.tar.gz && mkdir -p .next && tar -xzf /tmp/static.tar.gz -C .next
+  5. Создать .env: PORT=XXXX / NODE_ENV=production / HOSTNAME=0.0.0.0 / NEXT_PUBLIC vars
+  6. Создать /etc/systemd/system/MYAPP.service (шаблон — signal-tracker.service)
+     sudo systemctl daemon-reload && enable && start
+  7. sudo ufw allow from 10.0.0.0/8 to any port XXXX proto tcp
+  8. Cloudflare DNS: POST /dns_records zone 95b3bb83d3f4c5bd677b016bd8d1c287
+     {"type":"A","name":"SUBDOMAIN","content":"152.53.194.162","ttl":60,"proxied":false}
+  9. Создать /data/coolify/proxy/dynamic/MYAPP.yml (шаблон — signal-tracker.yml)
+     url: http://10.0.2.1:XXXX
+  10. Проверить: curl -s http://localhost:XXXX → HTML
+
+  ЕСЛИ SUPABASE нужен через HTTPS (обязательно если сайт на HTTPS):
+  - Создать subdomain supabase-MYAPP.pamelacoreypc.com → 10.0.2.1:8001
+  - NEXT_PUBLIC_SUPABASE_URL=https://supabase-MYAPP.pamelacoreypc.com (пересобрать!)
+  - Шаблон: /data/coolify/proxy/dynamic/supabase.yml
 
 Проекты:         /opt/apps/projects/
   sync-data:     /opt/apps/projects/sync-data/          github: LeonidSvb/sync-data
@@ -81,3 +116,43 @@ SUPABASE POSTGRESQL (отдельный контейнер)
   туннель для прямого доступа: ssh -i ~/.ssh/id_ed25519_hostinger -L 5434:localhost:5434 leonid@152.53.194.162 -N
   затем: psql -h 127.0.0.1 -p 5434 -U postgres -d postgres
   password: 4RpLCOvk0B6od6LS6V0FCZhq6dyinGAmTPShxKNGl3M
+
+
+COOLIFY
+--------
+URL:        https://coolify.pamelacoreypc.com/
+Email:      leo@systemhustle.com
+Password:   в netcup-primary.env → COOLIFY_PASSWORD
+API Token:  в netcup-primary.env → COOLIFY_API_TOKEN
+Server UUID: i31qr902vudauxh8yayi9wsu
+
+API базовые команды:
+  BASE="https://coolify.pamelacoreypc.com/api/v1"
+  TOKEN=$(grep COOLIFY_API_TOKEN netcup-primary.env | cut -d= -f2)
+
+  # Список сервисов
+  curl -s "$BASE/services" -H "Authorization: Bearer $TOKEN" | jq
+
+  # Список приложений
+  curl -s "$BASE/applications" -H "Authorization: Bearer $TOKEN" | jq
+
+  # Редеплой приложения
+  curl -s "$BASE/deploy?uuid=APP_UUID&force=false" -H "Authorization: Bearer $TOKEN"
+
+  # Добавить env variable
+  curl -s -X POST "$BASE/applications/APP_UUID/envs" \
+    -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+    -d '{"key": "MY_VAR", "value": "my_value", "is_preview": false}'
+
+
+CLOUDFLARE
+-----------
+Zone ID:  95b3bb83d3f4c5bd677b016bd8d1c287
+Email:    leo@systemhustle.com
+API Key:  в netcup-primary.env → CLOUDFLARE_API_KEY
+
+Добавить субдомен:
+  curl -s -X POST "https://api.cloudflare.com/client/v4/zones/95b3bb83d3f4c5bd677b016bd8d1c287/dns_records" \
+    -H "X-Auth-Email: leo@systemhustle.com" -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+    -H "Content-Type: application/json" \
+    --data '{"type":"A","name":"SUBDOMAIN","content":"152.53.194.162","ttl":1,"proxied":true}'

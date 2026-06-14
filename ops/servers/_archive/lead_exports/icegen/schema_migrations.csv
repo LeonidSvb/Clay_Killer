@@ -1,0 +1,8 @@
+filename,applied_at
+001_initial_schema.sql,2026-03-23 08:36:56.200193+00
+002_add_source_files.sql,2026-03-23 08:45:55.903614+00
+003_nullable_extraction_id.sql,2026-03-23 08:51:56.86339+00
+004_run_stats.sql,2026-03-23 13:18:51.647218+00
+005_per_lead_stats.sql,2026-03-23 13:18:51.65183+00
+006_prompts_table.sql,2026-03-23 18:51:54.610522+00
+007_enrichment_fields.sql,2026-03-23 19:59:57.009186+00

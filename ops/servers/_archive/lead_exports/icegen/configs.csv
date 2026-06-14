@@ -1,0 +1,2 @@
+id,name,params_json,created_at
+1,recruiting_v1,"{""name"": ""recruiting_v1"", ""model"": ""openai/gpt-oss-120b"", ""niche"": ""recruiting"", ""batch_prompt"": ""prompts/batch01_recruiting_q2_connector.txt"", ""variant_count"": 3, ""temperature_evaluation"": 0.1, ""temperature_extraction"": 0.2, ""temperature_generation"": 0.6}",2026-03-23 08:58:11.661819+00

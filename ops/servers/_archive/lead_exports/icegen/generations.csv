@@ -1,0 +1,851 @@
+id,input_id,run_id,extraction_id,config_id,variant_index,angle,icebreaker_line,full_email,score,evaluation_json,rank,is_best,created_at
+2,6,2,,1,2,baseline_2,"I spend a lot of time talking to IT directors at tech startups - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Amy,
+
+I spend a lot of time talking to IT directors at tech startups - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""Relies on vague benefit language (\""help them get in front of companies\"")"", ""Limited personalization beyond the recipient's name""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks strong specificity and contains generic phrasing, resulting in a modest score."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 09:01:00.218328+00
+3,6,2,,1,3,baseline_3,"I spend a lot of time talking to engineering directors at fast‑growing SaaS companies - so I usually know who's actively searching before it hits the market.  
+
+Most tech recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Amy,
+
+I spend a lot of time talking to engineering directors at fast‑growing SaaS companies - so I usually know who's actively searching before it hits the market.  
+
+Most tech recruiters hit Q2 with a thin pipeline after a busy Q1.",6,"{""issues"": [""Pain point is vague and generic"", ""No clear value proposition or call‑to‑action"", ""Email is overly brief and lacks personalization beyond the greeting""], ""clarity"": 4, ""verdict"": ""The email loses because it fails to articulate a concrete benefit or next step, making it unconvincing despite decent clarity."", ""specificity"": 2, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:01:02.775335+00
+1,6,2,,1,1,baseline_1,figured I'd reach out - I'm around CTOs at scaling SaaS startups daily and they keep saying they keep burning weeks on senior dev hires that fall through.,"Hey Amy,
+
+figured I'd reach out - I'm around CTOs at scaling SaaS startups daily and they keep saying they keep burning weeks on senior dev hires that fall through.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",4,"{""issues"": [""Awkward phrasing and repetition ('keep saying they keep') makes the sentence clunky"", ""Uses generic language like 'worth a quick chat' without a concrete hook"", ""Value proposition is vague; doesn't clearly explain the benefit to the recipient""], ""clarity"": 3, ""verdict"": ""The email loses due to low overall score driven by vague value and awkward wording."", ""specificity"": 3, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:00:58.477725+00
+4,7,2,,1,1,baseline_1,figured I'd reach out - I'm around practice leads at mid‑market law firms daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Alea,
+
+figured I'd reach out - I'm around practice leads at mid‑market law firms daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",3,"{""issues"": [""Repetitive phrasing reduces impact"", ""Unclear whether sender is addressing a recruiter or a law firm (role confusion)"", ""Awkward sentence structure""], ""clarity"": 3, ""verdict"": ""The email loses because it muddles the target audience and feels slightly unpolished."", ""specificity"": 3, ""total_score"": 3, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:01:05.266155+00
+6,7,2,,1,3,baseline_3,"I spend a lot of time talking to general counsels at mid‑market firms - so I usually know who's actively searching before it hits the market.  
+Most legal recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Alea,
+
+I spend a lot of time talking to general counsels at mid‑market firms - so I usually know who's actively searching before it hits the market.  
+Most legal recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear value proposition or call to action"", ""Lacks concrete benefit for the recipient"", ""Very brief; provides little context or next steps""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but too vague to compel action, resulting in a modest score."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:08.852899+00
+5,7,2,,1,2,baseline_2,"I spend a lot of time talking to lateral partners at mid-sized law firms - so I usually know who's actively searching before it hits the market.
+
+Most legal recruiting firms hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alea,
+
+I spend a lot of time talking to lateral partners at mid-sized law firms - so I usually know who's actively searching before it hits the market.
+
+Most legal recruiting firms hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""Relies on vague phrase 'help them' without concrete benefit"", ""Missing a clear call‑to‑action""], ""clarity"": 4, ""verdict"": ""The email is fairly clear and specific but loses points for generic language and lack of a direct CTA."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",2,f,2026-03-23 09:01:06.907388+00
+9,8,2,,1,3,baseline_3,"I spend a lot of time talking to plant managers at food manufacturers - so I usually know who's actively searching before it hits the market.  
+Most light‑industrial recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Angelica,
+
+I spend a lot of time talking to plant managers at food manufacturers - so I usually know who's actively searching before it hits the market.  
+Most light‑industrial recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear value proposition or call‑to‑action"", ""Vague about what is being offered or why Angelica should care"", ""Lacks concrete pain point beyond generic pipeline comment""], ""clarity"": 4, ""verdict"": ""The email is fairly clear and specific but loses due to its vagueness and missing CTA."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:15.69082+00
+8,8,2,,1,2,baseline_2,"I spend a lot of time talking to production supervisors at food manufacturing plants - so I usually know who's actively searching before it hits the market.
+
+Most light industrial recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Angelica,
+
+I spend a lot of time talking to production supervisors at food manufacturing plants - so I usually know who's actively searching before it hits the market.
+
+Most light industrial recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""uses generic phrasing like 'help them get in front of companies'"", ""lacks a clear call‑to‑action or next step"", ""value proposition is vague and could apply to many recruiters""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but feels generic and offers no concrete next step, hurting its effectiveness."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",2,f,2026-03-23 09:01:13.701701+00
+7,8,2,,1,1,baseline_1,figured I'd reach out - I'm around ops directors at food manufacturers daily and they keep saying they burn weeks on line staff and keep seeing the same 10 resumes.,"Hey Angelica,
+
+figured I'd reach out - I'm around ops directors at food manufacturers daily and they keep saying they burn weeks on line staff and keep seeing the same 10 resumes.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",3,"{""issues"": [""role confusion about who the email is targeting"", ""awkward phrasing in the opening sentence""], ""clarity"": 3, ""verdict"": ""The email loses because unclear target audience and clunky wording drag down its effectiveness."", ""specificity"": 4, ""total_score"": 3, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:01:11.404911+00
+10,9,2,,1,1,baseline_1,figured I'd reach out - I'm around audit directors at manufacturing firms daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Adam,
+
+figured I'd reach out - I'm around audit directors at manufacturing firms daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Repetitive wording ('keep saying they keep') makes the sentence feel clunky"", ""Value proposition is vague – unclear exactly how the warm intros help the agency""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks a sharp, specific hook and suffers from minor awkward phrasing."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:18.79004+00
+12,9,2,,1,3,baseline_3,"I spend a lot of time talking to audit heads at mid‑market banks - so I usually know who's actively searching before it hits the market.  
+Most audit recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Adam,
+
+I spend a lot of time talking to audit heads at mid‑market banks - so I usually know who's actively searching before it hits the market.  
+Most audit recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""no clear value proposition or call to action""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear but lacks a compelling offer, resulting in a modest score."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:01:22.449325+00
+11,9,2,,1,2,baseline_2,"I spend a lot of time talking to Audit Managers at manufacturing companies - so I usually know who's actively searching before it hits the market.
+
+Most audit and finance recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Adam,
+
+I spend a lot of time talking to Audit Managers at manufacturing companies - so I usually know who's actively searching before it hits the market.
+
+Most audit and finance recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""Uses vague buzzwords like 'thin pipeline' and 'help them get in front' which reduce impact"", ""Lacks a concrete value proposition or clear call‑to‑action""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but remains too generic and vague to convincingly win attention."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:01:20.493331+00
+61,26,3,1,1,1,observation,"","Hey Alea,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or relevance to the recipient"", ""Missing clear call‑to‑action"", ""No indication of sender's purpose or offering""], ""clarity"": 0, ""verdict"": ""The email loses because it provides no content, value, or actionable next step."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:47:06.398515+00
+65,27,3,2,1,2,pain,"","Hey Adam,
+
+",2,"{""issues"": [""No body or value proposition; email is empty"", ""Lacks any specific relevance to the recipient"", ""Provides no clear purpose or call to action""], ""clarity"": 2, ""verdict"": ""The email loses because it contains virtually no content, offering no specific reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:47:29.749804+00
+78,32,9,7,1,3,signal,"","Hey Amy,
+
+",1,"{""issues"": [""Email contains only a greeting and no body content"", ""No value proposition, context, or call to action"", ""Lacks any specificity about the recipient's needs or industry""], ""clarity"": 1, ""verdict"": ""Loses – the email is empty and provides no value or relevance to the prospect."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:27:05.139422+00
+76,32,9,7,1,1,observation,The job title you provided (CTOs) isn’t in the allowed,"Hey Amy,
+
+The job title you provided (CTOs) isn’t in the allowed",1,"{""issues"": [""Incomplete email content"", ""Awkward phrasing"", ""Lacks any specific pain point or value proposition"", ""Unclear purpose of the message""], ""clarity"": 1, ""verdict"": ""The email fails due to incompleteness and poor clarity, resulting in a very low score."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:27:01.11582+00
+89,36,9,11,1,2,pain,"","Hey Adam,
+
+",1,"{""issues"": [""Email contains only a greeting and no body/content"", ""Lacks any specific value proposition, pain point, or call to action"", ""Too short to be a functional cold email""], ""clarity"": 1, ""verdict"": ""The email loses because it provides no substance beyond a simple greeting."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:28:01.509511+00
+15,10,2,,1,3,baseline_3,"I spend a lot of time talking to CTOs at mid‑market software firms - so I usually know who's actively searching before it hits the market.  
+
+Most technical recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Adam,
+
+I spend a lot of time talking to CTOs at mid‑market software firms - so I usually know who's actively searching before it hits the market.  
+
+Most technical recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear value proposition or call to action"", ""Vague about what the sender is offering"", ""Lacks personalization beyond the recipient's name""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but loses due to its vague offer and missing call to action."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:29.105917+00
+14,10,2,,1,2,baseline_2,"I spend a lot of time talking to engineering managers at medical device companies - so I usually know who's actively searching before it hits the market.
+
+Most technical recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Adam,
+
+I spend a lot of time talking to engineering managers at medical device companies - so I usually know who's actively searching before it hits the market.
+
+Most technical recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Relies on vague phrasing like \""help them get in front of companies\"" without concrete benefit"", ""No clear call‑to‑action or next step for the recipient"", ""Uses shorthand \""cold BD\"" which may be unclear to the reader""], ""clarity"": 4, ""verdict"": ""The email is too generic and lacks a compelling, specific value proposition, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",2,f,2026-03-23 09:01:27.347876+00
+13,10,2,,1,1,baseline_1,figured I'd reach out - I'm around CTOs at mid‑market manufacturers daily and they keep saying they keep burning weeks on senior hires that never close.,"Hey Adam,
+
+figured I'd reach out - I'm around CTOs at mid‑market manufacturers daily and they keep saying they keep burning weeks on senior hires that never close.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",3,"{""issues"": [""Awkward phrasing with repeated 'keep'"", ""Unclear who the email is targeting (role confusion)"", ""Slightly generic call‑to‑action ('quick chat')""], ""clarity"": 3, ""verdict"": ""The email loses due to low overall score, role ambiguity, and clunky wording."", ""specificity"": 4, ""total_score"": 3, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:01:25.196563+00
+16,11,2,,1,1,baseline_1,figured I'd reach out - I'm around CEOs at community banks daily and they keep saying they’re burning weeks on senior hires and only see the same 10 CVs.,"Hey Adam,
+
+figured I'd reach out - I'm around CEOs at community banks daily and they keep saying they’re burning weeks on senior hires and only see the same 10 CVs.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""First sentence is slightly awkward ('I'm around CEOs at community banks daily')"", ""Value proposition could be stated more concretely""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and readable, but its awkward phrasing and modestly generic tone prevent it from scoring higher."", ""specificity"": 4, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 09:01:32.012699+00
+18,11,2,,1,3,baseline_3,"I spend a lot of time talking to CEOs at regional banks - so I usually know who's actively searching before it hits the market.
+
+Most banking recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Adam,
+
+I spend a lot of time talking to CEOs at regional banks - so I usually know who's actively searching before it hits the market.
+
+Most banking recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""Awkward phrasing with dash makes sentence feel clunky"", ""No clear value proposition or call‑to‑action"", ""Lacks concrete detail about what the sender can deliver""], ""clarity"": 4, ""verdict"": ""The email is concise and clear enough but loses points for vague value and missing CTA."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:01:35.34004+00
+17,11,2,,1,2,baseline_2,"I spend a lot of time talking to CFOs at regional banks - so I usually know who's actively searching before it hits the market.
+
+Most banking and finance recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Adam,
+
+I spend a lot of time talking to CFOs at regional banks - so I usually know who's actively searching before it hits the market.
+
+Most banking and finance recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Relies on vague benefit language (\""help them get in front of companies\"")"", ""Limited personalization beyond the recipient's name""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks strong, concrete value and leans on generic phrasing, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:01:33.543608+00
+75,30,6,5,1,3,signal,I spend a lot of time,"Hey Alea,
+
+I spend a lot of time",1,"{""issues"": [""Email is incomplete and ends abruptly"", ""Lacks any specific target or pain point"", ""No clear value proposition or purpose""], ""clarity"": 1, ""verdict"": ""The email loses due to being unfinished, vague, and offering no actionable reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:56:04.863741+00
+21,12,2,,1,3,baseline_3,"I spend a lot of time talking to founders hiring growth teams - so I usually know who's actively searching before it hits the market.
+
+Most startup recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Ashley,
+
+I spend a lot of time talking to founders hiring growth teams - so I usually know who's actively searching before it hits the market.
+
+Most startup recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear call to action"", ""Vague value proposition"", ""Limited personalization beyond the recipient's name""], ""clarity"": 4, ""verdict"": ""The email is fairly clear and specific enough but loses points for lacking a concrete CTA and deeper personalization."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:42.01002+00
+19,12,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling tech teams daily and they keep saying they can't close a senior role without it dragging on forever.,"Hey Ashley,
+
+figured I'd reach out - I'm around founders scaling tech teams daily and they keep saying they can't close a senior role without it dragging on forever.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",6,"{""issues"": [""Opening sentence is awkward and hard to read"", ""Value proposition is vague; doesn't explain concrete benefit"", ""Uses mild buzzwords like \""warm intros\"" without specifics""], ""clarity"": 4, ""verdict"": ""The email is moderately specific and clear but loses points for vague language and generic buzzwords, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",2,f,2026-03-23 09:01:38.546425+00
+20,12,2,,1,2,baseline_2,"I spend a lot of time talking to IT directors at Series A startups - so I usually know who's actively searching before it hits the market.
+
+Most tech recruiting firms hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Ashley,
+
+I spend a lot of time talking to IT directors at Series A startups - so I usually know who's actively searching before it hits the market.
+
+Most tech recruiting firms hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Relies on vague buzzwords like \""help them get in front\"" without concrete benefit"", ""No clear call‑to‑action or next step for the recipient"", ""Personalization limited to first name; lacks deeper relevance to Ashley's role""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but too generic and missing a strong CTA, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:01:40.194281+00
+22,13,2,,1,1,baseline_1,figured I'd reach out - I'm around CTOs at telecom firms daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Andy,
+
+figured I'd reach out - I'm around CTOs at telecom firms daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Redundant phrasing ('they keep saying they keep losing') makes the sentence awkward"", ""Value proposition is vague; doesn't clearly explain the benefit to the recruiter""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks strong specificity and a compelling, distinct benefit, resulting in a modest score."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:44.377571+00
+24,13,2,,1,3,baseline_3,"I spend a lot of time talking to HR directors at Fortune 500 firms - so I usually know who's actively searching before it hits the market.
+
+Most staff augmentation firms hit Q2 with a thin pipeline after a busy Q1.","Hey Andy,
+
+I spend a lot of time talking to HR directors at Fortune 500 firms - so I usually know who's actively searching before it hits the market.
+
+Most staff augmentation firms hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear value proposition or call to action"", ""Vague about what is being offered"", ""Minimal personalization beyond the recipient's name""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but loses due to its vague pitch and lack of a compelling CTA."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:01:47.905477+00
+23,13,2,,1,2,baseline_2,"I spend a lot of time talking to HR directors at Fortune 500 companies - so I usually know who's actively searching before it hits the market.
+
+Most staff augmentation agencies hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Andy,
+
+I spend a lot of time talking to HR directors at Fortune 500 companies - so I usually know who's actively searching before it hits the market.
+
+Most staff augmentation agencies hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""lacks a clear call to action"", ""vague value proposition"", ""minimal personalization beyond name""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but loses due to vague benefits and no explicit next step."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:01:46.105362+00
+27,14,2,,1,3,baseline_3,"I spend a lot of time talking to engineering directors at biotech startups - so I usually know who's actively searching before it hits the market.
+
+Most life sciences recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Anthony,
+
+I spend a lot of time talking to engineering directors at biotech startups - so I usually know who's actively searching before it hits the market.
+
+Most life sciences recruiters hit Q2 with a thin pipeline after a busy Q1.",8,"{""issues"": [""No clear value proposition or call to action"", ""Vague benefit; recipient isn't told why this matters to them"", ""Minimal personalization beyond the first name""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but loses due to its vague pitch and lack of a compelling call to action."", ""specificity"": 3, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:54.465972+00
+25,14,2,,1,1,baseline_1,figured I'd reach out - I'm around founders hiring senior engineers in biotech daily and they keep saying they keep burning weeks on the same 10 CVs.,"Hey Anthony,
+
+figured I'd reach out - I'm around founders hiring senior engineers in biotech daily and they keep saying they keep burning weeks on the same 10 CVs.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",6,"{""issues"": [""Awkward phrasing with repeated words ('keep') makes the sentence harder to read"", ""Value proposition is vague; doesn't clearly state what the sender offers""], ""clarity"": 3, ""verdict"": ""The email is moderately specific and clear but loses points due to awkward wording and a vague pitch."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:01:50.93047+00
+26,14,2,,1,2,baseline_2,"I spend a lot of time talking to IT directors at life sciences companies - so I usually know who's actively searching before it hits the market.
+
+Most engineering recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Anthony,
+
+I spend a lot of time talking to IT directors at life sciences companies - so I usually know who's actively searching before it hits the market.
+
+Most engineering recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""Value proposition is vague – doesn't specify what benefit the warm intros provide"", ""Missing a clear call‑to‑action for the recipient""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but loses points for being vague and lacking a direct ask."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:01:52.801883+00
+28,15,2,,1,1,baseline_1,figured I'd reach out - I'm around special ed directors at school districts daily and they keep saying they can't fill therapist roles for months and the pipeline's dry.,"Hey April,
+
+figured I'd reach out - I'm around special ed directors at school districts daily and they keep saying they can't fill therapist roles for months and the pipeline's dry.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",8,"{""issues"": [""Awkward phrasing in the first sentence (\""I'm around special ed directors ...\"")"", ""Call to action is vague – doesn’t specify what the chat would cover""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear, but awkward wording and a vague CTA keep it from scoring higher."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:01:56.968442+00
+29,15,2,,1,2,baseline_2,"I spend a lot of time talking to special education directors at school districts - so I usually know who's actively searching before it hits the market.
+
+Most special education recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of school districts mid-search right now - no cold BD, just warm intros.","Hey April,
+
+I spend a lot of time talking to special education directors at school districts - so I usually know who's actively searching before it hits the market.
+
+Most special education recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of school districts mid-search right now - no cold BD, just warm intros.",8,"{""issues"": [""Uses abbreviation 'BD' without explanation"", ""Value proposition is vague; doesn't specify what is being offered""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear but loses points for vague wording and unexplained jargon."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:01:58.908223+00
+30,15,2,,1,3,baseline_3,"I spend a lot of time talking to special education directors at school districts - so I usually know who's actively searching before it hits the market.
+
+Most education recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey April,
+
+I spend a lot of time talking to special education directors at school districts - so I usually know who's actively searching before it hits the market.
+
+Most education recruiters hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear value proposition or call to action"", ""Unclear what the sender wants from the recipient""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear but lacks a compelling offer or next step, reducing its effectiveness."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:02:00.466249+00
+33,16,2,,1,3,baseline_3,"I spend a lot of time talking to CHROs at APAC fintech firms - so I usually know who's actively searching before it hits the market.
+
+Most financial recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Agnes,
+
+I spend a lot of time talking to CHROs at APAC fintech firms - so I usually know who's actively searching before it hits the market.
+
+Most financial recruiters hit Q2 with a thin pipeline after a busy Q1.",9,"{""issues"": [""No clear value proposition or call to action"", ""Lacks personalization beyond the greeting"", ""Doesn't explain why the recipient should care""], ""clarity"": 5, ""verdict"": ""The email is clear and fairly specific but loses due to missing a compelling hook and actionable next step."", ""specificity"": 4, ""total_score"": 9, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:06.390796+00
+31,16,2,,1,1,baseline_1,figured I'd reach out - I'm around C‑suite execs at APAC banks daily and they keep saying they can't close a senior role without it dragging on forever.,"Hey Agnes,
+
+figured I'd reach out - I'm around C‑suite execs at APAC banks daily and they keep saying they can't close a senior role without it dragging on forever.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",8,"{""issues"": [""Awkward phrasing in the opening sentence"", ""Value proposition could be clearer""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear, but its wording is a bit clunky and the benefit isn’t sharply defined."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:02:02.914635+00
+64,27,3,2,1,1,observation,"","Hey Adam,
+
+",2,"{""issues"": [""Email contains only a greeting and no body/content"", ""Lacks any specific value proposition, pain point, or call to action"", ""Too short to be a functional cold email""], ""clarity"": 2, ""verdict"": ""This email loses because it provides no substance beyond a greeting, offering no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:47:27.952407+00
+66,27,3,2,1,3,signal,"","Hey Adam,
+
+",2,"{""issues"": [""Email contains only a greeting and no body/content"", ""Lacks any value proposition or relevance to the recipient"", ""No call to action or next step provided""], ""clarity"": 2, ""verdict"": ""The email loses because it offers no substance beyond a simple greeting, providing no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:47:30.874247+00
+87,35,9,10,1,3,signal,"","Hey Adam,
+
+",1,"{""issues"": [""Email body is missing; no value proposition or context provided."", ""Lacks any specific pain point, benefit, or call to action.""], ""clarity"": 1, ""verdict"": ""Loses – the email is empty and gives the recipient no reason to respond."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:27:45.287526+00
+32,16,2,,1,2,baseline_2,"I spend a lot of time talking to C-suite executives at Asia Pacific wealth management firms - so I usually know who's actively searching before it hits the market.
+
+Most financial services recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Agnes,
+
+I spend a lot of time talking to C-suite executives at Asia Pacific wealth management firms - so I usually know who's actively searching before it hits the market.
+
+Most financial services recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""Relies on vague benefit language (\""help them get in front of companies\"")"", ""Minimal personalization beyond the recipient's name"", ""No explicit call‑to‑action""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but feels generic and lacks a compelling, personalized hook, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:02:04.639028+00
+34,17,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling digital health startups daily and they keep saying they keep burning weeks on senior hires that never close.,"Hey Aaron,
+
+figured I'd reach out - I'm around founders scaling digital health startups daily and they keep saying they keep burning weeks on senior hires that never close.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",8,"{""issues"": [""Awkward phrasing with repeated 'keep'"", ""Value proposition is vague and lacks concrete benefit""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear but loses points due to vague value and clunky wording."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:09.054875+00
+36,17,2,,1,3,baseline_3,"I spend a lot of time talking to founders of digital health startups - so I usually know who's actively searching before it hits the market.
+
+Most life sciences recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Aaron,
+
+I spend a lot of time talking to founders of digital health startups - so I usually know who's actively searching before it hits the market.
+
+Most life sciences recruiters hit Q2 with a thin pipeline after a busy Q1.",6,"{""issues"": [""Vague value proposition"", ""No clear call to action"", ""Limited personalization beyond greeting""], ""clarity"": 4, ""verdict"": ""The email loses due to its vague pitch and lack of a concrete next step despite being concise and clear."", ""specificity"": 2, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:02:13.345206+00
+35,17,2,,1,2,baseline_2,"I spend a lot of time talking to healthcare executives at life sciences companies - so I usually know who's actively searching before it hits the market.
+
+Most health tech recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Aaron,
+
+I spend a lot of time talking to healthcare executives at life sciences companies - so I usually know who's actively searching before it hits the market.
+
+Most health tech recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Relies on vague phrasing like 'help them' without concrete benefit"", ""Uses industry jargon (Q2, thin pipeline) that may be unclear to some recipients"", ""Missing a clear call‑to‑action""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but suffers from generic language and lacks a strong, specific value proposition."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:02:11.504901+00
+39,18,2,,1,3,baseline_3,"I spend a lot of time talking to HR directors at high‑growth startups - so I usually know who's actively searching before it hits the market.
+
+Most talent acquisition teams hit Q2 with a thin pipeline after a busy Q1.","Hey Alicia,
+
+I spend a lot of time talking to HR directors at high‑growth startups - so I usually know who's actively searching before it hits the market.
+
+Most talent acquisition teams hit Q2 with a thin pipeline after a busy Q1.",8,"{""issues"": [""No clear value proposition or call‑to‑action"", ""Lacks personalization beyond the recipient's name"", ""Sender's affiliation/company is not identified""], ""clarity"": 5, ""verdict"": ""The email is concise and clear but loses points for being vague about the offer and missing a CTA."", ""specificity"": 3, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:20.006663+00
+73,30,6,5,1,1,observation,"","Hey Alea,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or context provided"", ""Lacks specificity about the recipient's needs"", ""Unclear purpose and message""], ""clarity"": 0, ""verdict"": ""Fails – the email contains no content, offering no value or relevance."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:56:00.412012+00
+37,18,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling SaaS teams daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Alicia,
+
+figured I'd reach out - I'm around founders scaling SaaS teams daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",6,"{""issues"": [""Awkward phrasing with repeated wording ('keep') makes the sentence clunky"", ""Value proposition is vague and not quantified""], ""clarity"": 3, ""verdict"": ""The email is too generic and poorly phrased to convincingly earn a response."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:02:16.015533+00
+38,18,2,,1,2,baseline_2,"I spend a lot of time talking to hiring managers at fast-growing private companies - so I usually know who's actively searching before it hits the market.
+
+Most RPO specialists hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alicia,
+
+I spend a lot of time talking to hiring managers at fast-growing private companies - so I usually know who's actively searching before it hits the market.
+
+Most RPO specialists hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""No clear call to action"", ""Assumes recipient is an RPO specialist without confirming"", ""Offers are described vaguely (no concrete benefit or next step)"", ""Uses shorthand 'cold BD' that may be unclear to the reader""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks a strong CTA and feels too generic to win."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:02:17.85422+00
+40,19,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling tech squads daily and they keep saying they burn weeks on senior hires and keep seeing the same 10 CVs.,"Hey Ajay,
+
+figured I'd reach out - I'm around founders scaling tech squads daily and they keep saying they burn weeks on senior hires and keep seeing the same 10 CVs.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",2,"{""issues"": [""Awkward, run‑on opening sentence makes the email hard to read"", ""Unclear who the sender is addressing – mixes founders and recruiting agencies"", ""Uses a generic call‑to‑action ('quick chat') without clear value""], ""clarity"": 3, ""verdict"": ""The email loses due to low overall score driven by unclear role targeting and clunky phrasing."", ""specificity"": 3, ""total_score"": 2, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:02:22.470096+00
+42,19,2,,1,3,baseline_3,"I spend a lot of time talking to HR heads at healthcare systems - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Ajay,
+
+I spend a lot of time talking to HR heads at healthcare systems - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1.",8,"{""issues"": [""No clear value proposition or call to action"", ""Too brief; lacks context about what is being offered""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly specific, but it fails to convey a compelling offer or next step, reducing its effectiveness."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:26.070668+00
+41,19,2,,1,2,baseline_2,"I spend a lot of time talking to IT directors at digital transformation firms - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Ajay,
+
+I spend a lot of time talking to IT directors at digital transformation firms - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Relies on vague buzzwords like \""thin pipeline\"" and \""warm intros\"" without concrete details"", ""No clear call‑to‑action or next step for the recipient"", ""Language is somewhat generic and could apply to many recruiters""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but loses points for generic phrasing and lack of a specific, compelling ask."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",2,f,2026-03-23 09:02:24.249417+00
+45,20,2,,1,3,baseline_3,"I spend a lot of time talking to engineering managers at mid-market firms - so I usually know who's actively searching before it hits the market.
+
+Most contract staffing firms hit Q2 with a thin pipeline after a busy Q1.","Hey Alan,
+
+I spend a lot of time talking to engineering managers at mid-market firms - so I usually know who's actively searching before it hits the market.
+
+Most contract staffing firms hit Q2 with a thin pipeline after a busy Q1.",8,"{""issues"": [""No clear call to action"", ""Unclear what the sender is offering or proposing""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear but lacks a compelling call to action, reducing its effectiveness."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:32.380536+00
+43,20,2,,1,1,baseline_1,figured I'd reach out - I'm around CTOs at fast‑growing tech firms daily and they keep saying they keep burning weeks on contract hires that fall through.,"Hey Alan,
+
+figured I'd reach out - I'm around CTOs at fast‑growing tech firms daily and they keep saying they keep burning weeks on contract hires that fall through.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",6,"{""issues"": [""Awkward phrasing and repetition ('keep saying they keep')"", ""Value proposition is vague – doesn't clearly state what the sender offers"", ""Relies on generic buzzwords like 'fast‑growing tech firms' without concrete details""], ""clarity"": 4, ""verdict"": ""The email is moderately specific and clear but loses points for vague value and some clunky language."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",2,f,2026-03-23 09:02:28.323771+00
+44,20,2,,1,2,baseline_2,"I spend a lot of time talking to engineers and project managers at construction and engineering firms - so I usually know who's actively searching before it hits the market.
+
+Most engineering recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alan,
+
+I spend a lot of time talking to engineers and project managers at construction and engineering firms - so I usually know who's actively searching before it hits the market.
+
+Most engineering recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""relies on vague phrasing like \""help them\"" without concrete results"", ""no specific example or metric to illustrate the benefit"", ""missing clear call‑to‑action""], ""clarity"": 4, ""verdict"": ""The email is fairly clear but too generic and lacks a compelling, specific hook, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:02:30.317836+00
+48,21,2,,1,3,baseline_3,"I spend a lot of time talking to HR directors at fast‑growing tech firms - so I usually know who's actively searching before it hits the market.
+
+Most tech recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Alex,
+
+I spend a lot of time talking to HR directors at fast‑growing tech firms - so I usually know who's actively searching before it hits the market.
+
+Most tech recruiters hit Q2 with a thin pipeline after a busy Q1.",8,"{""issues"": [""lacks a clear value proposition for Alex"", ""no call to action or next step"", ""benefit described is vague""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but too vague and missing a CTA, so it fails to persuade."", ""specificity"": 3, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:38.204964+00
+47,21,2,,1,2,baseline_2,"I spend a lot of time talking to IT directors at engineering and manufacturing companies - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alex,
+
+I spend a lot of time talking to IT directors at engineering and manufacturing companies - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",6,"{""issues"": [""Relies on vague phrase \""thin pipeline\"" without concrete data"", ""No clear call‑to‑action or next step"", ""Sender's affiliation or credentials are not stated""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks concrete details and a strong CTA, keeping its score modest."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",2,f,2026-03-23 09:02:36.640972+00
+46,21,2,,1,1,baseline_1,figured I'd reach out - I'm around CTOs at mid-market manufacturers daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Alex,
+
+figured I'd reach out - I'm around CTOs at mid-market manufacturers daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",4,"{""issues"": [""Awkward phrasing with repeated 'keep' makes the sentence clunky"", ""Unclear who the recipient is (agency or hiring manager), causing role confusion""], ""clarity"": 4, ""verdict"": ""The email is short and clear enough but suffers from role ambiguity and a few awkward phrasing issues, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 4, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:02:34.867027+00
+51,22,2,,1,3,baseline_3,"I spend a lot of time talking to heads of talent at mid‑market SaaS firms - so I usually know who's actively searching before it hits the market.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1.","Hey Alex,
+
+I spend a lot of time talking to heads of talent at mid‑market SaaS firms - so I usually know who's actively searching before it hits the market.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1.",8,"{""issues"": [""No clear call to action or next step"", ""Doesn't articulate specific value for the recipient"", ""Lacks deeper personalization beyond the name""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but loses points for being vague about the benefit and missing a CTA."", ""specificity"": 3, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:44.888836+00
+49,22,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling their teams daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Alex,
+
+figured I'd reach out - I'm around founders scaling their teams daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Awkward opening sentence makes the pitch feel clunky"", ""Mixes focus between founders and agencies, slightly blurring the sender's primary audience""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but suffers from vague targeting and awkward phrasing, limiting its impact."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:02:40.997404+00
+50,22,2,,1,2,baseline_2,"I spend a lot of time talking to hiring managers at growing tech companies - so I usually know who's actively searching before it hits the market.
+
+Most rpo recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alex,
+
+I spend a lot of time talking to hiring managers at growing tech companies - so I usually know who's actively searching before it hits the market.
+
+Most rpo recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Relies on vague phrasing (e.g., \""help them get in front of companies\"") without concrete benefit"", ""Missing a clear call‑to‑action"", ""Opening is generic and doesn’t personalize the prospect’s situation""], ""clarity"": 4, ""verdict"": ""The email is too generic and lacks a strong, specific value proposition, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:02:43.049329+00
+52,23,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling tech teams daily and they keep saying they keep losing good candidates halfway through the process.,"Hey Alexis,
+
+figured I'd reach out - I'm around founders scaling tech teams daily and they keep saying they keep losing good candidates halfway through the process.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Awkward phrasing and repetition in the first sentence"", ""Target audience could be clearer; mixes founders and agencies""], ""clarity"": 4, ""verdict"": ""The email is concise and mostly clear but suffers from vague targeting and clunky wording, limiting its impact."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:47.807963+00
+54,23,2,,1,3,baseline_3,"I spend a lot of time talking to HR directors at scaling tech firms - so I usually know who's actively searching before it hits the market.
+
+Most executive search firms hit Q2 with a thin pipeline after a busy Q1.","Hey Alexis,
+
+I spend a lot of time talking to HR directors at scaling tech firms - so I usually know who's actively searching before it hits the market.
+
+Most executive search firms hit Q2 with a thin pipeline after a busy Q1.",7,"{""issues"": [""No clear value proposition or call to action"", ""Vague statement about pipeline without tying to recipient's pain"", ""Lacks personalization beyond the name""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but fails to convey a compelling benefit or next step, so it loses."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:02:51.43758+00
+53,23,2,,1,2,baseline_2,"I spend a lot of time talking to CFOs at Fortune 500 companies - so I usually know who's actively searching before it hits the market.
+
+Most executive search firms hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alexis,
+
+I spend a lot of time talking to CFOs at Fortune 500 companies - so I usually know who's actively searching before it hits the market.
+
+Most executive search firms hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""Uses vague phrasing like \""help them get in front of companies\"" without concrete benefit"", ""Relies on generic buzzword \""cold BD\"" which may not resonate""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but lacks strong, concrete specificity and leans on generic language, resulting in a modest score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 09:02:49.391252+00
+55,24,2,,1,1,baseline_1,figured I'd reach out - I'm around founders scaling sales teams daily and they keep saying they're burning weeks on the same 10 CVs.,"Hey Alex,
+
+figured I'd reach out - I'm around founders scaling sales teams daily and they keep saying they're burning weeks on the same 10 CVs.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""awkward phrasing in the opening sentence"", ""value proposition could be stated more clearly""], ""clarity"": 3, ""verdict"": ""The email is moderately specific and concise but suffers from clunky wording that hurts overall impact."", ""specificity"": 4, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:02:54.319848+00
+56,24,2,,1,2,baseline_2,"I spend a lot of time talking to COOs at fast-growing sales organizations - so I usually know who's actively searching before it hits the market.
+
+Most sales recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.","Hey Alex,
+
+I spend a lot of time talking to COOs at fast-growing sales organizations - so I usually know who's actively searching before it hits the market.
+
+Most sales recruiters hit Q2 with a thin pipeline after a busy Q1. I help them get in front of companies mid-search right now - no cold BD, just warm intros.",5,"{""issues"": [""uses mildly generic buzzwords (e.g., \""fast‑growing\"", \""thin pipeline\"")"", ""recipient's role is not explicitly identified, making the target audience unclear""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks strong specificity and leans on generic language, resulting in a modest score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",2,f,2026-03-23 09:02:56.050825+00
+57,24,2,,1,3,baseline_3,"I spend a lot of time talking to sales leaders scaling teams - so I usually know who's actively searching before it hits the market.
+
+Most sales recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Alex,
+
+I spend a lot of time talking to sales leaders scaling teams - so I usually know who's actively searching before it hits the market.
+
+Most sales recruiters hit Q2 with a thin pipeline after a busy Q1.",4,"{""issues"": [""Unclear who the email is targeting (sales leader vs recruiter)"", ""Vague value proposition, no concrete benefit stated"", ""Missing clear call‑to‑action""], ""clarity"": 4, ""verdict"": ""The email loses because it confuses the recipient's role and offers no clear, compelling reason to respond."", ""specificity"": 3, ""total_score"": 4, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:02:57.917425+00
+60,25,2,,1,3,baseline_3,"I spend a lot of time talking to wealthy families hiring household staff — so I usually know who's actively searching before it hits the market.
+
+Most household staffing recruiters hit Q2 with a thin pipeline after a busy Q1.","Hey Alisha,
+
+I spend a lot of time talking to wealthy families hiring household staff — so I usually know who's actively searching before it hits the market.
+
+Most household staffing recruiters hit Q2 with a thin pipeline after a busy Q1.",9,"{""issues"": [""no clear call to action"", ""unclear what the sender is offering beyond insight""], ""clarity"": 5, ""verdict"": ""The email is clear and niche‑specific but loses due to lacking a concrete ask or value proposition."", ""specificity"": 4, ""total_score"": 9, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:03:08.82478+00
+74,30,6,5,1,2,pain,"","Hey Alea,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or relevance to the recipient"", ""Lacks any specific pain point or context"", ""No clear call‑to‑action"", ""Provides no clarity about the sender's purpose""], ""clarity"": 0, ""verdict"": ""Fails – the email contains no substantive content, offering no value, specificity, or clarity."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:56:03.506934+00
+59,25,2,,1,2,baseline_2,"I spend a lot of time talking to estate managers at high-net-worth households - so I usually know who's actively searching before it hits the market.
+
+Most domestic staffing agencies hit Q2 with a thin pipeline after a busy Q1. I help them get in front of families mid-search right now - no cold BD, just warm intros.","Hey Alisha,
+
+I spend a lot of time talking to estate managers at high-net-worth households - so I usually know who's actively searching before it hits the market.
+
+Most domestic staffing agencies hit Q2 with a thin pipeline after a busy Q1. I help them get in front of families mid-search right now - no cold BD, just warm intros.",8,"{""issues"": [""No clear call‑to‑action"", ""Assumes recipient is familiar with niche terminology""], ""clarity"": 4, ""verdict"": ""The email is fairly specific and clear but lacks a concrete call‑to‑action, limiting its persuasive power."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:03:06.903329+00
+58,25,2,,1,1,baseline_1,figured I'd reach out - I'm around families hiring domestic staff daily and they keep saying they burning weeks on finding a trustworthy nanny.,"Hey Alisha,
+
+figured I'd reach out - I'm around families hiring domestic staff daily and they keep saying they burning weeks on finding a trustworthy nanny.
+
+Most recruiting agencies hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",6,"{""issues"": [""Grammatical errors and awkward phrasing (e.g., \""they burning weeks\"")"", ""Value proposition is vague and lacks concrete benefit"", ""Call to action is generic""], ""clarity"": 3, ""verdict"": ""The email is too vague and awkwardly written to convince Alisha, resulting in a low score."", ""specificity"": 4, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",3,f,2026-03-23 09:03:04.906414+00
+62,26,3,1,1,2,pain,Figured I'd reach out — I'm around CTOs at SaaS startups daily and they keep saying they're drowning in endless feature requests from sales.,"Hey Alea,
+
+Figured I'd reach out — I'm around CTOs at SaaS startups daily and they keep saying they're drowning in endless feature requests from sales.",6,"{""issues"": [""Only a name is used for personalization; no deeper relevance to Alea"", ""No clear value proposition or call to action"", ""Sentence structure is awkward and could be clearer"", ""Sender's own role/company is not identified""], ""clarity"": 3, ""verdict"": ""The email is moderately specific and clear but lacks personalization, a concrete offer, and a clear next step, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:47:08.039632+00
+63,26,3,1,1,3,signal,"","Hey Alea,
+
+",1,"{""issues"": [""Email contains only a greeting with no body or value proposition"", ""No clear purpose or call to action"", ""Too short to convey relevance""], ""clarity"": 1, ""verdict"": ""Loses because it provides no content, value, or actionable next steps."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:47:09.138658+00
+69,28,4,3,1,3,signal,"The job title you provided (CTOs) isn’t one of the allowed options. Please choose a job title from the permitted list (CFOs, plant managers, IT directors, engineering directors, general counsels).","Hey Amy,
+
+The job title you provided (CTOs) isn’t one of the allowed options. Please choose a job title from the permitted list (CFOs, plant managers, IT directors, engineering directors, general counsels).",5,"{""issues"": [""No specific prospect or pain point mentioned"", ""Not a genuine cold outreach, merely a corrective note""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but fails as a cold email due to zero specificity and lack of relevance."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:48:36.868548+00
+67,28,4,3,1,1,observation,"","Hey Amy,
+
+",1,"{""issues"": [""No body content; email is incomplete"", ""Lacks value proposition or call to action"", ""Too vague to convey any purpose""], ""clarity"": 1, ""verdict"": ""The email loses because it contains no substantive content or relevance."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:48:33.484929+00
+68,28,4,3,1,2,pain,"","Hey Amy,
+
+",1,"{""issues"": [""Email contains no body or value proposition"", ""Lacks specificity about the recipient's company or pain point"", ""Provides no clear purpose or call to action""], ""clarity"": 1, ""verdict"": ""The email loses because it is essentially empty and offers no relevance or value to the prospect."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:48:35.397083+00
+72,29,6,4,1,3,signal,"The job_titles variable you provided (CTOs) isn’t one of the allowed titles. Please choose from CFOs, plant managers, IT directors, engineering directors, or general counsels.","Hey Amy,
+
+The job_titles variable you provided (CTOs) isn’t one of the allowed titles. Please choose from CFOs, plant managers, IT directors, engineering directors, or general counsels.",5,"{""issues"": [""No specific pain point or target identified"", ""Email only corrects a variable without offering any value""], ""clarity"": 5, ""verdict"": ""It loses because it provides no specific value or context, making it irrelevant despite being clear and concise."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 09:55:47.039755+00
+70,29,6,4,1,1,observation,"","Hey Amy,
+
+",1,"{""issues"": [""Email contains only a greeting and no body or value proposition"", ""Lacks any specific reference to the recipient's company or pain points"", ""No call‑to‑action or next step""], ""clarity"": 1, ""verdict"": ""The email fails to deliver any substance, making it an ineffective cold outreach."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 09:55:43.322762+00
+71,29,6,4,1,2,pain,"","Hey Amy,
+
+",1,"{""issues"": [""Email body is empty; no value proposition or call to action."", ""Lacks any substantive content beyond the greeting.""], ""clarity"": 1, ""verdict"": ""Fails – the email contains no meaningful content, making it ineffective."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 09:55:44.762186+00
+77,32,9,7,1,2,pain,"","Hey Amy,
+
+",1,"{""issues"": [""Email body is empty; no value proposition or context provided."", ""Lacks any specific pain point, benefit, or call to action.""], ""clarity"": 1, ""verdict"": ""The email fails because it contains virtually no content, offering no relevance or reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:27:03.023405+00
+81,33,9,8,1,3,signal,I spend a lot of time talking to general counsels at mid-sized law firms - so I usually know who's actively searching before it hits the market.,"Hey Alea,
+
+I spend a lot of time talking to general counsels at mid-sized law firms - so I usually know who's actively searching before it hits the market.
+
+Most legal staffing hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now",4,"{""issues"": [""Value proposition is vague; doesn't explain what the sender actually offers"", ""Awkward phrasing makes the message harder to read"", ""No clear call‑to‑action or next step""], ""clarity"": 3, ""verdict"": ""The email loses because it lacks a compelling, specific offer and clear next steps, resulting in a low overall score."", ""specificity"": 2, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 13:27:16.85397+00
+79,33,9,8,1,1,observation,I spend a lot of time talking to CFOs at mid-sized law firms - so I usually know who's actively searching before it hits the market.,"Hey Alea,
+
+I spend a lot of time talking to CFOs at mid-sized law firms - so I usually know who's actively searching before it hits the market.
+
+Most legal staffing hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if",3,"{""issues"": [""Unclear ending – sentence is cut off"", ""Potential role confusion about who the sender is targeting"", ""Awkward phrasing reduces overall clarity""], ""clarity"": 3, ""verdict"": ""The email is moderately specific but suffers from role confusion, an incomplete closing, and some clunky wording, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 3, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:27:14.469637+00
+80,33,9,8,1,2,pain,"","Hey Alea,
+
+",1,"{""issues"": [""Email contains only a greeting and no substantive content"", ""No value proposition, context, or call to action provided"", ""Recipient's pain points or relevance are not addressed""], ""clarity"": 1, ""verdict"": ""The email fails to deliver any meaningful message, resulting in a low score."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:27:15.436092+00
+84,34,9,9,1,3,signal,"","Hey Angelica,
+
+",2,"{""issues"": [""Email contains no body or value proposition"", ""Missing clear purpose or call to action"", ""Too short to engage the recipient""], ""clarity"": 2, ""verdict"": ""The email loses because it provides no content, value, or actionable next step."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:27:31.878773+00
+82,34,9,9,1,1,observation,"","Hey Angelica,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or relevance"", ""Lacks specificity about the recipient's needs"", ""Unclear purpose and missing call‑to‑action""], ""clarity"": 0, ""verdict"": ""Fails – the email provides no content or value, making it ineffective."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:27:24.371026+00
+83,34,9,9,1,2,pain,I spend a lot of time talking to plant managers at food manufacturing plants - so I usually know who's actively searching before it hits the,"Hey Angelica,
+
+I spend a lot of time talking to plant managers at food manufacturing plants - so I usually know who's actively searching before it hits the",0,"{""issues"": [""Email ends abruptly, incomplete sentence"", ""Unclear value proposition or pain point"", ""Sender's role and purpose are ambiguous"", ""Low readability and awkward phrasing""], ""clarity"": 1, ""verdict"": ""The email loses because it's incomplete, unclear, and confuses the sender's role."", ""specificity"": 2, ""total_score"": 0, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:27:25.574939+00
+86,35,9,10,1,2,pain,"","Hey Adam,
+
+",5,"{""issues"": [""Email contains only a greeting with no body or value proposition"", ""Provides no specific relevance to the recipient""], ""clarity"": 5, ""verdict"": ""Loses – the email is just a greeting and offers no substance or reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:27:43.355602+00
+85,35,9,10,1,1,observation,"","Hey Adam,
+
+",1,"{""issues"": [""Email contains only a greeting with no body or value proposition"", ""Lacks specificity about the recipient's needs or context"", ""Provides no clear purpose or call to action""], ""clarity"": 1, ""verdict"": ""The email loses because it is essentially empty and fails to convey any meaningful message."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:27:42.260688+00
+88,36,9,11,1,1,observation,"The job_titles variable you provided (CTOs) isn’t on the allowed list. Please choose one of: CFOs, plant managers, IT directors, engineering directors, or general counsels.","Hey Adam,
+
+The job_titles variable you provided (CTOs) isn’t on the allowed list. Please choose one of: CFOs, plant managers, IT directors, engineering directors, or general counsels.",6,"{""issues"": [""Very low specificity; the email references a variable rather than a concrete pain point or opportunity"", ""Provides no value proposition or reason for the recipient to act beyond a technical correction""], ""clarity"": 5, ""verdict"": ""The email loses due to its vague purpose and lack of compelling relevance despite being clear and concise."", ""specificity"": 1, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:28:00.162977+00
+90,36,9,11,1,3,signal,"","Hey Adam,
+
+",4,"{""issues"": [""No body/content beyond greeting"", ""Lacks value proposition or purpose"", ""Too short to be a cold email""], ""clarity"": 4, ""verdict"": ""Loses – it’s merely a greeting with no substance, value, or call to action."", ""specificity"": 0, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:28:03.903261+00
+93,37,9,12,1,3,signal,"","Hey Adam,
+
+",3,"{""issues"": [""Email body is missing; no value proposition or context provided"", ""Lacks any specific reference to the recipient's company or pain points""], ""clarity"": 3, ""verdict"": ""The email fails due to being incomplete and offering no relevance, resulting in a low score."", ""specificity"": 0, ""total_score"": 3, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:28:12.4066+00
+91,37,9,12,1,1,observation,"","Hey Adam,
+
+",1,"{""issues"": [""No body or value proposition; email is incomplete"", ""Provides no reason for the recipient to engage"", ""Missing call to action or next steps""], ""clarity"": 1, ""verdict"": ""Fails – the email is just a greeting with no substance, so it cannot persuade."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:28:09.998691+00
+92,37,9,12,1,2,pain,"","Hey Adam,
+
+",1,"{""issues"": [""Email contains only a greeting and no body/content"", ""Lacks any value proposition or relevance to the recipient"", ""No call to action or next step provided""], ""clarity"": 1, ""verdict"": ""The email loses because it offers no substance beyond a simple greeting, providing no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:28:11.300638+00
+96,38,9,13,1,3,signal,"I’m noticing that the job title you provided (CTOs) isn’t on the approved list (CFOs, plant managers, IT directors, engineering directors, general counsels). Could you give me a job title from that list so I can finish the email?","Hey Ashley,
+
+I’m noticing that the job title you provided (CTOs) isn’t on the approved list (CFOs, plant managers, IT directors, engineering directors, general counsels). Could you give me a job title from that list so I can finish the email?",5,"{""issues"": [""lacks specificity about a target company/person or pain point""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but fails to demonstrate any specific relevance, resulting in a low overall score."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:28:22.53695+00
+95,38,9,13,1,2,pain,"","Hey Ashley,
+
+",2,"{""issues"": [""Email body is empty; no value proposition or call to action."", ""Lacks any specificity about the recipient's company or pain point."", ""Too short to be a functional cold email.""], ""clarity"": 2, ""verdict"": ""The email fails to deliver any content or relevance, resulting in a low score."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:28:21.135606+00
+94,38,9,13,1,1,observation,"","Hey Ashley,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or context provided"", ""No specificity about the recipient's company or pain point"", ""Lacks clarity; reads as incomplete""], ""clarity"": 0, ""verdict"": ""Fails – the email contains no content, offering no value or relevance."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:28:20.048199+00
+98,39,9,14,1,2,pain,"","Hey Andy,
+
+",2,"{""issues"": [""Email contains only a greeting and no body or value proposition"", ""Lacks any specificity about the recipient's company or pain points"", ""Missing clear call‑to‑action or next steps""], ""clarity"": 2, ""verdict"": ""The email loses because it provides no substantive content beyond a generic greeting."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:28:31.073774+00
+97,39,9,14,1,1,observation,"","Hey Andy,
+
+",0,"{""issues"": [""Email contains only a greeting and no body"", ""No specific problem or value proposition is presented"", ""Lacks a clear call to action or next step"", ""Provides no context to demonstrate relevance to the recipient""], ""clarity"": 0, ""verdict"": ""Loses – the email is empty and offers no value, clarity, or relevance."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:28:29.980238+00
+114,44,10,19,1,3,signal,"","Hey Angelica,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or purpose"", ""Lacks specificity about the recipient's needs"", ""Provides no clear message or call to action""], ""clarity"": 0, ""verdict"": ""The email fails because it contains no substantive content or relevance."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:05.901177+00
+99,39,9,14,1,3,signal,"The job_titles value you provided (CTOs) isn’t one of the allowed titles (CFOs, plant managers, IT directors, engineering directors, general counsels). Could you give me a valid job_titles","Hey Andy,
+
+The job_titles value you provided (CTOs) isn’t one of the allowed titles (CFOs, plant managers, IT directors, engineering directors, general counsels). Could you give me a valid job_titles",5,"{""issues"": [""Abrupt request without context or explanation"", ""Missing sender signature or identification""], ""clarity"": 4, ""verdict"": ""The email loses due to its overly terse, context‑less request and lack of a proper sign‑off."", ""specificity"": 1, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:28:32.311255+00
+101,40,9,15,1,2,pain,"","Hey Anthony,
+
+",2,"{""issues"": [""Email contains only a greeting and no body, value proposition, or call to action"", ""Lacks any specificity about the recipient's company, role, or pain points""], ""clarity"": 2, ""verdict"": ""The email loses because it provides no substantive content or relevance to the prospect."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:28:42.575536+00
+100,40,9,15,1,1,observation,"","Hey Anthony,
+
+",1,"{""issues"": [""Email contains only a greeting and no body or value proposition"", ""Lacks any specificity about the recipient's needs or context"", ""No clear call‑to‑action or next step""], ""clarity"": 1, ""verdict"": ""This email loses because it provides no content, relevance, or actionable request."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:28:41.477323+00
+102,40,9,15,1,3,signal,"","Hey Anthony,
+
+",1,"{""issues"": [""Email contains no body or value proposition"", ""Too short, lacks context or purpose""], ""clarity"": 1, ""verdict"": ""The email loses because it provides no content beyond a greeting, offering no relevance or reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:28:43.749521+00
+104,41,9,16,1,2,pain,"The variables you provided don’t match the allowed options. Please supply a job_titles from the list (CFOs, plant managers, IT directors, engineering directors, general counsels), a company_type from the list (mid-sized law firms, Series A startups, regional banks, food manufacturing plants), and a recruiting_subniche from the list (IT recruiters, recruiters in healthcare, legal recruiting firms, staffing agencies in finance, light industrial staffing firms).","Hey April,
+
+The variables you provided don’t match the allowed options. Please supply a job_titles from the list (CFOs, plant managers, IT directors, engineering directors, general counsels), a company_type from the list (mid-sized law firms, Series A startups, regional banks, food manufacturing plants), and a recruiting_subniche from the list (IT recruiters, recruiters in healthcare, legal recruiting firms, staffing agencies in finance, light industrial staffing firms).",7,"{""issues"": [""Lacks a clear value proposition for the recipient"", ""Functions only as a data request, not a persuasive cold outreach""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but too generic and offers no compelling reason for April to engage."", ""specificity"": 2, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 13:28:54.052223+00
+105,41,9,16,1,3,signal,"I’m sorry, but I can’t complete that request.","Hey April,
+
+I’m sorry, but I can’t complete that request.",5,"{""issues"": [""No value proposition or relevance"", ""No context or reason for outreach"", ""Too short to be a cold email"", ""Does not address recipient's needs""], ""clarity"": 5, ""verdict"": ""Loses – it provides no pitch, relevance, or reason to engage the prospect."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 13:28:55.383717+00
+116,45,10,20,1,2,pain,"","Hey Adam,
+
+",2,"{""issues"": [""Email contains only a greeting with no body or value proposition"", ""Lacks any specific information, context, or call to action""], ""clarity"": 2, ""verdict"": ""The email loses because it is essentially empty and provides no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:12.585911+00
+134,51,10,26,1,2,pain,"","Hey April,
+
+",1,"{""issues"": [""Email body is empty"", ""No value proposition or relevance provided"", ""Missing call to action"", ""No context for why the recipient is being contacted""], ""clarity"": 1, ""verdict"": ""The email loses because it contains no substantive content or purpose."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:07:00.35186+00
+135,51,10,26,1,3,signal,"","Hey April,
+
+",1,"{""issues"": [""Email contains only a greeting and no body or value proposition"", ""No clear purpose or call to action"", ""Too short to convey any relevance or benefit""], ""clarity"": 1, ""verdict"": ""The email loses because it provides no content, value, or actionable next step."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:07:01.470828+00
+103,41,9,16,1,1,observation,"I’m sorry, but I can’t complete that request with the given variables.","Hey April,
+
+I’m sorry, but I can’t complete that request with the given variables.",4,"{""issues"": [""No specific target or pain point identified"", ""No value proposition or call to action"", ""Content is irrelevant to a cold outreach context"", ""Email provides no reason for the recipient to engage""], ""clarity"": 4, ""verdict"": ""The email loses because it lacks any specificity, value, or actionable purpose, making it ineffective as a cold outreach."", ""specificity"": 0, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 13:28:52.123947+00
+106,42,10,17,1,1,observation,"","Hey Amy,
+
+",1,"{""issues"": [""Email body is empty; provides no value proposition or call to action"", ""No specific reference to Amy's company, role, or pain point"", ""Too short to be a meaningful cold outreach""], ""clarity"": 1, ""verdict"": ""This email loses because it contains no content beyond a greeting, offering no relevance or value to the recipient."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:05:47.747304+00
+107,42,10,17,1,2,pain,"","Hey Amy,
+
+",1,"{""issues"": [""No body or value proposition; email is empty after greeting"", ""Lacks any specific reference to the recipient's company or pain point"", ""No clear ask, benefit, or next step""], ""clarity"": 1, ""verdict"": ""This email loses because it provides no content, value, or relevance to the prospect."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:05:48.932284+00
+108,42,10,17,1,3,signal,"","Hey Amy,
+
+",1,"{""issues"": [""Email contains only a greeting and no body content"", ""No value proposition or relevance to the recipient"", ""Missing call to action or next steps"", ""Lacks any specificity about the prospect's needs""], ""clarity"": 1, ""verdict"": ""The email loses because it provides no substance, making it ineffective as a cold outreach."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:05:50.117282+00
+110,43,10,18,1,2,pain,"","Hey Alea,
+
+",2,"{""issues"": [""Email contains only a greeting and no body or value proposition"", ""Provides no specific target, pain point, or context"", ""Lacks a clear call‑to‑action or next step""], ""clarity"": 2, ""verdict"": ""The email loses because it is essentially empty and offers no relevance or purpose."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:05:56.201386+00
+109,43,10,18,1,1,observation,"","Hey Alea,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or call to action"", ""Lacks any specificity about the recipient's company or pain point"", ""Provides no clear message or purpose""], ""clarity"": 0, ""verdict"": ""The email loses because it contains no content beyond a greeting, offering no relevance or value to the recipient."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:05:55.108646+00
+111,43,10,18,1,3,signal,I spend a lot of time talking to general counsels at mid-sized law firms - so I usually know who's actively searching before it hits the market.,"Hey Alea,
+
+I spend a lot of time talking to general counsels at mid-sized law firms - so I usually know who's actively searching before it hits the market.
+
+Most legal staffing hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that",-1,"{""issues"": [""Email ends abruptly, incomplete thought"", ""Unclear who the sender is helping versus who is being addressed"", ""Uses vague buzzwords like \""thin pipeline\"" and \""connect agencies\"""", ""Lacks a concrete value proposition or call to action""], ""clarity"": 2, ""verdict"": ""The email loses due to incompleteness, role confusion, and generic language."", ""specificity"": 2, ""total_score"": -1, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 2}",3,f,2026-03-23 18:05:57.705236+00
+112,44,10,19,1,1,observation,"","Hey Angelica,
+
+",1,"{""issues"": [""Email body is empty; no value proposition or call to action."", ""Lacks any specificity about the recipient's company or pain points.""], ""clarity"": 1, ""verdict"": ""This email loses because it provides no content, value, or context beyond a simple greeting."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:03.772363+00
+113,44,10,19,1,2,pain,"","Hey Angelica,
+
+",1,"{""issues"": [""Email contains only a greeting and no body content"", ""No value proposition or relevance to the recipient"", ""Missing call to action or next steps"", ""Lacks specificity about the recipient's company or pain points""], ""clarity"": 1, ""verdict"": ""The email loses because it provides no substance, value, or clear purpose."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:04.925416+00
+115,45,10,20,1,1,observation,"I’m sorry, but I can’t fulfill that request.","Hey Adam,
+
+I’m sorry, but I can’t fulfill that request.",5,"{""issues"": [""No specific pain point or value proposition presented"", ""Message is a refusal rather than a persuasive cold outreach""], ""clarity"": 5, ""verdict"": ""The email loses because it offers no relevance, value, or reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:11.430895+00
+117,45,10,20,1,3,signal,"I’m sorry, but I can’t fulfill that request.","Hey Adam,
+
+I’m sorry, but I can’t fulfill that request.",5,"{""issues"": [""No value proposition or relevance to the recipient"", ""No clear purpose or call to action"", ""Does not identify the sender or their offering"", ""Too brief to function as a cold outreach email""], ""clarity"": 5, ""verdict"": ""The email loses because it offers no context, value, or actionable next step for the prospect."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:14.297494+00
+119,46,10,21,1,2,pain,I spend a lot of time talking to CTOs,"Hey Adam,
+
+I spend a lot of time talking to CTOs",6,"{""issues"": [""No clear value proposition or reason for outreach"", ""Email is overly short and lacks a call to action"", ""Generic opening; no personalization beyond the name""], ""clarity"": 5, ""verdict"": ""The email loses because it provides no compelling reason for the recipient to respond."", ""specificity"": 1, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:20.467343+00
+118,46,10,21,1,1,observation,"I’m sorry, but “CTOs” isn’t one of the allowed job titles. Could you provide a job title from the approved list (CFOs, plant managers, IT directors, engineering directors, or general counsels) so I can finish the email?","Hey Adam,
+
+I’m sorry, but “CTOs” isn’t one of the allowed job titles. Could you provide a job title from the approved list (CFOs, plant managers, IT directors, engineering directors, or general counsels) so I can finish the email?",5,"{""issues"": [""lacks specificity; no clear value proposition or target pain point""], ""clarity"": 5, ""verdict"": ""The email fails as a cold outreach because it provides no relevant hook or benefit, making it ineffective despite being clear and concise."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:19.156703+00
+120,46,10,21,1,3,signal,"","Hey Adam,
+
+",3,"{""issues"": [""Email contains no body or value proposition"", ""Provides no context or reason for outreach"", ""Missing call to action""], ""clarity"": 3, ""verdict"": ""The email loses because it is just a greeting with no substantive content or purpose."", ""specificity"": 0, ""total_score"": 3, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:21.612776+00
+122,47,10,22,1,2,pain,"","Hey Adam,
+
+",4,"{""issues"": [""Email contains only a greeting with no body or call to action"", ""Lacks any specific value proposition, context, or relevance""], ""clarity"": 4, ""verdict"": ""The email loses because it provides no substance beyond a simple greeting."", ""specificity"": 0, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:28.37133+00
+121,47,10,22,1,1,observation,"","Hey Adam,
+
+",1,"{""issues"": [""Email contains only a greeting with no body or value proposition."", ""Lacks any specificity or context."", ""Too short to be a functional cold email.""], ""clarity"": 1, ""verdict"": ""Fails because it provides no content or relevance."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:27.197306+00
+123,47,10,22,1,3,signal,"","Hey Adam,
+
+",1,"{""issues"": [""No body/content after greeting"", ""Lacks specificity and value proposition"", ""Email is incomplete and provides no context""], ""clarity"": 1, ""verdict"": ""Loses – the email is just a greeting with no substance, making it ineffective."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:29.463392+00
+125,48,10,23,1,2,pain,"","Hey Ashley,
+
+",1,"{""issues"": [""No body content or value proposition"", ""No clear purpose or call to action"", ""Email is incomplete""], ""clarity"": 1, ""verdict"": ""Loses – the email is essentially empty and provides no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:36.468347+00
+126,48,10,23,1,3,signal,I’m noticing that the value you provided,"Hey Ashley,
+
+I’m noticing that the value you provided",1,"{""issues"": [""Email is incomplete and ends abruptly"", ""Lacks specific target or pain point"", ""Vague language provides no clear value proposition"", ""Low clarity due to fragmentary sentence""], ""clarity"": 1, ""verdict"": ""The email loses because it is unfinished, overly vague, and offers no specific relevance to the recipient."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:37.650893+00
+124,48,10,23,1,1,observation,"I’m sorry, but the variables you provided don’t match the required formats, so","Hey Ashley,
+
+I’m sorry, but the variables you provided don’t match the required formats, so",1,"{""issues"": [""incomplete sentence"", ""no clear purpose or value proposition"", ""lacks context for recipient""], ""clarity"": 1, ""verdict"": ""The email loses due to being cut off and offering no meaningful content or call to action."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:34.749265+00
+129,49,10,24,1,3,signal,"","Hey Andy,
+
+",4,"{""issues"": [""Email contains only a greeting and no body, value proposition, or call to action"", ""Lacks any specific relevance or pain point for the recipient""], ""clarity"": 4, ""verdict"": ""Loses – it’s just a greeting with no substantive content or relevance."", ""specificity"": 0, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:44.833072+00
+127,49,10,24,1,1,observation,"","Hey Andy,
+
+",2,"{""issues"": [""Email contains only a greeting and no body or value proposition"", ""Lacks any specific reference to the recipient's company or pain points"", ""No call to action or next step provided""], ""clarity"": 2, ""verdict"": ""The email loses because it is essentially empty and provides no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 2, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:42.661707+00
+128,49,10,24,1,2,pain,"","Hey Andy,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or relevance presented"", ""No clear call to action"", ""Lacks any specificity about the recipient's needs""], ""clarity"": 0, ""verdict"": ""Loses – the email contains only a greeting and provides no substance, specificity, or clear purpose."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:43.642655+00
+130,50,10,25,1,1,observation,"","Hey Anthony,
+
+",5,"{""issues"": [""Email is incomplete; contains only a greeting with no body or value proposition"", ""Lacks any specific relevance or pain point for the recipient""], ""clarity"": 5, ""verdict"": ""The email loses because it provides no substance beyond a greeting, offering no reason for the recipient to engage."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:06:51.893119+00
+132,50,10,25,1,3,signal,"I’m sorry, but the job title you provided (CTOs) isn’t in the allowed list. Could you supply a job title from the permitted set (CFOs, plant managers, IT directors, engineering directors, general counsels)?","Hey Anthony,
+
+I’m sorry, but the job title you provided (CTOs) isn’t in the allowed list. Could you supply a job title from the permitted set (CFOs, plant managers, IT directors, engineering directors, general counsels)?",5,"{""issues"": [""No specific prospect, company, or pain point identified"", ""Message is a request for clarification rather than a persuasive cold outreach""], ""clarity"": 5, ""verdict"": ""The email loses because it lacks any specific target or value proposition, making it ineffective as a cold outreach."", ""specificity"": 0, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",2,f,2026-03-23 18:06:54.133386+00
+131,50,10,25,1,2,pain,"","Hey Anthony,
+
+",1,"{""issues"": [""Email body is empty; no value proposition or context provided"", ""Lacks specificity about the recipient's company or pain point"", ""Missing closing, call‑to‑action, and sender signature""], ""clarity"": 1, ""verdict"": ""The email fails to deliver any meaningful content, making it ineffective."", ""specificity"": 0, ""total_score"": 1, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:52.948732+00
+133,51,10,26,1,1,observation,"","Hey April,
+
+",0,"{""issues"": [""Email body is empty"", ""No value proposition or context provided"", ""Lacks specificity about the recipient's needs"", ""Unclear purpose; reads as incomplete""], ""clarity"": 0, ""verdict"": ""The email fails because it contains no substantive content or persuasive elements."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",3,f,2026-03-23 18:06:59.266339+00
+136,53,11,27,1,1,observation,INSUFFICIENT_DATA,"Hey April,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:25:44.211212+00
+137,55,11,30,1,1,observation,INSUFFICIENT_DATA,"Hey Ashley,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:25:44.307199+00
+138,54,11,29,1,1,observation,INSUFFICIENT_DATA,"Hey Adam,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:25:44.434848+00
+139,56,11,31,1,1,observation,INSUFFICIENT_DATA,"Hey Andy,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:25:44.558426+00
+140,60,11,35,1,1,observation,INSUFFICIENT_DATA,"Hey Angelica,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:25:44.617485+00
+141,52,11,28,1,1,observation,I spend a lot of time talking to general counsels at mid-sized law firms - so I usually know who's actively searching before it hits the market.,"Hey Alea,
+
+I spend a lot of time talking to general counsels at mid-sized law firms - so I usually know who's actively searching before it hits the market.
+
+Most legal staffing hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies",6,"{""issues"": [""awkward phrasing and fragmented sentences"", ""vague value proposition – unclear what benefit the recipient gets"", ""no clear call‑to‑action""], ""clarity"": 3, ""verdict"": ""The email is too vague and poorly phrased to persuade, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:25:45.850534+00
+142,57,11,33,1,1,observation,I spend a lot of time talking to CTOs at Capital Region tech firms - so I usually know who's actively searching before it hits the market.,"Hey Amy,
+
+I spend a lot of time talking to CTOs at Capital Region tech firms - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiting hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Second sentence is slightly awkward and could be clearer"", ""Value proposition is vague; doesn't specify concrete benefit for Amy""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly specific but loses points for unclear phrasing and a weak value hook."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:25:45.880485+00
+143,58,11,32,1,1,observation,I spend a lot of time talking to CEOs at regional banks - so I usually know who's actively searching before it hits the market.,"Hey Adam,
+
+I spend a lot of time talking to CEOs at regional banks - so I usually know who's actively searching before it hits the market.
+
+Most banking executive recruiting hit Q",3,"{""issues"": [""Email ends abruptly and appears truncated"", ""Value proposition is unclear"", ""No call to action or next step"", ""Low clarity due to unfinished sentence""], ""clarity"": 1, ""verdict"": ""The email loses because it is incomplete, vague, and fails to convey a clear benefit or next step."", ""specificity"": 2, ""total_score"": 3, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:25:45.92555+00
+144,59,11,34,1,1,observation,I spend a lot of time talking to CTOs at mid-market aerospace manufacturers - so I usually know who's actively searching before it hits the market.,"Hey Anthony,
+
+I spend a lot of time talking to CTOs at mid-market aerospace manufacturers - so I usually know who's actively searching before it hits the market.
+
+Most engineering staffing hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Second sentence is a bit awkward ('Most engineering staffing hit Q2 with a thin pipeline after a busy Q1.')"", ""Uses the vague term 'mid-search'""], ""clarity"": 4, ""verdict"": ""The email is specific and clear with little generic fluff, earning a solid score."", ""specificity"": 4, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 18:25:45.959773+00
+145,61,11,36,1,1,observation,I spend a lot of time talking to CFOs at mid-sized manufacturing firms -,"Hey Adam,
+
+I spend a lot of time talking to CFOs at mid-sized manufacturing firms -",4,"{""issues"": [""Sentence ends with a dash and is a fragment, making it unclear"", ""Email provides no value proposition or call to action"", ""Too short to engage the recipient""], ""clarity"": 1, ""verdict"": ""The email loses because its incomplete, unclear phrasing and lack of substance outweigh any modest specificity."", ""specificity"": 3, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:25:46.274015+00
+146,64,12,39,1,1,observation,INSUFFICIENT_DATA,"Hey April,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:29:04.462949+00
+147,67,12,42,1,1,observation,INSUFFICIENT_DATA,"Hey Ashley,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:29:04.574867+00
+148,63,12,38,1,1,observation,INSUFFICIENT_DATA,"Hey Alea,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:29:04.60362+00
+149,71,12,46,1,1,observation,INSUFFICIENT_DATA,"Hey Adam,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:29:05.020673+00
+150,70,12,45,1,1,observation,INSUFFICIENT_DATA,"Hey Anthony,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 18:29:05.129861+00
+151,62,12,37,1,1,observation,I spend a lot of time talking to CTOs at capital region technology companies - so I usually know who's actively searching before it hits the market.,"Hey Amy,
+
+I spend a lot of time talking to CTOs at capital region technology companies - so I usually know who's actively searching before it hits the market.
+
+Most IT recruiting hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Geographic reference ('capital region') is vague and may not resonate"", ""Phrasing like 'Most IT recruiting hit Q2 with a thin pipeline' is slightly awkward""], ""clarity"": 4, ""verdict"": ""The email is concise and clear but only moderately specific and contains a couple of vague or awkward elements."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:29:05.502121+00
+152,66,12,41,1,1,observation,I spend a lot of time talking to CFOs at regional banks - so I usually know who's actively searching before it hits the market.,"Hey Adam,
+
+I spend a lot of time talking to CFOs at regional banks - so I usually know who's actively searching before it hits the market.
+
+Most finance executive recruiting hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD,",5,"{""issues"": [""awkward phrasing in the second sentence"", ""unclear call to action"", ""value proposition is vague and could apply to many firms""], ""clarity"": 3, ""verdict"": ""The email loses because its unclear value proposition and lack of a concrete CTA undermine its otherwise decent specificity and length."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 18:29:06.082932+00
+153,68,12,43,1,1,observation,I spend a lot of time talking to CTOs at mid-market technology firms - so I usually know who's actively searching before it hits the market.,"Hey Adam,
+
+I spend a lot of time talking to CTOs at mid-market technology firms - so I usually know who's actively searching before it hits the market.
+
+Most technical recruiting",3,"{""issues"": [""Email ends abruptly and appears incomplete"", ""Low clarity; the message does not convey a clear value proposition"", ""Second sentence is a fragment, making the copy feel unfinished""], ""clarity"": 1, ""verdict"": ""The email loses because it is incomplete and unclear, offering no compelling reason for the recipient to engage."", ""specificity"": 2, ""total_score"": 3, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:29:06.275564+00
+154,65,12,40,1,1,observation,I spend a lot of time talking to plant managers at food manufacturing plants - so I usually know who's actively searching before it hits the market.,"Hey Angelica,
+
+I spend a lot of time talking to plant managers at food manufacturing plants - so I usually know who's actively searching before it hits the market.
+
+Most light industrial staffing hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",7,"{""issues"": [""Awkward phrasing in the second sentence makes the point less clear"", ""Value proposition is vague – doesn't explain concrete benefit to Angelica"", ""Call to action is generic; could be more compelling""], ""clarity"": 4, ""verdict"": ""The email is concise and fairly clear but lacks a strong, specific hook and suffers from mild awkwardness, keeping its score modest."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 18:29:06.291002+00
+155,69,12,44,1,1,observation,I spend a lot of time talking to CTOs at Fortune 500 companies - so I usually know who's actively searching before it hits the market.,"Hey Andy,
+
+I spend a lot of time talking to CTOs at Fortune 500 companies - so I usually know who's actively searching before it hits the market.
+
+Most telecommunications recruiting hit Q2 with a thin pipeline after a busy Q1. I connect agencies to companies that are mid-search right now - no cold BD, just warm intros.
+
+Worth a quick chat to see if there's a fit?",6,"{""issues"": [""Awkward phrasing in the second sentence makes the point less clear"", ""Benefit statement is vague; doesn't quantify the value of the warm intros""], ""clarity"": 4, ""verdict"": ""The email is moderately specific and clear but loses points for mild generic language and a slightly vague value proposition."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 18:29:06.469476+00
+156,73,13,48,1,1,observation,Saw some movement on my side —,"Hey Amy,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CTOs at capital region tech firms daily and they keep saying they keep burning weeks on senior dev hires that fall through.
+Can plug you into the deal flow if you want.",5,"{""issues"": [""awkward, run‑on sentence makes the message hard to read"", ""value proposition is vague – doesn't explain what \""deal flow\"" means for Amy"", ""overuse of dashes creates choppy rhythm""], ""clarity"": 2, ""verdict"": ""The email is too vague and poorly phrased to persuade, resulting in a low overall score."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 19:07:50.776829+00
+157,72,13,47,1,1,observation,Saw some movement on my side —,"Hey Angelica,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around plant managers at food manufacturing plants daily and they keep saying they keep burning weeks on line staff with no results.
+Can plug you into the deal flow if you want.",5,"{""issues"": [""Awkward, repetitive phrasing makes the email hard to read"", ""Unclear what \""plug you into the deal flow\"" actually means"", ""Lacks concrete details about the sender's solution or value""], ""clarity"": 2, ""verdict"": ""The email loses because its vague offer and clunky language undermine its effectiveness despite being short and somewhat specific."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 19:07:51.044993+00
+158,74,13,49,1,1,observation,Saw some movement on my side —,"Hey Alea,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around general counsels at mid-sized law firms daily and they keep saying they keep burning weeks on senior associate hires that fall through.
+Can plug you into the deal flow if you want.",5,"{""issues"": [""Awkward phrasing (repeated 'keep' and dash‑separated clauses)"", ""Slightly generic offer language ('plug you into the deal flow')"", ""Value proposition is vague; doesn't explain how the sender helps""], ""clarity"": 3, ""verdict"": ""The email is moderately specific and clear enough, but generic phrasing and vague value keep it from scoring higher."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 19:07:52.494805+00
+159,75,13,50,1,1,observation,Saw some movement on my side —,"Hey Adam,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CFOs at regional banks daily and they keep saying they keep burning weeks trying to fill senior finance roles that never close.
+Can plug you into the deal flow if you want.",5,"{""issues"": [""Awkward phrasing and repetition make the message hard to read"", ""Value proposition is vague – doesn't explain how the sender helps""], ""clarity"": 2, ""verdict"": ""The email loses because its unclear, vague pitch undermines the modest specificity it does have."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 19:07:56.966292+00
+160,77,13,52,1,1,observation,Saw some movement on my side —,"Hey Ashley,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CTOs at high‑growth tech startups daily and they keep saying they keep burning weeks on senior engineer hires that never close.
+Can plug you into the deal flow if you want.",4,"{""issues"": [""Awkward phrasing with repeated \""keep\"" makes the sentence hard to read"", ""Vague value proposition – \""plug you into the deal flow\"" is unclear"", ""Lacks concrete details or examples to substantiate the claim"", ""No strong personalization beyond the greeting""], ""clarity"": 2, ""verdict"": ""The email loses because its vague offer and clunky wording fail to convey a clear, compelling benefit."", ""specificity"": 3, ""total_score"": 4, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 19:07:57.648182+00
+161,76,13,51,1,1,observation,Saw some movement on my side —,"Hey Adam,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CTOs at mid-market tech companies daily and they keep saying they keep burning weeks on senior dev hires that fall through.
+Can plug you into the deal flow if you want.",3,"{""issues"": [""Awkward phrasing and repeated words ('keep') makes the email hard to read"", ""Value proposition is vague – 'plug you into the deal flow' lacks concrete benefit"", ""Use of dashes and fragmented sentences reduces readability""], ""clarity"": 2, ""verdict"": ""The email loses due to low clarity and an unclear offer despite being moderately specific."", ""specificity"": 3, ""total_score"": 3, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",1,t,2026-03-23 19:07:57.81479+00
+162,78,13,53,1,1,observation,Saw some movement on my side —,"Hey Adam,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CFOs at regional banks daily and they keep saying they keep burning weeks on senior audit hires that fall through.
+Can plug you into the deal flow if you want.",7,"{""issues"": [""awkward phrasing with repeated 'keep'"", ""vague call to action""], ""clarity"": 3, ""verdict"": ""The email is fairly specific and concise but suffers from clunky wording and an unclear next step, limiting its effectiveness."", ""specificity"": 4, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 19:08:01.793402+00
+163,79,13,54,1,1,observation,Saw some movement on my side —,"Hey Andy,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CTOs at Fortune 500 companies daily and they keep saying they keep burning weeks on telecom talent hires that never stick.
+Can plug you into the deal flow if you want.",3,"{""issues"": [""Awkward phrasing and dash usage makes the email hard to read in one pass"", ""Value proposition is vague; 'plug you into the deal flow' is unclear"", ""Uses buzzword 'deal flow', contributing to genericness penalty"", ""No concrete next step or clear call to action""], ""clarity"": 2, ""verdict"": ""The email loses due to poor clarity and vague offering despite some specificity."", ""specificity"": 3, ""total_score"": 3, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 2}",1,t,2026-03-23 19:08:02.169299+00
+164,80,13,55,1,1,observation,Saw some movement on my side —,"Hey April,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around special education directors at school districts daily and they keep saying they keep burning weeks trying to fill special education positions.
+Can plug you into the deal flow if you want.",5,"{""issues"": [""awkward phrasing and repeated words ('keep')"", ""vague offer ('plug you into the deal flow') without clear benefit"", ""no concrete next step or call to action""], ""clarity"": 2, ""verdict"": ""The email loses because its unclear, vague language undermines the otherwise decent specificity."", ""specificity"": 3, ""total_score"": 5, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 19:08:02.369261+00
+165,81,13,56,1,1,observation,Saw some movement on my side —,"Hey Anthony,
+
+Saw some movement on my side —
+Figured I'd reach out — I'm around CTOs at aerospace firms daily and they keep saying they keep burning weeks on senior engineer hires that fall through.
+Can plug you into the deal flow if you want.",7,"{""issues"": [""Awkward phrasing reduces readability"", ""Value proposition is vague – doesn't explain what \""deal flow\"" means"", ""No concrete next step or clear call to action""], ""clarity"": 3, ""verdict"": ""The email is moderately specific but loses points due to unclear wording and a vague offer."", ""specificity"": 4, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 19:08:07.365318+00
+166,82,14,57,1,1,observation,INSUFFICIENT_DATA,"Hey Amy,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:03:26.805975+00
+167,84,14,58,1,1,observation,INSUFFICIENT_DATA,"Hey Angelica,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:03:26.936522+00
+168,86,14,61,1,1,observation,INSUFFICIENT_DATA,"Hey Adam,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:03:27.001504+00
+169,83,14,59,1,1,observation,I talk to general counsels at mid-sized law firms - so I’m usually aware of upcoming hiring needs before they hit the market.,"Hey Alea,
+
+I talk to general counsels at mid-sized law firms - so I’m usually aware of upcoming hiring needs before they hit the market.  
+Q2 often leaves a thin pipeline for senior attorney hires, and many firms end up burning weeks on candidates that fall through.  
+I can",9,"{""issues"": [""Email ends abruptly, missing call to action or closing.""], ""clarity"": 4, ""verdict"": ""The email is specific and clear but incomplete, hurting its effectiveness."", ""specificity"": 5, ""total_score"": 9, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 20:03:28.328417+00
+170,85,14,60,1,1,observation,I spend a lot of time talking to CTOs at mid‑market tech companies - so I usually know who's actively searching before it hits the market.,"Hey Adam,
+
+I spend a lot of time talking to CTOs at mid‑market tech companies - so I usually know who's actively searching before it hits the market.  
+Most technical recruiters see a thin Q2 pipeline after a busy Q1 - I connect agencies to companies that are mid‑search right now.  
+Worth a quick chat to see if a warm intro could help BlackTree Technical Group?",6,"{""issues"": [""Vague value proposition"", ""Uses generic phrase 'warm intro'"", ""Slightly awkward sentence structure""], ""clarity"": 4, ""verdict"": ""The email is too vague and leans on generic phrasing, limiting its impact."", ""specificity"": 3, ""total_score"": 6, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 1}",1,t,2026-03-23 20:03:28.90527+00
+171,87,14,62,1,1,observation,"I talk to CFOs at mid-sized banks - so I usually know who's actively searching before it hits the market. Q2 often leaves finance recruiters with a thin pipeline after a busy Q1, and senior audit roles keep burning weeks with candidates falling through.","Hey Adam,
+
+I talk to CFOs at mid-sized banks - so I usually know who's actively searching before it hits the market. Q2 often leaves finance recruiters with a thin pipeline after a busy Q1, and senior audit roles keep burning weeks with candidates falling through.",8,"{""issues"": [""lacks a clear call to action"", ""sentence structure slightly awkward""], ""clarity"": 4, ""verdict"": ""The email is specific and clear but loses points for lacking a concrete call to action."", ""specificity"": 4, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 20:03:29.465801+00
+172,89,14,64,1,1,observation,INSUFFICIENT_DATA,"Hey Andy,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:03:30.106511+00
+173,90,14,65,1,1,observation,INSUFFICIENT_DATA,"Hey April,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:03:30.886111+00
+174,88,14,63,1,1,observation,I spend a lot of time talking to founders scaling tech teams - so I usually know who's in the middle of a senior dev search before it hits the market.,"Hey Ashley,
+
+I spend a lot of time talking to founders scaling tech teams - so I usually know who's in the middle of a senior dev search before it hits the market.",8,"{""issues"": [""No concrete pain point or company-specific detail"", ""Value proposition is vague""], ""clarity"": 5, ""verdict"": ""The email is clear and concise but lacks a concrete, company-specific pain point, limiting its impact."", ""specificity"": 3, ""total_score"": 8, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 20:03:31.074202+00
+175,91,14,66,1,1,observation,INSUFFICIENT_DATA,"Hey Anthony,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:03:31.492782+00
+176,92,15,67,1,1,observation,INSUFFICIENT_DATA,"Hey Amy,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:13:40.596938+00
+177,93,15,68,1,1,observation,INSUFFICIENT_DATA,"Hey Alea,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:13:45.291905+00
+178,94,15,69,1,1,observation,I spend a lot of time talking to plant managers at food manufacturing companies - so I usually know who's actively searching before it hits the market.,"Hey Angelica,
+
+I spend a lot of time talking to plant managers at food manufacturing companies - so I usually know who's actively searching before it hits the market.  
+Most light industrial staffing agencies see a thin Q2 pipeline after a busy Q1 - I connect",2,"{""issues"": [""Incomplete sentence ending with \""I connect\"""", ""Unclear value proposition"", ""Ambiguous recipient role"", ""Missing call to action""], ""clarity"": 2, ""verdict"": ""The email loses due to poor clarity and incomplete content."", ""specificity"": 3, ""total_score"": 2, ""role_confusion"": 1, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 20:13:50.631397+00
+179,95,15,70,1,1,observation,INSUFFICIENT_DATA,"Hey Adam,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:13:53.362247+00
+180,96,15,71,1,1,observation,INSUFFICIENT_DATA,"Hey Adam,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:13:56.448865+00
+181,97,15,72,1,1,observation,"I spend a lot of time talking to CFOs at regional banks - so I usually know who's actively searching before it hits the market. Q2 can leave banking and finance executive search firms with a thin pipeline after a busy Q1. I can connect AJ Consultants LLC to companies that are mid-search right now - just a warm intro, no cold BD.","Hey Adam,
+
+I spend a lot of time talking to CFOs at regional banks - so I usually know who's actively searching before it hits the market. Q2 can leave banking and finance executive search firms with a thin pipeline after a busy Q1. I can connect AJ Consultants LLC to companies that are mid-search right now - just a warm intro, no cold BD.",7,"{""issues"": [""Value proposition is vague; doesn’t explain what AJ Consultants offers"", ""No clear call to action"", ""Limited personalization beyond recipient’s name""], ""clarity"": 4, ""verdict"": ""The email loses due to vague value and missing CTA despite decent specificity and clarity."", ""specificity"": 3, ""total_score"": 7, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 20:14:01.67547+00
+182,98,15,73,1,1,observation,INSUFFICIENT_DATA,"Hey Ashley,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:14:07.549191+00
+183,99,15,74,1,1,observation,INSUFFICIENT_DATA,"Hey Andy,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:14:11.236104+00
+184,100,15,75,1,1,observation,INSUFFICIENT_DATA,"Hey Anthony,
+
+INSUFFICIENT_DATA",0,"{""note"": ""insufficient_data"", ""total_score"": 0}",1,t,2026-03-23 20:14:14.314816+00
+185,101,15,76,1,1,observation,I talk to,"Hey April,
+
+I talk to",0,"{""issues"": [""Email is incomplete and lacks any content or value proposition"", ""No specificity or clear purpose"", ""Unclear what the sender wants""], ""clarity"": 0, ""verdict"": ""The email loses because it is incomplete, provides no value, and fails to convey any clear message."", ""specificity"": 0, ""total_score"": 0, ""role_confusion"": 0, ""length_violation"": 0, ""genericness_penalty"": 0}",1,t,2026-03-23 20:14:19.43912+00

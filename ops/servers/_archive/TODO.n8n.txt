@@ -1,0 +1,182 @@
+N8N TODO
+========
+Дата: 2026-04-29
+Обновлено: 2026-04-30 (MCP подключён через czlonkowski/n8n-mcp)
+
+
+ТЕКУЩЕЕ СОСТОЯНИЕ
+-----------------
+- n8n поднят и доступен по адресу: https://n8n.pamelacoreypc.com/
+- Owner account создан, вход подтвержден
+- Базовый доступ, домен, Cloudflare и reverse proxy работают
+- 36 workflow в базе, 0 активных (все выключены после миграции)
+- 0 executions в истории — ни один workflow не запускался на этом инстансе
+- Есть техдолг по Cal.com: 2 workflow на calTrigger, credentials type=calApi (v1 API key)
+
+MCP ПОДКЛЮЧЕНИЕ — СТАТУС (2026-04-30)
+--------------------------------------
+[x] czlonkowski/n8n-mcp подключён и работает (Connected)
+    Команда: claude mcp add --scope user n8n-mcp -e MCP_MODE=stdio -e LOG_LEVEL=error
+             -e DISABLE_CONSOLE_OUTPUT=true -e N8N_API_URL=https://n8n.pamelacoreypc.com
+             -e N8N_API_KEY=<из netcup-primary.env SERVER_N8N_API_KEY> -- npx --yes n8n-mcp
+    Сохранено в: ~/.claude.json (scope: user — глобально для всех проектов)
+
+[~] Нативный n8n MCP (http transport, aud: mcp-server-api) — НЕ РАБОТАЕТ
+    Причина: /mcp редиректит на UI, n8n 2.17.7 не раздаёт MCP по этому пути
+    Токен SERVER_N8N_MCP_TOKEN сгенерирован, но нативный эндпоинт недоступен
+
+ЛАЙФХАК (Windows):
+  - Использовать npx --yes (без флага зависает на подтверждении установки пакета)
+  - Добавлять с --scope user (иначе виден только в одном проекте, не в /mcp диалоге)
+  - http transport не работает с нативным n8n — только stdio через czlonkowski/n8n-mcp
+
+czlonkowski/n8n-skills (github.com/czlonkowski/n8n-skills)
+  Что это: набор Claude Code скиллов (промпты), учат Claude строить workflow правильно
+  НЕ MCP сервер, НЕ npm пакет — просто инструкции для Claude
+  Устанавливается в ~/.claude/agents/ (глобально для Claude Code)
+  Полезно для разработки новых workflow, не обязательно прямо сейчас
+
+
+PHASE A — АУДИТ WORKFLOW (выполнено через API 2026-04-29)
+---------------------------------------------------------
+
+[x] Список workflow получен (36 штук через REST API)
+[x] Активных workflow: 0 — все выключены, нужно включать вручную
+[x] Execution history: 0 — ни один workflow не запускался после миграции
+
+PRODUCTION — включить в первую очередь:
+  [17YGK6ErZ7TuZHxs] Nurture after meeting booked cal.com     webhook/cal, 2026-04-29
+  [NkDkPqgbGo7bo35a] verify emails mail.so                    formTrigger, 2026-04-29
+  [031gIgLPBlR0KbpM] SALES - Fathom -> Sales Calls Library    webhook,     2026-03-26
+  [m6Faw8aHLdxHbAUk] SALES - Backfill Analysis from Sheets    manual,      2026-03-26
+  [J5joTShPsLtYPfww] Lead Icebreakers — Parallel OpenRouter   manual,      2026-03-30
+  [sNXpUoq2eN5tHQEL] MX Provider Check — Google Sheets        manual,      2026-03-30
+  [xGzS0aWx50345L7Q] exa ai website + summary                 manual,      2026-03-30
+  [cu4q1mk0k193WaqC] Email Copy - Saads strategy               manual,      2026-03-30
+  [hKGKpXMhDG5qtwer] company name cleaner                     manual,      2026-03-25
+  [xOP4Sh9EHSuOW9mO] Positive reply - crm                     webhook,     2026-03-21
+  [wN2DXaieq3R9Gdek] Outreach Daily Report v1 SSH Script      SCHEDULE,    2026-03-22
+  [0KnVjtGqOCMxtsNu] Fathom - get transcript                  webhook,     2026-01-22
+  [q4xY7Bcj0mVOGFN7] Calcom - Booking manager                 cal x4,      2026-01-27
+
+PLUSVIBE — статус неясен (PlusVibe API мог смениться), проверить перед включением:
+  [qjCbUNOcuoTfZuW9] PlusVibe - autoresponder                 webhook,     2026-01-20
+  [9iNzWy79oyLYE9pr] PlusVibe - autoresponder v2              webhook,     2026-01-27
+  [4TXycOJQHSV0xAkn] PlusVibe - CRM Sync v3                   SCHEDULE,    2026-01-27
+  [ohFOrowpQ5p57puL] PlusVibe - Follow-up Runner               SCHEDULE,    2026-01-27
+  [HZzHwbigfNEfAaDD] Plus vibe - autoreplie                   webhook,     2026-01-11
+  [ryFro2iHgk7MAx3A] PlusVibe - Simple Autoresponder          webhook,     2026-01-11
+
+DEPRECATED — скорее всего не нужны:
+  [iEVWZe9VYsdm4OMM] instantly test                           manual,      2025-11-29
+  [gKLAY0RsqXHGAiAm] main pipeline                            manual,      2025-11-24
+  [fTyzt4AEVzf8yJxe] icebreaker generator                     form,        2025-11-24
+  [2YTHugslEcmMS7ee] website scraper + summary                form,        2025-12-20
+  [Jkqh1ld35QePkiWO] shopify - abandoned                      shopify,     2025-12-10
+  [sownL4QlaIZ5o2cR] APS-Instagram Profile Scraper            manual,      2025-12-10
+  [1Y5w9LyevMvdlw4o] rapidapi - google search                 manual,      2025-12-20
+  [WlCUmbzViSdakuOy] vollna                                   webhook,     2025-12-20
+  [gIGzgCZ2LLl2j8BW] apify - enrichment insta                manual,      2025-12-20
+  [LAwU3IVpStpTb1w9] firecrawl - website summary              manual,      2026-02-17
+  [ahbbnzujIWjiWV7w] Exmoor                                   no trigger,  2026-03-18
+  [xMGTzb8N7E8iJZwK] mailso + milverifiek - verify emails     manual,      2026-03-18
+
+НУЖНА ПРОВЕРКА (непонятное назначение):
+  [fYbGF5L7sBh4utzG] All Instantly Replies -> Notify Me via Email  webhook, 2025-12-10
+  [EYJ9EWYrRh9Mb59t] cal.com - nurture                              webhook, 2026-01-11
+  [bSHCxOvMmvBLY0fl] plusvibe - endpoints                           manual,  2026-01-19
+  [nXWIuZv8wh02IczV] Outreach Daily Report v1 SSH Script (webhook)  webhook, 2026-03-22
+  [AzUhP4RhU7VpRwkR] My Sub-workflow                                 sub,     2026-03-17
+
+[ ] Запустить вручную production workflow и проверить execution
+[ ] Включить в active: SALES - Fathom, Fathom transcript, Positive reply CRM, Outreach Daily Report
+[ ] Проверить что webhooks реально доступны снаружи (особенно SALES Fathom и Positive reply)
+
+
+PHASE B — CAL.COM И ДРУГИЕ СЛОМАННЫЕ ИНТЕГРАЦИИ
+-----------------------------------------------
+
+[x] Cal.com workflow найдены — 2 штуки:
+    [17YGK6ErZ7TuZHxs] Nurture after meeting booked — 1 trigger (BOOKING_CREATED)
+    [q4xY7Bcj0mVOGFN7] Calcom - Booking manager — 4 trigger (CREATED/RESCHEDULED/CANCELLED/MEETING_ENDED)
+
+[x] Оба используют n8n-nodes-base.calTrigger (native node, не raw HTTP)
+[x] Credential: "Cal account" (id: acNnuUo0GYIznhDn), type=calApi
+    calApi = API key v1, НЕ OAuth2
+    calOAuth2Api = API key v2 / OAuth
+
+[ ] Проверить: работает ли calApi credential — зайти в n8n UI, открыть credentials,
+    нажать "Test credential" на "Cal account"
+[ ] Если тест провален — обновить API key в credential (взять новый в cal.com dashboard)
+[ ] После fix активировать оба Cal.com workflow и проверить тест-событие
+
+Отдельно:
+  [EYJ9EWYrRh9Mb59t] cal.com - nurture — использует WEBHOOK (не calTrigger)
+    Это значит Cal.com шлёт POST на n8n webhook URL
+    После активации — убедиться, что webhook URL добавлен в Cal.com → Webhooks
+
+[ ] Проверить другие credentials на валидность (Instantly, Slack, Google OAuth)
+    Google OAuth токены могут протухнуть после смены инстанса/домена
+
+
+PHASE C — ТЕСТЫ С CODE / MCP / AI FLOW
+--------------------------------------
+
+[x] Подключить n8n как MCP сервер в Claude Code
+    [x] czlonkowski/n8n-mcp установлен через npx --yes, scope: user
+    [x] Статус: Connected, доступен во всех проектах
+    [x] Протестировать list workflows через MCP — доступно
+
+[ ] (опц.) Установить czlonkowski/n8n-skills в ~/.claude/agents/ (скиллы для Claude)
+
+[ ] Проверить создание простого тестового workflow через MCP
+[ ] Проверить редактирование существующего workflow через MCP
+[ ] Зафиксировать рабочий dev-flow (UI / код / MCP / гибрид)
+
+
+PHASE D — АУДИТ ВНЕШНИХ СКРИПТОВ
+----------------------------------
+
+[x] Локальных скриптов (.py, .sh) в /servers/ нет — всё запускается через n8n
+
+Найдено: workflow "Outreach Daily Report v1 SSH Script" [wN2DXaieq3R9Gdek]
+  - ScheduleTrigger → SSH → скрипт на сервере
+  - Credentials в n8n: "VPS SSH root" (id: ZfFlprO9onp2jYFi), type=sshPassword
+  - Значит есть скрипт на VPS, который n8n дёргает по SSH
+
+[ ] SSH на сервер и найти скрипт, который запускает Daily Report
+    Вероятно в /opt/ или /home/leonid/ — поискать *.py или *.sh
+[ ] Зафиксировать: что делает скрипт, какие данные, куда пишет результат
+[ ] Решить: оставить SSH-запуск или перенести логику прямо в n8n Code node
+
+
+PHASE E — ОПЕРАЦИОННАЯ НАДЕЖНОСТЬ N8N
+-------------------------------------
+
+[ ] Backup стратегия для n8n базы:
+    n8n хранит всё в PostgreSQL контейнере (/opt/compose/n8n/)
+    Нужен: pg_dump по расписанию + upload в Google Drive или S3
+
+[ ] Credentials хранятся зашифрованно в БД n8n — ключ шифрования в .env
+    Убедиться что N8N_ENCRYPTION_KEY задан и зафиксирован в безопасном месте
+
+[ ] Политика обновления n8n:
+    Текущий образ — проверить тег в docker-compose.yml
+    Обновлять через: docker pull → docker compose up -d
+    Перед обновлением — сделать pg_dump
+
+[ ] Добавить в Uptime Kuma:
+    - https://n8n.pamelacoreypc.com/ (200 OK)
+    - Критичные webhook URL (SALES Fathom, Positive reply CRM)
+
+[ ] Staging не нужен на текущем масштабе — достаточно тестировать через UI перед активацией
+
+
+РЕЗУЛЬТАТ, К КОТОРОМУ ИДЕМ
+--------------------------
+[ ] Включены и протестированы: SALES Fathom, Fathom transcript, Positive reply CRM,
+    Outreach Daily Report, Cal.com (оба), verify emails, Lead Icebreakers, MX Check
+[ ] Cal.com credential проверен и рабочий
+[x] MCP подключён к Claude Code, можно управлять workflow из терминала
+[ ] Backup n8n БД настроен
+[ ] Uptime Kuma следит за n8n и ключевыми webhooks
