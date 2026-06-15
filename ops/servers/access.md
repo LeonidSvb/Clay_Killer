@@ -12,12 +12,12 @@ ssh -i ~/.ssh/id_ed25519_hostinger leonid@152.53.194.162
 
 СЕРВИСЫ (основные публичные URL — за Traefik + Cloudflare)
 ------------------------
-n8n:             https://n8n.pamelacoreypc.com/
-Cockpit:         https://cockpit.pamelacoreypc.com/
-Uptime Kuma:     https://uptime.pamelacoreypc.com/
+n8n:             https://n8n.pamelacoreypc.com/          ← вне Coolify, /opt/compose/n8n/
+Cockpit:         https://cockpit.pamelacoreypc.com/      ← Coolify, github: LeonidSvb/outreach-cockpit
+Uptime Kuma:     https://uptime.pamelacoreypc.com/       ← вне Coolify, /opt/compose/uptime-kuma/
 Coolify:         https://coolify.pamelacoreypc.com/
-Signal Tracker:  https://philippe.pamelacoreypc.com/   ← Next.js, systemd, port 3099
-Supabase API:    https://supabase.pamelacoreypc.com/   ← Traefik → Kong (8001)
+Signal Tracker:  https://philippe.pamelacoreypc.com/     ← Coolify, github: LeonidSvb/signal-tracker
+Supabase API:    https://supabase.pamelacoreypc.com/     ← вне Coolify, /opt/compose/supabase/
 
 Примечание по маршрутизации:
   Traefik (coolify-proxy) слушает порты 80/443
@@ -47,7 +47,7 @@ Supabase Studio:
 -----------------------------------
 Email Verifier:  http://localhost:8090  (на хосте)
                  http://172.20.0.1:8090  (из n8n контейнера)
-  Деплой:        /opt/apps/email-verifier/
+  Деплой:        Coolify, github: LeonidSvb/email-verifier
   POST /verify         { "email": "..." }
   POST /verify/batch   { "emails": [...] }
   GET  /health
@@ -68,31 +68,28 @@ Traefik:
 
 nginx:           ОТКЛЮЧЁН (заменён Traefik)
 
-Email Verifier:  /opt/apps/email-verifier/
-Outreach Cockpit:/opt/apps/outreach-cockpit/
-Signal Tracker:  /opt/apps/signal-tracker/   ← Next.js standalone, systemd signal-tracker.service
+COOLIFY ПРИЛОЖЕНИЯ (авто-деплой из GitHub при push)
+  Cockpit:       uuid=ek9crt7b3m9apigjbfqona76  token: IJXFdkO09V4H2AkgSAf2XK5KDPK2brCl8JlnUOEn
+  Email Verif:   uuid=zvktfu62bv2ow0rrtbehyas5  token: NyJrP5NCo4w2K8yCyK2xMtxU0ZDuQhLAg5HbFoJL
+  Signal Tracker:uuid=jjqqckwic2ow6nyu3tok8xu8  token: k2ZxCJlBUepjajx2Ug6SFfPO3osbWceVgBx31JTB
 
-ЧЕКЛИСТ ДЕПЛОЯ НОВОГО Next.js САЙТА (10 минут)
-  1. npm run build (локально)
-  2. tar --exclude='.next/standalone/node_modules' -czf /tmp/app.tar.gz -C .next/standalone .
-     tar -czf /tmp/static.tar.gz -C .next static
-  3. scp /tmp/app.tar.gz /tmp/static.tar.gz leonid@152.53.194.162:/tmp/
-  4. ssh: mkdir /opt/apps/MYAPP && cd /opt/apps/MYAPP
-     tar -xzf /tmp/app.tar.gz && mkdir -p .next && tar -xzf /tmp/static.tar.gz -C .next
-  5. Создать .env: PORT=XXXX / NODE_ENV=production / HOSTNAME=0.0.0.0 / NEXT_PUBLIC vars
-  6. Создать /etc/systemd/system/MYAPP.service (шаблон — signal-tracker.service)
-     sudo systemctl daemon-reload && enable && start
-  7. sudo ufw allow from 10.0.0.0/8 to any port XXXX proto tcp
-  8. Cloudflare DNS: POST /dns_records zone 95b3bb83d3f4c5bd677b016bd8d1c287
-     {"type":"A","name":"SUBDOMAIN","content":"152.53.194.162","ttl":60,"proxied":false}
-  9. Создать /data/coolify/proxy/dynamic/MYAPP.yml (шаблон — signal-tracker.yml)
-     url: http://10.0.2.1:XXXX
-  10. Проверить: curl -s http://localhost:XXXX → HTML
+  Как добавить GitHub webhook для нового приложения:
+  1. Coolify API → получить manual_webhook_secret_github для приложения (это и есть TOKEN)
+  2. GitHub: repo → Settings → Webhooks → Add webhook
+     Payload URL: https://coolify.pamelacoreypc.com/webhooks/source/github/events/manual?token=TOKEN
+     Content type: application/json
+     Secret: ТОТ ЖЕ TOKEN (Coolify проверяет HMAC-подпись — без секрета деплой не сработает!)
+     Event: Just the push event
+  3. Готово — push в main запускает деплой автоматически
 
-  ЕСЛИ SUPABASE нужен через HTTPS (обязательно если сайт на HTTPS):
-  - Создать subdomain supabase-MYAPP.pamelacoreypc.com → 10.0.2.1:8001
-  - NEXT_PUBLIC_SUPABASE_URL=https://supabase-MYAPP.pamelacoreypc.com (пересобрать!)
-  - Шаблон: /data/coolify/proxy/dynamic/supabase.yml
+  GitHub App (настроен в Coolify):
+  Имя: claude-code-coolify-github-app | App ID: 4057976 | Installation ID: 140407354
+  Установлен на: все репо аккаунта LeonidSvb
+  Назначение: OAuth-интеграция для новых приложений через Coolify UI (не для webhook авто-деплоя)
+
+  GitHub MCP (для Claude):
+  Настроен в ~/.claude/settings.json — Claude может управлять репо, вебхуками, файлами через API
+  Токен: REDACTED_GITHUB_PAT (repo + admin:repo_hook)
 
 Проекты:         /opt/apps/projects/
   sync-data:     /opt/apps/projects/sync-data/          github: LeonidSvb/sync-data

@@ -1,22 +1,66 @@
 SERVER STATUS — netcup-primary
 ================================
-Последнее обновление: 2026-06-14
+Последнее обновление: 2026-06-15
 IP: 152.53.194.162
+
+
+КАК ЗАДЕПЛОИТЬ НОВЫЙ ПРОЕКТ НА COOLIFY (5 минут)
+--------------------------------------------------
+1. Создать GitHub репо (публичное или приватное — оба работают)
+2. Убедиться что в репо есть Dockerfile или docker-compose.yml
+3. API: создать проект → создать app → передеплоить → добавить env vars
+   BASE="https://coolify.pamelacoreypc.com/api/v1"
+   TOKEN="4|372d39f982cce5da69af085522ff5bc5ff83e5fb1f46d901c62bc79c332b6ee1"
+   SERVER="i31qr902vudauxh8yayi9wsu"
+   KEY="u14n00ocxxff9mmvjo8kpdtb"  ← SSH ключ Coolify (добавлен в GitHub на уровне аккаунта)
+
+   # Приватный репо (Dockerfile):
+   curl -s -X POST "$BASE/projects" -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+     -d '{"name":"PROJECT","description":"..."}'  # → получаем project_uuid
+
+   curl -s -X POST "$BASE/applications/private-deploy-key" -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+     -d '{"project_uuid":"...","server_uuid":"'$SERVER'","environment_name":"production",
+          "git_repository":"git@github.com:LeonidSvb/REPO.git","git_branch":"main",
+          "build_pack":"dockerfile","name":"NAME","domains":"https://SUBDOMAIN.pamelacoreypc.com",
+          "ports_exposes":"3000","private_key_uuid":"'$KEY'","instant_deploy":false}'  # → app_uuid
+
+   curl -s "$BASE/deploy?uuid=APP_UUID&force=false" -H "Authorization: Bearer $TOKEN"
+
+   # Публичный репо:
+   # Тот же запрос но endpoint /applications/public, git_repository через https://, без private_key_uuid
+
+4. GitHub Webhook для авто-деплоя при push:
+   Репо → Settings → Webhooks → Add webhook
+   URL: https://coolify.pamelacoreypc.com/webhooks/source/github/events/manual?token=WEBHOOK_TOKEN
+   Content-type: application/json | Secret: ТОТ ЖЕ WEBHOOK_TOKEN | Just the push event
+   ВАЖНО: secret обязателен — Coolify проверяет HMAC-подпись, без secret деплой не сработает!
+   Webhook token: curl "$BASE/applications/APP_UUID" -H "Authorization: Bearer $TOKEN" | jq .manual_webhook_secret_github
+
+5. Добавить Cloudflare DNS (если новый субдомен):
+   curl -s -X POST "https://api.cloudflare.com/client/v4/zones/95b3bb83d3f4c5bd677b016bd8d1c287/dns_records" \
+     -H "X-Auth-Email: leo@systemhustle.com" -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
+     -H "Content-Type: application/json" \
+     --data '{"type":"A","name":"SUBDOMAIN","content":"152.53.194.162","ttl":1,"proxied":true}'
+
+ВАЖНО — env vars в Coolify:
+  - NEXT_PUBLIC_* переменные → is_buildtime: true (передаются как Docker build args → нужны ARG в Dockerfile!)
+  - Рантайм переменные → is_buildtime: false
+  - docker-compose buildpack ищет файл docker-compose.yml (не .yaml!) → патч: docker_compose_location: "/docker-compose.yml"
 
 
 СЕРВИСЫ (запущены)
 -------------------
 
-| Сервис          | Тип          | URL / Порт                                | Путь на сервере                      |
-|-----------------|--------------|-------------------------------------------|--------------------------------------|
-| Traefik         | docker        | :80 / :443                                | /data/coolify/proxy/                 |
+| Сервис          | Управление    | URL / Порт                                | GitHub / Путь                        |
+|-----------------|---------------|-------------------------------------------|--------------------------------------|
+| Traefik         | вне Coolify   | :80 / :443                                | /data/coolify/proxy/                 |
 | Coolify         | docker        | https://coolify.pamelacoreypc.com/        | /data/coolify/source/                |
-| n8n             | docker compose| https://n8n.pamelacoreypc.com/            | /opt/compose/n8n/                    |
-| Uptime Kuma     | docker compose| https://uptime.pamelacoreypc.com/         | /opt/compose/uptime-kuma/            |
-| Outreach Cockpit| docker compose| https://cockpit.pamelacoreypc.com/        | /opt/apps/outreach-cockpit/          |
-| Supabase stack  | docker compose| Studio: SSH tunnel :8001                  | /opt/compose/supabase/               |
-| Email Verifier  | docker        | localhost:8090 (внутри n8n: 172.20.0.1)   | /opt/apps/email-verifier/            |
-| Signal Tracker  | systemd       | https://philippe.pamelacoreypc.com/       | /opt/apps/signal-tracker/ (:3099)    |
+| n8n             | вне Coolify   | https://n8n.pamelacoreypc.com/            | /opt/compose/n8n/                    |
+| Uptime Kuma     | вне Coolify   | https://uptime.pamelacoreypc.com/         | /opt/compose/uptime-kuma/            |
+| Outreach Cockpit| Coolify ✓     | https://cockpit.pamelacoreypc.com/        | LeonidSvb/outreach-cockpit           |
+| Signal Tracker  | Coolify ✓     | https://philippe.pamelacoreypc.com/       | LeonidSvb/signal-tracker             |
+| Email Verifier  | Coolify ✓     | localhost:8090 (внутри n8n: 172.20.0.1)   | LeonidSvb/email-verifier             |
+| Supabase stack  | вне Coolify   | Studio: SSH tunnel :8001                  | /opt/compose/supabase/               |
 | shared-postgres | docker        | 127.0.0.1:5432 (user: app_admin)          | docker run напрямую                  |
 
 Supabase контейнеры: db, auth, rest, meta, studio, kong
