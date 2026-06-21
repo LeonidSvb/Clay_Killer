@@ -9,15 +9,22 @@
 
 ## Что задеплоено
 
+### Вне Coolify (ручное управление SSH)
 - **Traefik** — /data/coolify/proxy/ (root-owned), слушает 80/443, SSL via Cloudflare DNS Challenge
-- **Coolify** — порт 8000, UI через SSH-туннель
+- **Coolify** — порт 8000, UI: https://coolify.pamelacoreypc.com/
 - **n8n** — /opt/compose/n8n/, https://n8n.pamelacoreypc.com/
 - **Uptime Kuma** — /opt/compose/uptime-kuma/, https://uptime.pamelacoreypc.com/
-- **Outreach Cockpit** — /opt/apps/outreach-cockpit/, https://cockpit.pamelacoreypc.com/
 - **Supabase** — /opt/compose/supabase/, Studio через SSH-туннель порт 8001
-- **Email Verifier** — /opt/apps/email-verifier/, порт 8090 (localhost only)
-- **sync-data** — /opt/apps/projects/sync-data/, cron: */30 all, 01:00 daily_stats, */6h calcom, 12:00 revenue
 - **shared-postgres** — docker контейнер, порт 5432 (127.0.0.1), user: app_admin
+- **sync-data** — /opt/apps/projects/sync-data/, github: LeonidSvb/sync-data
+
+### Coolify (авто-деплой из GitHub при push)
+- **Outreach Cockpit** — https://cockpit.pamelacoreypc.com/ — github: LeonidSvb/outreach-cockpit
+- **Email Verifier** — порт 8090 (internal) — github: LeonidSvb/email-verifier
+- **Signal Tracker** — https://philippe.pamelacoreypc.com/ — github: LeonidSvb/signal-tracker
+
+### Python проекты (cron, git pull вручную)
+- sync-data, PV-sync, skool-scrape-signals, tg-monitoring — /opt/apps/projects/
 
 ## Traefik — важный контекст
 
