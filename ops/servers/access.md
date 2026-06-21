@@ -18,6 +18,8 @@ Uptime Kuma:     https://uptime.pamelacoreypc.com/       ← вне Coolify, /op
 Coolify:         https://coolify.pamelacoreypc.com/
 Signal Tracker:  https://philippe.pamelacoreypc.com/     ← Coolify, github: LeonidSvb/signal-tracker
 Supabase API:    https://supabase.pamelacoreypc.com/     ← вне Coolify, /opt/compose/supabase/
+Supabase Studio: https://studio.pamelacoreypc.com/       ← вне Coolify, basic auth: leonid / netcup-primary.env→SERVER_ADMIN_PASSWORD
+Adminer:         https://adminer.pamelacoreypc.com/      ← вне Coolify, /opt/compose/adminer/, basic auth: leonid / SERVER_ADMIN_PASSWORD
 
 Примечание по маршрутизации:
   Traefik (coolify-proxy) слушает порты 80/443
@@ -37,10 +39,10 @@ Supabase API:    https://supabase.pamelacoreypc.com/     ← вне Coolify, /op
 
 СЕРВИСЫ (только через SSH-туннель)
 ------------------------------------
-Supabase Studio:
-  Туннель:  ssh -i ~/.ssh/id_ed25519_hostinger -L 8001:localhost:8001 leonid@152.53.194.162 -N
-  Браузер:  http://localhost:8001
-  Примечание: порт изменён с 8000 на 8001 (8000 теперь занят Coolify)
+Supabase Studio теперь публичен: https://studio.pamelacoreypc.com/ (basic auth)
+Старый туннель (если нужен без auth):
+  ssh -i ~/.ssh/id_ed25519_hostinger -L 8001:localhost:8001 leonid@152.53.194.162 -N
+  Браузер: http://localhost:8001
 
 
 СЕРВИСЫ (внутренние, без туннеля)
@@ -63,7 +65,7 @@ Compose файлы:   /opt/compose/
 Coolify:         /data/coolify/source/  (root-owned)
 Traefik:
   compose:       /data/coolify/proxy/docker-compose.yml  (root-owned, редактировать base64)
-  dynamic:       /data/coolify/proxy/dynamic/  (n8n.yml, cockpit.yml, uptime.yml)
+  dynamic:       /data/coolify/proxy/dynamic/  (n8n.yml, cockpit.yml, uptime.yml, adminer.yml, studio.yml)
   certs:         /data/coolify/proxy/acme.json
 
 nginx:           ОТКЛЮЧЁН (заменён Traefik)
@@ -103,7 +105,9 @@ COOLIFY ПРИЛОЖЕНИЯ (авто-деплой из GitHub при push)
 
 POSTGRESQL (хостовый, порт 5432 локально)
 ------------------------------------------
-Существующие базы: icegen, leads, n8n, nocodb, outreach
+shared-postgres (порт 5432, user: app_admin): icegen, outreach_sync, platform, tg_monitoring
+supabase-db (порт 5434, user: postgres): postgres, _supabase  | pass: netcup-primary.env→SUPABASE_POSTGRES_PASSWORD
+n8n-postgres (внутренний, user: n8n): n8n
 Подключение через туннель:
   ssh -i ~/.ssh/id_ed25519_hostinger -L 5433:localhost:5432 leonid@152.53.194.162 -N
   затем: psql -h localhost -p 5433 -U postgres

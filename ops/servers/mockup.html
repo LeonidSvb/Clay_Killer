@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server Dashboard</title>
+<style>
+:root {
+  --bg:        #0f1117;
+  --bg2:       #161b27;
+  --bg3:       #1a2030;
+  --border:    #1e2535;
+  --border2:   #2d3a4f;
+  --text:      #e2e8f0;
+  --text2:     #94a3b8;
+  --text3:     #64748b;
+  --text4:     #475569;
+  --accent:    #3b82f6;
+  --green:     #4ade80;
+  --yellow:    #fbbf24;
+  --red:       #f87171;
+  --green-bg:  #14532d22;
+  --green-bd:  #14532d;
+  --yellow-bg: #78350f22;
+  --yellow-bd: #78350f;
+  --gray-bg:   #1e293b;
+  --gray-bd:   #334155;
+  --blue-bg:   #1e3a5f22;
+  --blue-bd:   #1e3a5f;
+}
+[data-theme="light"] {
+  --bg:        #f8fafc;
+  --bg2:       #ffffff;
+  --bg3:       #f1f5f9;
+  --border:    #e2e8f0;
+  --border2:   #cbd5e1;
+  --text:      #0f172a;
+  --text2:     #334155;
+  --text3:     #64748b;
+  --text4:     #94a3b8;
+  --accent:    #2563eb;
+  --green:     #16a34a;
+  --yellow:    #d97706;
+  --red:       #dc2626;
+  --green-bg:  #dcfce7;
+  --green-bd:  #86efac;
+  --yellow-bg: #fef9c3;
+  --yellow-bd: #fde047;
+  --gray-bg:   #f1f5f9;
+  --gray-bd:   #cbd5e1;
+  --blue-bg:   #dbeafe;
+  --blue-bd:   #93c5fd;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 14px; transition: background 0.2s, color 0.2s; }
+
+/* Topbar */
+.topbar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+.topbar-logo { font-weight: 700; font-size: 15px; color: var(--text); }
+.topbar-sub { font-size: 11px; color: var(--text3); font-family: monospace; }
+.topbar-stats { display: flex; gap: 20px; margin-left: auto; align-items: center; }
+.topbar-stat { font-size: 12px; color: var(--text3); }
+.topbar-stat span { color: var(--text2); font-weight: 500; }
+.theme-btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+.theme-btn:hover { border-color: var(--border2); }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 192px 1fr; min-height: calc(100vh - 49px); }
+
+/* Sidebar */
+.sidebar { background: var(--bg2); border-right: 1px solid var(--border); padding: 12px 0; }
+.sidebar-label { font-size: 10px; color: var(--text4); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 14px 4px; }
+.nav-item { padding: 7px 14px; cursor: pointer; color: var(--text3); display: flex; align-items: center; gap: 8px; border-left: 2px solid transparent; font-size: 13px; }
+.nav-item:hover { background: var(--bg3); color: var(--text); }
+.nav-item.active { background: var(--bg3); color: var(--text); border-left-color: var(--accent); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.dot.warn { background: var(--yellow); }
+.dot.off { background: var(--text4); }
+
+/* Main */
+.main { padding: 20px 24px; overflow-y: auto; }
+
+/* Badges */
+.badge { font-size: 11px; padding: 2px 7px; border-radius: 4px; font-weight: 500; white-space: nowrap; }
+.badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bd); }
+.badge-gray   { background: var(--gray-bg);   color: var(--text3);  border: 1px solid var(--gray-bd); }
+.tag { font-size: 11px; padding: 2px 6px; border-radius: 3px; }
+.tag-blue   { background: var(--blue-bg);   color: var(--accent); border: 1px solid var(--blue-bd); }
+.tag-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+.tag-orange { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bd); }
+
+/* Overview strip */
+.overview { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+.ov { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.ov-label { font-size: 10px; color: var(--text4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.ov-value { font-size: 20px; font-weight: 600; color: var(--text); }
+.ov-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.bar { height: 3px; background: var(--border); border-radius: 2px; margin-top: 8px; }
+.bar-fill { height: 100%; border-radius: 2px; background: var(--accent); }
+.bar-fill.warn { background: var(--yellow); }
+
+/* Section header */
+.section-hd { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+
+/* Projects grid */
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.proj-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; }
+.proj-card:hover { border-color: var(--border2); box-shadow: 0 0 0 3px var(--blue-bg); }
+.proj-card-hd { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.proj-card-name { font-weight: 600; font-size: 13px; color: var(--text); }
+.proj-card-type { font-size: 11px; color: var(--text4); margin-top: 1px; }
+.proj-rows { display: flex; flex-direction: column; gap: 4px; }
+.proj-row { display: flex; gap: 8px; font-size: 12px; }
+.proj-row-k { width: 62px; color: var(--text4); flex-shrink: 0; }
+.proj-row-v { color: var(--text2); font-family: monospace; font-size: 11px; }
+.proj-row-v.link { color: var(--accent); }
+
+/* ── DRILL-DOWN ── */
+.drilldown { display: none; }
+.drilldown.open { display: block; }
+
+.back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--text3); font-size: 13px; cursor: pointer; margin-bottom: 20px; padding: 6px 0; border: none; background: none; }
+.back-btn:hover { color: var(--text); }
+
+.dd-hero { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px; }
+.dd-hero-name { font-size: 20px; font-weight: 700; color: var(--text); }
+.dd-hero-type { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.dd-hero-badges { display: flex; gap: 8px; margin-left: auto; }
+
+.dd-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.dd-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.dd-block-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text4); margin-bottom: 10px; }
+.kv { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.kv:last-child { border-bottom: none; }
+.kv-k { color: var(--text3); font-size: 12px; }
+.kv-v { color: var(--text2); font-size: 12px; font-family: monospace; }
+.kv-v.ok { color: var(--green); }
+.kv-v.warn { color: var(--yellow); }
+.kv-v.link { color: var(--accent); }
+
+.dd-tables { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.dd-tables-hd { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text4); margin-bottom: 10px; display: flex; justify-content: space-between; }
+.tbl-row { display: flex; align-items: center; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.tbl-row:last-child { border-bottom: none; }
+.tbl-name { font-family: monospace; color: var(--text2); flex: 1; }
+.tbl-rows { color: var(--text3); width: 70px; text-align: right; }
+.tbl-last { width: 90px; text-align: right; font-size: 11px; }
+.tbl-last.fresh { color: var(--green); }
+.tbl-last.stale { color: var(--yellow); }
+.tbl-last.dead  { color: var(--red); }
+
+/* Flat list for domains / containers */
+.flat-list { display: flex; flex-direction: column; gap: 6px; }
+.flat-row { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 11px 14px; display: flex; align-items: center; gap: 14px; }
+.flat-name { font-family: monospace; font-size: 13px; color: var(--accent); min-width: 260px; }
+.flat-name.plain { color: var(--text2); }
+.flat-meta { color: var(--text3); font-size: 12px; flex: 1; }
+.flat-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* Alerts bar */
+.alerts-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; padding: 10px 14px; background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 8px; }
+.alert-pill { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 3px 9px; border-radius: 4px; cursor: pointer; }
+.alert-pill.red    { background: #f8717122; color: var(--red);    border: 1px solid #f8717144; }
+.alert-pill.yellow { background: #fbbf2422; color: var(--yellow); border: 1px solid #fbbf2444; }
+.alert-pill:hover { opacity: 0.8; }
+.alerts-label { font-size: 11px; font-weight: 600; color: var(--text4); align-self: center; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Services page */
+.svc-list { display: flex; flex-direction: column; gap: 10px; }
+
+/* Group */
+.svc-group { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.svc-group-hd { display: flex; align-items: center; gap: 10px; padding: 10px 14px; cursor: pointer; background: var(--bg3); border-bottom: 1px solid var(--border); }
+.svc-group-hd:hover { background: var(--bg2); }
+.svc-group-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.svc-group-count { font-size: 11px; color: var(--text4); background: var(--bg2); border: 1px solid var(--border); padding: 1px 7px; border-radius: 10px; }
+.svc-group-path { font-size: 11px; color: var(--text4); font-family: monospace; }
+.svc-group-chev { margin-left: 6px !important; }
+.svc-scripts { display: none; }
+.svc-scripts.open { display: flex; flex-direction: column; }
+
+/* Script rows */
+.svc-row { border-bottom: 1px solid var(--border); overflow: hidden; }
+.svc-row:last-child { border-bottom: none; }
+.svc-strip { display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; cursor: pointer; }
+.svc-strip:hover { background: var(--bg3); }
+.svc-strip.open-strip { background: var(--bg3); border-bottom: 1px solid var(--border); }
+.svc-name { font-size: 13px; font-weight: 600; color: var(--text); min-width: 160px; }
+.svc-schedule { font-size: 11px; color: var(--text4); font-family: monospace; min-width: 90px; }
+.svc-stat { font-size: 12px; }
+.svc-stat-k { color: var(--text4); margin-right: 4px; }
+.svc-stat-v { color: var(--text2); font-weight: 500; }
+.svc-stat-v.ok   { color: var(--green); }
+.svc-stat-v.warn { color: var(--yellow); }
+.svc-stat-v.red  { color: var(--red); }
+.svc-sep { color: var(--border2); margin: 0 4px; }
+.svc-chevron { margin-left: auto; color: var(--text4); font-size: 11px; transition: transform 0.15s; }
+.svc-chevron.rotated { transform: rotate(90deg); color: var(--accent); }
+
+.svc-script-name { font-family: monospace; font-size: 12px !important; }
+.svc-detail { display: none; }
+.svc-detail.open { display: flex; flex-direction: column; gap: 6px; padding: 10px 14px 12px; background: var(--bg3); border-top: 1px solid var(--border); }
+.svc-info-line { display: flex; align-items: center; gap: 0; flex-wrap: wrap; font-size: 12px; color: var(--text3); }
+.svc-info-line .mv { color: var(--text2); font-family: monospace; font-size: 11px; }
+.svc-info-line .sep { color: var(--border2); margin: 0 7px; }
+.svc-info-line .arr { color: var(--text4); margin: 0 6px; }
+.svc-run-line { display: flex; align-items: center; gap: 0; font-size: 12px; flex-wrap: wrap; }
+.svc-run-line .rk { color: var(--text4); margin-right: 5px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+.svc-run-line .rv { color: var(--text2); font-weight: 600; }
+.svc-run-line .rv.ok   { color: var(--green); }
+.svc-run-line .rv.warn { color: var(--yellow); }
+.svc-run-line .rv.err  { color: var(--red); }
+.svc-run-line .sep { color: var(--border2); margin: 0 8px; }
+
+.runs-table { margin-top: 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; grid-column: 1 / -1; }
+.runs-hd { display: grid; grid-template-columns: 60px 110px 110px 80px 100px 1fr; gap: 8px; padding: 8px 14px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text4); }
+.run-row { display: grid; grid-template-columns: 60px 110px 110px 80px 100px 1fr; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--border); font-size: 12px; font-family: monospace; }
+.run-row:last-child { border-bottom: none; }
+.run-id { color: var(--text4); }
+.run-status.ok   { color: var(--green); }
+.run-status.warn { color: var(--yellow); }
+.run-status.fail { color: var(--red); }
+
+/* Records scrollable list */
+.records-scroll { max-height: 180px; overflow-y: auto; border: 1px solid var(--border); border-radius: 4px; margin-top: 4px; }
+.records-scroll .change-row { padding: 4px 8px; }
+.records-load-more { font-size: 11px; color: var(--accent); cursor: pointer; padding-top: 5px; display: inline-block; }
+.records-load-more:hover { text-decoration: underline; }
+
+/* Run drill-down */
+.run-row { cursor: pointer; }
+.run-row:hover { background: var(--bg3); }
+.run-row.active { background: var(--blue-bg); }
+.run-panel { background: var(--bg2); border-top: 1px dashed var(--border2); padding: 10px 14px 12px; }
+.run-panel-hd { font-size: 11px; font-family: monospace; color: var(--text3); margin-bottom: 10px; }
+.run-panel-hd .ok   { color: var(--green); font-weight: 600; }
+.run-panel-hd .fail { color: var(--red);   font-weight: 600; }
+.run-changes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.run-change-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text4); margin-bottom: 6px; }
+.change-row { display: flex; align-items: center; gap: 6px; padding: 3px 0; border-bottom: 1px solid var(--border); font-size: 11px; font-family: monospace; }
+.change-row:last-of-type { border-bottom: none; }
+.change-obj   { color: var(--accent); min-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.change-field { color: var(--text3); min-width: 80px; }
+.change-old   { color: var(--text4); }
+.change-arrow { color: var(--border2); }
+.change-new   { color: var(--green); }
+.err-row { display: flex; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--border); font-size: 11px; font-family: monospace; }
+.err-row:last-of-type { border-bottom: none; }
+.err-obj { color: var(--yellow); min-width: 90px; }
+.err-msg { color: var(--red); }
+.run-more { font-size: 10px; color: var(--text4); padding-top: 5px; }
+
+/* Cleanup page */
+.cleanup-section { margin-bottom: 20px; }
+.cleanup-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text4); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.cleanup-item { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 6px; padding: 12px 14px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 14px; }
+.cleanup-item.yellow { border-left-color: var(--yellow); }
+.cleanup-item-name { font-size: 13px; font-weight: 600; color: var(--text); min-width: 200px; }
+.cleanup-item-meta { font-size: 12px; color: var(--text3); flex: 1; line-height: 1.5; }
+.cleanup-item-action { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; cursor: pointer; white-space: nowrap; border: 1px solid var(--border2); color: var(--text3); background: var(--bg3); }
+.cleanup-item-action:hover { color: var(--red); border-color: var(--red); }
+
+/* Hidden */
+.page { display: none; }
+.page.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-logo">netcup-primary</div>
+    <div class="topbar-sub">152.53.194.162 · ARM64 8GB · Manassas US</div>
+  </div>
+  <div class="topbar-stats">
+    <div class="topbar-stat">CPU <span>18%</span></div>
+    <div class="topbar-stat">RAM <span>4.9 / 8 GB</span></div>
+    <div class="topbar-stat">Disk <span>47 / 256 GB</span></div>
+    <div class="topbar-stat">Uptime <span>12 days</span></div>
+    <button class="theme-btn" onclick="toggleTheme()">Toggle theme</button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-label">Views</div>
+    <div class="nav-item active" onclick="showPage('projects')"><div class="dot"></div>Projects</div>
+    <div class="nav-item" onclick="showPage('domains')"><div class="dot"></div>Domains</div>
+    <div class="nav-item" onclick="showPage('databases')"><div class="dot"></div>Databases</div>
+    <div class="nav-item" onclick="showPage('containers')"><div class="dot warn"></div>Containers</div>
+    <div class="nav-item" onclick="showPage('services')"><div class="dot warn"></div>Services</div>
+    <div class="nav-item" onclick="showPage('cleanup')"><div class="dot" style="background:var(--red)"></div>Cleanup <span style="font-size:10px;background:#f8717133;color:var(--red);padding:1px 5px;border-radius:3px;margin-left:4px">4</span></div>
+    <div class="sidebar-label">Projects</div>
+    <div class="nav-item" onclick="openProject('cockpit')"><div class="dot"></div>Outreach Cockpit</div>
+    <div class="nav-item" onclick="openProject('signal')"><div class="dot"></div>Signal Tracker</div>
+    <div class="nav-item" onclick="openProject('n8n')"><div class="dot"></div>n8n</div>
+    <div class="nav-item" onclick="openProject('sync')"><div class="dot warn"></div>sync-data</div>
+    <div class="nav-item" onclick="openProject('skool')"><div class="dot"></div>skool-scraper</div>
+    <div class="nav-item" onclick="openProject('tg')"><div class="dot off"></div>tg-monitoring</div>
+  </div>
+
+  <div class="main">
+
+    <!-- ═══ PROJECTS PAGE ═══ -->
+    <div class="page active" id="page-projects">
+
+      <!-- Alerts bar -->
+      <div class="alerts-bar" id="alerts-bar">
+        <span class="alerts-label">Issues</span>
+        <span class="alert-pill red" onclick="openProject('tg')">tg-monitoring inactive 47d</span>
+        <span class="alert-pill red" onclick="showPage('cleanup')">2 dead tables in public schema</span>
+        <span class="alert-pill red" onclick="showPage('cleanup')">1 orphaned DB (tg_monitoring)</span>
+        <span class="alert-pill yellow" onclick="openProject('sync')">sync-data last run 6h ago</span>
+        <span class="alert-pill yellow" onclick="showPage('containers')">email-verifier: no health check</span>
+      </div>
+
+      <div class="overview">
+        <div class="ov"><div class="ov-label">Containers</div><div class="ov-value">17</div><div class="ov-sub">1 warning</div><div class="bar"><div class="bar-fill" style="width:94%"></div></div></div>
+        <div class="ov"><div class="ov-label">Domains</div><div class="ov-value">9</div><div class="ov-sub">all active</div><div class="bar"><div class="bar-fill" style="width:100%"></div></div></div>
+        <div class="ov"><div class="ov-label">Databases</div><div class="ov-value">6</div><div class="ov-sub">3 instances</div><div class="bar"><div class="bar-fill" style="width:100%"></div></div></div>
+        <div class="ov"><div class="ov-label">RAM</div><div class="ov-value">62%</div><div class="ov-sub">4.9 of 8 GB</div><div class="bar"><div class="bar-fill warn" style="width:62%"></div></div></div>
+        <div class="ov"><div class="ov-label">Disk</div><div class="ov-value">18%</div><div class="ov-sub">47 of 256 GB</div><div class="bar"><div class="bar-fill" style="width:18%"></div></div></div>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="section-hd">Projects</div>
+
+      <!-- Drill-down panel (inside projects page) -->
+      <div class="drilldown" id="drilldown">
+        <button class="back-btn" onclick="closeProject()">← Back to all projects</button>
+
+        <!-- cockpit -->
+        <div class="dd-content" id="dd-cockpit" style="display:none">
+          <div class="dd-hero">
+            <div><div class="dd-hero-name">Outreach Cockpit</div><div class="dd-hero-type">Web app · Coolify · github: LeonidSvb/outreach-cockpit</div></div>
+            <div class="dd-hero-badges"><span class="badge badge-green">healthy</span></div>
+          </div>
+          <div class="dd-grid">
+            <div class="dd-block">
+              <div class="dd-block-title">Container</div>
+              <div class="kv"><span class="kv-k">Name</span><span class="kv-v">outreach-cockpit</span></div>
+              <div class="kv"><span class="kv-k">Status</span><span class="kv-v ok">running</span></div>
+              <div class="kv"><span class="kv-k">RAM</span><span class="kv-v">312 MB</span></div>
+              <div class="kv"><span class="kv-k">CPU</span><span class="kv-v">0.4%</span></div>
+              <div class="kv"><span class="kv-k">Uptime</span><span class="kv-v">2 days</span></div>
+              <div class="kv"><span class="kv-k">API</span><span class="kv-v">outreach-cockpit-api</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Domain</div>
+              <div class="kv"><span class="kv-k">URL</span><span class="kv-v link">cockpit.pamelacoreypc.com</span></div>
+              <div class="kv"><span class="kv-k">SSL</span><span class="kv-v ok">valid · 83 days</span></div>
+              <div class="kv"><span class="kv-k">Cloudflare</span><span class="kv-v">proxied</span></div>
+              <div class="kv"><span class="kv-k">Traefik</span><span class="kv-v">cockpit.yml</span></div>
+              <div class="kv"><span class="kv-k">Last deploy</span><span class="kv-v">2 days ago</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Database</div>
+              <div class="kv"><span class="kv-k">Instance</span><span class="kv-v">supabase-db</span></div>
+              <div class="kv"><span class="kv-k">Schema</span><span class="kv-v">outreach</span></div>
+              <div class="kv"><span class="kv-k">Tables</span><span class="kv-v">24</span></div>
+              <div class="kv"><span class="kv-k">Last write</span><span class="kv-v ok">3 min ago</span></div>
+              <div class="kv"><span class="kv-k">Last backup</span><span class="kv-v">03:00 today</span></div>
+            </div>
+          </div>
+          <div class="dd-tables">
+            <div class="dd-tables-hd"><span>outreach schema — tables</span><span style="color:var(--text4)">24 total · showing active</span></div>
+            <div class="tbl-row"><span class="tbl-name">leads</span><span class="tbl-rows">24,312</span><span class="tbl-last fresh">3m ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">emails</span><span class="tbl-rows">51,840</span><span class="tbl-last fresh">3m ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">inbox_threads</span><span class="tbl-rows">3,201</span><span class="tbl-last fresh">12m ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">campaigns</span><span class="tbl-rows">184</span><span class="tbl-last fresh">1h ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">fathom_calls</span><span class="tbl-rows">47</span><span class="tbl-last fresh">6h ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">account_stats</span><span class="tbl-rows">1,024</span><span class="tbl-last fresh">1h ago</span></div>
+            <div class="tbl-row"><span class="tbl-name" style="color:var(--text4)">+ 18 more tables</span><span class="tbl-rows"></span><span class="tbl-last"></span></div>
+          </div>
+        </div>
+
+        <!-- signal -->
+        <div class="dd-content" id="dd-signal" style="display:none">
+          <div class="dd-hero">
+            <div><div class="dd-hero-name">Signal Tracker</div><div class="dd-hero-type">Web app · Coolify · github: LeonidSvb/signal-tracker</div></div>
+            <div class="dd-hero-badges"><span class="badge badge-green">healthy</span></div>
+          </div>
+          <div class="dd-grid">
+            <div class="dd-block">
+              <div class="dd-block-title">Container</div>
+              <div class="kv"><span class="kv-k">Name</span><span class="kv-v">signal-tracker</span></div>
+              <div class="kv"><span class="kv-k">Status</span><span class="kv-v ok">running</span></div>
+              <div class="kv"><span class="kv-k">RAM</span><span class="kv-v">198 MB</span></div>
+              <div class="kv"><span class="kv-k">CPU</span><span class="kv-v">0.2%</span></div>
+              <div class="kv"><span class="kv-k">Uptime</span><span class="kv-v">5 days</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Domain</div>
+              <div class="kv"><span class="kv-k">URL</span><span class="kv-v link">philippe.pamelacoreypc.com</span></div>
+              <div class="kv"><span class="kv-k">SSL</span><span class="kv-v ok">valid · 83 days</span></div>
+              <div class="kv"><span class="kv-k">Cloudflare</span><span class="kv-v">proxied</span></div>
+              <div class="kv"><span class="kv-k">Auth</span><span class="kv-v">Supabase JS client</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Database</div>
+              <div class="kv"><span class="kv-k">Instance</span><span class="kv-v">supabase-db</span></div>
+              <div class="kv"><span class="kv-k">Schema</span><span class="kv-v">public (PostgREST)</span></div>
+              <div class="kv"><span class="kv-k">Tables</span><span class="kv-v">5</span></div>
+              <div class="kv"><span class="kv-k">Last write</span><span class="kv-v ok">2h ago</span></div>
+            </div>
+          </div>
+          <div class="dd-tables">
+            <div class="dd-tables-hd"><span>public schema — project tables</span></div>
+            <div class="tbl-row"><span class="tbl-name">skool_signals</span><span class="tbl-rows">1,139</span><span class="tbl-last fresh">2h ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">communities</span><span class="tbl-rows">211</span><span class="tbl-last fresh">2h ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">leads</span><span class="tbl-rows">23</span><span class="tbl-last stale">4 days ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">clients</span><span class="tbl-rows">1</span><span class="tbl-last stale">4 days ago</span></div>
+          </div>
+        </div>
+
+        <!-- n8n -->
+        <div class="dd-content" id="dd-n8n" style="display:none">
+          <div class="dd-hero">
+            <div><div class="dd-hero-name">n8n</div><div class="dd-hero-type">Automation · Manual compose · /opt/compose/n8n/</div></div>
+            <div class="dd-hero-badges"><span class="badge badge-green">healthy</span></div>
+          </div>
+          <div class="dd-grid">
+            <div class="dd-block">
+              <div class="dd-block-title">Container</div>
+              <div class="kv"><span class="kv-k">Name</span><span class="kv-v">n8n-app</span></div>
+              <div class="kv"><span class="kv-k">Status</span><span class="kv-v ok">running</span></div>
+              <div class="kv"><span class="kv-k">RAM</span><span class="kv-v">~400 MB</span></div>
+              <div class="kv"><span class="kv-k">Uptime</span><span class="kv-v">12 days</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Domain</div>
+              <div class="kv"><span class="kv-k">URL</span><span class="kv-v link">n8n.pamelacoreypc.com</span></div>
+              <div class="kv"><span class="kv-k">SSL</span><span class="kv-v ok">valid</span></div>
+              <div class="kv"><span class="kv-k">Port</span><span class="kv-v">127.0.0.1:5678</span></div>
+              <div class="kv"><span class="kv-k">Traefik</span><span class="kv-v">n8n.yml</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Database</div>
+              <div class="kv"><span class="kv-k">Instance</span><span class="kv-v">n8n-postgres</span></div>
+              <div class="kv"><span class="kv-k">Database</span><span class="kv-v">n8n</span></div>
+              <div class="kv"><span class="kv-k">Type</span><span class="kv-v">internal only</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- sync -->
+        <div class="dd-content" id="dd-sync" style="display:none">
+          <div class="dd-hero">
+            <div><div class="dd-hero-name">sync-data</div><div class="dd-hero-type">Python cron · /opt/apps/projects/sync-data/ · github: LeonidSvb/sync-data</div></div>
+            <div class="dd-hero-badges"><span class="badge badge-yellow">last run 6h ago</span></div>
+          </div>
+          <div class="dd-grid">
+            <div class="dd-block">
+              <div class="dd-block-title">Service</div>
+              <div class="kv"><span class="kv-k">Type</span><span class="kv-v">Python cron</span></div>
+              <div class="kv"><span class="kv-k">Container</span><span class="kv-v">none (host)</span></div>
+              <div class="kv"><span class="kv-k">Domain</span><span class="kv-v">none</span></div>
+              <div class="kv"><span class="kv-k">Last run</span><span class="kv-v warn">6h ago</span></div>
+              <div class="kv"><span class="kv-k">Schedule</span><span class="kv-v">cron / manual</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Database</div>
+              <div class="kv"><span class="kv-k">Instance</span><span class="kv-v">supabase-db</span></div>
+              <div class="kv"><span class="kv-k">Schema</span><span class="kv-v">outreach</span></div>
+              <div class="kv"><span class="kv-k">Last write</span><span class="kv-v warn">6h ago</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Note</div>
+              <div style="font-size:12px;color:var(--text3);padding-top:4px;line-height:1.6;">Syncs outreach data into supabase/outreach schema. Shares the same schema as outreach-cockpit.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- skool -->
+        <div class="dd-content" id="dd-skool" style="display:none">
+          <div class="dd-hero">
+            <div><div class="dd-hero-name">skool-scraper</div><div class="dd-hero-type">Python cron · /opt/apps/projects/skool-scrape-signals/ · github: LeonidSvb/skool-scrape-signals</div></div>
+            <div class="dd-hero-badges"><span class="badge badge-green">healthy</span></div>
+          </div>
+          <div class="dd-grid">
+            <div class="dd-block">
+              <div class="dd-block-title">Service</div>
+              <div class="kv"><span class="kv-k">Type</span><span class="kv-v">Python cron</span></div>
+              <div class="kv"><span class="kv-k">Container</span><span class="kv-v">none (host)</span></div>
+              <div class="kv"><span class="kv-k">Domain</span><span class="kv-v">none</span></div>
+              <div class="kv"><span class="kv-k">Last run</span><span class="kv-v ok">2h ago</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Database</div>
+              <div class="kv"><span class="kv-k">Instance</span><span class="kv-v">supabase-db</span></div>
+              <div class="kv"><span class="kv-k">Schema</span><span class="kv-v">public</span></div>
+              <div class="kv"><span class="kv-k">Last write</span><span class="kv-v ok">2h ago</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Note</div>
+              <div style="font-size:12px;color:var(--text3);padding-top:4px;line-height:1.6;">Scrapes Skool communities and posts signals. signal-tracker reads the same tables via PostgREST.</div>
+            </div>
+          </div>
+          <div class="dd-tables">
+            <div class="dd-tables-hd"><span>public schema — writes to</span></div>
+            <div class="tbl-row"><span class="tbl-name">skool_signals</span><span class="tbl-rows">1,139</span><span class="tbl-last fresh">2h ago</span></div>
+            <div class="tbl-row"><span class="tbl-name">communities</span><span class="tbl-rows">211</span><span class="tbl-last fresh">2h ago</span></div>
+          </div>
+        </div>
+
+        <!-- tg -->
+        <div class="dd-content" id="dd-tg" style="display:none">
+          <div class="dd-hero">
+            <div><div class="dd-hero-name">tg-monitoring</div><div class="dd-hero-type">Python cron · /opt/apps/projects/tg-monitoring/ · status: inactive</div></div>
+            <div class="dd-hero-badges"><span class="badge badge-gray">inactive</span></div>
+          </div>
+          <div class="dd-grid">
+            <div class="dd-block">
+              <div class="dd-block-title">Service</div>
+              <div class="kv"><span class="kv-k">Type</span><span class="kv-v">Python cron</span></div>
+              <div class="kv"><span class="kv-k">Last run</span><span class="kv-v" style="color:var(--red)">47 days ago</span></div>
+              <div class="kv"><span class="kv-k">Domain</span><span class="kv-v">none</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Database</div>
+              <div class="kv"><span class="kv-k">Instance</span><span class="kv-v" style="color:var(--yellow)">Supabase Cloud (aws)</span></div>
+              <div class="kv"><span class="kv-k">Cost</span><span class="kv-v warn">paying for cloud</span></div>
+              <div class="kv"><span class="kv-k">Local mirror</span><span class="kv-v">shared-postgres/tg_monitoring (orphaned)</span></div>
+            </div>
+            <div class="dd-block">
+              <div class="dd-block-title">Action needed</div>
+              <div style="font-size:12px;color:var(--red);padding-top:4px;line-height:1.6;">Project inactive 47 days. Consider archiving. Cancel Supabase Cloud plan to save cost. Drop local tg_monitoring DB.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects grid (shown when no drill-down) -->
+      <div id="projects-grid" class="projects-grid">
+        <div class="proj-card" onclick="openProject('cockpit')">
+          <div class="proj-card-hd"><div><div class="proj-card-name">Outreach Cockpit</div><div class="proj-card-type">Web app · Coolify</div></div><span class="badge badge-green">healthy</span></div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-k">Domain</span><span class="proj-row-v link">cockpit.pamelacoreypc.com</span></div>
+            <div class="proj-row"><span class="proj-row-k">Container</span><span class="proj-row-v">outreach-cockpit</span></div>
+            <div class="proj-row"><span class="proj-row-k">Database</span><span class="proj-row-v">supabase / outreach</span></div>
+            <div class="proj-row"><span class="proj-row-k">Deploy</span><span class="proj-row-v">2 days ago</span></div>
+          </div>
+        </div>
+        <div class="proj-card" onclick="openProject('signal')">
+          <div class="proj-card-hd"><div><div class="proj-card-name">Signal Tracker</div><div class="proj-card-type">Web app · Coolify</div></div><span class="badge badge-green">healthy</span></div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-k">Domain</span><span class="proj-row-v link">philippe.pamelacoreypc.com</span></div>
+            <div class="proj-row"><span class="proj-row-k">Container</span><span class="proj-row-v">signal-tracker</span></div>
+            <div class="proj-row"><span class="proj-row-k">Database</span><span class="proj-row-v">supabase / public</span></div>
+            <div class="proj-row"><span class="proj-row-k">Deploy</span><span class="proj-row-v">5 days ago</span></div>
+          </div>
+        </div>
+        <div class="proj-card" onclick="openProject('n8n')">
+          <div class="proj-card-hd"><div><div class="proj-card-name">n8n</div><div class="proj-card-type">Automation · Manual</div></div><span class="badge badge-green">healthy</span></div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-k">Domain</span><span class="proj-row-v link">n8n.pamelacoreypc.com</span></div>
+            <div class="proj-row"><span class="proj-row-k">Container</span><span class="proj-row-v">n8n-app</span></div>
+            <div class="proj-row"><span class="proj-row-k">Database</span><span class="proj-row-v">n8n-postgres / n8n</span></div>
+            <div class="proj-row"><span class="proj-row-k">Uptime</span><span class="proj-row-v">12 days</span></div>
+          </div>
+        </div>
+        <div class="proj-card" onclick="openProject('sync')">
+          <div class="proj-card-hd"><div><div class="proj-card-name">sync-data</div><div class="proj-card-type">Python cron</div></div><span class="badge badge-yellow">6h ago</span></div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-k">Domain</span><span class="proj-row-v">—</span></div>
+            <div class="proj-row"><span class="proj-row-k">Database</span><span class="proj-row-v">supabase / outreach</span></div>
+            <div class="proj-row"><span class="proj-row-k">Path</span><span class="proj-row-v">/opt/apps/projects/sync-data</span></div>
+          </div>
+        </div>
+        <div class="proj-card" onclick="openProject('skool')">
+          <div class="proj-card-hd"><div><div class="proj-card-name">skool-scraper</div><div class="proj-card-type">Python cron</div></div><span class="badge badge-green">healthy</span></div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-k">Domain</span><span class="proj-row-v">—</span></div>
+            <div class="proj-row"><span class="proj-row-k">Database</span><span class="proj-row-v">supabase / public</span></div>
+            <div class="proj-row"><span class="proj-row-k">Last run</span><span class="proj-row-v">2h ago</span></div>
+          </div>
+        </div>
+        <div class="proj-card" onclick="openProject('tg')">
+          <div class="proj-card-hd"><div><div class="proj-card-name">tg-monitoring</div><div class="proj-card-type">Python cron</div></div><span class="badge badge-gray">inactive</span></div>
+          <div class="proj-rows">
+            <div class="proj-row"><span class="proj-row-k">Domain</span><span class="proj-row-v">—</span></div>
+            <div class="proj-row"><span class="proj-row-k">Database</span><span class="proj-row-v" style="color:var(--yellow)">Supabase Cloud (aws)</span></div>
+            <div class="proj-row"><span class="proj-row-k">Last run</span><span class="proj-row-v" style="color:var(--red)">47 days ago</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DOMAINS PAGE ═══ -->
+    <div class="page" id="page-domains">
+      <div class="section-hd">Domains</div>
+      <div class="flat-list">
+        <div class="flat-row"><div class="flat-name">cockpit.pamelacoreypc.com</div><div class="flat-meta">→ outreach-cockpit:3000 · Traefik cockpit.yml</div><div class="flat-tags"><span class="tag tag-green">SSL ok 83d</span><span class="tag tag-green">CF proxied</span></div></div>
+        <div class="flat-row"><div class="flat-name">philippe.pamelacoreypc.com</div><div class="flat-meta">→ signal-tracker:3000 · Traefik</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-green">CF proxied</span></div></div>
+        <div class="flat-row"><div class="flat-name">n8n.pamelacoreypc.com</div><div class="flat-meta">→ n8n-app:5678 · Traefik n8n.yml</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-green">CF proxied</span></div></div>
+        <div class="flat-row"><div class="flat-name">uptime.pamelacoreypc.com</div><div class="flat-meta">→ uptime-kuma:3001 · Traefik uptime.yml</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-green">CF proxied</span></div></div>
+        <div class="flat-row"><div class="flat-name">coolify.pamelacoreypc.com</div><div class="flat-meta">→ coolify:8000</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-green">CF proxied</span></div></div>
+        <div class="flat-row"><div class="flat-name">studio.pamelacoreypc.com</div><div class="flat-meta">→ supabase-studio:3000 · Traefik studio.yml</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-orange">basic auth</span></div></div>
+        <div class="flat-row"><div class="flat-name">adminer.pamelacoreypc.com</div><div class="flat-meta">→ adminer:8080 · Traefik adminer.yml</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-orange">basic auth</span></div></div>
+        <div class="flat-row"><div class="flat-name">supabase.pamelacoreypc.com</div><div class="flat-meta">→ supabase-kong:8000 (API gateway)</div><div class="flat-tags"><span class="tag tag-green">SSL ok</span><span class="tag tag-green">CF proxied</span></div></div>
+      </div>
+    </div>
+
+    <!-- ═══ DATABASES PAGE ═══ -->
+    <div class="page" id="page-databases">
+      <div class="section-hd" style="margin-bottom:16px">Databases</div>
+      <div class="svc-list">
+
+        <!-- ── GROUP: supabase-db ── -->
+        <div class="svc-group">
+          <div class="svc-group-hd" onclick="toggleGroup('grp-supa')">
+            <div class="dot"></div>
+            <span class="svc-group-name">supabase-db</span>
+            <span class="svc-group-count">3 schemas</span>
+            <span class="svc-group-path">port 5434 · postgres@supabase-db</span>
+            <span class="badge badge-yellow" style="margin-left:auto">1 needs review</span>
+            <span class="svc-chevron svc-group-chev" id="chev-grp-supa">›</span>
+          </div>
+          <div class="svc-scripts" id="grp-supa">
+
+            <!-- outreach schema -->
+            <div class="svc-row" id="svc-db-outreach">
+              <div class="svc-strip" onclick="toggleSvc('db-outreach')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">outreach</div>
+                <div class="svc-schedule">schema</div>
+                <span class="svc-stat"><span class="svc-stat-k">tables</span><span class="svc-stat-v">24</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">last write</span><span class="svc-stat-v ok">3m ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">used by</span><span class="svc-stat-v">cockpit, sync-data</span></span>
+                <div class="svc-chevron" id="chev-db-outreach">›</div>
+              </div>
+              <div class="svc-detail" id="detail-db-outreach">
+                <div class="svc-info-line"><span class="mv">supabase-db / outreach</span><span class="sep">·</span>24 tables<span class="sep">·</span>writers: sync-data<span class="sep">·</span>readers: outreach-cockpit</div>
+                <div class="svc-run-line"><span class="rk">Last backup</span><span class="rv">Today 03:00</span><span class="sep">·</span><span class="rk">Last write</span><span class="rv ok">3m ago</span><span class="sep">·</span><span class="rv">size ~2.3 GB</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span style="flex:2">Table</span><span>Rows</span><span>Last write</span><span>Status</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>leads</span><span>24,312</span><span>3m ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>emails</span><span>51,840</span><span>3m ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>inbox_threads</span><span>3,201</span><span>12m ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>campaigns</span><span>184</span><span>1h ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>fathom_calls</span><span>47</span><span>6h ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>account_stats</span><span>1,024</span><span>1h ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr;opacity:0.5"><span>+ 18 more tables</span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- public schema -->
+            <div class="svc-row" id="svc-db-public">
+              <div class="svc-strip" onclick="toggleSvc('db-public')">
+                <div class="dot warn" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">public</div>
+                <div class="svc-schedule">schema</div>
+                <span class="svc-stat"><span class="svc-stat-k">tables</span><span class="svc-stat-v">6</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">last write</span><span class="svc-stat-v ok">2h ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">dead tables</span><span class="svc-stat-v red">2</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">used by</span><span class="svc-stat-v">signal-tracker, skool-scraper</span></span>
+                <div class="svc-chevron" id="chev-db-public">›</div>
+              </div>
+              <div class="svc-detail" id="detail-db-public">
+                <div class="svc-info-line"><span class="mv">supabase-db / public</span><span class="sep">·</span>6 tables<span class="sep">·</span>writers: skool-scraper<span class="sep">·</span>readers: signal-tracker (PostgREST)</div>
+                <div class="svc-run-line"><span class="rk">Last write</span><span class="rv ok">2h ago</span><span class="sep">·</span><span style="color:var(--red);font-size:12px">2 dead tables — safe to drop (tg_events, tg_groups)</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span style="flex:2">Table</span><span>Rows</span><span>Last write</span><span>Status</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>skool_signals</span><span>1,139</span><span>2h ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>communities</span><span>211</span><span>2h ago</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>leads</span><span>23</span><span>4d ago</span><span class="run-status warn">stale</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span style="color:var(--red)">tg_events</span><span>3</span><span>47d ago</span><span class="run-status fail">dead</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span style="color:var(--red)">tg_groups</span><span>2</span><span>47d ago</span><span class="run-status fail">dead</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- enrichment schema -->
+            <div class="svc-row" id="svc-db-enrichment">
+              <div class="svc-strip" onclick="toggleSvc('db-enrichment')">
+                <div class="dot warn" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">enrichment</div>
+                <div class="svc-schedule">schema</div>
+                <span class="svc-stat"><span class="svc-stat-k">tables</span><span class="svc-stat-v">4</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">last write</span><span class="svc-stat-v warn">unknown</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">used by</span><span class="svc-stat-v warn">—</span></span>
+                <div class="svc-chevron" id="chev-db-enrichment">›</div>
+              </div>
+              <div class="svc-detail" id="detail-db-enrichment">
+                <div class="svc-info-line"><span class="mv">supabase-db / enrichment</span><span class="sep">·</span>4 tables<span class="sep">·</span><span style="color:var(--yellow)">no active project uses this schema</span></div>
+                <div class="svc-run-line"><span class="rk">Last write</span><span class="rv warn">unknown</span><span class="sep">·</span><span style="font-size:12px;color:var(--text3)">leads_master, workspaces, workspace_leads, tasks</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span style="flex:2">Table</span><span>Rows</span><span>Last write</span><span>Status</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>leads_master</span><span>—</span><span>unknown</span><span class="run-status warn">?</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>workspaces</span><span>—</span><span>unknown</span><span class="run-status warn">?</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>workspace_leads</span><span>—</span><span>unknown</span><span class="run-status warn">?</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>tasks</span><span>—</span><span>unknown</span><span class="run-status warn">?</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── GROUP: shared-postgres ── -->
+        <div class="svc-group">
+          <div class="svc-group-hd" onclick="toggleGroup('grp-shared')">
+            <div class="dot warn"></div>
+            <span class="svc-group-name">shared-postgres</span>
+            <span class="svc-group-count">2 databases</span>
+            <span class="svc-group-path">port 5432 · user: app_admin</span>
+            <span class="badge badge-gray" style="margin-left:auto">1 orphaned</span>
+            <span class="svc-chevron svc-group-chev" id="chev-grp-shared">›</span>
+          </div>
+          <div class="svc-scripts" id="grp-shared">
+
+            <!-- icegen -->
+            <div class="svc-row" id="svc-db-icegen">
+              <div class="svc-strip" onclick="toggleSvc('db-icegen')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">icegen</div>
+                <div class="svc-schedule">database</div>
+                <span class="svc-stat"><span class="svc-stat-k">tables</span><span class="svc-stat-v">6</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">last write</span><span class="svc-stat-v ok">today</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">used by</span><span class="svc-stat-v">n8n (icegen workflows)</span></span>
+                <div class="svc-chevron" id="chev-db-icegen">›</div>
+              </div>
+              <div class="svc-detail" id="detail-db-icegen">
+                <div class="svc-info-line"><span class="mv">shared-postgres / icegen</span><span class="sep">·</span>6 tables<span class="sep">·</span>writer + reader: n8n icegen workflows</div>
+                <div class="svc-run-line"><span class="rk">Last write</span><span class="rv ok">today</span><span class="sep">·</span><span class="rv">runs, generations, leads, prompts, extractions, inputs</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span style="flex:2">Table</span><span>Rows</span><span>Last write</span><span>Status</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>runs</span><span>—</span><span>today</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>generations</span><span>—</span><span>today</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>leads</span><span>—</span><span>today</span><span class="run-status ok">fresh</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span>prompts, extractions, inputs</span><span>—</span><span>unknown</span><span class="run-status warn">?</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- tg_monitoring (orphaned) -->
+            <div class="svc-row" id="svc-db-tgmon">
+              <div class="svc-strip" onclick="toggleSvc('db-tgmon')">
+                <div class="dot off" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name" style="color:var(--text3)">tg_monitoring</div>
+                <div class="svc-schedule">database</div>
+                <span class="svc-stat"><span class="svc-stat-k">tables</span><span class="svc-stat-v">2</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">last write</span><span class="svc-stat-v red">unknown</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">used by</span><span class="svc-stat-v red">nobody (orphaned)</span></span>
+                <div class="svc-chevron" id="chev-db-tgmon">›</div>
+              </div>
+              <div class="svc-detail" id="detail-db-tgmon">
+                <div class="svc-info-line"><span class="mv">shared-postgres / tg_monitoring</span><span class="sep">·</span><span style="color:var(--red)">orphaned — no project reads or writes here</span></div>
+                <div class="svc-run-line"><span class="rk">Action</span><span class="rv err">safe to drop</span><span class="sep">·</span><span style="font-size:12px;color:var(--text3)">tg_events, tg_groups — both dead</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span style="flex:2">Table</span><span>Rows</span><span>Last write</span><span>Status</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span style="color:var(--red)">tg_events</span><span>—</span><span>unknown</span><span class="run-status fail">dead</span></div>
+                  <div class="run-row" style="grid-template-columns:2fr 1fr 1fr 1fr"><span style="color:var(--red)">tg_groups</span><span>—</span><span>unknown</span><span class="run-status fail">dead</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── GROUP: n8n-postgres ── -->
+        <div class="svc-group">
+          <div class="svc-group-hd" onclick="toggleGroup('grp-n8npg')">
+            <div class="dot"></div>
+            <span class="svc-group-name">n8n-postgres</span>
+            <span class="svc-group-count">1 database</span>
+            <span class="svc-group-path">internal only · no external access</span>
+            <span class="badge badge-green" style="margin-left:auto">healthy</span>
+            <span class="svc-chevron svc-group-chev" id="chev-grp-n8npg">›</span>
+          </div>
+          <div class="svc-scripts" id="grp-n8npg">
+
+            <div class="svc-row" id="svc-db-n8n">
+              <div class="svc-strip" onclick="toggleSvc('db-n8n')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">n8n</div>
+                <div class="svc-schedule">database</div>
+                <span class="svc-stat"><span class="svc-stat-k">type</span><span class="svc-stat-v">internal</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">used by</span><span class="svc-stat-v">n8n-app (workflows, credentials, executions)</span></span>
+                <div class="svc-chevron" id="chev-db-n8n">›</div>
+              </div>
+              <div class="svc-detail" id="detail-db-n8n">
+                <div class="svc-info-line"><span class="mv">n8n-postgres / n8n</span><span class="sep">·</span>internal only<span class="sep">·</span>managed entirely by n8n-app container</div>
+                <div class="svc-run-line"><span class="rk">Contains</span><span class="rv">workflows, credentials, executions, queue</span><span class="sep">·</span><span class="rv">no direct access needed</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ CONTAINERS PAGE ═══ -->
+    <div class="page" id="page-containers">
+      <div class="section-hd">Containers</div>
+      <div class="flat-list">
+        <div class="flat-row"><div class="flat-name plain">coolify-proxy (traefik)</div><div class="flat-meta">ports 80, 443 · proxy for all domains</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">outreach-cockpit</div><div class="flat-meta">312 MB · cockpit.pamelacoreypc.com</div><div class="flat-tags"><span class="badge badge-green">2d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">outreach-cockpit-api</div><div class="flat-meta">internal API · PG direct</div><div class="flat-tags"><span class="badge badge-green">2d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">signal-tracker</div><div class="flat-meta">198 MB · philippe.pamelacoreypc.com</div><div class="flat-tags"><span class="badge badge-green">5d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">n8n-app</div><div class="flat-meta">~400 MB · n8n.pamelacoreypc.com</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">n8n-postgres</div><div class="flat-meta">internal DB for n8n</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">supabase-db</div><div class="flat-meta">port 5434 · main data store</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">supabase-studio</div><div class="flat-meta">studio.pamelacoreypc.com</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">supabase-kong</div><div class="flat-meta">API gateway · supabase.pamelacoreypc.com</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">supabase-auth</div><div class="flat-meta">auth service</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">supabase-rest</div><div class="flat-meta">PostgREST · exposes public schema</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">shared-postgres</div><div class="flat-meta">port 5432 · app_admin · icegen, outreach_sync, platform, tg_monitoring</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">uptime-kuma</div><div class="flat-meta">uptime.pamelacoreypc.com</div><div class="flat-tags"><span class="badge badge-green">12d uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">adminer</div><div class="flat-meta">adminer.pamelacoreypc.com · DB admin UI</div><div class="flat-tags"><span class="badge badge-green">25s uptime</span></div></div>
+        <div class="flat-row"><div class="flat-name plain">email-verifier</div><div class="flat-meta">port 8090 internal · no public domain</div><div class="flat-tags"><span class="badge badge-yellow">no health check</span></div></div>
+      </div>
+    </div>
+
+    <!-- ═══ SERVICES PAGE ═══ -->
+    <div class="page" id="page-services">
+      <div class="section-hd" style="margin-bottom:16px">Services &amp; Jobs</div>
+
+      <div class="svc-list">
+
+        <!-- ── GROUP: sync-data ── -->
+        <div class="svc-group">
+          <div class="svc-group-hd" onclick="toggleGroup('grp-sync')">
+            <div class="dot warn"></div>
+            <span class="svc-group-name">sync-data</span>
+            <span class="svc-group-count">4 scripts</span>
+            <span class="svc-group-path">/opt/apps/projects/sync-data/</span>
+            <span class="badge badge-yellow" style="margin-left:auto">1 delayed</span>
+            <span class="svc-chevron svc-group-chev" id="chev-grp-sync">›</span>
+          </div>
+          <div class="svc-scripts" id="grp-sync">
+
+            <!-- sync_lemlist.py -->
+            <div class="svc-row" id="svc-sync-lemlist">
+              <div class="svc-strip" onclick="toggleSvc('sync-lemlist')">
+                <div class="dot warn" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">sync_lemlist.py</div>
+                <div class="svc-schedule">every 1h</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v warn">6h ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">23s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">347 leads</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">99.7%</span></span>
+                <div class="svc-chevron" id="chev-sync-lemlist">›</div>
+              </div>
+              <div class="svc-detail" id="detail-sync-lemlist">
+                <div class="svc-info-line"><span class="mv">src/sync_lemlist.py</span><span class="sep">·</span>every 1h<span class="sep">·</span>Lemlist API<span class="arr">→</span><span class="mv">outreach.leads, outreach.emails</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv warn">Today 08:03 (6h ago)</span><span class="sep">·</span><span class="rv">23s</span><span class="sep">·</span><span class="rv ok">347 leads</span><span class="sep">·</span><span class="rv err">2 errors</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Records</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#734</span><span>08:03</span><span>23s</span><span>347</span><span>2</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#733</span><span>02:03</span><span>26s</span><span>312</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#732</span><span>Yesterday</span><span>19s</span><span>201</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#731</span><span>Jun 20</span><span>—</span><span>—</span><span>—</span><span class="run-status fail">timeout</span></div>
+                  <div class="run-row"><span class="run-id">#730</span><span>Jun 20</span><span>31s</span><span>489</span><span>1</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- sync_fathom.py -->
+            <div class="svc-row" id="svc-sync-fathom">
+              <div class="svc-strip" onclick="toggleSvc('sync-fathom')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">sync_fathom.py</div>
+                <div class="svc-schedule">daily 06:00</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v ok">1h ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">8s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">47 calls</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">100%</span></span>
+                <div class="svc-chevron" id="chev-sync-fathom">›</div>
+              </div>
+              <div class="svc-detail" id="detail-sync-fathom">
+                <div class="svc-info-line"><span class="mv">src/sync_fathom.py</span><span class="sep">·</span>daily 06:00<span class="sep">·</span>Fathom API<span class="arr">→</span><span class="mv">outreach.fathom_calls</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv">Today 13:00</span><span class="sep">·</span><span class="rv">8s</span><span class="sep">·</span><span class="rv ok">47 calls</span><span class="sep">·</span><span class="rv">0 errors</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Records</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#47</span><span>13:00</span><span>8s</span><span>47</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#46</span><span>Yesterday</span><span>11s</span><span>52</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#45</span><span>Jun 20</span><span>7s</span><span>38</span><span>0</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- sync_replies.py -->
+            <div class="svc-row" id="svc-sync-replies">
+              <div class="svc-strip" onclick="toggleSvc('sync-replies')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">sync_replies.py</div>
+                <div class="svc-schedule">every 30m</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v ok">28m ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">12s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">14 new replies</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">100%</span></span>
+                <div class="svc-chevron" id="chev-sync-replies">›</div>
+              </div>
+              <div class="svc-detail" id="detail-sync-replies">
+                <div class="svc-info-line"><span class="mv">src/sync_replies.py</span><span class="sep">·</span>every 30m<span class="sep">·</span>Lemlist API (inbox)<span class="arr">→</span><span class="mv">outreach.inbox_threads</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv">Today 13:32</span><span class="sep">·</span><span class="rv">12s</span><span class="sep">·</span><span class="rv ok">14 new replies</span><span class="sep">·</span><span class="rv">0 errors</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Records</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#891</span><span>13:32</span><span>12s</span><span>14</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#890</span><span>13:02</span><span>9s</span><span>6</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#889</span><span>12:32</span><span>14s</span><span>21</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#888</span><span>12:02</span><span>11s</span><span>9</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#887</span><span>11:32</span><span>13s</span><span>18</span><span>0</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- enrich_mx.py -->
+            <div class="svc-row" id="svc-sync-mx">
+              <div class="svc-strip" onclick="toggleSvc('sync-mx')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">enrich_mx.py</div>
+                <div class="svc-schedule">on demand</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v">2d ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">4m 12s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">1,200 domains</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">100%</span></span>
+                <div class="svc-chevron" id="chev-sync-mx">›</div>
+              </div>
+              <div class="svc-detail" id="detail-sync-mx">
+                <div class="svc-info-line"><span class="mv">src/enrich_mx.py</span><span class="sep">·</span>on demand<span class="sep">·</span>DNS MX lookup<span class="arr">→</span><span class="mv">outreach.leads (mx_provider)</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv">Jun 19 10:14</span><span class="sep">·</span><span class="rv">4m 12s</span><span class="sep">·</span><span class="rv ok">1,200 domains</span><span class="sep">·</span><span class="rv">0 errors</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Records</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#12</span><span>Jun 19</span><span>4m 12s</span><span>1,200</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#11</span><span>Jun 15</span><span>3m 48s</span><span>980</span><span>0</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── GROUP: skool-scraper ── -->
+        <div class="svc-group">
+          <div class="svc-group-hd" onclick="toggleGroup('grp-skool')">
+            <div class="dot"></div>
+            <span class="svc-group-name">skool-scraper</span>
+            <span class="svc-group-count">3 scripts</span>
+            <span class="svc-group-path">/opt/apps/projects/skool-scrape-signals/</span>
+            <span class="badge badge-green" style="margin-left:auto">all healthy</span>
+            <span class="svc-chevron svc-group-chev" id="chev-grp-skool">›</span>
+          </div>
+          <div class="svc-scripts" id="grp-skool">
+
+            <!-- scraper.py -->
+            <div class="svc-row" id="svc-skool-scraper">
+              <div class="svc-strip" onclick="toggleSvc('skool-scraper')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">scraper.py</div>
+                <div class="svc-schedule">every 2h</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v ok">2h ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">1m 14s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">92 new signals</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">100%</span></span>
+                <div class="svc-chevron" id="chev-skool-scraper">›</div>
+              </div>
+              <div class="svc-detail" id="detail-skool-scraper">
+                <div class="svc-info-line"><span class="mv">scraper.py</span><span class="sep">·</span>every 2h<span class="sep">·</span>Skool.com<span class="arr">→</span><span class="mv">public.skool_signals</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv">Today 12:00</span><span class="sep">·</span><span class="rv">1m 14s</span><span class="sep">·</span><span class="rv ok">92 new signals</span><span class="sep">·</span><span class="rv">0 errors</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Signals</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#412</span><span>12:00</span><span>74s</span><span>92</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#411</span><span>10:00</span><span>67s</span><span>84</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#410</span><span>08:00</span><span>81s</span><span>107</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#409</span><span>06:00</span><span>68s</span><span>73</span><span>0</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- classify.py -->
+            <div class="svc-row" id="svc-skool-classify">
+              <div class="svc-strip" onclick="toggleSvc('skool-classify')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">classify.py</div>
+                <div class="svc-schedule">after scraper</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v ok">2h ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">12s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">92 classified</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">100%</span></span>
+                <div class="svc-chevron" id="chev-skool-classify">›</div>
+              </div>
+              <div class="svc-detail" id="detail-skool-classify">
+                <div class="svc-info-line"><span class="mv">classify.py</span><span class="sep">·</span>after scraper.py<span class="sep">·</span>public.skool_signals (unclassified)<span class="arr">→</span><span class="mv">skool_signals.signal_type</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv">Today 12:01</span><span class="sep">·</span><span class="rv">12s</span><span class="sep">·</span><span class="rv ok">92 classified</span><span class="sep">·</span><span class="rv">0 errors</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Records</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#412</span><span>12:01</span><span>12s</span><span>92</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#411</span><span>10:01</span><span>10s</span><span>84</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#410</span><span>08:01</span><span>14s</span><span>107</span><span>0</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- plusvibe_sync.py -->
+            <div class="svc-row" id="svc-skool-pv">
+              <div class="svc-strip" onclick="toggleSvc('skool-pv')">
+                <div class="dot" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name">plusvibe_sync.py</div>
+                <div class="svc-schedule">after classify</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v ok">2h ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">duration</span><span class="svc-stat-v">8s</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">records</span><span class="svc-stat-v">31 pushed</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">rate</span><span class="svc-stat-v ok">100%</span></span>
+                <div class="svc-chevron" id="chev-skool-pv">›</div>
+              </div>
+              <div class="svc-detail" id="detail-skool-pv">
+                <div class="svc-info-line"><span class="mv">plusvibe_sync.py</span><span class="sep">·</span>after classify.py<span class="sep">·</span>skool_signals (not pushed)<span class="arr">→</span><span class="mv">Plusvibe API (api.pipl.ai/v1)</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv">Today 12:01</span><span class="sep">·</span><span class="rv">8s</span><span class="sep">·</span><span class="rv ok">31 pushed</span><span class="sep">·</span><span class="rv">61 skipped (already sent)</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Pushed</span><span>Skipped</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#412</span><span>12:01</span><span>8s</span><span>31</span><span>61</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#411</span><span>10:01</span><span>7s</span><span>27</span><span>57</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#410</span><span>08:01</span><span>9s</span><span>38</span><span>69</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── GROUP: tg-monitoring ── -->
+        <div class="svc-group">
+          <div class="svc-group-hd" onclick="toggleGroup('grp-tg')" style="opacity:0.6">
+            <div class="dot off"></div>
+            <span class="svc-group-name">tg-monitoring</span>
+            <span class="svc-group-count">1 script</span>
+            <span class="svc-group-path">/opt/apps/projects/tg-monitoring/</span>
+            <span class="badge badge-gray" style="margin-left:auto">inactive 47d</span>
+            <span class="svc-chevron svc-group-chev" id="chev-grp-tg">›</span>
+          </div>
+          <div class="svc-scripts" id="grp-tg">
+
+            <!-- monitor.py -->
+            <div class="svc-row" id="svc-tg-monitor">
+              <div class="svc-strip" onclick="toggleSvc('tg-monitor')">
+                <div class="dot off" style="margin-left:20px"></div>
+                <div class="svc-name svc-script-name" style="color:var(--text3)">monitor.py</div>
+                <div class="svc-schedule" style="color:var(--text4)">—</div>
+                <span class="svc-stat"><span class="svc-stat-k">last run</span><span class="svc-stat-v red">47 days ago</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">status</span><span class="svc-stat-v red">inactive</span></span>
+                <span class="svc-sep">·</span>
+                <span class="svc-stat"><span class="svc-stat-k">DB</span><span class="svc-stat-v warn">Supabase Cloud (billing)</span></span>
+                <div class="svc-chevron" id="chev-tg-monitor">›</div>
+              </div>
+              <div class="svc-detail" id="detail-tg-monitor">
+                <div class="svc-info-line"><span class="mv">monitor.py</span><span class="sep">·</span>not scheduled<span class="sep">·</span><span style="color:var(--yellow)">Supabase Cloud (aws)</span></div>
+                <div class="svc-run-line"><span class="rk">Last run</span><span class="rv err">May 5 (47 days ago)</span><span class="sep">·</span><span style="font-size:12px;color:var(--red)">Cancel cloud · drop local DB · drop dead tables</span></div>
+                <div class="runs-table">
+                  <div class="runs-hd"><span>Run</span><span>Started</span><span>Duration</span><span>Records</span><span>Errors</span><span>Status</span></div>
+                  <div class="run-row"><span class="run-id">#89</span><span>May 5</span><span>44s</span><span>12</span><span>0</span><span class="run-status ok">success</span></div>
+                  <div class="run-row"><span class="run-id">#88</span><span>May 4</span><span>51s</span><span>8</span><span>0</span><span class="run-status ok">success</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ CLEANUP PAGE ═══ -->
+    <div class="page" id="page-cleanup">
+      <div class="section-hd" style="margin-bottom:4px">Cleanup Candidates</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:20px">4 items flagged automatically based on inactivity, orphaned state, or missing health checks.</div>
+
+      <div class="cleanup-section">
+        <div class="cleanup-title">Projects</div>
+        <div class="cleanup-item">
+          <div>
+            <div class="cleanup-item-name">tg-monitoring</div>
+            <div class="cleanup-item-meta">
+              Python cron · Last run 47 days ago · Supabase Cloud DB still active (billing)<br>
+              Recommendation: archive repo, cancel Supabase Cloud plan, drop local tg_monitoring DB
+            </div>
+          </div>
+          <button class="cleanup-item-action" onclick="openProject('tg')">View project</button>
+        </div>
+      </div>
+
+      <div class="cleanup-section">
+        <div class="cleanup-title">Dead Tables</div>
+        <div class="cleanup-item yellow">
+          <div>
+            <div class="cleanup-item-name">public.tg_events</div>
+            <div class="cleanup-item-meta">
+              supabase-db / public schema · 3 rows · Last write 47 days ago<br>
+              No active service reads or writes to this table. Safe to drop.
+            </div>
+          </div>
+          <button class="cleanup-item-action">Drop table</button>
+        </div>
+        <div class="cleanup-item yellow">
+          <div>
+            <div class="cleanup-item-name">public.tg_groups</div>
+            <div class="cleanup-item-meta">
+              supabase-db / public schema · 2 rows · Last write 47 days ago<br>
+              No active service reads or writes to this table. Safe to drop.
+            </div>
+          </div>
+          <button class="cleanup-item-action">Drop table</button>
+        </div>
+      </div>
+
+      <div class="cleanup-section">
+        <div class="cleanup-title">Orphaned Databases</div>
+        <div class="cleanup-item">
+          <div>
+            <div class="cleanup-item-name">shared-postgres / tg_monitoring</div>
+            <div class="cleanup-item-meta">
+              shared-postgres (port 5432) · Tables: tg_events, tg_groups · No project writes here<br>
+              Was a local mirror for tg-monitoring project which is now inactive. Safe to drop database.
+            </div>
+          </div>
+          <button class="cleanup-item-action">Drop DB</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const match = document.querySelector('.nav-item[onclick="showPage(\'' + name + '\')"]');
+  if (match) match.classList.add('active');
+  if (name !== 'projects') closeProject();
+}
+
+function toggleGroup(id) {
+  const scripts = document.getElementById(id);
+  const chev = document.getElementById('chev-' + id);
+  const isOpen = scripts.classList.contains('open');
+  // close all groups and all open details
+  document.querySelectorAll('.svc-scripts.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.svc-group-chev.rotated').forEach(el => el.classList.remove('rotated'));
+  document.querySelectorAll('.svc-detail.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.svc-strip.open-strip').forEach(el => el.classList.remove('open-strip'));
+  document.querySelectorAll('.svc-chevron:not(.svc-group-chev).rotated').forEach(el => el.classList.remove('rotated'));
+  if (!isOpen) {
+    scripts.classList.add('open');
+    chev.classList.add('rotated');
+  }
+}
+
+function toggleSvc(id) {
+  const detail = document.getElementById('detail-' + id);
+  const chev = document.getElementById('chev-' + id);
+  const strip = detail.previousElementSibling;
+  const isOpen = detail.classList.contains('open');
+  document.querySelectorAll('.svc-detail.open').forEach(el => {
+    el.classList.remove('open');
+    el.previousElementSibling.classList.remove('open-strip');
+  });
+  document.querySelectorAll('.svc-chevron.rotated').forEach(el => el.classList.remove('rotated'));
+  if (!isOpen) {
+    detail.classList.add('open');
+    strip.classList.add('open-strip');
+    chev.classList.add('rotated');
+  }
+}
+
+function openProject(id) {
+  showPage('projects');
+  document.getElementById('projects-grid').style.display = 'none';
+  const dd = document.getElementById('drilldown');
+  dd.classList.add('open');
+  document.querySelectorAll('.dd-content').forEach(el => el.style.display = 'none');
+  document.getElementById('dd-' + id).style.display = 'block';
+  document.querySelectorAll('.nav-item').forEach(el => {
+    if (el.getAttribute('onclick') === "openProject('" + id + "')") el.classList.add('active');
+    else el.classList.remove('active');
+  });
+}
+
+function closeProject() {
+  document.getElementById('drilldown').classList.remove('open');
+  document.getElementById('projects-grid').style.display = 'grid';
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelector('.nav-item[onclick="showPage(\'projects\')"]').classList.add('active');
+}
+
+// ── TABLE METADATA ──
+const TABLE_META = {
+  'leads': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'email',type:'text'},{n:'first_name',type:'text'},
+      {n:'last_name',type:'text'},{n:'company',type:'text'},{n:'title',type:'text'},
+      {n:'mx_provider',type:'text'},{n:'email_status',type:'text'},
+      {n:'campaign_id',type:'uuid',note:'FK→campaigns'},{n:'created_at',type:'timestamptz'},{n:'updated_at',type:'timestamptz'},
+    ],
+    writes:['sync_lemlist.py','enrich_mx.py'], reads:['outreach-cockpit','PostgREST'],
+  },
+  'emails': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'lead_id',type:'uuid',note:'FK→leads'},
+      {n:'subject',type:'text'},{n:'body',type:'text'},{n:'sent_at',type:'timestamptz'},
+      {n:'opened_at',type:'timestamptz',note:'nullable'},{n:'replied_at',type:'timestamptz',note:'nullable'},{n:'status',type:'text'},
+    ],
+    writes:['sync_lemlist.py'], reads:['outreach-cockpit'],
+  },
+  'inbox_threads': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'lead_id',type:'uuid',note:'FK→leads'},
+      {n:'subject',type:'text'},{n:'last_reply',type:'text'},{n:'reply_at',type:'timestamptz'},
+      {n:'status',type:'text'},{n:'agent_handled',type:'bool'},
+    ],
+    writes:['sync_replies.py'], reads:['outreach-cockpit (inbox)'],
+  },
+  'campaigns': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'lemlist_id',type:'text'},{n:'name',type:'text'},
+      {n:'status',type:'text'},{n:'niche',type:'text'},{n:'created_at',type:'timestamptz'},
+    ],
+    writes:['sync_lemlist.py'], reads:['outreach-cockpit','sync_replies.py'],
+  },
+  'fathom_calls': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'lead_id',type:'uuid',note:'FK→leads'},
+      {n:'duration',type:'int'},{n:'transcript',type:'text'},{n:'summary',type:'text'},{n:'call_at',type:'timestamptz'},
+    ],
+    writes:['sync_fathom.py'], reads:['outreach-cockpit (calls)'],
+  },
+  'account_stats': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'email_account',type:'text'},{n:'sent_today',type:'int'},
+      {n:'reply_rate',type:'float'},{n:'warmup_score',type:'int'},{n:'date',type:'date'},
+    ],
+    writes:['sync_lemlist.py'], reads:['outreach-cockpit (stats)'],
+  },
+  'skool_signals': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'community_id',type:'uuid',note:'FK→communities'},
+      {n:'member_name',type:'text'},{n:'signal_type',type:'text'},{n:'content',type:'text'},
+      {n:'posted_at',type:'timestamptz'},{n:'pushed_to_pv',type:'bool'},{n:'scraped_at',type:'timestamptz'},
+    ],
+    writes:['scraper.py','classify.py'], reads:['signal-tracker (PostgREST)','plusvibe_sync.py'],
+  },
+  'communities': {
+    columns: [
+      {n:'id',type:'uuid',note:'PK'},{n:'skool_id',type:'text'},{n:'name',type:'text'},
+      {n:'members',type:'int'},{n:'last_scraped',type:'timestamptz'},
+    ],
+    writes:['scraper.py'], reads:['signal-tracker (PostgREST)'],
+  },
+  'leads_master': {
+    columns: [{n:'id',type:'uuid',note:'PK'},{n:'email',type:'text'},{n:'domain',type:'text'},{n:'source',type:'text'},{n:'created_at',type:'timestamptz'}],
+    writes:['—'], reads:['—'],
+  },
+};
+
+// ── FAKE RECORDS GENERATOR ──
+const FAKE_FIELDS = ['email_status','mx_provider','company_size','title','reply_at','campaign_id','updated_at','opened_at','signal_type','pushed_to_pv'];
+const FAKE_OLD    = ['unknown','null','42','CEO','null','abc-123','yesterday','null','unclassified','false'];
+const FAKE_NEW    = ['valid','google','48','Founder','2026-06-21','def-456','today','2026-06-21 09:12','lead_signal','true'];
+function genRecords(total) {
+  return Array.from({length: Math.min(total, 300)}, (_, i) => {
+    const fi = i % FAKE_FIELDS.length;
+    return `<div class="change-row">
+      <span class="change-obj">record_${4800+i}</span>
+      <span class="change-field">${FAKE_FIELDS[fi]}</span>
+      <span class="change-old">${FAKE_OLD[fi]}</span>
+      <span class="change-arrow">→</span>
+      <span class="change-new">${FAKE_NEW[fi]}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── RUN DRILL-DOWN ──
+function showRunDetail(el) {
+  const table = el.closest('.runs-table');
+  const isActive = el.classList.contains('active');
+  table.querySelectorAll('.run-row.active').forEach(r => r.classList.remove('active'));
+  const existing = table.nextElementSibling;
+  if (existing && existing.classList.contains('run-panel')) existing.remove();
+  if (isActive) return;
+  el.classList.add('active');
+
+  const spans  = el.querySelectorAll('span');
+  const runId  = spans[0]?.textContent || '#?';
+  const started= spans[1]?.textContent || '—';
+  const dur    = spans[2]?.textContent || '—';
+  const recRaw = spans[3]?.textContent || '0';
+  const errors = parseInt(spans[4]?.textContent) || 0;
+  const status = spans[5]?.textContent || '—';
+  const total  = parseInt(recRaw.replace(/[^0-9]/g,'')) || 12;
+
+  const errHtml = errors > 0
+    ? `<div>
+        <div class="run-change-title">Failed (${errors})</div>
+        <div class="err-row"><span class="err-obj">record_9912</span><span class="err-msg">API timeout after 30s</span></div>
+        ${errors > 1 ? `<div class="err-row"><span class="err-obj">record_9913</span><span class="err-msg">invalid email format</span></div>` : ''}
+        ${errors > 2 ? `<div class="run-more">+ ${errors-2} more</div>` : ''}
+      </div>`
+    : `<div><div class="run-change-title" style="color:var(--green)">0 errors</div><div style="font-size:11px;color:var(--text4);padding-top:4px">Clean run</div></div>`;
+
+  const panel = document.createElement('div');
+  panel.className = 'run-panel';
+  panel.dataset.total = total;
+  panel.innerHTML = `
+    <div class="run-panel-hd">${runId} &nbsp;·&nbsp; ${started} &nbsp;·&nbsp; ${dur} &nbsp;·&nbsp; ${recRaw} records &nbsp;·&nbsp; ${errors} errors &nbsp;·&nbsp; <span class="${status==='success'||status==='ok'?'ok':'fail'}">${status}</span></div>
+    <div class="run-changes">
+      <div>
+        <div class="run-change-title">Updated (${total} total)</div>
+        <div class="records-scroll" id="rscroll-${runId.replace('#','')}">${genRecords(15)}</div>
+        ${total > 15 ? `<span class="records-load-more" onclick="loadAllRecords(this,'${runId.replace('#','')}',${total})">Show all ${total} records</span>` : ''}
+      </div>
+      ${errHtml}
+    </div>`;
+  table.after(panel);
+}
+
+function loadAllRecords(btn, runKey, total) {
+  const scroll = document.getElementById('rscroll-' + runKey);
+  scroll.innerHTML = genRecords(total);
+  scroll.style.maxHeight = '320px';
+  btn.remove();
+}
+
+// auto-wire run rows
+document.querySelectorAll('.run-row').forEach(row => {
+  if (row.querySelector('.run-id')) {
+    row.addEventListener('click', function(e) { e.stopPropagation(); showRunDetail(this); });
+  }
+});
+
+// ── DB TABLE DRILL-DOWN ──
+function showTableDetail(el, name) {
+  const table = el.closest('.runs-table');
+  const isActive = el.classList.contains('active');
+  table.querySelectorAll('.run-row.active').forEach(r => r.classList.remove('active'));
+  const existing = table.nextElementSibling;
+  if (existing && existing.classList.contains('run-panel')) existing.remove();
+  if (isActive) return;
+  el.classList.add('active');
+
+  const meta  = TABLE_META[name];
+  const cells = el.querySelectorAll('span');
+  const rows  = cells[1]?.textContent || '—';
+  const last  = cells[2]?.textContent || '—';
+
+  const colsHtml = meta.columns.slice(0,9).map(c =>
+    `<div class="change-row">
+      <span class="change-obj">${c.n}</span>
+      <span class="change-field">${c.type}</span>
+      <span class="change-old" style="color:var(--text4);font-size:10px">${c.note||''}</span>
+    </div>`).join('') + (meta.columns.length > 9 ? `<div class="run-more">+ ${meta.columns.length-9} more columns</div>` : '');
+
+  const writesHtml = meta.writes.map(w => `<div class="change-row"><span style="color:var(--green);font-family:monospace;font-size:11px">↑ ${w}</span></div>`).join('');
+  const readsHtml  = meta.reads.map(r  => `<div class="change-row"><span style="color:var(--accent);font-family:monospace;font-size:11px">↓ ${r}</span></div>`).join('');
+
+  const panel = document.createElement('div');
+  panel.className = 'run-panel';
+  panel.innerHTML = `
+    <div class="run-panel-hd"><span style="color:var(--text);font-weight:600">${name}</span> &nbsp;·&nbsp; ${rows} rows &nbsp;·&nbsp; last write: ${last}</div>
+    <div class="run-changes">
+      <div>
+        <div class="run-change-title">Columns (${meta.columns.length})</div>
+        ${colsHtml}
+      </div>
+      <div>
+        <div class="run-change-title">Producers (write)</div>
+        ${writesHtml}
+        <div style="margin-top:10px">
+          <div class="run-change-title">Consumers (read)</div>
+          ${readsHtml}
+        </div>
+      </div>
+    </div>`;
+  table.after(panel);
+}
+
+// auto-wire DB table rows
+document.querySelectorAll('#page-databases .run-row').forEach(row => {
+  const name = row.querySelectorAll('span')[0]?.textContent?.trim();
+  if (name && TABLE_META[name]) {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', function(e) { e.stopPropagation(); showTableDetail(this, name); });
+  }
+});
+
+function toggleTheme() {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>

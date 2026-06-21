@@ -1,0 +1,34 @@
+# Server Dash — TODO
+
+## Этап 1 — HTML Mockup (feedback first)
+
+[x] Базовый мокап: Projects / Domains / Databases / Containers + drill-down
+[x] Добавить Alerts panel на Level 0 (failed jobs, stale tables, orphaned DB)
+[x] Добавить Services/Jobs — иерархия: проект → скрипты, каждый со своими метриками и run history
+[x] Добавить Cleanup Candidates раздел (мёртвые проекты / таблицы / БД агрегированы)
+[ ] Получить ОС от Леонида по мокапу → перейти к этапу 2
+
+## Этап 2 — React server-dash (после ОС)
+
+[ ] Добавить Service entity в types.ts (id, name, schedule, lastRun, duration, successRate, recordsProcessed, github, path)
+[ ] Добавить services[] в data.ts (sync-data, skool-scraper, tg-monitoring + n8n workflows)
+[ ] Добавить ServicesPage компонент в App.tsx
+[ ] Добавить ServiceDetail drill-down (runs history: id, status, duration, records, timestamp)
+[ ] Добавить Alerts banner на главную (агрегация из projects/databases/services)
+[ ] Добавить CleanupPage (dead projects, orphaned DBs, dead tables)
+[ ] Починить инлайн-стили в Topbar/Sidebar на Tailwind dark: варианты
+
+## Этап 3 — Backend FastAPI на сервере (после React)
+
+[ ] Endpoint GET /status — docker stats + uptime
+[ ] Endpoint GET /containers — docker ps -a с метриками
+[ ] Endpoint GET /services — cron job logs (last_run, duration из log-файлов или БД)
+[ ] Endpoint GET /alerts — агрегация всех проблем
+[ ] Деплой FastAPI как docker-compose сервис, Traefik route /api
+
+## Этап 4 — Campaigns Mockup (outreach-cockpit)
+
+[x] Базовый редизайн: полоски вместо таблицы, drill-down по клику
+[ ] Разделить клик на полоску (stats) vs иконка шестерёнки (settings)
+[ ] Сделать цифру реплаев кликабельной → filtered replies list
+[ ] Получить ОС и перенести в React (outreach-cockpit проект)
