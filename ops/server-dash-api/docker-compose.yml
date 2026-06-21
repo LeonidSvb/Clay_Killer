@@ -1,0 +1,18 @@
+services:
+  server-dash-api:
+    build: .
+    container_name: server-dash-api
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8080"
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true

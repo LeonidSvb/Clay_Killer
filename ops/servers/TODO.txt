@@ -6,29 +6,34 @@
 [x] Добавить Alerts panel на Level 0 (failed jobs, stale tables, orphaned DB)
 [x] Добавить Services/Jobs — иерархия: проект → скрипты, каждый со своими метриками и run history
 [x] Добавить Cleanup Candidates раздел (мёртвые проекты / таблицы / БД агрегированы)
-[ ] Получить ОС от Леонида по мокапу → перейти к этапу 2
+[x] Получить ОС от Леонида по мокапу → перейти к этапу 2
 
 ## Этап 2 — React server-dash (после ОС)
 
-[ ] Добавить Service entity в types.ts (id, name, schedule, lastRun, duration, successRate, recordsProcessed, github, path)
-[ ] Добавить services[] в data.ts (sync-data, skool-scraper, tg-monitoring + n8n workflows)
-[ ] Добавить ServicesPage компонент в App.tsx
-[ ] Добавить ServiceDetail drill-down (runs history: id, status, duration, records, timestamp)
-[ ] Добавить Alerts banner на главную (агрегация из projects/databases/services)
-[ ] Добавить CleanupPage (dead projects, orphaned DBs, dead tables)
-[ ] Починить инлайн-стили в Topbar/Sidebar на Tailwind dark: варианты
+[x] Добавить Service entity в types.ts (ScriptRun, Script, Service, Alert, CleanupItem)
+[x] Добавить services[], alerts[], cleanupItems[] в data.ts
+[x] Добавить ServicesPage — accordion (service → script → detail + runs table)
+[x] Добавить run drill-down — inline панель с sample записей
+[x] Добавить AlertsBanner на все list-views
+[x] Добавить CleanupPage (high/medium severity, grouped by type)
+[x] Починить инлайн-стили Topbar/Sidebar → чистый Tailwind dark: variants
 
-## Этап 3 — Backend FastAPI на сервере (после React)
+## Этап 3 — Backend FastAPI (код готов, нужен деплой)
 
-[ ] Endpoint GET /status — docker stats + uptime
-[ ] Endpoint GET /containers — docker ps -a с метриками
-[ ] Endpoint GET /services — cron job logs (last_run, duration из log-файлов или БД)
-[ ] Endpoint GET /alerts — агрегация всех проблем
-[ ] Деплой FastAPI как docker-compose сервис, Traefik route /api
+[x] GET /api/containers — docker ps -a + docker stats (15s cache)
+[x] GET /api/databases — pg_stat_user_tables на shared-pg + supabase-db (60s cache)
+[x] GET /api/status — cpu/ram/disk/uptime из /proc/stat + free + df
+[x] AppContext в React — live fetch каждые 30s, fallback на mock если API недоступен
+[x] Индикатор live/mock в топбаре (зелёная точка = live, серая = mock)
 
-## Этап 4 — Campaigns Mockup (outreach-cockpit)
+[ ] ДЕПЛОЙ: cp .env.example → .env, заполнить пароли из netcup-primary.env
+[ ] ДЕПЛОЙ: docker compose up -d в /opt/compose/server-dash-api/
+[ ] ДЕПЛОЙ: cp traefik-dash.yml → /data/coolify/proxy/dynamic/
+[ ] ДЕПЛОЙ: docker network connect server-dash-api_default coolify-proxy
+[ ] ДЕПЛОЙ: добавить DNS A-запись dash.pamelacoreypc.com → 152.53.194.162
 
-[x] Базовый редизайн: полоски вместо таблицы, drill-down по клику
-[ ] Разделить клик на полоску (stats) vs иконка шестерёнки (settings)
-[ ] Сделать цифру реплаев кликабельной → filtered replies list
-[ ] Получить ОС и перенести в React (outreach-cockpit проект)
+## Этап 4 — Campaigns (outreach-cockpit — отдельный проект)
+
+Относится к LeonidSvb/outreach-cockpit, не к server-dash.
+Мокап готов: outreach-cockpit/docs/campaigns-mockup.html
+Имплементировать когда придёт очередь того проекта.
