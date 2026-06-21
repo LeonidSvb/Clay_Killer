@@ -1,24 +1,26 @@
 http:
   routers:
-    server-dash-api:
-      rule: "Host(`dash.pamelacoreypc.com`) && PathPrefix(`/api`)"
-      entryPoints: [websecure]
-      service: server-dash-api
+    server-dash-https:
+      entrypoints: [https]
+      rule: Host(`dash.pamelacoreypc.com`)
+      service: server-dash
       tls:
         certResolver: letsencrypt
 
-    server-dash:
-      rule: "Host(`dash.pamelacoreypc.com`)"
-      entryPoints: [websecure]
+    server-dash-http:
+      entrypoints: [http]
+      rule: Host(`dash.pamelacoreypc.com`)
+      middlewares: [redirect-to-https]
       service: server-dash
 
   services:
-    server-dash-api:
+    server-dash:
       loadBalancer:
         servers:
           - url: "http://server-dash-api:8080"
 
-    server-dash:
-      loadBalancer:
-        servers:
-          - url: "http://server-dash:80"
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true

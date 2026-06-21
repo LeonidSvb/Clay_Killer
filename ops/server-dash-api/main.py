@@ -8,6 +8,7 @@ from typing import Optional
 import asyncpg
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
@@ -278,3 +279,7 @@ async def get_status():
         "diskPct": disk_pct,
         "uptime": uptime_str,
     }
+
+# ─── Static files (React build) ───────────────────────────────────────────────
+if os.path.isdir("static"):
+    app.mount("/", StaticFiles(directory="static", html=True), name="spa")

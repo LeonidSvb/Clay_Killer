@@ -26,11 +26,12 @@
 [x] AppContext в React — live fetch каждые 30s, fallback на mock если API недоступен
 [x] Индикатор live/mock в топбаре (зелёная точка = live, серая = mock)
 
-[ ] ДЕПЛОЙ: cp .env.example → .env, заполнить пароли из netcup-primary.env
-[ ] ДЕПЛОЙ: docker compose up -d в /opt/compose/server-dash-api/
-[ ] ДЕПЛОЙ: cp traefik-dash.yml → /data/coolify/proxy/dynamic/
-[ ] ДЕПЛОЙ: docker network connect server-dash-api_default coolify-proxy
-[ ] ДЕПЛОЙ: добавить DNS A-запись dash.pamelacoreypc.com → 152.53.194.162
+[x] ДЕПЛОЙ: docker compose up -d в /opt/compose/server-dash-api/ (пересборка с procps для free/uptime)
+[x] ДЕПЛОЙ: cp traefik-dash.yml → /data/coolify/proxy/dynamic/dash.yml
+[x] ДЕПЛОЙ: контейнер уже в coolify сети (из docker-compose.yml)
+[x] ДЕПЛОЙ: DNS A-запись dash.pamelacoreypc.com → 152.53.194.162 (Cloudflare)
+[x] ДЕПЛОЙ: SSL сертификат Let's Encrypt выдан автоматически
+[x] LIVE: https://dash.pamelacoreypc.com/ — React + FastAPI, рил данные каждые 30s
 
 ## Этап 4 — Campaigns (outreach-cockpit — отдельный проект)
 
