@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[CLIENT] — Notes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #0a2540;
+      background: #f6f9fc;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page {
+      max-width: 760px;
+      margin: 32px auto 60px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e3e8ef;
+      overflow: hidden;
+    }
+    .accent-bar { height: 4px; background: linear-gradient(90deg, #1a7f5a 0%, #34c98a 100%); }
+    .content { padding: 36px 48px 44px; }
+
+    .internal-badge {
+      display: inline-block;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid #ffc107;
+      margin-bottom: 18px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a2540;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #a3acb9;
+      margin-bottom: 32px;
+    }
+
+    hr { border: none; border-top: 1px solid #e3e8ef; margin: 28px 0; }
+
+    .block { margin-bottom: 30px; }
+
+    .block-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #0a2540;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .block-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0a2540;
+    }
+
+    .block-time {
+      font-size: 12px;
+      color: #a3acb9;
+      margin-left: auto;
+    }
+
+    .say-box {
+      background: #f8f9ff;
+      border-left: 3px solid #5469d4;
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #3c4257;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .ask-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .ask-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f3f7;
+      font-size: 14px;
+      color: #3c4257;
+      line-height: 1.55;
+    }
+
+    .ask-list li:last-child { border-bottom: none; }
+
+    .ask-list li::before {
+      content: '?';
+      background: #e8f5ff;
+      color: #0077cc;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .note-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .note-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+      color: #3c4257;
+      line-height: 1.55;
+    }
+
+    .note-list li::before {
+      content: '→';
+      color: #1a7f5a;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .alert-box {
+      background: #fff8e1;
+      border: 1px solid #f0d878;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #6b4f00;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .alert-box strong { color: #9f6a00; }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .tag-cut { background: #ffe5e5; color: #c0392b; }
+    .tag-key { background: #e6f7f0; color: #1a7f5a; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="content">
+
+    <div class="internal-badge">Internal — Leo only</div>
+    <h1>Kick-off Call Script</h1>
+    <div class="meta">[CLIENT NAME] · [COMPANY] · ~40 min</div>
+
+    <!-- BLOCK 1 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">1</div>
+        <div class="block-title">Opening</div>
+        <div class="block-time">2 min</div>
+      </div>
+      <div class="say-box">
+        "Hey [CLIENT], good to finally kick this off. Today is mainly about alignment — making sure we both know exactly what success looks like, how the pilot works, and who does what. I'll walk you through the plan quickly, then ask a few questions so I can set everything up properly."
+      </div>
+      <ul class="note-list">
+        <li>Share screen → open kickoff-2026-05-28.html in browser</li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 2 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">2</div>
+        <div class="block-title">Walk through the strategy</div>
+        <div class="block-time">5–7 min</div>
+      </div>
+      <div class="say-box">
+        "I have roughly 1,000 food industry companies across [PRIMARY MARKETS] — with the broader region it's closer to 2,000 relevant contacts. I'll go through the market twice during the pilot.<br /><br />
+        At the same time I'm continuously monitoring for signals — companies opening new facilities, leadership changes, acquisitions, hiring spikes. When something strong comes up I put together a quick brief with the right contact, context, and suggested angle — and route it to you so you can act on it fast.<br /><br />
+        The goal is 2 qualified introductions. Once the conversation happens, the recruiting process is on your side."
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 3 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">3</div>
+        <div class="block-title">His current process <span class="tag tag-key">Key question</span></div>
+        <div class="block-time">5–7 min</div>
+      </div>
+      <div class="say-box">
+        "Before I ask about the market scope — can you walk me through how you currently find new clients? What does that process look like for you right now?"
+      </div>
+      <ul class="ask-list">
+        <li>Do you call prospects directly, or mostly email and LinkedIn?</li>
+        <li>Are you using Sales Navigator actively?</li>
+        <li>What's been working well? What hasn't?</li>
+      </ul>
+      <div class="alert-box">
+        <strong>Why this matters:</strong> if he calls regularly → signal cards work perfectly, he just executes. If he doesn't → you need to own more of the first-touch outreach yourself.
+      </div>
+
+      <div style="margin-top:14px;">
+      <div class="say-box">
+        "One thing I know works well — instead of writing companies 'I know a recruiter', I write them 'I have a specific candidate who could be relevant for you.' Much better response rate. Do you have a pool of candidates you're currently working with — even just anonymised profiles I can use as the hook? I'm not sharing names, just something like '12 years food manufacturing, supply chain, open to [PRIMARY MARKETS].'"
+      </div>
+      <ul class="ask-list">
+        <li>Do you have active candidates you're representing right now?</li>
+        <li>Can you share anonymised profiles — background, specialisation, geography?</li>
+        <li>How often does this list update?</li>
+      </ul>
+      <div class="alert-box">
+        <strong>If yes:</strong> this changes the outreach angle completely — candidate-led is stronger than recruiter-led. Build a simple shared doc where he drops new profiles as they come in.
+      </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 3B -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num" style="background:#697386;">↓</div>
+        <div class="block-title">Time vs effectiveness — his preference</div>
+        <div class="block-time">3 min</div>
+      </div>
+      <div class="say-box">
+        "One thing I want to understand — how much time per week can you realistically put into this? Because it changes how I structure things.<br /><br />
+        For signal opportunities, there are two ways. I can reach out myself — but I don't speak French or German, I'm not the recruiter, so the hit rate will be lower. Or you make the calls — you speak their language, you know the industry, the conversion is going to be much higher. The market is small, so that difference matters.<br /><br />
+        Realistically we're talking maybe 3–5 signal calls per week, not more. So — what's more important to you: saving your time, or maximising the result in absolute terms?"
+      </div>
+      <ul class="note-list">
+        <li>If he says time → you own more of the outreach, lower effectiveness, adjust expectations</li>
+        <li>If he says results → signal cards go to him, he calls, you track outcomes</li>
+        <li>Note from first call: [CAPACITY NOTE]</li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 4 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">4</div>
+        <div class="block-title">Market scope — expand, not narrow</div>
+        <div class="block-time">5 min</div>
+      </div>
+      <div class="say-box">
+        "Core focus is [PRIMARY MARKETS] — around 550 food industry companies. I also have the broader region: [EXPANSION MARKETS] — that's another ~270 food companies, roughly +50% more volume. Want to include that as a secondary layer, or stay focused on DE and FR for now?"
+      </div>
+      <ul class="ask-list">
+        <li>NL + BE + LU + CH + AT — include as secondary scope?</li>
+        <li>I also have ~200 food-adjacent companies: large retailers like [RETAILER EXAMPLES], food ingredient suppliers, food packaging. Relevant or stay pure food manufacturers?</li>
+        <li>Any segments to exclude — farming, food service?</li>
+        <li>Any companies you already have active relationships with that I should skip?</li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 5 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">5</div>
+        <div class="block-title">Qualified intro — align clearly <span class="tag tag-key">Critical</span></div>
+        <div class="block-time">3–5 min</div>
+      </div>
+      <div class="say-box">
+        "Just want to make sure we're on the same page on what counts as a qualified intro. My definition: right company, right country, the person who makes hiring decisions said yes to a conversation. Does that sound fair to you?"
+      </div>
+      <ul class="ask-list">
+        <li>If I send you a signal card and you call them — and the conversation leads somewhere — that counts as a qualified intro on my side. Fair?</li>
+      </ul>
+      <div class="alert-box">
+        <strong>Important:</strong> get explicit verbal confirmation on this. This protects you if he later questions results.
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 6 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">6</div>
+        <div class="block-title">Operational workflow</div>
+        <div class="block-time">5 min</div>
+      </div>
+      <ul class="ask-list">
+        <li>Do you use Slack? If yes — I'll set up a shared channel for signal updates and quick decisions. If not — Google Sheet + WhatsApp works fine.</li>
+        <li>When someone from the outreach replies "yes, I'm interested" and I loop you in — how fast can you respond? Ideally within 24 hours. If it sits for 3 days the conversation goes cold. Is that realistic for you?</li>
+        <li>When I send you a lead: do you prefer a full draft ready to send, or a short brief so you can write it yourself?</li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 7 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">7</div>
+        <div class="block-title">Reality check</div>
+        <div class="block-time">3 min</div>
+      </div>
+      <div class="say-box">
+        "Last thing — what's your biggest concern about this working? Anything you think could be a bottleneck?"
+      </div>
+      <ul class="note-list">
+        <li>Listen carefully — this often reveals hidden expectations or constraints</li>
+        <li>Common answers: "I'm very busy", "I've tried this before", "quality of contacts matters most"</li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <!-- BLOCK 8 -->
+    <div class="block">
+      <div class="block-header">
+        <div class="step-num">8</div>
+        <div class="block-title">Next steps</div>
+        <div class="block-time">2 min</div>
+      </div>
+      <div class="say-box">
+        "Perfect. So: I handle research, outreach, signals, and filtering leads. You step in for the actual conversations. Goal is 2 qualified intros during the pilot.<br /><br />
+        From my side: target list is ready, first emails go out next week, signals start running in parallel. You'll hear from me in a few days."
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

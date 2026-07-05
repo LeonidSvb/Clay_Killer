@@ -1,0 +1,74 @@
+OUTREACH EMAIL TEMPLATES — OLD-SCHOOL NICHES
+(logistics, freight, trucking, distribution)
+============================================
+
+
+--- INITIAL OUTREACH ---
+
+hey [NAME],
+
+your name came up on my end,
+
+shippers i've been talking to are finalizing broker relationships for Q2 right now
+
+wanted to see if you had bandwidth available to fill
+
+worth a quick chat?
+
+Leo
+
+
+--- FOLLOW-UP (bump) ---
+
+hey [NAME],
+
+just bumping this - had a few shippers reach out lately
+
+worth a quick call?
+
+
+--- CALENDAR INVITE FOLLOW-UP ---
+
+Hey [NAME],
+
+sent over a Google Meet invite for [DAY] at [TIME] — should be in your inbox.
+
+Leo
+
+
+--- NOTES ---
+
+- Lowercase, no punctuation overkill — matches the niche
+- No pitch in the email — curiosity only, details on the call
+- Follow-up is one line, no re-explaining
+- Calendar email is 2 lines max
+
+
+============================================
+POST-SALE / CLIENT ONBOARDING MESSAGES
+============================================
+
+
+--- INVOICE SEND (after client provides billing details) ---
+
+Subject: Invoice — [INVOICE NUMBER]
+
+Hi [NAME],
+
+No worries at all — appreciate you sending it over.
+
+Please find the invoice attached: [INVOICE NUMBER] / [AMOUNT]
+Payment via PayPal: paypal.me/LeonidShvorob
+
+Once it's through, grab a kickoff slot here: [CALENDAR LINK]
+30 minutes — we'll lock in your ICP, target markets, and signal parameters. I'll get started within 48 hours after.
+
+Talk soon,
+Leonid
+
+--- NOTES ---
+
+- Reply in the existing thread (not a new one)
+- Include PayPal link directly in the body — don't make them open the PDF to find it
+- Kickoff booking link goes in the same message — one action chain: pay → book
+- No "let me know if you have questions", no apologies for delay

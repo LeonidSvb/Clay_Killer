@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice [INVOICE_NUMBER]</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      color: #0a2540;
+      background: #f6f9fc;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 740px;
+      margin: 32px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e3e8ef;
+      overflow: hidden;
+    }
+
+    /* TOP ACCENT BAR */
+    .accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #5469d4 0%, #7c8ff0 100%);
+    }
+
+    .content {
+      padding: 32px 44px 36px;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .from-block .name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0a2540;
+      letter-spacing: -0.2px;
+    }
+
+    .from-block .email {
+      font-size: 13px;
+      color: #697386;
+      margin-top: 3px;
+    }
+
+    .invoice-meta {
+      text-align: right;
+    }
+
+    .invoice-meta .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #a3acb9;
+      margin-bottom: 4px;
+    }
+
+    .invoice-meta .inv-number {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0a2540;
+      letter-spacing: -0.3px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      background: #fff8e1;
+      color: #9f6a00;
+      border: 1px solid #f0d878;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid #e3e8ef;
+      margin: 0 0 22px;
+    }
+
+    /* BILL TO + DATES ROW */
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 26px;
+    }
+
+    .info-block h3 {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #a3acb9;
+      margin-bottom: 7px;
+    }
+
+    .info-block p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #3c4257;
+    }
+
+    .info-block p strong {
+      color: #0a2540;
+      font-weight: 600;
+    }
+
+    .dates-block {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .dates-table {
+      border-collapse: collapse;
+      margin-left: auto;
+    }
+
+    .dates-table tr td {
+      padding: 4px 0;
+      font-size: 13px;
+    }
+
+    .dates-table tr td:first-child {
+      color: #a3acb9;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding-right: 24px;
+    }
+
+    .dates-table tr td:last-child {
+      color: #0a2540;
+      font-weight: 500;
+    }
+
+    /* LINE ITEMS TABLE */
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+
+    .items-table thead th {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #a3acb9;
+      padding: 0 0 10px 0;
+      text-align: left;
+      border-bottom: 1px solid #e3e8ef;
+    }
+
+    .items-table thead th.right { text-align: right; }
+
+    .items-table tbody td {
+      padding: 14px 0;
+      vertical-align: top;
+      border-bottom: 1px solid #f0f3f7;
+      color: #3c4257;
+    }
+
+    .items-table tbody td.right {
+      text-align: right;
+      font-weight: 500;
+      color: #0a2540;
+      white-space: nowrap;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #0a2540;
+      margin-bottom: 6px;
+    }
+
+    .item-desc {
+      font-size: 12.5px;
+      color: #697386;
+      line-height: 1.65;
+    }
+
+    /* TOTALS */
+    .totals-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 22px;
+    }
+
+    .totals-inner {
+      min-width: 260px;
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      font-size: 13px;
+    }
+
+    .totals-row .t-label { color: #697386; }
+    .totals-row .t-value { color: #3c4257; font-weight: 500; }
+
+    .totals-final {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0 0;
+      margin-top: 6px;
+      border-top: 1.5px solid #0a2540;
+      font-size: 16px;
+      font-weight: 700;
+      color: #0a2540;
+    }
+
+    /* PAYMENT SECTION */
+    .payment-box {
+      background: #f8fafc;
+      border: 1px solid #e3e8ef;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    .payment-box h3 {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #a3acb9;
+      margin-bottom: 10px;
+    }
+
+    .payment-options {
+      display: flex;
+      gap: 36px;
+    }
+
+    .payment-option h4 {
+      font-size: 12px;
+      font-weight: 600;
+      color: #3c4257;
+      margin-bottom: 4px;
+    }
+
+    .payment-option p {
+      font-size: 13px;
+      color: #5469d4;
+      font-weight: 500;
+    }
+
+    .payment-option .sub {
+      font-size: 12px;
+      color: #697386;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* FOOTER NOTES */
+    .notes {
+      font-size: 12px;
+      color: #a3acb9;
+      line-height: 1.65;
+      border-top: 1px solid #f0f3f7;
+      padding-top: 16px;
+    }
+
+    .notes span {
+      color: #697386;
+      font-weight: 500;
+    }
+
+    @page {
+      size: A4;
+      margin: 10mm 12mm;
+    }
+
+    @media print {
+      body { background: white; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        max-width: 100%;
+      }
+      .accent-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="accent-bar"></div>
+    <div class="content">
+
+      <!-- HEADER -->
+      <div class="header">
+        <div class="from-block">
+          <div class="name">Leonid Shvorob</div>
+          <div class="email">leo@systemhustle.com</div>
+        </div>
+        <div class="invoice-meta">
+          <div class="label">Invoice</div>
+          <div class="inv-number">[INVOICE_NUMBER]</div>
+          <div class="badge">Due [DUE_DATE]</div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- BILL TO + DATES -->
+      <div class="info-row">
+        <div class="info-block">
+          <h3>Billed To</h3>
+          <p>
+            <strong>[CLIENT_COMPANY]</strong><br />
+            [ADDRESS_LINE_1]<br />
+            [CITY_ZIP_COUNTRY]<br />
+            VAT ID: [VAT_ID]
+          </p>
+        </div>
+        <div class="info-block dates-block">
+          <h3>Details</h3>
+          <table class="dates-table">
+            <tr>
+              <td>Issue Date</td>
+              <td>[ISSUE_DATE]</td>
+            </tr>
+            <tr>
+              <td>Due Date</td>
+              <td>[DUE_DATE]</td>
+            </tr>
+            <tr>
+              <td>Currency</td>
+              <td>EUR (€)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- LINE ITEMS -->
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th style="width:55%">Description</th>
+            <th style="width:12%; text-align:center">Qty</th>
+            <th style="width:15%; text-align:right">Unit Price</th>
+            <th style="width:18%;" class="right">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="item-title">[SERVICE_TITLE]</div>
+              <div class="item-desc">
+                [SERVICE_DESCRIPTION]
+              </div>
+            </td>
+            <td style="text-align:center; color:#697386">1</td>
+            <td style="text-align:right; color:#697386">[AMOUNT]</td>
+            <td class="right">[AMOUNT]</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- TOTALS -->
+      <div class="totals-wrapper">
+        <div class="totals-inner">
+          <div class="totals-row">
+            <span class="t-label">Subtotal</span>
+            <span class="t-value">[AMOUNT]</span>
+          </div>
+          <div class="totals-row">
+            <span class="t-label">VAT (0% — reverse charge)</span>
+            <span class="t-value">€0.00</span>
+          </div>
+          <div class="totals-final">
+            <span>Total Due</span>
+            <span>[AMOUNT]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="payment-box">
+        <h3>Payment Instructions</h3>
+        <div class="payment-options">
+          <div class="payment-option">
+            <h4>PayPal</h4>
+            <p>paypal.me/LeonidShvorob</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTES -->
+      <div class="notes">
+        <span>VAT:</span> Services provided by a non-EU supplier. Reverse charge applies — VAT to be accounted for by the recipient per applicable EU regulations.<br />
+        <span>Terms:</span> Work begins within 48 hours of payment receipt. Pilot concludes upon delivery of 2 qualified introductions.
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
